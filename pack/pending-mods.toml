@@ -227,3 +227,105 @@ name = "GraveStone Mod"
 slug = "gravestone-mod"
 phase = "M2"
 reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Terralith"
+slug = "terralith"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Explorify"
+slug = "explorify"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dungeons and Taverns"
+slug = "dungeons-and-taverns"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Towns and Towers"
+slug = "towns-and-towers"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "When Dungeons Arise"
+slug = "when-dungeons-arise"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "FallingTree"
+slug = "falling-tree"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Sophisticated Backpacks"
+slug = "sophisticated-backpacks"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Star Worm Equestrian"
+slug = "swem"
+phase = "M3b"
+reason = "CurseForge project 455648 pending file resolution"
+
+[[pending]]
+name = "Guard Villagers"
+slug = "guard-villagers"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Farmer's Delight"
+slug = "farmers-delight"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Moonlight Lib"
+slug = "moonlight"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Supplementaries"
+slug = "supplementaries"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Comforts"
+slug = "comforts"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Tool Belt"
+slug = "tool-belt"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dynamic Waters"
+slug = "dynamic-waters"
+phase = "M3b"
+reason = "CurseForge project 923841 pending file resolution"
+
+[[pending]]
+name = "Flowing Fluids"
+slug = "flowing-fluids"
+phase = "M3b"
+reason = "CurseForge project 837462 pending file resolution"
+
+[[pending]]
+name = "Boatload"
+slug = "boatload"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"

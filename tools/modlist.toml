@@ -572,6 +572,17 @@ pin = "latest"
 note = "Culinary crafting and saturation buffs; core food layer for Ember-Wardens"
 
 [[mods]]
+name = "Moonlight Lib"
+slug = "moonlight"
+provider = "modrinth"
+category = "library"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Core companion dynamic data and entity library required by Supplementaries"
+
+[[mods]]
 name = "Supplementaries"
 slug = "supplementaries"
 provider = "modrinth"

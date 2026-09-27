@@ -1,0 +1,13 @@
+name = "Dungeons and Taverns"
+filename = "dungeons-and-taverns-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/dungeons-and-taverns/versions/dungeons-and-taverns-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "fd6ba4a01f8c86a2027da2c83c2a9abe866a6942373c9254c5b575abc64e48a6fbea9cc8156644383380d335f246adee5401cf8b70658fc83923e6c4b9f49562"
+
+[update]
+[update.modrinth]
+mod-id = "dungeons-and-taverns"
+version = "latest"

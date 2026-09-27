@@ -28,19 +28,22 @@ if %errorlevel% neq 0 (
 
 if "%~1"=="" (
     echo Select phase to install:
-    echo   [1] Combined Phase M1 + M2 (Movement, Vanilla PvP, Simply Swords & Soulslike) [DEFAULT]
+    echo   [1] Combined Phase M3 + M3b (Worldgen, Structures, Backpacks, Cooking & Fullness) [DEFAULT]
+    echo   [2] Phase M1 + M2 (Movement, Vanilla PvP, Simply Swords & Soulslike)
     echo   [0] Phase M0 Only (Skeleton & Performance Engine -- 24 mods)
     echo   [A] All Phases
     echo.
-    set /p CHOICE="Enter choice [1/0/A] (Press Enter for Combined M1+M2): "
+    set /p CHOICE="Enter choice [1/2/0/A] (Press Enter for Combined M3+M3b): "
     if "!CHOICE!"=="0" (
         set PHASE=M0
+    ) else if "!CHOICE!"=="2" (
+        set PHASE=M1+M2
     ) else if "!CHOICE!"=="a" (
         set PHASE=all
     ) else if "!CHOICE!"=="A" (
         set PHASE=all
     ) else (
-        set PHASE=M1+M2
+        set PHASE=M3+M3b
     )
 ) else (
     goto run_custom

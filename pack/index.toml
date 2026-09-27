@@ -16,6 +16,11 @@ hash = "da50e0d7061d03c99a7d592e0f557a24947895d5ecf3710cfb352a0cef69321c"
 metafile = true
 
 [[files]]
+file = "mods/boatload.pw.toml"
+hash = "d56c4af5a49acd597902eaf0b546c293882535394b9f211629c5beb243410f15"
+metafile = true
+
+[[files]]
 file = "mods/chunky.pw.toml"
 hash = "f5e33202bbc8c859ca63d3047b4ebacea503374fb02129f8a191d50cc36d6ee0"
 metafile = true
@@ -41,8 +46,18 @@ hash = "746fa9f39cd0ec0c4b905729ede5c7f89caa1be3416e6fe3ae4026c94a04fbf6"
 metafile = true
 
 [[files]]
+file = "mods/comforts.pw.toml"
+hash = "34fbccb8b62118822d2d0e52e6f0beeab9da36997ddfe440f47eaa33d98e1213"
+metafile = true
+
+[[files]]
 file = "mods/curios.pw.toml"
 hash = "10c4ce581103d8ef0cfc913c071eca0a5847ac80274bea979e837dd61e8551a4"
+metafile = true
+
+[[files]]
+file = "mods/dungeons-and-taverns.pw.toml"
+hash = "531a9c83d3258df80f5b1d9f3e195d055c91c20fab9c2fccf5f03a89a4f7d77a"
 metafile = true
 
 [[files]]
@@ -71,6 +86,21 @@ hash = "698a5e8317aac11c9a3d66497dacf76dc9abd49c23e606d3d3a6009a9cb27b86"
 metafile = true
 
 [[files]]
+file = "mods/explorify.pw.toml"
+hash = "ad9b787437d84ada4a81eb0cd429c9be846cc5d8d1c7f7e66d7aef289d85a6fa"
+metafile = true
+
+[[files]]
+file = "mods/falling-tree.pw.toml"
+hash = "9efa76ca46768cc90ff2a01bb7fd4658f0df3ab3faa85fa2b02cae835938812f"
+metafile = true
+
+[[files]]
+file = "mods/farmers-delight.pw.toml"
+hash = "43d49987d9a9234b045c0c12997f9035eebdeec4ecd4070ca6d33fdc0bc8b5b8"
+metafile = true
+
+[[files]]
 file = "mods/fastsuite.pw.toml"
 hash = "c0ac3c7f8450a5c8399a050173965ebced6c6c0105120bdacec482945bff4f32"
 metafile = true
@@ -91,6 +121,11 @@ hash = "ab47c805e553aba34f45442ce6a8923c9825433a39a3c5b9e629a0ad8eb2d54e"
 metafile = true
 
 [[files]]
+file = "mods/guard-villagers.pw.toml"
+hash = "8c2ebc15650e9bb3512cec5e760f39ef17fc0b697d853aeba1e4632283377fd7"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "35efc4f6d8becfc5069b8c9f0a62bcea7363a46d0de96d6f406cf9f45fddf339"
 metafile = true
@@ -108,6 +143,11 @@ metafile = true
 [[files]]
 file = "mods/modernfix.pw.toml"
 hash = "78b476e907509009cc99becf437442d9bf8a2d9ee0e11b069ebcfc150e127d7e"
+metafile = true
+
+[[files]]
+file = "mods/moonlight.pw.toml"
+hash = "29c01bbe8bf8f5b29a5f70c7631ab9c1ad38dfcdd1e8140fa17adc5208cdc1c4"
 metafile = true
 
 [[files]]
@@ -151,6 +191,11 @@ hash = "952811c6b703518c13fa84db534d1d9d3fe5d3a7ce6854ec12b29bd2b12264b2"
 metafile = true
 
 [[files]]
+file = "mods/sophisticated-backpacks.pw.toml"
+hash = "b5bbb0643baf46c581447ffc1b639eccfe360cfaa65a023cf798610088e5d894"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-core.pw.toml"
 hash = "ac4f3d63442f139e556bc7220bf3565c4037a1f3b0c1d89b34b48340462b2bf3"
 metafile = true
@@ -161,8 +206,33 @@ hash = "85415e2b6b57dceaa40cf4acad1ad2b83529ec7c76867f026b43bf97e3e0323d"
 metafile = true
 
 [[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "ff368ed2ab7d42eaedf608273dd48eb9fd39d4d4c92ce2d3c8d064503caf2b83"
+metafile = true
+
+[[files]]
 file = "mods/terrablender.pw.toml"
 hash = "59760e91cc8d4565d6166e2452ed8c98f90b6edbc7ffe2bfb815709dbaef2ca6"
+metafile = true
+
+[[files]]
+file = "mods/terralith.pw.toml"
+hash = "55e27d7fb368316e9ff398816b42c5b353070a4aa55502874fdb0f20a155df74"
+metafile = true
+
+[[files]]
+file = "mods/tool-belt.pw.toml"
+hash = "d95192e5fb9b651a2d696c18ff437abd77441e1d1e61920dd842ad6b2546f297"
+metafile = true
+
+[[files]]
+file = "mods/towns-and-towers.pw.toml"
+hash = "a494ee75265227cf2740ca1476e590569a011c2b74c2a10e79a9ae5ccf3f08b1"
+metafile = true
+
+[[files]]
+file = "mods/when-dungeons-arise.pw.toml"
+hash = "5a7d4418153044bbe49f1cc2fb635c79fb5d94c05bece7199d5660641d67641b"
 metafile = true
 
 [[files]]

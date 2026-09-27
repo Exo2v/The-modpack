@@ -129,9 +129,10 @@ def filter_mods(mods: List[Dict[str, Any]], phase_filter: Optional[str] = None, 
 
     allowed_phases = None
     if phase_filter_upper and cumulative:
-        if phase_filter_upper in PHASE_ORDER:
-            idx = PHASE_ORDER.index(phase_filter_upper)
-            allowed_phases = set(PHASE_ORDER[:idx + 1])
+        phase_order_upper = [p.upper() for p in PHASE_ORDER]
+        if phase_filter_upper in phase_order_upper:
+            idx = phase_order_upper.index(phase_filter_upper)
+            allowed_phases = set(phase_order_upper[:idx + 1])
         else:
             allowed_phases = {phase_filter_upper}
 

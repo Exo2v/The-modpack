@@ -1,0 +1,13 @@
+name = "Terralith"
+filename = "terralith-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/terralith/versions/terralith-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "879ac0977a2793e100347d73b2f1d1de5e4a0bcd539adbf50fcd6ff56d966e210ba5537379ce26dea6a60b9518ff1a5c5188f3639a7a025ed1ac47b87c90efa8"
+
+[update]
+[update.modrinth]
+mod-id = "terralith"
+version = "latest"
