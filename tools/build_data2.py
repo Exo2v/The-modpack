@@ -191,10 +191,10 @@ def generate_multi_noise_biomes():
                     biomes.append(pt("minecraft:beach", t, h, 0.0, 0.2, w))
 
     # =========================================================================
-    # 3. THE SOLITARY GLACIAL SPINE (NORTH) — T in [-1.0, -0.5], C in [0.2, 0.9]
-    # Alpine peaks, snowy cirques, permafrost flats
+    # 3. THE SOLITARY GLACIAL SPINE (NORTH) — T in [-1.2, -0.70], C in [0.2, 0.9]
+    # Alpine peaks, snowy cirques, permafrost flats (STRICTLY FREEZING ONLY)
     # =========================================================================
-    for t in [-1.0, -0.8, -0.6]:
+    for t in [-1.15, -0.95, -0.75]:
         for h in [-0.4, 0.0, 0.4]:
             for c in [0.25, 0.55, 0.85]:
                 # Peaks (Low erosion, high weirdness)
@@ -208,10 +208,10 @@ def generate_multi_noise_biomes():
                 biomes.append(pt("minecraft:ice_spikes", t, h, c, 0.6, 0.7))
 
     # =========================================================================
-    # 4. TRANSITIONAL BUFFER BELT (Eliminates Hard Snow-Grass Borders!)
-    # T in [-0.5, -0.15]: Taiga, Pine Groves, Windswept Forest, Meadows
+    # 4. TRANSITIONAL BOREAL BELT (Green Taiga & Pine Forests — NO SNOW)
+    # T in [-0.60, -0.20]: Wide buffer insulating freezing north from temperate south!
     # =========================================================================
-    for t in [-0.5, -0.35, -0.2]:
+    for t in [-0.60, -0.45, -0.30]:
         for h in [-0.3, 0.1, 0.5]:
             for c in [0.15, 0.45, 0.75]:
                 for e in [-0.5, 0.0, 0.5]:
@@ -422,7 +422,78 @@ def build():
         json.dump(overworld_dim, f, indent=2)
     print(f" [✓] Created dimension/overworld.json ({len(biomes)} calibrated multi-noise points)")
 
-    # 4. README documentation
+    # 4. Built-in Teleportation & Inspection Functions
+    func_dir = BUILD_DATA2_DIR / "data" / "ashenfall" / "function"
+    func_dir.mkdir(parents=True, exist_ok=True)
+
+    # wayfinder.mcfunction
+    wayfinder_lines = [
+        'tellraw @s ""',
+        'tellraw @s ["",{"text":"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━","color":"dark_gray"}]',
+        'tellraw @s ["",{"text":"🧭 ","color":"gold"},{"text":"ASHENFALL WAYFINDER MENU","color":"gold","bold":true},{"text":" — Choose a destination:","color":"yellow"}]',
+        'tellraw @s ["",{"text":"Click any option below to instantly teleport and inspect biomes:","color":"gray","italic":true}]',
+        'tellraw @s ""',
+        'tellraw @s ["",{"text":" [1] ","color":"yellow","bold":true},{"text":"The Forgotten Coast ","color":"green","bold":true},{"text":"(Spawn / South) ","color":"dark_gray"},{"text":"➡ [CLICK TO TELEPORT]","color":"aqua","bold":true,"clickEvent":{"action":"run_command","value":"/function ashenfall:tp_coast"},"hoverEvent":{"action":"show_text","contents":"Teleport to The Forgotten Coast (0, 68, 2500)\\nExpected: Plains, Meadow, Forest"}},{"text":"\\n     └─ Plains, Meadow, Forest | (0, 68, 2500)","color":"gray"}]',
+        'tellraw @s ["",{"text":" [2] ","color":"yellow","bold":true},{"text":"The Cogwork March ","color":"gold","bold":true},{"text":"(West) ","color":"dark_gray"},{"text":"➡ [CLICK TO TELEPORT]","color":"aqua","bold":true,"clickEvent":{"action":"run_command","value":"/function ashenfall:tp_cogwork"},"hoverEvent":{"action":"show_text","contents":"Teleport to The Cogwork March (-2000, 85, 0)\\nExpected: Windswept Hills, River Canyons, Badlands"}},{"text":"\\n     └─ Windswept Hills, River Canyons, Badlands | (-2000, 85, 0)","color":"gray"}]',
+        'tellraw @s ["",{"text":" [3] ","color":"yellow","bold":true},{"text":"The Ashen Caldera ","color":"dark_red","bold":true},{"text":"(Center) ","color":"dark_gray"},{"text":"➡ [CLICK TO TELEPORT]","color":"aqua","bold":true,"clickEvent":{"action":"run_command","value":"/function ashenfall:tp_caldera"},"hoverEvent":{"action":"show_text","contents":"Teleport to The Ashen Caldera (0, 80, 0)\\nExpected: Basalt Deltas, Blackstone, Eroded Badlands"}},{"text":"\\n     └─ Basalt Deltas, Blackstone, Crater | (0, 80, 0)","color":"gray"}]',
+        'tellraw @s ["",{"text":" [4] ","color":"yellow","bold":true},{"text":"The Solitary Glacial Spine ","color":"aqua","bold":true},{"text":"(North) ","color":"dark_gray"},{"text":"➡ [CLICK TO TELEPORT]","color":"aqua","bold":true,"clickEvent":{"action":"run_command","value":"/function ashenfall:tp_glacial"},"hoverEvent":{"action":"show_text","contents":"Teleport to The Solitary Glacial Spine (0, 160, -2500)\\nExpected: Frozen Peaks, Snowy Slopes, Alpine Cirques"}},{"text":"\\n     └─ Frozen Peaks, Snowy Slopes, Cirques | (0, 160, -2500)","color":"gray"}]',
+        'tellraw @s ["",{"text":" [5] ","color":"yellow","bold":true},{"text":"The Gilded Dunes ","color":"yellow","bold":true},{"text":"(East) ","color":"dark_gray"},{"text":"➡ [CLICK TO TELEPORT]","color":"aqua","bold":true,"clickEvent":{"action":"run_command","value":"/function ashenfall:tp_gilded"},"hoverEvent":{"action":"show_text","contents":"Teleport to The Gilded Dunes (2500, 75, 0)\\nExpected: Desert, Badlands, Terracotta Mesas"}},{"text":"\\n     └─ Desert, Badlands, Terracotta Mesas | (2500, 75, 0)","color":"gray"}]',
+        'tellraw @s ""',
+        'tellraw @s ["",{"text":"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━","color":"dark_gray"}]',
+        'tellraw @s ""'
+    ]
+    with open(func_dir / "wayfinder.mcfunction", "w", encoding="utf-8") as f:
+        f.write("\n".join(wayfinder_lines) + "\n")
+
+    # tp destinations
+    dest_scripts = {
+        "tp_coast.mcfunction": [
+            "tp @s 0 68 2500",
+            "playsound minecraft:item.chorus_fruit.teleport ambient @s 0 68 2500 1.0 1.0",
+            "title @s times 10 50 15",
+            'title @s title {"text":"The Forgotten Coast","color":"green","bold":true}',
+            'title @s subtitle {"text":"[Spawn] (0, 68, 2500)","color":"gray"}',
+            'tellraw @s ["",{"text":"[Wayfinder] ","color":"gold"},{"text":"Arrived at The Forgotten Coast (0, 68, 2500). Expected: Plains, Meadow, Forest.","color":"green"}]'
+        ],
+        "tp_cogwork.mcfunction": [
+            "tp @s -2000 85 0",
+            "playsound minecraft:item.chorus_fruit.teleport ambient @s -2000 85 0 1.0 1.0",
+            "title @s times 10 50 15",
+            'title @s title {"text":"The Cogwork March","color":"gold","bold":true}',
+            'title @s subtitle {"text":"[West] (-2000, 85, 0)","color":"gray"}',
+            'tellraw @s ["",{"text":"[Wayfinder] ","color":"gold"},{"text":"Arrived at The Cogwork March (-2000, 85, 0). Expected: Windswept Hills, River Canyons, Badlands.","color":"gold"}]'
+        ],
+        "tp_caldera.mcfunction": [
+            "tp @s 0 80 0",
+            "playsound minecraft:item.chorus_fruit.teleport ambient @s 0 80 0 1.0 1.0",
+            "title @s times 10 50 15",
+            'title @s title {"text":"The Ashen Caldera","color":"dark_red","bold":true}',
+            'title @s subtitle {"text":"[Center] (0, 80, 0)","color":"gray"}',
+            'tellraw @s ["",{"text":"[Wayfinder] ","color":"gold"},{"text":"Arrived at The Ashen Caldera (0, 80, 0). Expected: Basalt Deltas, Blackstone, Crater.","color":"dark_red"}]'
+        ],
+        "tp_glacial.mcfunction": [
+            "tp @s 0 160 -2500",
+            "playsound minecraft:item.chorus_fruit.teleport ambient @s 0 160 -2500 1.0 1.0",
+            "title @s times 10 50 15",
+            'title @s title {"text":"The Solitary Glacial Spine","color":"aqua","bold":true}',
+            'title @s subtitle {"text":"[North] (0, 160, -2500)","color":"gray"}',
+            'tellraw @s ["",{"text":"[Wayfinder] ","color":"gold"},{"text":"Arrived at The Solitary Glacial Spine (0, 160, -2500). Expected: Frozen Peaks, Snowy Slopes, Cirques.","color":"aqua"}]'
+        ],
+        "tp_gilded.mcfunction": [
+            "tp @s 2500 75 0",
+            "playsound minecraft:item.chorus_fruit.teleport ambient @s 2500 75 0 1.0 1.0",
+            "title @s times 10 50 15",
+            'title @s title {"text":"The Gilded Dunes","color":"yellow","bold":true}',
+            'title @s subtitle {"text":"[East] (2500, 75, 0)","color":"gray"}',
+            'tellraw @s ["",{"text":"[Wayfinder] ","color":"gold"},{"text":"Arrived at The Gilded Dunes (2500, 75, 0). Expected: Desert, Badlands, Terracotta Mesas.","color":"yellow"}]'
+        ]
+    }
+    for fname, lines in dest_scripts.items():
+        with open(func_dir / fname, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+    print(f" [✓] Created 6 teleportation functions in data/ashenfall/function/")
+
+    # 5. README documentation
     with open(BUILD_DATA2_DIR / "README.md", "w", encoding="utf-8") as f:
         f.write(create_readme())
     print(" [✓] Created README.md")
