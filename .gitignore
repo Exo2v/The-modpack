@@ -13,5 +13,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# World save large raw regions (use saves/Ashenfall.zip or tools/build_ashenfall_world.py)
-saves/Ashenfall/region/
+# World save local files
+saves/
+
