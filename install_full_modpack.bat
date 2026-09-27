@@ -410,10 +410,10 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "phase": "M3",
         "category": "technology",
         "fallback_url": [
-            "https://edge.forgecdn.net/files/7408/951/create-1.21.1-6.0.9.jar",
-            "https://mediafilez.forgecdn.net/files/7408/951/create-1.21.1-6.0.9.jar",
+            "https://edge.forgecdn.net/files/7963/363/create-1.21.1-6.0.10.jar",
+            "https://mediafilez.forgecdn.net/files/7963/363/create-1.21.1-6.0.10.jar",
         ],
-        "filename": "create-1.21.1-6.0.9.jar",
+        "filename": "create-1.21.1-6.0.10.jar",
     },
     {
         "name": "Create: Structures Arise",
@@ -1330,6 +1330,7 @@ def clean_unnecessary_and_outdated_mods(mods_dir: Path, catalog_filenames: Set[s
         ("graveyard", "Causes fatal Registry is already frozen [graveyard:tg_jigsaw] crash in worldgen worker thread"),
         ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
         ("better-boss-bars", "Contains broken functions referencing uninstalled mods"),
+        ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise"),
     ]
 
     for item in list(mods_dir.glob("*.jar")):

@@ -46,12 +46,12 @@ DH_CONFIG = __DH_CONFIG__
 # Essential files to download if missing
 ESSENTIAL_DOWNLOADS = [
     {
-        "name": "Create 6.0.9 (NeoForge 1.21.1)",
+        "name": "Create 6.0.10 (NeoForge 1.21.1)",
         "dest": "mods",
-        "filename": "create-1.21.1-6.0.9.jar",
+        "filename": "create-1.21.1-6.0.10.jar",
         "urls": [
-            "https://edge.forgecdn.net/files/7408/951/create-1.21.1-6.0.9.jar",
-            "https://mediafilez.forgecdn.net/files/7408/951/create-1.21.1-6.0.9.jar"
+            "https://edge.forgecdn.net/files/7963/363/create-1.21.1-6.0.10.jar",
+            "https://mediafilez.forgecdn.net/files/7963/363/create-1.21.1-6.0.10.jar"
         ]
     },
     {
@@ -114,7 +114,8 @@ BLACKLIST = [
     ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
     ("graveyard", "Causes fatal Registry is already frozen [graveyard:tg_jigsaw] crash in worldgen worker thread"),
     ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
-    ("better-boss-bars", "Contains broken functions referencing uninstalled mods")
+    ("better-boss-bars", "Contains broken functions referencing uninstalled mods"),
+    ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise")
 ]
 
 def find_game_dirs():
@@ -427,7 +428,7 @@ def main():
     print("  * BUGGED SHINE MOD PURGED: No more blinding/superbright spots or bloom glitches!")
     print("  * STREAMS REFLOWING PURGED: Eliminates the 0% 'weaving waterways' infinite freeze!")
     print("  * WAVIFY BILLBOARDS PURGED: Restores subtle natural shader water ripples!")
-    print("  * CREATE 6.0.9 INSTALLED: Missing block registry errors healed; existing worlds load!")
+    print("  * CREATE 6.0.10 INSTALLED: Satisfies Create Structures Arise dependency!")
     print("  * SPARK PROFILER INSTALLED: Live diagnostics & freeze watchdog (/spark health)!")
     print("  * 20 HEARTS (40 MAX HP): Permanent base health across all logins and respawns.")
     print("  * PURE RHINO KUBEJS: 100% fail-safe scripts with try/catch exception shielding.")

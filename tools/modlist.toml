@@ -574,7 +574,7 @@ category = "technology"
 phase = "M3"
 side = "both"
 risk = "low"
-pin = "6.0.9"
+pin = "6.0.10"
 note = "Kinetic mechanical engineering, cogwheels, rotational power, and steam engines"
 
 [[mods]]
