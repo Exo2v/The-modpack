@@ -31,16 +31,3 @@ PlayerEvents.respawned(function(event) {
         console.error("Health respawn exception: " + e);
     }
 });
-
-PlayerEvents.changedDimension(function(event) {
-    try {
-        var player = event.player;
-        if (!player) return;
-        var attr = player.getAttribute("minecraft:generic.max_health");
-        if (attr) {
-            attr.setBaseValue(40.0);
-        }
-    } catch (e) {
-        console.error("Health dimension exception: " + e);
-    }
-});

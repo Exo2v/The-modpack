@@ -1262,6 +1262,17 @@ pin = "latest"
 note = "Dark Souls style landmark title banners on entering new regions and dungeons"
 
 [[mods]]
+name = "Uranus"
+slug = "uranus"
+provider = "curseforge"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Core animation and worldgen engine required by Ice and Fire 1.21.1"
+
+[[mods]]
 name = "Ice and Fire: Community Edition"
 slug = "iceandfire-ce"
 provider = "modrinth"

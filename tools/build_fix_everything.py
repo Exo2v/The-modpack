@@ -87,6 +87,15 @@ ESSENTIAL_DOWNLOADS = [
         "urls": [
             "https://cdn.modrinth.com/data/l6YH9Als/versions/1.10.124-neoforge-1.21.1/spark-1.10.124-neoforge.jar"
         ]
+    },
+    {
+        "name": "Uranus (Required Library for Ice and Fire 1.21.1)",
+        "dest": "mods",
+        "filename": "uranus-2.4.1-1.21.1-neoforge.jar",
+        "urls": [
+            "https://edge.forgecdn.net/files/8008/516/uranus-2.4.1-1.21.1-neoforge.jar",
+            "https://mediafilez.forgecdn.net/files/8008/516/uranus-2.4.1-1.21.1-neoforge.jar"
+        ]
     }
 ]
 
