@@ -953,6 +953,12 @@ def main() -> None:
     phase_filter = args.phase.upper()
     if phase_filter in ("ALL", "FULL"):
         mods_to_download = MODS_CATALOG
+    elif phase_filter in ("M1+M2", "M1-M2", "M1M2", "M1_M2", "COMBINED", "M12"):
+        # Combined M1 and M2: Includes M0 baseline + M1 + M2
+        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M0", "M1", "M2")]
+    elif phase_filter in ("ONLY-M1-M2", "M1-M2-ONLY", "NEW"):
+        # Only M1 and M2 mods
+        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M1", "M2")]
     else:
         # If user chooses M0, download M0. If user chooses M1, download M0 + M1, etc.
         phase_order = ["M0", "M1", "M2", "M3", "M3b", "M3c", "M4", "M5", "M6", "M7", "M8", "M9"]
