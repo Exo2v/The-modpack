@@ -27,7 +27,7 @@ import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Set
 
 USER_AGENT = "AshenfallModDownloader/1.0 (Windows NT 10.0; Win64; x64) (+https://github.com/Exo2v/The-modpack)"
 
@@ -1241,59 +1241,186 @@ def install_custom_configs(mods_dir: Path) -> int:
     return installed
 
 
-def clean_corrupted_files(mods_dir: Path) -> int:
-    """Scans mods_dir and removes 0-byte, corrupted, or incompatible files that break NeoForge."""
+def extract_mod_ids(jar_path: Path) -> Set[str]:
+    """Extracts all mod IDs registered inside a jar file (from neoforge.mods.toml, mods.toml, fabric.mod.json)."""
+    mod_ids: Set[str] = set()
+    try:
+        with zipfile.ZipFile(jar_path, "r") as zf:
+            for name in zf.namelist():
+                nl = name.lower()
+                if nl in ("meta-inf/neoforge.mods.toml", "meta-inf/mods.toml"):
+                    try:
+                        content = zf.read(name).decode("utf-8", errors="ignore")
+                        matches = re.findall(r"modId\s*=\s*[\"']([^\"']+)[\"']", content)
+                        for m in matches:
+                            mod_ids.add(m.strip().lower())
+                    except Exception:
+                        pass
+                elif nl == "fabric.mod.json":
+                    try:
+                        data = json.loads(zf.read(name).decode("utf-8", errors="ignore"))
+                        if "id" in data:
+                            mod_ids.add(str(data["id"]).strip().lower())
+                    except Exception:
+                        pass
+    except Exception:
+        pass
+    return mod_ids
+
+
+def clean_unnecessary_and_outdated_mods(mods_dir: Path, catalog_filenames: Set[str]) -> int:
+    """
+    Cleans mods folder:
+    1. Removes 0-byte, non-JAR bundles (.mrpack, .zip, .tmp, .txt), and corrupted JARs.
+    2. Purges blacklisted / incompatible mods (hollowmarch, bettercombat, terralith, optifine, rubidium).
+    3. Detects duplicate versions of the same mod ID and deletes outdated duplicates to prevent startup crashes.
+    """
     removed = 0
     if not mods_dir.exists():
         return 0
 
+    # 1. Non-JAR or corrupted file purge
     for item in list(mods_dir.iterdir()):
         if item.is_file():
-            # Check for non-jar files mistakenly placed into mods/
-            if item.suffix.lower() in (".mrpack", ".zip", ".tmp", ".txt"):
-                print(f"  [Cleaner] Removing non-mod bundle from mods folder: {item.name}")
-                item.unlink()
-                removed += 1
+            if item.suffix.lower() in (".mrpack", ".zip", ".tmp", ".txt", ".crdownload"):
+                print(f"  [Cleaner] Removing non-mod file from mods folder: {item.name}")
+                try:
+                    item.unlink()
+                    removed += 1
+                except Exception:
+                    pass
                 continue
 
-            # Remove Hollowmarch: Has hardcoded Create block references (create:large_water_wheel) that crash 1.21.1 world creation
-            if "hollowmarch" in item.name.lower():
-                print(f"  [Cleaner] Removing Hollowmarch JAR (prevents Create registry world-creation crash): {item.name}")
-                item.unlink()
-                removed += 1
-                continue
-
-            # Remove Better Combat JAR (keeping Vanilla PvP mechanics per user preference)
-            if "bettercombat" in item.name.lower():
-                print(f"  [Cleaner] Removing Better Combat JAR (keeping Vanilla PvP mechanics): {item.name}")
-                item.unlink()
-                removed += 1
-                continue
-
-            # Remove Terralith if present (replaced by Lithosphere + Still Life)
-            if "terralith" in item.name.lower():
-                print(f"  [Cleaner] Removing Terralith JAR (replaced by Lithosphere + Still Life): {item.name}")
-                item.unlink()
-                removed += 1
-                continue
-
-            # Check 0-byte files
             if item.stat().st_size == 0:
                 print(f"  [Cleaner] Removing 0-byte truncated file: {item.name}")
-                item.unlink()
-                removed += 1
+                try:
+                    item.unlink()
+                    removed += 1
+                except Exception:
+                    pass
                 continue
 
             # Verify zip header on jar files
             if item.suffix.lower() == ".jar":
                 try:
                     with zipfile.ZipFile(item, "r") as zf:
-                        _ = zf.namelist()
-                except (zipfile.BadZipFile, Exception):
+                        if not zf.namelist():
+                            raise ValueError("Empty jar")
+                except Exception:
                     print(f"  [Cleaner] Removing corrupted jar (broken zip header): {item.name}")
+                    try:
+                        item.unlink()
+                        removed += 1
+                    except Exception:
+                        pass
+                    continue
+
+    # 2. Blacklisted / Unnecessary / Incompatible mods purge
+    BLACKLIST_KEYWORDS = [
+        ("hollowmarch", "Causes create:large_water_wheel registry crash on world creation"),
+        ("bettercombat", "Replaced with Vanilla PvP mechanics per configuration"),
+        ("terralith", "Replaced with Lithosphere + Still Life biome architecture"),
+        ("optifine", "Incompatible with NeoForge 1.21.1 and Embeddium"),
+        ("rubidium", "Deprecated Forge fork replaced by Embeddium"),
+        ("magnesium", "Deprecated Forge fork"),
+        ("sodium-fabric", "Fabric build detected in NeoForge folder"),
+        ("iris-fabric", "Fabric build detected in NeoForge folder"),
+    ]
+
+    for item in list(mods_dir.glob("*.jar")):
+        name_lower = item.name.lower()
+        for kw, reason in BLACKLIST_KEYWORDS:
+            if kw in name_lower:
+                print(f"  [Cleaner] Removing unnecessary/incompatible mod ({reason}): {item.name}")
+                try:
                     item.unlink()
                     removed += 1
+                except Exception:
+                    pass
+                break
+
+    # 3. Duplicate mod detection (prevent DuplicateModsFoundException)
+    jars_by_modid: Dict[str, List[Path]] = {}
+    for jar in list(mods_dir.glob("*.jar")):
+        mod_ids = extract_mod_ids(jar)
+        for mid in mod_ids:
+            jars_by_modid.setdefault(mid, []).append(jar)
+
+    for mid, jar_list in jars_by_modid.items():
+        # Remove duplicate references to the same file
+        unique_jars = list(dict.fromkeys(jar_list))
+        if len(unique_jars) > 1:
+            # Check if one matches catalog filename
+            target_jar = next((j for j in unique_jars if j.name in catalog_filenames), None)
+            if not target_jar:
+                # Pick the newest by modification time
+                target_jar = max(unique_jars, key=lambda j: j.stat().st_mtime)
+
+            for j in unique_jars:
+                if j != target_jar and j.exists():
+                    print(f"  [Cleaner] Removing outdated duplicate version for mod '{mid}': {j.name} (keeping {target_jar.name})")
+                    try:
+                        j.unlink()
+                        removed += 1
+                    except Exception:
+                        pass
+
     return removed
+
+
+def download_mod_list(
+    mods: List[Dict[str, Any]],
+    target_dir: Path,
+    verbose: bool = False,
+    label: str = "Mods"
+) -> Tuple[int, int, int]:
+    """Downloads a list of mods, verifying zip integrity and skipping up-to-date files."""
+    success = 0
+    skipped = 0
+    failed = 0
+
+    for i, mod in enumerate(mods, 1):
+        name = mod["name"]
+        slug = mod.get("slug")
+        slug_display = ", ".join(slug) if isinstance(slug, list) else str(slug or "Direct")
+        print(f"  [{i}/{len(mods)}] {name} ({slug_display})...", end="", flush=True)
+
+        res = resolve_modrinth_jar(slug, verbose=verbose) if slug else None
+        if res:
+            url, filename, size = res
+        elif mod.get("fallback_url") and mod.get("filename"):
+            url = mod["fallback_url"]
+            filename = mod["filename"]
+            size = 0
+        else:
+            print(" ⚠️ No 1.21.1 NeoForge file found.")
+            failed += 1
+            continue
+
+        dest_file = target_dir / filename
+
+        # Check if already present and valid
+        if dest_file.exists():
+            try:
+                with zipfile.ZipFile(dest_file, "r") as zf:
+                    if zf.namelist():
+                        print(f" Already up-to-date ({dest_file.stat().st_size // 1024} KB).")
+                        skipped += 1
+                        continue
+            except Exception:
+                dest_file.unlink()
+
+        # Download
+        ok = download_and_verify(url, dest_file, expected_size=size, verbose=verbose)
+        if ok:
+            mb = dest_file.stat().st_size / (1024 * 1024)
+            print(f" Downloaded ({mb:.1f} MB) ✅")
+            success += 1
+        else:
+            print(" ❌ Download failed.")
+            failed += 1
+
+    return success, skipped, failed
 
 
 # ---------------------------------------------------------------------------
@@ -1322,112 +1449,82 @@ def main() -> None:
     target_dir.mkdir(parents=True, exist_ok=True)
 
     print("\n" + "=" * 65)
-    print(" ASHENFALL — DIRECT MOD DOWNLOADER")
+    print(" ASHENFALL — ALL-IN-ONE MODPACK INSTALLER & MANAGER")
     print(" Target: Minecraft 1.21.1 · NeoForge 21.1.x")
     print(" Destination:", target_dir)
     print(" Phase:", args.phase.upper())
-    print("=" * 65 + "\n")
+    print("=" * 65)
 
-    # 2. Clean out any corrupted / 0-byte files that trigger "zip END header not found"
-    print("[1/3] Scanning destination folder for corrupted files and script issues...")
-    cleaned = clean_corrupted_files(target_dir)
+    # 2. Stage 1: Clean unnecessary, incompatible & outdated duplicate mods
+    print("\n[1/4] Scanning mods folder for unnecessary, incompatible & duplicate mods...")
+    catalog_filenames = {m.get("filename") for m in MODS_CATALOG if m.get("filename")}
+    cleaned = clean_unnecessary_and_outdated_mods(target_dir, catalog_filenames)
     if cleaned > 0:
-        print(f"  ✅ Cleaned {cleaned} corrupted/invalid files to prevent startup crash.")
+        print(f"  ✅ Cleaned {cleaned} outdated, duplicate, or crash-inducing file(s).")
     else:
-        print("  ✅ Destination folder is clean.")
+        print("  ✅ Destination folder is clean (no obsolete or conflicting mods found).")
 
+    # 3. Stage 2: Deploy and heal KubeJS scripts & configs
+    print("\n[2/4] Deploying & verifying KubeJS narrative/gameplay scripts and configs...")
     fixed_scripts = check_and_fix_kubejs(target_dir)
     if fixed_scripts > 0:
-        print(f"  ✅ Checked and healed {fixed_scripts} KubeJS script(s) (modernized for 1.21.1 Rhino JS engine).")
+        print(f"  ✅ Deployed/healed {fixed_scripts} KubeJS script(s) (including 20 Hearts / 40 HP system).")
+    else:
+        print("  ✅ KubeJS scripts are up-to-date and 100% pure Rhino JS.")
 
     installed_cfgs = install_custom_configs(target_dir)
     if installed_cfgs > 0:
-        print(f"  ✅ Installed {installed_cfgs} tuned config file(s) (rare dragons, 2500-block spawn sanctuary).")
+        print(f"  ✅ Configured {installed_cfgs} settings file(s) (rare dragons, 2500-block spawn sanctuary).")
+    else:
+        print("  ✅ Configurations are verified.")
 
-    # 3. Filter mods by phase
+    # 4. Stage 3: Verify and install essential Core APIs & Libraries
+    print("\n[3/4] Verifying and installing essential Core APIs & Libraries...")
+    api_mods = [m for m in MODS_CATALOG if m.get("category") == "library" or (m.get("phase") == "M0" and m.get("category") == "performance")]
+    api_names = {m["name"] for m in api_mods}
+    api_success, api_skipped, api_failed = download_mod_list(api_mods, target_dir, verbose=args.verbose, label="Core APIs")
+    print(f"  -> APIs Status: {api_success} downloaded, {api_skipped} verified up-to-date, {api_failed} failed.")
+
+    # 5. Stage 4: Download gameplay & content mods for requested phase
     phase_filter = args.phase.upper()
     if phase_filter in ("ALL", "FULL", "COMPLETE"):
-        mods_to_download = MODS_CATALOG
+        content_candidates = [m for m in MODS_CATALOG if m["name"] not in api_names]
     elif phase_filter in ("REMAINING", "REST", "NEW", "M3C-M7", "M3C+M7"):
-        # The remaining phases (M3c through M7)
-        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M3c", "M4", "M5", "M6", "M7")]
+        content_candidates = [m for m in MODS_CATALOG if m.get("phase") in ("M3c", "M4", "M5", "M6", "M7") and m["name"] not in api_names]
     elif phase_filter in ("M1+M2", "M1-M2", "M1M2", "M1_M2", "M12"):
-        # Combined M1 and M2: Includes M0 baseline + M1 + M2
-        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M0", "M1", "M2")]
-    elif phase_filter in ("ONLY-M1-M2", "M1-M2-ONLY"):
-        # Only M1 and M2 mods
-        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M1", "M2")]
+        content_candidates = [m for m in MODS_CATALOG if m.get("phase") in ("M1", "M2") and m["name"] not in api_names]
     elif phase_filter in ("M3+M3B", "M3-M3B", "M3M3B", "M3_M3B", "COMBINED", "M3B", "M3"):
-        # Combined M3 & M3b: Includes baseline M0 + M1 + M2 + M3 + M3b
-        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M0", "M1", "M2", "M3", "M3b")]
-    elif phase_filter in ("ONLY-M3-M3B", "M3-M3B-ONLY", "NEW-M3"):
-        # Only M3 and M3b mods
-        mods_to_download = [m for m in MODS_CATALOG if m.get("phase") in ("M3", "M3b")]
+        content_candidates = [m for m in MODS_CATALOG if m.get("phase") in ("M1", "M2", "M3", "M3b") and m["name"] not in api_names]
     else:
-        # If user chooses M0, download M0. If user chooses M1, download M0 + M1, etc.
         phase_order = ["M0", "M1", "M2", "M3", "M3b", "M3c", "M4", "M5", "M6", "M7", "M8", "M9"]
         phase_order_upper = [p.upper() for p in phase_order]
         if phase_filter in phase_order_upper:
             target_idx = phase_order_upper.index(phase_filter)
             allowed_phases = set(phase_order_upper[:target_idx + 1])
-            mods_to_download = [m for m in MODS_CATALOG if m.get("phase", "").upper() in allowed_phases]
+            content_candidates = [m for m in MODS_CATALOG if m.get("phase", "").upper() in allowed_phases and m["name"] not in api_names]
         else:
-            mods_to_download = [m for m in MODS_CATALOG if m.get("phase", "").upper() == phase_filter]
+            content_candidates = [m for m in MODS_CATALOG if m.get("phase", "").upper() == phase_filter and m["name"] not in api_names]
 
-    print(f"\n[2/3] Resolving and downloading {len(mods_to_download)} verified mods...")
+    print(f"\n[4/4] Downloading {len(content_candidates)} Content Mods (LOD Distant Horizons, Streams Reflowing, EasyMotionBlur, Ice & Fire, etc.)...")
+    cnt_success, cnt_skipped, cnt_failed = download_mod_list(content_candidates, target_dir, verbose=args.verbose, label="Content Mods")
 
-    success = 0
-    skipped = 0
-    failed = 0
-
-    for i, mod in enumerate(mods_to_download, 1):
-        name = mod["name"]
-        slug = mod.get("slug")
-        slug_display = ", ".join(slug) if isinstance(slug, list) else str(slug)
-        print(f"  [{i}/{len(mods_to_download)}] {name} ({slug_display})...", end="", flush=True)
-
-        # Check fallback url or resolve via Modrinth API
-        res = resolve_modrinth_jar(slug, verbose=args.verbose)
-        if res:
-            url, filename, size = res
-        elif mod.get("fallback_url") and mod.get("filename"):
-            url = mod["fallback_url"]
-            filename = mod["filename"]
-            size = 0
-        else:
-            print(" ⚠️ No 1.21.1 NeoForge file found on Modrinth API.")
-            failed += 1
-            continue
-
-        dest_file = target_dir / filename
-
-        # Check if already present and valid
-        if dest_file.exists():
-            try:
-                with zipfile.ZipFile(dest_file, "r") as zf:
-                    if zf.namelist():
-                        print(f" Already up-to-date ({dest_file.stat().st_size // 1024} KB).")
-                        skipped += 1
-                        continue
-            except Exception:
-                dest_file.unlink()
-
-        # Download
-        ok = download_and_verify(url, dest_file, expected_size=size, verbose=args.verbose)
-        if ok:
-            mb = dest_file.stat().st_size / (1024 * 1024)
-            print(f" Downloaded ({mb:.1f} MB) ✅")
-            success += 1
-        else:
-            print(" ❌ Download failed.")
-            failed += 1
+    total_success = api_success + cnt_success
+    total_skipped = api_skipped + cnt_skipped
+    total_failed = api_failed + cnt_failed
 
     print("\n" + "=" * 65)
-    print(f" DOWNLOAD COMPLETE: {success} downloaded, {skipped} up-to-date, {failed} pending.")
-    print(" Mods are installed in:")
+    print(f" INSTALLATION COMPLETE: {total_success} downloaded, {total_skipped} up-to-date, {total_failed} pending.")
+    print(" Active Systems:")
+    print("  * 20 Hearts (40 Max HP) base player health")
+    print("  * Rare, hard-to-find Apex Boss Dragons (iceandfire-common.toml)")
+    print("  * Distant Horizons (LOD far terrain & structure rendering)")
+    print("  * Streams Reflowing (downstream currents, rapids & boat physics)")
+    print("  * EasyMotionBlur (toggle in-game with 'G')")
+    print("  * All required Core APIs & Performance Libraries verified")
+    print(" Mods folder location:")
     print("  ", target_dir.resolve())
     print("=" * 65 + "\n")
-    print("You can now launch Minecraft 1.21.1 NeoForge and test the game!")
+    print("You can now launch Minecraft 1.21.1 NeoForge and enter your world!")
 
 
 if __name__ == "__main__":

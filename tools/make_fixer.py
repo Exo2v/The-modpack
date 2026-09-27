@@ -13,8 +13,8 @@ lines = [
     '@echo off & (python -x "%~f0" %* || py -x "%~f0" %*) & pause & goto :eof',
     '#!/usr/bin/env python3',
     '# =============================================================================',
-    '# ASHENFALL — 1-Click Crash Hotfixer',
-    '# Purges Hollowmarch JAR, sets 20 hearts, configures rare dragons, & updates KubeJS scripts',
+    '# ASHENFALL — 1-Click Crash Hotfixer & Mod Cleaner',
+    '# Purges Hollowmarch & incompatible mods, sets 20 hearts, configures rare dragons, & updates KubeJS scripts',
     '# =============================================================================',
     '',
     'import os',
@@ -46,7 +46,7 @@ lines = [
 
 def main():
     print("=" * 60)
-    print("       ASHENFALL 1-CLICK CRASH & KUBEJS HOTFIXER")
+    print("   ASHENFALL 1-CLICK CRASH HOTFIXER & MOD CLEANER")
     print("=" * 60)
     
     game_dirs = find_game_dirs()
@@ -57,20 +57,53 @@ def main():
     total_cleaned = 0
     total_healed = 0
     
+    BLACKLIST = [
+        ("hollowmarch", "Causes create:large_water_wheel registry crash on world creation"),
+        ("bettercombat", "Replaced with Vanilla PvP mechanics per configuration"),
+        ("terralith", "Replaced with Lithosphere + Still Life biome architecture"),
+        ("optifine", "Incompatible with NeoForge 1.21.1 and Embeddium"),
+        ("rubidium", "Deprecated Forge fork replaced by Embeddium"),
+        ("magnesium", "Deprecated Forge fork"),
+        ("sodium-fabric", "Fabric build in NeoForge folder"),
+        ("iris-fabric", "Fabric build in NeoForge folder")
+    ]
+    
     for gdir in game_dirs:
         print(f"\\nScanning directory: {gdir}")
         
-        # 1. Purge Hollowmarch JAR from mods folder
+        # 1. Purge corrupted files, bundles, and blacklisted mods
         mods_dir = gdir / "mods"
         if mods_dir.exists():
-            for jar in mods_dir.glob("*.jar"):
-                if "hollowmarch" in jar.name.lower():
-                    print(f"  [FIXED] Deleting offending Hollowmarch mod: {jar.name}")
-                    try:
-                        jar.unlink()
-                        total_cleaned += 1
-                    except Exception as e:
-                        print(f"  [ERROR] Failed to delete {jar.name}: {e}")
+            for item in list(mods_dir.iterdir()):
+                if item.is_file():
+                    if item.suffix.lower() in (".mrpack", ".zip", ".tmp", ".txt", ".crdownload"):
+                        print(f"  [FIXED] Removed non-mod bundle: {item.name}")
+                        try:
+                            item.unlink()
+                            total_cleaned += 1
+                        except Exception:
+                            pass
+                        continue
+                    if item.stat().st_size == 0:
+                        print(f"  [FIXED] Removed 0-byte file: {item.name}")
+                        try:
+                            item.unlink()
+                            total_cleaned += 1
+                        except Exception:
+                            pass
+                        continue
+
+            for jar in list(mods_dir.glob("*.jar")):
+                nl = jar.name.lower()
+                for kw, reason in BLACKLIST:
+                    if kw in nl:
+                        print(f"  [FIXED] Deleting incompatible mod ({reason}): {jar.name}")
+                        try:
+                            jar.unlink()
+                            total_cleaned += 1
+                        except Exception as e:
+                            print(f"  [ERROR] Failed to delete {jar.name}: {e}")
+                        break
         
         # 2. Update KubeJS server scripts (including 20 Hearts / player_health.js)
         server_dir = gdir / "kubejs" / "server_scripts"
