@@ -16,6 +16,7 @@ Download this single archive to get everything (the world save, 1-click installe
 ---
 
 ### ⚡ Quick Standalone Files (If you prefer individual files)
+- **data2 Datapack (.zip)**: [Download `data2.zip`](https://github.com/Exo2v/The-modpack/raw/arena/01a0e180-the-modpack/builds/data2.zip) *(Lithosphere + Still Life Worldgen Datapack)*
 - **1-Click World Installer (.bat)**: [Download `build_world.bat`](https://github.com/Exo2v/The-modpack/raw/arena/01a0e180-the-modpack/build_world.bat)
 - **Standalone World Builder (.py)**: [Download `build_world.py`](https://github.com/Exo2v/The-modpack/raw/arena/01a0e180-the-modpack/build_world.py)
 - **1-Click Mod Downloader (.bat)**: [Download `download_mods.bat`](https://github.com/Exo2v/The-modpack/raw/arena/01a0e180-the-modpack/download_mods.bat)
