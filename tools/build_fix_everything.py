@@ -224,6 +224,36 @@ def calibrate_options(gdir: Path):
         except Exception:
             pass
 
+def analyze_latest_log(gdir: Path):
+    log_candidates = [
+        gdir / "logs" / "latest.log",
+        gdir.parent / "logs" / "latest.log",
+        gdir / ".minecraft" / "logs" / "latest.log"
+    ]
+    log_file = None
+    for cand in log_candidates:
+        if cand.exists():
+            log_file = cand
+            break
+
+    if log_file:
+        try:
+            lines = log_file.read_text(encoding="utf-8", errors="ignore").splitlines()
+            print("\\n  [LOG SCAN] Checking " + log_file.name + f" ({len(lines):,} lines)...")
+            errors = [line for line in lines if "ERROR" in line or "FATAL" in line or "Exception" in line]
+            if errors:
+                print(f"  Found {len(errors)} error/warning line(s) in latest.log. Recent alerts:")
+                for err in errors[-4:]:
+                    print(f"    * {err[:120]}")
+            else:
+                print("  Clean log: No unhandled fatal errors or crashes detected.")
+
+            print("  Log tail (last 5 lines):")
+            for l in lines[-5:]:
+                print(f"    | {l[:110]}")
+        except Exception:
+            pass
+
 def main():
     print("=" * 72)
     print("      ASHENFALL MASTER 1-CLICK REPAIR & VISUAL ENHANCER")
@@ -369,6 +399,11 @@ def main():
         # 5. CALIBRATE LIGHTING CONTRAST IN OPTIONS.TXT
         # ---------------------------------------------------------
         calibrate_options(gdir)
+
+        # ---------------------------------------------------------
+        # 6. SCAN & REPORT RECENT LOG DIAGNOSTICS
+        # ---------------------------------------------------------
+        analyze_latest_log(gdir)
 
         print("-" * 72)
         print(f"[SUMMARY] Repaired {cleaned_count} bugged/corrupted item(s) and deployed/healed {healed_count} file(s)!")
