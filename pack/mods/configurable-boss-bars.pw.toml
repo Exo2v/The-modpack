@@ -1,0 +1,13 @@
+name = "Configurable Boss Bars"
+filename = "configurable-boss-bars-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/configurable-boss-bars/versions/configurable-boss-bars-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "4f1831d266689ac88d85f59a7a653329f0b9690e1e182a54ce58aa5f20400210da3410136399149b0ef5daea212da2d116c63099979e01597e073cd57ef64591"
+
+[update]
+[update.modrinth]
+mod-id = "configurable-boss-bars"
+version = "latest"

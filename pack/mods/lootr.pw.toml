@@ -1,0 +1,13 @@
+name = "Lootr"
+filename = "lootr-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/lootr/versions/lootr-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "b5467c0f742a27cc9a5e38325480b95b7a1f94fff6481f9f936f7ef02e82f79e6a4fbfb97103b7c20f56a1c71284cd396e475ee3b7fddbe03fdda4ec9058eaa3"
+
+[update]
+[update.modrinth]
+mod-id = "lootr"
+version = "1.21.1-1.11.36.116"

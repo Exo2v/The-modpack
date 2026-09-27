@@ -1,0 +1,13 @@
+name = "Project MMO: Classes"
+filename = "project-mmo-classes-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/project-mmo-classes/versions/project-mmo-classes-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "881d4e8691ac2e55a6a6e14e7121530541842a458b7e0c53563f6f2129423b9a49f4b61d91760162d974be39f1747fef9afaeb0800aba76ea76a8736533a35af"
+
+[update]
+[update.modrinth]
+mod-id = "project-mmo-classes"
+version = "latest"

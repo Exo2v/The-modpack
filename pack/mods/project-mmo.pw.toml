@@ -1,0 +1,13 @@
+name = "Project MMO"
+filename = "project-mmo-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/project-mmo/versions/project-mmo-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "bf24db9906e11e9e379a913bf9aba0de3cb25ec4a72d2bbdea119646c728dac6153087c965cfe82420815267530d5ec48214e98d17b8ef2317efedc76594327f"
+
+[update]
+[update.modrinth]
+mod-id = "project-mmo"
+version = "latest"

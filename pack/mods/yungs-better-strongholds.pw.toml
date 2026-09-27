@@ -1,0 +1,13 @@
+name = "YUNG's Better Strongholds"
+filename = "yungs-better-strongholds-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-strongholds/versions/yungs-better-strongholds-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "b8751969ba7bf804fce371a626ebc3c45056e67182e9d367ae8d646eda8328d549daa7a9cf2e25628e927845da6398ec737367065828e4c7030ba3115c41f7a1"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-strongholds"
+version = "latest"

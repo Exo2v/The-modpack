@@ -1,0 +1,13 @@
+name = "Presence Footsteps"
+filename = "presence-footsteps-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/presence-footsteps/versions/presence-footsteps-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "292f5a1c97437952ef5a7ec0382fa98cdddb1271a660243be86d4aa27793781d8de83fd861248e3bdae01b2fb1051575039af96f31a097507a6b95c071c5ba67"
+
+[update]
+[update.modrinth]
+mod-id = "presence-footsteps"
+version = "latest"

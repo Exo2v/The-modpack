@@ -1,0 +1,13 @@
+name = "Reforged"
+filename = "tiered-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/tiered/versions/tiered-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "de39106f281769ca03d81d4069da03a44f24df6c9e0710e56e0c6cd2992576c70251c4c9ae393b058214706d92f04204860051f5488a5feb6f5825ee03cce165"
+
+[update]
+[update.modrinth]
+mod-id = "tiered"
+version = "latest"

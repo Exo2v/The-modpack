@@ -1,0 +1,13 @@
+name = "Shutup Experimental Settings!"
+filename = "shutup-experimental-settings-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/shutup-experimental-settings/versions/shutup-experimental-settings-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "99d453143b9b2294adf1d6a40da90e525f1ebba5e7ce8e547d48dfdcd4afe39fe39ee0b8f2a85ce97dd88cecd0ff4e9ce6ac2f5552993c60e2f6a545d1695bc8"
+
+[update]
+[update.modrinth]
+mod-id = "shutup-experimental-settings"
+version = "latest"

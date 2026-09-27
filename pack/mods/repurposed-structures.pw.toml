@@ -1,0 +1,13 @@
+name = "Repurposed Structures"
+filename = "repurposed-structures-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/repurposed-structures/versions/repurposed-structures-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "c3d94ad6d99a321a78f5987654c65035bd4e757c0d8f73715e58c55ecd63148c519f05533295888d8aeb396b815bbcff7b10b68706a6407211a8092e1612c5f5"
+
+[update]
+[update.modrinth]
+mod-id = "repurposed-structures"
+version = "latest"

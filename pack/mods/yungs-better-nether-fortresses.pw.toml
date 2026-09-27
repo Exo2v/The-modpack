@@ -1,0 +1,13 @@
+name = "YUNG's Better Nether Fortresses"
+filename = "yungs-better-nether-fortresses-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-nether-fortresses/versions/yungs-better-nether-fortresses-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "23a4bc8e9805790a98047c1bb33cc776eba849f0a2640f91c834c9c6e3879b4de70a7d7a2ec390cf0597a688b0414ce0be309392f12d77c1de30de1285389574"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-nether-fortresses"
+version = "latest"

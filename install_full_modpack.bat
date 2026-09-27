@@ -1,3 +1,4 @@
+@echo off & (python -x "%~f0" --phase all %* || py -x "%~f0" --phase all %*) & pause & goto :eof
 #!/usr/bin/env python3
 """
 ASHENFALL — Mod Downloader
