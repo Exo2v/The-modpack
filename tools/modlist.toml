@@ -175,15 +175,15 @@ pin = "exact"
 note = "NeoForge 1.21.1 port of Nvidium; requires NVIDIA GPU with mesh shaders"
 
 [[mods]]
-name = "Chunky"
-slug = "chunky"
+name = "AI Improvements"
+slug = "ai-improvements"
 provider = "modrinth"
 category = "performance"
 phase = "M0"
 side = "both"
 risk = "low"
 pin = "latest"
-note = "Starter-region pregeneration to eliminate runtime worldgen stutter"
+note = "Entity pathfinding CPU optimization and AI tick lag reducer"
 
 [[mods]]
 name = "Distant Horizons"

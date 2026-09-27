@@ -73,7 +73,8 @@ def main():
         ("graveyard", "Causes fatal Registry is already frozen [graveyard:tg_jigsaw] crash in worldgen worker thread"),
         ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
         ("better-boss-bars", "Contains broken functions referencing uninstalled mods"),
-        ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise")
+        ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise"),
+        ("chunky", "Conflicts with Distant Horizons causing LOD holes and 100% CPU thread lock")
     ]
     
     for gdir in game_dirs:

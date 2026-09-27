@@ -131,11 +131,15 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "category": "performance",
     },
     {
-        "name": "Chunky",
-        "slug": "chunky",
+        "name": "AI Improvements",
+        "slug": "ai-improvements",
         "provider": "modrinth",
         "phase": "M0",
         "category": "performance",
+        "fallback_url": [
+            "https://cdn.modrinth.com/data/lURnfUGs/versions/dGNP90t0/AI-Improvements-1.21-0.5.3.jar",
+        ],
+        "filename": "AI-Improvements-1.21-0.5.3.jar",
     },
     {
         "name": "Curios API",
@@ -1331,6 +1335,7 @@ def clean_unnecessary_and_outdated_mods(mods_dir: Path, catalog_filenames: Set[s
         ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
         ("better-boss-bars", "Contains broken functions referencing uninstalled mods"),
         ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise"),
+        ("chunky", "Conflicts with Distant Horizons causing LOD holes and 100% CPU thread lock"),
     ]
 
     for item in list(mods_dir.glob("*.jar")):

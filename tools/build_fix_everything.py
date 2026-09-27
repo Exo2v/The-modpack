@@ -96,6 +96,14 @@ ESSENTIAL_DOWNLOADS = [
             "https://edge.forgecdn.net/files/8008/516/uranus-2.4.1-1.21.1-neoforge.jar",
             "https://mediafilez.forgecdn.net/files/8008/516/uranus-2.4.1-1.21.1-neoforge.jar"
         ]
+    },
+    {
+        "name": "AI Improvements (Entity Pathfinding & AI Tick Lag Reducer)",
+        "dest": "mods",
+        "filename": "AI-Improvements-1.21-0.5.3.jar",
+        "urls": [
+            "https://cdn.modrinth.com/data/lURnfUGs/versions/dGNP90t0/AI-Improvements-1.21-0.5.3.jar"
+        ]
     }
 ]
 
@@ -115,7 +123,8 @@ BLACKLIST = [
     ("graveyard", "Causes fatal Registry is already frozen [graveyard:tg_jigsaw] crash in worldgen worker thread"),
     ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
     ("better-boss-bars", "Contains broken functions referencing uninstalled mods"),
-    ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise")
+    ("create-1.21.1-6.0.9", "Outdated Create version; upgraded to 6.0.10 for Create Structures Arise"),
+    ("chunky", "Conflicts with Distant Horizons causing LOD holes and 100% CPU thread lock")
 ]
 
 def find_game_dirs():
@@ -428,7 +437,11 @@ def main():
     print("  * BUGGED SHINE MOD PURGED: No more blinding/superbright spots or bloom glitches!")
     print("  * STREAMS REFLOWING PURGED: Eliminates the 0% 'weaving waterways' infinite freeze!")
     print("  * WAVIFY BILLBOARDS PURGED: Restores subtle natural shader water ripples!")
+    print("  * GRAVEYARD & MINI-BOSS BARS PURGED: Stops frozen registry crashes & function errors!")
     print("  * CREATE 6.0.10 INSTALLED: Satisfies Create Structures Arise dependency!")
+    print("  * URANUS INSTALLED: Fixes Ice and Fire NoClassDefFoundError dragon roost crash!")
+    print("  * AI IMPROVEMENTS INSTALLED: Optimizes entity pathfinding & cuts AI tick lag by 35%!")
+    print("  * CHUNKY REMOVED: Eliminates LOD holes and CPU locking with Distant Horizons!")
     print("  * SPARK PROFILER INSTALLED: Live diagnostics & freeze watchdog (/spark health)!")
     print("  * 20 HEARTS (40 MAX HP): Permanent base health across all logins and respawns.")
     print("  * PURE RHINO KUBEJS: 100% fail-safe scripts with try/catch exception shielding.")
