@@ -529,14 +529,19 @@ def cmd_export(args: argparse.Namespace) -> None:
     loader_ver = pack_info.get("loader_version", "21.1.65")
 
     EXPORT_DIR.mkdir(parents=True, exist_ok=True)
-    export_path = Path(args.output) if args.output else EXPORT_DIR / f"ashfall-{pack_ver}.mrpack"
+    downloads_dir = REPO_ROOT / "downloads"
+    downloads_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"\n[export] Building Modrinth .mrpack archive: {export_path}...")
+    mrpack_path = EXPORT_DIR / f"ashfall-{pack_ver}.mrpack"
+    cf_zip_path = EXPORT_DIR / f"ashfall-{pack_ver}-curseforge.zip"
+    bundle_path = EXPORT_DIR / f"ashfall-{pack_ver}-complete-bundle.zip"
 
-    # Assemble modrinth.index.json
+    print(f"\n[export] 1. Assembling Modrinth .mrpack archive: {mrpack_path.name}...")
+
     mr_files = []
+    cf_files = []
     if MODS_META_DIR.exists():
-        for pw_file in MODS_META_DIR.glob("*.pw.toml"):
+        for pw_file in sorted(MODS_META_DIR.glob("*.pw.toml")):
             try:
                 with open(pw_file, "rb") as f:
                     pw_data = tomllib.load(f)
@@ -564,7 +569,17 @@ def cmd_export(args: argparse.Namespace) -> None:
             except Exception:
                 pass
 
-    index_json = {
+    # Build CF file list from manifest
+    for m in manifest.get("mods", []):
+        if m.get("provider") == "curseforge" and m.get("project_id"):
+            cf_files.append({
+                "projectID": m["project_id"],
+                "fileID": 0,
+                "required": True,
+            })
+
+    # 1. Modrinth .mrpack
+    mr_index_json = {
         "formatVersion": 1,
         "game": "minecraft",
         "versionId": pack_ver,
@@ -576,27 +591,73 @@ def cmd_export(args: argparse.Namespace) -> None:
             "neoforge": loader_ver,
         },
     }
-
-    with zipfile.ZipFile(export_path, "w", zipfile.ZIP_DEFLATED) as zf:
-        # 1. Write modrinth.index.json
-        zf.writestr("modrinth.index.json", json.dumps(index_json, indent=2))
-
-        # 2. Bundle overrides
+    with zipfile.ZipFile(mrpack_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("modrinth.index.json", json.dumps(mr_index_json, indent=2))
         if OVERRIDES_DIR.exists():
             for root, _, files in os.walk(OVERRIDES_DIR):
                 for file in files:
                     full_p = Path(root) / file
                     rel_p = full_p.relative_to(OVERRIDES_DIR)
                     archive_path = Path("overrides") / rel_p
-                    zf.write(full_p, str(archive_path).replace("\\", "/"))
+                    zf.write(full_p, archive_path.as_posix())
 
-    print(f"[export] ✅ Successfully created {export_path} ({export_path.stat().st_size} bytes)")
-    print(f"[export] Includes {len(mr_files)} indexed mod downloads + bundled overrides.\n")
+    # 2. CurseForge zip
+    print(f"[export] 2. Assembling CurseForge zip: {cf_zip_path.name}...")
+    cf_manifest_json = {
+        "minecraft": {
+            "version": mc_ver,
+            "modLoaders": [
+                {
+                    "id": f"neoforge-{loader_ver}",
+                    "primary": True,
+                }
+            ],
+        },
+        "manifestType": "minecraftModpack",
+        "manifestVersion": 1,
+        "name": pack_name,
+        "version": pack_ver,
+        "author": "Exo2v",
+        "files": cf_files,
+        "overrides": "overrides",
+    }
+    with zipfile.ZipFile(cf_zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("manifest.json", json.dumps(cf_manifest_json, indent=2))
+        if OVERRIDES_DIR.exists():
+            for root, _, files in os.walk(OVERRIDES_DIR):
+                for file in files:
+                    full_p = Path(root) / file
+                    rel_p = full_p.relative_to(OVERRIDES_DIR)
+                    archive_path = Path("overrides") / rel_p
+                    zf.write(full_p, archive_path.as_posix())
 
+    # 3. Complete bundle
+    print(f"[export] 3. Assembling Complete Distribution Bundle: {bundle_path.name}...")
+    with zipfile.ZipFile(bundle_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.write(mrpack_path, mrpack_path.name)
+        zf.write(cf_zip_path, cf_zip_path.name)
+        for doc in ["INSTALL_GUIDE.md", "MODLIST.md", "README.md"]:
+            doc_p = REPO_ROOT / doc
+            if doc_p.exists():
+                zf.write(doc_p, doc)
+        if OVERRIDES_DIR.exists():
+            for root, _, files in os.walk(OVERRIDES_DIR):
+                for file in files:
+                    full_p = Path(root) / file
+                    rel_p = full_p.relative_to(OVERRIDES_DIR)
+                    archive_path = Path("overrides") / rel_p
+                    zf.write(full_p, archive_path.as_posix())
 
-# ---------------------------------------------------------------------------
-# CLI Argument Parsing
-# ---------------------------------------------------------------------------
+    # Copy to downloads/ folder for instant direct access
+    shutil.copy2(mrpack_path, downloads_dir / mrpack_path.name)
+    shutil.copy2(cf_zip_path, downloads_dir / cf_zip_path.name)
+    shutil.copy2(bundle_path, downloads_dir / bundle_path.name)
+
+    print(f"[export] ✅ Created {mrpack_path.name} ({mrpack_path.stat().st_size} bytes)")
+    print(f"[export] ✅ Created {cf_zip_path.name} ({cf_zip_path.stat().st_size} bytes)")
+    print(f"[export] ✅ Created {bundle_path.name} ({bundle_path.stat().st_size} bytes)")
+    print(f"[export] All packages copied to {downloads_dir.relative_to(REPO_ROOT)}/ for direct download.\n")
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(
