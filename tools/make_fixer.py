@@ -7,13 +7,14 @@ for js_path in sorted(scripts_dir.glob("*.js")):
     canonical[js_path.name] = js_path.read_text(encoding="utf-8")
 
 startup_script = Path("pack/overrides/kubejs/startup_scripts/items.js").read_text(encoding="utf-8")
+iaf_config = Path("pack/overrides/config/iceandfire-common.toml").read_text(encoding="utf-8")
 
 lines = [
     '@echo off & (python -x "%~f0" %* || py -x "%~f0" %*) & pause & goto :eof',
     '#!/usr/bin/env python3',
     '# =============================================================================',
     '# ASHENFALL — 1-Click Crash Hotfixer',
-    '# Purges Hollowmarch JAR and updates KubeJS scripts to 100% pure Rhino JS',
+    '# Purges Hollowmarch JAR, sets 20 hearts, configures rare dragons, & updates KubeJS scripts',
     '# =============================================================================',
     '',
     'import os',
@@ -23,6 +24,8 @@ lines = [
     'CANONICAL_SCRIPTS = ' + json.dumps(canonical, indent=4),
     '',
     'ITEMS_JS = ' + json.dumps(startup_script),
+    '',
+    'IAF_CONFIG = ' + json.dumps(iaf_config),
     '',
     '''def find_game_dirs():
     dirs = []
@@ -69,7 +72,7 @@ def main():
                     except Exception as e:
                         print(f"  [ERROR] Failed to delete {jar.name}: {e}")
         
-        # 2. Update KubeJS server scripts
+        # 2. Update KubeJS server scripts (including 20 Hearts / player_health.js)
         server_dir = gdir / "kubejs" / "server_scripts"
         if not server_dir.exists():
             server_dir.mkdir(parents=True, exist_ok=True)
@@ -98,8 +101,21 @@ def main():
         print("  [FIXED] Wrote verified startup script: kubejs/startup_scripts/items.js")
         total_healed += 1
 
+        # 4. Deploy rare dragon configuration (iceandfire-common.toml)
+        config_dir = gdir / "config"
+        if not config_dir.exists():
+            config_dir.mkdir(parents=True, exist_ok=True)
+        iaf_dest = config_dir / "iceandfire-common.toml"
+        iaf_dest.write_text(IAF_CONFIG, encoding="utf-8")
+        print("  [FIXED] Installed rare dragon configuration: config/iceandfire-common.toml")
+        total_healed += 1
+
     print("\\n" + "=" * 60)
-    print(f"[SUCCESS] Cleaned {total_cleaned} crash-inducing JAR(s) and healed {total_healed} script(s)!")
+    print(f"[SUCCESS] Cleaned {total_cleaned} crash-inducing JAR(s) and healed/updated {total_healed} file(s)!")
+    print("Features active:")
+    print("  * 20 Hearts (40 Max HP) base player health")
+    print("  * Rare, hard-to-find Apex Boss Dragons (iceandfire-common.toml)")
+    print("  * 100% pure Rhino JS compatible KubeJS scripts")
     print("You can now launch Minecraft and click 'Create World' without crashes!")
     print("=" * 60 + "\\n")
 

@@ -185,6 +185,28 @@ risk = "low"
 pin = "latest"
 note = "Starter-region pregeneration to eliminate runtime worldgen stutter"
 
+[[mods]]
+name = "Distant Horizons"
+slug = "distanthorizons"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Level of Detail (LOD) renderer enabling massive view distances"
+
+[[mods]]
+name = "EasyMotionBlur"
+slug = "easymotionblur"
+provider = "curseforge"
+category = "visual"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Client-side toggleable motion blur effect for NeoForge"
+
 # ---------------------------------------------------------------------------
 # Core Libraries (≤20 mods)
 # ---------------------------------------------------------------------------
@@ -565,6 +587,17 @@ side = "both"
 risk = "medium"
 pin = "latest"
 note = "Colossal landmark set-pieces, flying fortresses, and pirate havens"
+
+[[mods]]
+name = "Streams Reflowing"
+slug = "streams-reflowing"
+provider = "curseforge"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Dynamic flowing streams, rapids, and river physics with Distant Horizons support"
 
 # ---------------------------------------------------------------------------
 # M3b: World Fullness & Water Layer
@@ -1260,6 +1293,17 @@ side = "client"
 risk = "low"
 pin = "latest"
 note = "Dark Souls style landmark title banners on entering new regions and dungeons"
+
+[[mods]]
+name = "Ice and Fire: Community Edition"
+slug = "iceandfire-ce"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Mythic apex boss dragons (rare subterranean caverns and high roosts)"
 
 # ---------------------------------------------------------------------------
 # M7: Landmarks, Navigation & Quality of Life

@@ -1,4 +1,4 @@
-@echo off & (python -x "%~f0" --phase all %* || py -x "%~f0" --phase all %*) & pause & goto :eof
+@echo off & (python -x "%~f0" --phase all %* || py -x "%~f0" --phase all %*) & pause & goto :eof
 #!/usr/bin/env python3
 """
 ASHENFALL — Mod Downloader
@@ -249,6 +249,27 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "phase": "M0",
         "category": "library",
     },
+    {
+        "name": "Distant Horizons",
+        "slug": "distanthorizons",
+        "provider": "modrinth",
+        "phase": "M0",
+        "category": "performance",
+        "fallback_url": "https://cdn.modrinth.com/data/uCdwusMi/versions/IcOcoekl/DistantHorizons-3.3.1-1.21.1-fabric-neoforge.jar",
+        "filename": "DistantHorizons-3.3.1-1.21.1-fabric-neoforge.jar",
+    },
+    {
+        "name": "EasyMotionBlur",
+        "slug": None,
+        "provider": "curseforge",
+        "phase": "M0",
+        "category": "visual",
+        "fallback_url": [
+            "https://edge.forgecdn.net/files/8218/65/EasyMotionBlur-1.1-1.21.1-neoforge.jar",
+            "https://mediafilez.forgecdn.net/files/8218/65/EasyMotionBlur-1.1-1.21.1-neoforge.jar",
+        ],
+        "filename": "EasyMotionBlur-1.1-1.21.1-neoforge.jar",
+    },
     # --- PHASE M1: MOVEMENT & COMBAT ---
     {
         "name": "Cloth Config API",
@@ -391,6 +412,18 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "provider": "modrinth",
         "phase": "M3",
         "category": "worldgen",
+    },
+    {
+        "name": "Streams Reflowing",
+        "slug": "streams-reflowing",
+        "provider": "curseforge",
+        "phase": "M3",
+        "category": "worldgen",
+        "fallback_url": [
+            "https://edge.forgecdn.net/files/8453/865/StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
+            "https://mediafilez.forgecdn.net/files/8453/865/StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
+        ],
+        "filename": "StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
     },
     # --- PHASE M3b: WORLD FULLNESS ---
     {
@@ -719,6 +752,19 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "phase": "M6",
         "category": "bosses",
     },
+    {
+        "name": "Ice and Fire: Community Edition",
+        "slug": ["iceandfire-ce", "iceandfire"],
+        "provider": "modrinth",
+        "phase": "M6",
+        "category": "bosses",
+        "fallback_url": [
+            "https://cdn.modrinth.com/data/VpmCsizY/versions/S6tF3M1u/IceAndFireCE-1.1-1.21.1-neoforge.jar",
+            "https://edge.forgecdn.net/files/6758/480/IceAndFireCE-1.1-1.21.1-neoforge.jar",
+            "https://mediafilez.forgecdn.net/files/6758/480/IceAndFireCE-1.1-1.21.1-neoforge.jar",
+        ],
+        "filename": "IceAndFireCE-1.1-1.21.1-neoforge.jar",
+    },
     # --- PHASE M7: QOL & NAVIGATION ---
     {
         "name": "Lootr",
@@ -877,12 +923,14 @@ def detect_minecraft_mods_dir() -> Optional[Path]:
 # API Resolution & Download
 # ---------------------------------------------------------------------------
 
-def resolve_modrinth_jar(slug_or_slugs: str | List[str], mc_version: str = "1.21.1", verbose: bool = False) -> Optional[Tuple[str, str, int]]:
+def resolve_modrinth_jar(slug_or_slugs: str | List[str] | None, mc_version: str = "1.21.1", verbose: bool = False) -> Optional[Tuple[str, str, int]]:
     """
     Queries Modrinth API for a 1.21.1 NeoForge / Forge release.
     Supports candidate aliases, filtered query, and fallback search.
     Returns (download_url, filename, size_bytes).
     """
+    if not slug_or_slugs:
+        return None
     slugs = [slug_or_slugs] if isinstance(slug_or_slugs, str) else slug_or_slugs
 
     for slug in slugs:
@@ -935,37 +983,42 @@ def resolve_modrinth_jar(slug_or_slugs: str | List[str], mc_version: str = "1.21
     return None
 
 
-def download_and_verify(url: str, dest_path: Path, expected_size: int = 0, verbose: bool = False) -> bool:
+def download_and_verify(urls: str | List[str], dest_path: Path, expected_size: int = 0, verbose: bool = False) -> bool:
     """Downloads a file to dest_path and strictly verifies zip integrity."""
+    if isinstance(urls, str):
+        urls = [urls]
+
     temp_path = dest_path.with_suffix(".tmp")
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    for url in urls:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp, open(temp_path, "wb") as out:
+                shutil.copyfileobj(resp, out)
 
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp, open(temp_path, "wb") as out:
-            shutil.copyfileobj(resp, out)
+            # CRUCIAL: Verify it is a valid, uncorrupted ZIP/JAR file!
+            # This prevents the "zip END header not found" crash entirely!
+            with zipfile.ZipFile(temp_path, "r") as zf:
+                namelist = zf.namelist()
+                if not namelist:
+                    raise ValueError("Downloaded jar archive contains no files")
 
-        # CRUCIAL: Verify it is a valid, uncorrupted ZIP/JAR file!
-        # This prevents the "zip END header not found" crash entirely!
-        with zipfile.ZipFile(temp_path, "r") as zf:
-            namelist = zf.namelist()
-            if not namelist:
-                raise ValueError("Downloaded jar archive contains no files")
+            if temp_path.stat().st_size == 0:
+                raise ValueError("Downloaded file is 0 bytes")
 
-        if temp_path.stat().st_size == 0:
-            raise ValueError("Downloaded file is 0 bytes")
+            # Move into final destination
+            if dest_path.exists():
+                dest_path.unlink()
+            temp_path.rename(dest_path)
+            return True
 
-        # Move into final destination
-        if dest_path.exists():
-            dest_path.unlink()
-        temp_path.rename(dest_path)
-        return True
+        except Exception as e:
+            if temp_path.exists():
+                temp_path.unlink()
+            if verbose:
+                print(f" [mirror error: {e}]", end="")
+            continue
 
-    except Exception as e:
-        if temp_path.exists():
-            temp_path.unlink()
-        if verbose:
-            print(f"\n    [Error] Download verification failed: {e}", file=sys.stderr)
-        return False
+    return False
 
 
 CANONICAL_SERVER_SCRIPTS = {
@@ -980,7 +1033,8 @@ CANONICAL_SERVER_SCRIPTS = {
     "soulslike.js": "// =============================================================================\n// ASHENFALL \u2014 Soulslike Rest, Ember Flask, & Hollow Death Penalty\n// =============================================================================\n\nvar HOLLOW_CAP = 5;\nvar REST_TAGS = [\n    \"minecraft:campfires\",\n    \"minecraft:beds\"\n];\n\nfunction getHollow(player) {\n    if (!player.persistentData.contains(\"ashfall_hollow\")) {\n        player.persistentData.putInt(\"ashfall_hollow\", 0);\n    }\n    return player.persistentData.getInt(\"ashfall_hollow\");\n}\n\nfunction setHollow(player, val) {\n    var clamped = Math.max(0, Math.min(HOLLOW_CAP, val));\n    player.persistentData.putInt(\"ashfall_hollow\", clamped);\n}\n\n// On player respawn: hollow penalty increments\nPlayerEvents.respawned(function(event) {\n    var player = event.player;\n    var hollow = getHollow(player);\n    if (hollow < HOLLOW_CAP) {\n        setHollow(player, hollow + 1);\n        player.tell(\"\u00a78[\u00a7cDeath\u00a78] \u00a77Your ember fades slightly. Hollow tier: \u00a7c\" + (hollow + 1) + \"\u00a77/\" + HOLLOW_CAP);\n    }\n});\n\n// Global export for Rhino engine (explicit key-value pairs)\nglobal.ASHFALL_SOULSLIKE = {\n    HOLLOW_CAP: HOLLOW_CAP,\n    REST_TAGS: REST_TAGS,\n    getHollow: getHollow,\n    setHollow: setHollow\n};\n\nglobal.getHollow = getHollow;\nglobal.setHollow = setHollow;\n",
     "standing.js": "// =============================================================================\n// ASHENFALL \u2014 Nine Nations Standing System (-100 to +100)\n// =============================================================================\n\nvar NATIONS = [\n    \"norman_remnant\",\n    \"seljuk_expanse\",\n    \"byzantine_choir\",\n    \"witchbane_watch\",\n    \"guild_of_merchants\",\n    \"cathedral_of_ash\",\n    \"frostfall\",\n    \"sunken_throne\",\n    \"hermits_reach\"\n];\n\nvar CROSS_FACTION = true;\nvar CHAMPION_THRESHOLD = 80;\nvar MAX_NATIONS_CHAMPION = 3;\n\nfunction getStanding(player, faction) {\n    var key = \"standing_\" + faction;\n    if (!player.persistentData.contains(key)) {\n        player.persistentData.putInt(key, 0); // Neutral\n    }\n    return player.persistentData.getInt(key);\n}\n\nfunction modifyStanding(player, faction, delta) {\n    var key = \"standing_\" + faction;\n    var current = getStanding(player, faction);\n    var updated = Math.max(-100, Math.min(100, current + delta));\n    player.persistentData.putInt(key, updated);\n\n    var prefix = delta >= 0 ? \"\u00a7a+\" : \"\u00a7c\";\n    var factionLabel = faction.replace(/_/g, \" \").replace(/\\b\\w/g, function(l) { return l.toUpperCase(); });\n    player.tell(\"\u00a78[\u00a76Faction Rep\u00a78] \u00a7f\" + factionLabel + \": \" + prefix + delta + \" \u00a77(Current: \" + updated + \")\");\n}\n\n// Global export for Rhino engine (explicit key-value pairs)\nglobal.ASHFALL_STANDING = {\n    NATIONS: NATIONS,\n    CROSS_FACTION: CROSS_FACTION,\n    CHAMPION_THRESHOLD: CHAMPION_THRESHOLD,\n    MAX_NATIONS_CHAMPION: MAX_NATIONS_CHAMPION,\n    getStanding: getStanding,\n    modifyStanding: modifyStanding\n};\n\nglobal.getStanding = getStanding;\nglobal.modifyStanding = modifyStanding;\n",
     "structures.js": "// =============================================================================\n// ASHENFALL \u2014 Structure Province & Landmark Registry\n// =============================================================================\n\nvar STRUCTURE_PROVINCES = {\n    \"structory:settlements/coastal\": { nation: \"norman_remnant\", name: \"Norman Coastal Outpost\" },\n    \"towns_and_towers:ocean/village\": { nation: \"norman_remnant\", name: \"Norman Port Village\" },\n    \"structory:settlements/desert\": { nation: \"seljuk_expanse\", name: \"Seljuk Caravan Camp\" },\n    \"dungeons_and_taverns:desert_pyramid\": { nation: \"seljuk_expanse\", name: \"Sunken Desert Crypt\" },\n    \"graveyard:lich_prison\": { nation: \"frostfall\", name: \"Citadel of the Cold Tower\" },\n    \"cataclysm:burning_arena\": { nation: \"cathedral_of_ash\", name: \"Crucible of Ash\" },\n    \"cataclysm:sunken_city\": { nation: \"sunken_throne\", name: \"Submerged Cathedral of the Abyss\" }\n};\n\nfunction getProvinceForStructure(structureId) {\n    return STRUCTURE_PROVINCES[structureId] || null;\n}\n\n// Global export for Rhino engine (explicit key-value pairs)\nglobal.ASHFALL_STRUCTURES = {\n    STRUCTURE_PROVINCES: STRUCTURE_PROVINCES,\n    getProvinceForStructure: getProvinceForStructure\n};\n\nglobal.getProvinceForStructure = getProvinceForStructure;\n",
-    "threat.js": "// =============================================================================\n// ASHENFALL \u2014 Threat Tier Scaling Engine (Tiers I\u2013VII)\n// =============================================================================\n\nvar MAX_TIER = 7;\n\nvar REGIONS = [\n    \"norman_coast\",\n    \"seljuk_desert\",\n    \"byzantine_hills\",\n    \"witchbane_woods\",\n    \"merchant_rivers\",\n    \"cathedral_depths\",\n    \"frostfall_peaks\",\n    \"sunken_abyss\",\n    \"hermit_highlands\"\n];\n\nfunction tierOf(player, region) {\n    var key = \"threat_tier_\" + region;\n    if (!player.persistentData.contains(key)) {\n        player.persistentData.putInt(key, 1);\n    }\n    return player.persistentData.getInt(key);\n}\n\nfunction setTier(player, region, tier) {\n    var clamped = Math.max(1, Math.min(MAX_TIER, tier));\n    var key = \"threat_tier_\" + region;\n    player.persistentData.putInt(key, clamped);\n    player.tell(\"\u00a78[\u00a76Threat Scaled\u00a78] \u00a7f\" + region + \" \u00a77is now set to Threat Tier: \u00a76\" + clamped);\n}\n\nfunction regionOf(entity) {\n    if (!entity || !entity.level) return \"norman_coast\";\n    var dim = entity.level.dimension.toString();\n    if (dim === \"minecraft:the_nether\") return \"cathedral_depths\";\n    if (dim === \"minecraft:the_end\") return \"sunken_abyss\";\n\n    var biome = entity.level.getBiome(entity.blockPosition()).unwrapKey().get().location().toString();\n    if (biome.indexOf(\"desert\") !== -1 || biome.indexOf(\"badlands\") !== -1) return \"seljuk_desert\";\n    if (biome.indexOf(\"dark_forest\") !== -1 || biome.indexOf(\"swamp\") !== -1) return \"witchbane_woods\";\n    if (biome.indexOf(\"snow\") !== -1 || biome.indexOf(\"ice\") !== -1 || biome.indexOf(\"frozen\") !== -1) return \"frostfall_peaks\";\n    if (biome.indexOf(\"ocean\") !== -1) return \"sunken_abyss\";\n    if (biome.indexOf(\"jagged\") !== -1 || biome.indexOf(\"stony_peaks\") !== -1) return \"hermit_highlands\";\n    if (biome.indexOf(\"cherry\") !== -1 || biome.indexOf(\"meadow\") !== -1) return \"byzantine_hills\";\n    if (biome.indexOf(\"river\") !== -1) return \"merchant_rivers\";\n    return \"norman_coast\";\n}\n\n// Global export for Rhino engine (explicit key-value pairs)\nglobal.ASHFALL_THREAT = {\n    REGIONS: REGIONS,\n    MAX_TIER: MAX_TIER,\n    regionOf: regionOf,\n    tierOf: tierOf,\n    setTier: setTier\n};\n\nglobal.regionOf = regionOf;\nglobal.tierOf = tierOf;\nglobal.setTier = setTier;\n"
+    "threat.js": "// =============================================================================\n// ASHENFALL \u2014 Threat Tier Scaling Engine (Tiers I\u2013VII)\n// =============================================================================\n\nvar MAX_TIER = 7;\n\nvar REGIONS = [\n    \"norman_coast\",\n    \"seljuk_desert\",\n    \"byzantine_hills\",\n    \"witchbane_woods\",\n    \"merchant_rivers\",\n    \"cathedral_depths\",\n    \"frostfall_peaks\",\n    \"sunken_abyss\",\n    \"hermit_highlands\"\n];\n\nfunction tierOf(player, region) {\n    var key = \"threat_tier_\" + region;\n    if (!player.persistentData.contains(key)) {\n        player.persistentData.putInt(key, 1);\n    }\n    return player.persistentData.getInt(key);\n}\n\nfunction setTier(player, region, tier) {\n    var clamped = Math.max(1, Math.min(MAX_TIER, tier));\n    var key = \"threat_tier_\" + region;\n    player.persistentData.putInt(key, clamped);\n    player.tell(\"\u00a78[\u00a76Threat Scaled\u00a78] \u00a7f\" + region + \" \u00a77is now set to Threat Tier: \u00a76\" + clamped);\n}\n\nfunction regionOf(entity) {\n    if (!entity || !entity.level) return \"norman_coast\";\n    var dim = entity.level.dimension.toString();\n    if (dim === \"minecraft:the_nether\") return \"cathedral_depths\";\n    if (dim === \"minecraft:the_end\") return \"sunken_abyss\";\n\n    var biome = entity.level.getBiome(entity.blockPosition()).unwrapKey().get().location().toString();\n    if (biome.indexOf(\"desert\") !== -1 || biome.indexOf(\"badlands\") !== -1) return \"seljuk_desert\";\n    if (biome.indexOf(\"dark_forest\") !== -1 || biome.indexOf(\"swamp\") !== -1) return \"witchbane_woods\";\n    if (biome.indexOf(\"snow\") !== -1 || biome.indexOf(\"ice\") !== -1 || biome.indexOf(\"frozen\") !== -1) return \"frostfall_peaks\";\n    if (biome.indexOf(\"ocean\") !== -1) return \"sunken_abyss\";\n    if (biome.indexOf(\"jagged\") !== -1 || biome.indexOf(\"stony_peaks\") !== -1) return \"hermit_highlands\";\n    if (biome.indexOf(\"cherry\") !== -1 || biome.indexOf(\"meadow\") !== -1) return \"byzantine_hills\";\n    if (biome.indexOf(\"river\") !== -1) return \"merchant_rivers\";\n    return \"norman_coast\";\n}\n\n// Global export for Rhino engine (explicit key-value pairs)\nglobal.ASHFALL_THREAT = {\n    REGIONS: REGIONS,\n    MAX_TIER: MAX_TIER,\n    regionOf: regionOf,\n    tierOf: tierOf,\n    setTier: setTier\n};\n\nglobal.regionOf = regionOf;\nglobal.tierOf = tierOf;\nglobal.setTier = setTier;\n",
+    "player_health.js": "// =============================================================================\n// ASHENFALL \u2014 Player Base Health (20 Hearts / 40 Max HP)\n// =============================================================================\n\nPlayerEvents.loggedIn(function(event) {\n    var player = event.player;\n    var server = event.server;\n    \n    // Set base max health to 40.0 (20 full hearts)\n    server.runCommandSilent(\"attribute \" + player.username + \" minecraft:generic.max_health base set 40\");\n    \n    // Top up health on login if needed\n    if (player.health < 40) {\n        player.setHealth(40);\n    }\n});\n\nPlayerEvents.respawned(function(event) {\n    var player = event.player;\n    var server = event.server;\n    \n    // Re-apply 20 hearts upon respawn\n    server.runCommandSilent(\"attribute \" + player.username + \" minecraft:generic.max_health base set 40\");\n    player.setHealth(40);\n});\n\nPlayerEvents.changeDimension(function(event) {\n    var player = event.player;\n    var server = event.server;\n    \n    // Maintain 20 hearts across dimension transitions\n    server.runCommandSilent(\"attribute \" + player.username + \" minecraft:generic.max_health base set 40\");\n});\n"
 }
 
 
@@ -1092,6 +1146,101 @@ def check_and_fix_kubejs(mods_dir: Path) -> int:
     return fixed
 
 
+ICEANDFIRE_COMMON_CONFIG = """# =============================================================================
+# ASHENFALL — Ice and Fire Configuration
+# Tuned for Rare Apex Boss Dragons (Mythic Encounters & Subterranean Dens)
+# =============================================================================
+
+[Generation]
+	# How far away dangerous structures (dragon roosts, cyclops caves, etc.) must be from world spawn.
+	# Ensures players can settle the starter beach without being sniped by a dragon.
+	# Range: 1 ~ 10000 (Default: 300)
+	"Dangerous World Gen Dist From Spawn" = 2500
+
+	# How far away dangerous structures must be from the last generated structure.
+	# Ensures dragons never clump together; each dragon holds its own massive territory.
+	# Range: 1 ~ 10000 (Default: 300)
+	"Dangerous World Gen Dist Seperation" = 1500
+
+[Generation.Dragon]
+	# Whether to generate dragon skeletons or not
+	"Generate Dragon Skeletons" = true
+	# 1 out of this number chance per chunk for skeleton generation
+	# Range: 1 ~ 10000 (Default: 300)
+	"Generate Dragon Skeleton Chance" = 1200
+
+	# Whether to generate subterranean dragon caves or not
+	"Generate Dragon Caves" = true
+	# 1 out of this number chance per chunk for cave generation (Stage 4 & 5 ancient dragons)
+	# Range: 1 ~ 10000 (Default: 180)
+	"Generate Dragon Cave Chance" = 1200
+
+	# Whether to generate surface dragon roosts or not
+	"Generate Dragon Roosts" = true
+	# 1 out of this number chance per chunk for roost generation (surface dragons)
+	# Set high so surface dragons do NOT run all around the world
+	# Range: 1 ~ 10000 (Default: 360)
+	"Generate Dragon Roost Chance" = 2500
+
+	# 1 out of this number chance per block that gold will generate in dragon lairs
+	# Range: 1 ~ 10000
+	"Dragon Den Gold Amount" = 4
+
+	# Ratio of Stone to Ores in Dragon Caves
+	# Range: 1 ~ 10000
+	"Dragon Cave Ore Ratio" = 45
+
+[Dragons]
+	# Dragon block griefing:
+	# 0 = Full griefing (breaks everything)
+	# 1 = Griefing in combat only (does not destroy world while idle)
+	# 2 = No block griefing
+	# Range: 0 ~ 2
+	"Dragon Griefing" = 1
+
+	# How far away dragons can search for targets (reduced from default 128 to stop random sniping)
+	# Range: 1 ~ 256
+	"Dragon Target Search Length" = 48
+
+	# How far dragons can wander from their home roost/cavern (prevents wandering into distant towns)
+	# Range: 1 ~ 256
+	"Dragon Wander from Home Distance" = 32
+
+	# Dragon health multiplier (makes them formidable, endgame boss encounters)
+	# Range: 0.1 ~ 10.0
+	"Dragon Health Multiplier" = 1.5
+
+	# Dragon attack damage multiplier
+	# Range: 0.1 ~ 10.0
+	"Dragon Attack Damage Multiplier" = 1.3
+
+	# Dragons drop full scales and skulls upon defeat
+	"Dragon Drop Skull" = true
+"""
+
+
+def install_custom_configs(mods_dir: Path) -> int:
+    """Installs pre-tuned configs (such as rare dragon spawn rates) to prevent world-ruining spam."""
+    installed = 0
+    candidate_config_dirs = [
+        mods_dir.parent / "config",
+        Path.cwd() / "config",
+        mods_dir / "config",
+        mods_dir.parent / "overrides" / "config",
+        Path.cwd() / "pack" / "overrides" / "config",
+    ]
+    for cfg_dir in candidate_config_dirs:
+        try:
+            cfg_dir.mkdir(parents=True, exist_ok=True)
+            iaf_path = cfg_dir / "iceandfire-common.toml"
+            if not iaf_path.exists() or iaf_path.stat().st_size == 0:
+                iaf_path.write_text(ICEANDFIRE_COMMON_CONFIG, encoding="utf-8")
+                installed += 1
+        except Exception:
+            pass
+    return installed
+
+
 def clean_corrupted_files(mods_dir: Path) -> int:
     """Scans mods_dir and removes 0-byte, corrupted, or incompatible files that break NeoForge."""
     removed = 0
@@ -1190,6 +1339,10 @@ def main() -> None:
     fixed_scripts = check_and_fix_kubejs(target_dir)
     if fixed_scripts > 0:
         print(f"  ✅ Checked and healed {fixed_scripts} KubeJS script(s) (modernized for 1.21.1 Rhino JS engine).")
+
+    installed_cfgs = install_custom_configs(target_dir)
+    if installed_cfgs > 0:
+        print(f"  ✅ Installed {installed_cfgs} tuned config file(s) (rare dragons, 2500-block spawn sanctuary).")
 
     # 3. Filter mods by phase
     phase_filter = args.phase.upper()

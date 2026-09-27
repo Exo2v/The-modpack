@@ -1,0 +1,70 @@
+# =============================================================================
+# ASHENFALL — Ice and Fire Configuration
+# Tuned for Rare Apex Boss Dragons (Mythic Encounters & Subterranean Dens)
+# =============================================================================
+
+[Generation]
+	# How far away dangerous structures (dragon roosts, cyclops caves, etc.) must be from world spawn.
+	# Ensures players can settle the starter beach without being sniped by a dragon.
+	# Range: 1 ~ 10000 (Default: 300)
+	"Dangerous World Gen Dist From Spawn" = 2500
+
+	# How far away dangerous structures must be from the last generated structure.
+	# Ensures dragons never clump together; each dragon holds its own massive territory.
+	# Range: 1 ~ 10000 (Default: 300)
+	"Dangerous World Gen Dist Seperation" = 1500
+
+[Generation.Dragon]
+	# Whether to generate dragon skeletons or not
+	"Generate Dragon Skeletons" = true
+	# 1 out of this number chance per chunk for skeleton generation
+	# Range: 1 ~ 10000 (Default: 300)
+	"Generate Dragon Skeleton Chance" = 1200
+
+	# Whether to generate subterranean dragon caves or not
+	"Generate Dragon Caves" = true
+	# 1 out of this number chance per chunk for cave generation (Stage 4 & 5 ancient dragons)
+	# Range: 1 ~ 10000 (Default: 180)
+	"Generate Dragon Cave Chance" = 1200
+
+	# Whether to generate surface dragon roosts or not
+	"Generate Dragon Roosts" = true
+	# 1 out of this number chance per chunk for roost generation (surface dragons)
+	# Set high so surface dragons do NOT run all around the world
+	# Range: 1 ~ 10000 (Default: 360)
+	"Generate Dragon Roost Chance" = 2500
+
+	# 1 out of this number chance per block that gold will generate in dragon lairs
+	# Range: 1 ~ 10000
+	"Dragon Den Gold Amount" = 4
+
+	# Ratio of Stone to Ores in Dragon Caves
+	# Range: 1 ~ 10000
+	"Dragon Cave Ore Ratio" = 45
+
+[Dragons]
+	# Dragon block griefing:
+	# 0 = Full griefing (breaks everything)
+	# 1 = Griefing in combat only (does not destroy world while idle)
+	# 2 = No block griefing
+	# Range: 0 ~ 2
+	"Dragon Griefing" = 1
+
+	# How far away dragons can search for targets (reduced from default 128 to stop random sniping)
+	# Range: 1 ~ 256
+	"Dragon Target Search Length" = 48
+
+	# How far dragons can wander from their home roost/cavern (prevents wandering into distant towns)
+	# Range: 1 ~ 256
+	"Dragon Wander from Home Distance" = 32
+
+	# Dragon health multiplier (makes them formidable, endgame boss encounters)
+	# Range: 0.1 ~ 10.0
+	"Dragon Health Multiplier" = 1.5
+
+	# Dragon attack damage multiplier
+	# Range: 0.1 ~ 10.0
+	"Dragon Attack Damage Multiplier" = 1.3
+
+	# Dragons drop full scales and skulls upon defeat
+	"Dragon Drop Skull" = true
