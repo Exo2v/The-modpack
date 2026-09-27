@@ -44,6 +44,20 @@ var RUMOURS = [
         text: "The brass airships fell from the sky when the Ancient Factory woke. A metal monster with three cannons sweeps lasers across the rusted foundries. None who entered ever returned.",
         landmark: "L8 — The Ancient Foundry (Cogwork March)",
         gate: "none"
+    },
+    {
+        id: "dragon_dens",
+        speaker: "Wandering Hunter",
+        text: "The true dragons do not wander the plains like beasts. They sleep miles below the crust in ancient volcanic dens, guarded by oceans of lava.",
+        landmark: "Deep Dens — 2,500 Blocks Past Spawn",
+        gate: "tier_3"
+    },
+    {
+        id: "tenth_scion",
+        speaker: "The Blind Archivist",
+        text: "Valerius had ten scions, not nine. The tenth was cast into the sea with ash burned into their chest. They say when the tenth walks again, the Hearth either rekindles or dies forever.",
+        landmark: "L★ — The Crucible of Ash",
+        gate: "all_9_runes"
     }
 ];
 
