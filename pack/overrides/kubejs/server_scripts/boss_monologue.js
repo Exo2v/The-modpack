@@ -2,7 +2,7 @@
 // ASHENFALL — Boss Monologues & Cinematic Encounters
 // =============================================================================
 
-const BOSS_ENCOUNTERS = {
+var BOSS_ENCOUNTERS = {
     "cataclysm:ignis": {
         name: "Ignis, The Incinerator",
         line: "Ash will cover the world again. Your ember will feed the pyre.",
@@ -30,25 +30,27 @@ const BOSS_ENCOUNTERS = {
     }
 };
 
-EntityEvents.spawned(event => {
-    let entity = event.entity;
-    let type = entity.type;
+EntityEvents.spawned(function(event) {
+    var entity = event.entity;
+    if (!entity) return;
+    var type = entity.type;
 
     if (BOSS_ENCOUNTERS[type]) {
-        let boss = BOSS_ENCOUNTERS[type];
-        let level = entity.level;
+        var boss = BOSS_ENCOUNTERS[type];
+        var level = entity.level;
+        if (!level || !level.players) return;
 
-        level.players.forEach(player => {
+        level.players.forEach(function(player) {
             // Check distance
-            let distSq = player.distanceToSqr(entity);
+            var distSq = player.distanceToSqr(entity);
             if (distSq < 64 * 64) {
                 // Screen shake & cinematic alert
                 player.potionEffects.add("minecraft:slowness", 60, 1, false, false);
-                level.server.runCommandSilent(`playsound ${boss.sound} ambient ${player.username} ${player.x} ${player.y} ${player.z} 1.0 0.8`);
+                level.server.runCommandSilent("playsound " + boss.sound + " ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 1.0 0.8");
                 
-                level.server.runCommandSilent(`title ${player.username} times 10 60 20`);
-                level.server.runCommandSilent(`title ${player.username} title {"text":"${boss.name}","color":"red","bold":true}`);
-                level.server.runCommandSilent(`title ${player.username} subtitle {"text":"\"${boss.line}\"","color":"gold","italic":true}`);
+                level.server.runCommandSilent("title " + player.username + " times 10 60 20");
+                level.server.runCommandSilent("title " + player.username + " title {\"text\":\"" + boss.name + "\",\"color\":\"red\",\"bold\":true}");
+                level.server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"\\\"" + boss.line + "\\\"\",\"color\":\"gold\",\"italic\":true}");
             }
         });
     }

@@ -2,7 +2,7 @@
 // ASHENFALL — The Nine Nations & Landmark Discovery System
 // =============================================================================
 
-const NATIONS = [
+var NATIONS = [
     {
         id: "norman_remnant",
         name: "The Norman Remnant",
@@ -78,30 +78,31 @@ const NATIONS = [
 ];
 
 // Check territory every 100 ticks (5 seconds)
-PlayerEvents.tick(event => {
-    let player = event.player;
+PlayerEvents.tick(function(event) {
+    var player = event.player;
     if (player.age % 100 !== 0) return;
 
-    let biome = player.level.getBiome(player.blockPosition()).unwrapKey().get().location().toString();
+    var biome = player.level.getBiome(player.blockPosition()).unwrapKey().get().location().toString();
     
-    for (let nation of NATIONS) {
-        if (nation.biomes.includes(biome)) {
-            let tag = `visited_nation_${nation.id}`;
+    for (var i = 0; i < NATIONS.length; i++) {
+        var nation = NATIONS[i];
+        if (nation.biomes.indexOf(biome) !== -1) {
+            var tag = "visited_nation_" + nation.id;
             if (!player.tags.contains(tag)) {
                 player.tags.add(tag);
                 
                 // Audio sting
-                player.level.server.runCommandSilent(`playsound minecraft:ui.toast.challenge_complete ambient ${player.username} ${player.x} ${player.y} ${player.z} 0.8 1.1`);
+                player.level.server.runCommandSilent("playsound minecraft:ui.toast.challenge_complete ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 0.8 1.1");
                 
                 // Territory banner
-                player.level.server.runCommandSilent(`title ${player.username} times 10 70 20`);
-                player.level.server.runCommandSilent(`title ${player.username} title {"text":"${nation.name}","color":"${nation.color}","bold":true}`);
-                player.level.server.runCommandSilent(`title ${player.username} subtitle {"text":"${nation.subtitle}","color":"gray","italic":true}`);
+                player.level.server.runCommandSilent("title " + player.username + " times 10 70 20");
+                player.level.server.runCommandSilent("title " + player.username + " title {\"text\":\"" + nation.name + "\",\"color\":\"" + nation.color + "\",\"bold\":true}");
+                player.level.server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"" + nation.subtitle + "\",\"color\":\"gray\",\"italic\":true}");
                 
                 // Lore entry in chat
                 player.tell(" ");
-                player.tell(`§8[§6Codex Discovered§8] §f${nation.name}`);
-                player.tell(`§7"${nation.lore}"`);
+                player.tell("§8[§6Codex Discovered§8] §f" + nation.name);
+                player.tell("§7\"" + nation.lore + "\"");
                 player.tell(" ");
             }
             break;
