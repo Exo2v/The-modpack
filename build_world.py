@@ -187,6 +187,19 @@ def setup_clean_world(world_dir):
         except Exception:
             pass
 
+    # Install data2 datapack into world save if available
+    datapacks_dir = world_dir / "datapacks"
+    datapacks_dir.mkdir(parents=True, exist_ok=True)
+    data2_src = base_dir / "builds" / "data2.zip"
+    if not data2_src.exists():
+        data2_src = base_dir / "data2.zip"
+    if not data2_src.exists():
+        data2_src = base_dir / "pack" / "overrides" / "datapacks" / "ashenfall_data2.zip"
+
+    if data2_src.exists():
+        shutil.copy2(data2_src, datapacks_dir / "ashenfall_data2.zip")
+        print(f" [✓] Installed 'data2' datapack into world save (datapacks/ashenfall_data2.zip)")
+
 
 def main():
     print("=" * 70)
