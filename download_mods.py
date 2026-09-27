@@ -208,11 +208,18 @@ MODS_CATALOG: List[Dict[str, Any]] = [
     },
     # --- PHASE M1: MOVEMENT & COMBAT ---
     {
-        "name": "Backported Spears",
-        "slug": "backported-spears",
+        "name": "Better Combat",
+        "slug": "better-combat",
         "provider": "modrinth",
         "phase": "M1",
         "category": "combat",
+    },
+    {
+        "name": "Cloth Config API",
+        "slug": "cloth-config",
+        "provider": "modrinth",
+        "phase": "M1",
+        "category": "library",
     },
     {
         "name": "Combat Roll",
@@ -235,17 +242,45 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "phase": "M1",
         "category": "combat",
     },
+    {
+        "name": "Fzzy Config",
+        "slug": "fzzy-config",
+        "provider": "modrinth",
+        "phase": "M1",
+        "category": "library",
+    },
+    {
+        "name": "Oracle Index",
+        "slug": "oracle-index",
+        "provider": "modrinth",
+        "phase": "M1",
+        "category": "library",
+    },
+    {
+        "name": "Backported Spears",
+        "slug": "backported-spears",
+        "provider": "modrinth",
+        "phase": "M1",
+        "category": "combat",
+    },
     # --- PHASE M2: SOULSLIKE ---
     {
+        "name": "Silent Lib",
+        "slug": "silent-lib",
+        "provider": "modrinth",
+        "phase": "M2",
+        "category": "library",
+    },
+    {
         "name": "Silent's Power Scale",
-        "slug": "power-scale",
+        "slug": ["silents-power-scale", "power-scale"],
         "provider": "modrinth",
         "phase": "M2",
         "category": "soulslike",
     },
     {
         "name": "GraveStone Mod",
-        "slug": "gravestone-mod",
+        "slug": ["gravestone-mod", "corpse"],
         "provider": "modrinth",
         "phase": "M2",
         "category": "soulslike",

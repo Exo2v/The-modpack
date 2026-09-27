@@ -123,15 +123,24 @@ def load_manifest(manifest_path: Path = MODLIST_PATH) -> Dict[str, Any]:
         return tomllib.load(f)
 
 
-def filter_mods(mods: List[Dict[str, Any]], phase_filter: Optional[str] = None, category_filter: Optional[str] = None) -> List[Dict[str, Any]]:
+def filter_mods(mods: List[Dict[str, Any]], phase_filter: Optional[str] = None, category_filter: Optional[str] = None, cumulative: bool = False) -> List[Dict[str, Any]]:
     result = []
     phase_filter_upper = phase_filter.upper() if phase_filter else None
 
-    # Cumulative or single phase match?
-    # If phase_filter is like 'M0', user usually wants that phase or up to that phase.
-    # We support exact phase match or '--cumulative' if needed. By default exact phase.
+    allowed_phases = None
+    if phase_filter_upper and cumulative:
+        if phase_filter_upper in PHASE_ORDER:
+            idx = PHASE_ORDER.index(phase_filter_upper)
+            allowed_phases = set(PHASE_ORDER[:idx + 1])
+        else:
+            allowed_phases = {phase_filter_upper}
+
     for mod in mods:
-        if phase_filter_upper and mod.get("phase", "").upper() != phase_filter_upper:
+        m_phase = mod.get("phase", "").upper()
+        if allowed_phases:
+            if m_phase not in allowed_phases:
+                continue
+        elif phase_filter_upper and m_phase != phase_filter_upper:
             continue
         if category_filter and mod.get("category", "").lower() != category_filter.lower():
             continue
@@ -214,7 +223,7 @@ def fetch_modrinth_version(slug: str, mc_version: str = "1.21.1", loader: str = 
 def cmd_list(args: argparse.Namespace) -> None:
     manifest = load_manifest()
     mods = manifest.get("mods", [])
-    filtered = filter_mods(mods, args.phase, args.category)
+    filtered = filter_mods(mods, args.phase, args.category, cumulative=getattr(args, "cumulative", False))
 
     if args.json:
         print(json.dumps(filtered, indent=2))
@@ -269,7 +278,7 @@ def cmd_sync(args: argparse.Namespace) -> None:
     manifest = load_manifest()
     pack_info = manifest.get("pack", {})
     mods = manifest.get("mods", [])
-    filtered = filter_mods(mods, args.phase, args.category)
+    filtered = filter_mods(mods, args.phase, args.category, cumulative=getattr(args, "cumulative", False))
 
     PACK_DIR.mkdir(parents=True, exist_ok=True)
     MODS_META_DIR.mkdir(parents=True, exist_ok=True)
@@ -424,7 +433,7 @@ def cmd_sync(args: argparse.Namespace) -> None:
 def cmd_fetch(args: argparse.Namespace) -> None:
     manifest = load_manifest()
     mods = manifest.get("mods", [])
-    filtered = filter_mods(mods, args.phase, args.category)
+    filtered = filter_mods(mods, args.phase, args.category, cumulative=getattr(args, "cumulative", False))
 
     target_dir = Path(args.dir) if args.dir else DOWNLOADED_MODS_DIR
     target_dir.mkdir(parents=True, exist_ok=True)
@@ -487,7 +496,7 @@ def cmd_fetch(args: argparse.Namespace) -> None:
 def cmd_verify(args: argparse.Namespace) -> None:
     manifest = load_manifest()
     mods = manifest.get("mods", [])
-    filtered = filter_mods(mods, args.phase, args.category)
+    filtered = filter_mods(mods, args.phase, args.category, cumulative=getattr(args, "cumulative", False))
 
     target_dir = Path(args.dir) if args.dir else DOWNLOADED_MODS_DIR
     print(f"\n[verify] Verifying mod JARs in {target_dir}...")
@@ -683,6 +692,7 @@ Examples:
     p_list = subparsers.add_parser("list", help="List mods in the manifest")
     p_list.add_argument("--phase", help="Filter by milestone phase (M0, M1, etc.)")
     p_list.add_argument("--category", help="Filter by category (performance, combat, etc.)")
+    p_list.add_argument("--cumulative", action="store_true", help="Include all phases up to specified phase")
     p_list.add_argument("--json", action="store_true", help="Output in JSON format")
 
     # count
@@ -693,6 +703,7 @@ Examples:
     p_sync = subparsers.add_parser("sync", help="Resolve versions & generate packwiz project files in pack/")
     p_sync.add_argument("--phase", help="Filter by milestone phase")
     p_sync.add_argument("--category", help="Filter by category")
+    p_sync.add_argument("--cumulative", action="store_true", help="Include all phases up to specified phase")
     p_sync.add_argument("--offline", action="store_true", help="Do not attempt remote API requests")
     p_sync.add_argument("--force", action="store_true", help="Bypass cache")
 
@@ -700,6 +711,7 @@ Examples:
     p_fetch = subparsers.add_parser("fetch", help="Download JARs into build/mods/ and verify checksums")
     p_fetch.add_argument("--phase", help="Filter by milestone phase")
     p_fetch.add_argument("--category", help="Filter by category")
+    p_fetch.add_argument("--cumulative", action="store_true", help="Include all phases up to specified phase")
     p_fetch.add_argument("--dir", help="Custom destination folder (default build/mods/)")
     p_fetch.add_argument("--dry-run", action="store_true", help="Preview downloads without fetching")
 
@@ -707,6 +719,7 @@ Examples:
     p_verify = subparsers.add_parser("verify", help="Verify integrity of downloaded JARs in build/mods/")
     p_verify.add_argument("--phase", help="Filter by milestone phase")
     p_verify.add_argument("--category", help="Filter by category")
+    p_verify.add_argument("--cumulative", action="store_true", help="Include all phases up to specified phase")
     p_verify.add_argument("--dir", help="Custom folder to verify (default build/mods/)")
 
     # export

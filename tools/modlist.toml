@@ -315,6 +315,28 @@ pin = "1.8.0"
 note = "Spear jab, speed-scaled charge damage, Lunge dash, kinetic_weapon component"
 
 [[mods]]
+name = "Better Combat"
+slug = "better-combat"
+provider = "modrinth"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Dynamic weapon attack animations, combos, sweeping attacks, dual-wielding"
+
+[[mods]]
+name = "Cloth Config API"
+slug = "cloth-config"
+provider = "modrinth"
+category = "library"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Configuration GUI library required by Better Combat and Combat Roll"
+
+[[mods]]
 name = "Combat Roll"
 slug = "combat-roll"
 provider = "modrinth"
@@ -371,6 +393,28 @@ pin = "latest"
 note = "Extended weapon archetypes (glaives, katanas, greathammers, twinblades, rapiers)"
 
 [[mods]]
+name = "Fzzy Config"
+slug = "fzzy-config"
+provider = "modrinth"
+category = "library"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "GUI configuration framework required by Simply Swords"
+
+[[mods]]
+name = "Oracle Index"
+slug = "oracle-index"
+provider = "modrinth"
+category = "library"
+phase = "M1"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "In-game documentation viewer required by Simply Swords"
+
+[[mods]]
 name = "Spartan Weaponry"
 slug = "spartan-weaponry"
 provider = "curseforge"
@@ -387,8 +431,19 @@ note = "Polearms, throwing daggers, oils, heavy crossbows (spears disabled in co
 # ---------------------------------------------------------------------------
 
 [[mods]]
+name = "Silent Lib"
+slug = "silent-lib"
+provider = "modrinth"
+category = "library"
+phase = "M2"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Core library required by Silent's Power Scale"
+
+[[mods]]
 name = "Silent's Power Scale"
-slug = "power-scale"
+slug = "silents-power-scale"
 provider = "modrinth"
 category = "soulslike"
 phase = "M2"

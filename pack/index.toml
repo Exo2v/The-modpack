@@ -11,6 +11,16 @@ hash = "1a6264da6d16486455e4c4ad0d03b44b6a1d559ed98e41eb4921f9c484ceb192"
 metafile = true
 
 [[files]]
+file = "mods/backported-spears.pw.toml"
+hash = "da50e0d7061d03c99a7d592e0f557a24947895d5ecf3710cfb352a0cef69321c"
+metafile = true
+
+[[files]]
+file = "mods/better-combat.pw.toml"
+hash = "27f9ec154e5b4b2ed0f27fa8e1f485b16eaa6fbbd81356c607e79502af30f789"
+metafile = true
+
+[[files]]
 file = "mods/chunky.pw.toml"
 hash = "f5e33202bbc8c859ca63d3047b4ebacea503374fb02129f8a191d50cc36d6ee0"
 metafile = true
@@ -21,8 +31,18 @@ hash = "c1e254a165230a1520f8ed5c83be751624a88b3bf62069813c2bff155d38892d"
 metafile = true
 
 [[files]]
+file = "mods/cloth-config.pw.toml"
+hash = "fa6b3a556d65ed184e774f04f898ecc43b49be11bbe46a9f6553210cf5c86f0e"
+metafile = true
+
+[[files]]
 file = "mods/clumps.pw.toml"
 hash = "764d005246fd06dfb0f9bd582c58c3c93c5e855aa599f1e655bf7bf3cbd7fdaf"
+metafile = true
+
+[[files]]
+file = "mods/combat-roll.pw.toml"
+hash = "746fa9f39cd0ec0c4b905729ede5c7f89caa1be3416e6fe3ae4026c94a04fbf6"
 metafile = true
 
 [[files]]
@@ -66,6 +86,16 @@ hash = "d9184ac5704b815f21eeff4e0ed50429667b5bf8e916c45a07217edcaed01511"
 metafile = true
 
 [[files]]
+file = "mods/fzzy-config.pw.toml"
+hash = "b3b83ebc42f8aaf8c902dc98ffd39a5abbabfa5ea9acfdd6fa3b49d9beaf0b4e"
+metafile = true
+
+[[files]]
+file = "mods/gravestone-mod.pw.toml"
+hash = "ab47c805e553aba34f45442ce6a8923c9825433a39a3c5b9e629a0ad8eb2d54e"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "35efc4f6d8becfc5069b8c9f0a62bcea7363a46d0de96d6f406cf9f45fddf339"
 metafile = true
@@ -91,6 +121,16 @@ hash = "f95ee6fd4c62888b5679a6896a4e8ad8bcaf74f3dd9f72d702096e26eb05008a"
 metafile = true
 
 [[files]]
+file = "mods/oracle-index.pw.toml"
+hash = "f3919e9e8c6110968f071a0ac9083b15c3b0eac01b22247a7d859bc3a5cc8008"
+metafile = true
+
+[[files]]
+file = "mods/parcool.pw.toml"
+hash = "e38327945e2b0c83a46d954a4a19701f9dcba63eaed3950855205a9542ebeb02"
+metafile = true
+
+[[files]]
 file = "mods/patchouli.pw.toml"
 hash = "cda929f7b90678a1fdf8decab5bbf3d7200d43f130422aac9293982472b34308"
 metafile = true
@@ -98,6 +138,21 @@ metafile = true
 [[files]]
 file = "mods/playeranimator.pw.toml"
 hash = "dfed63f6c9500298579670c7b4dee633d19dbe6afef2de34e0235aa40957049c"
+metafile = true
+
+[[files]]
+file = "mods/silent-lib.pw.toml"
+hash = "70b039226120ed3b98611e81c462de52ff508abe984bb5c1e74df214a507fa66"
+metafile = true
+
+[[files]]
+file = "mods/silents-power-scale.pw.toml"
+hash = "9be4b9cdaeca80463b9d7a686a32df10cb5234e643544f2771a21296233bf8b6"
+metafile = true
+
+[[files]]
+file = "mods/simply-swords.pw.toml"
+hash = "952811c6b703518c13fa84db534d1d9d3fe5d3a7ce6854ec12b29bd2b12264b2"
 metafile = true
 
 [[files]]

@@ -1,0 +1,13 @@
+name = "Better Combat"
+filename = "better-combat-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/better-combat/versions/better-combat-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "5192086aa4117db72f5ae5585aa61aac1794dbdba74635875b1f04e4e972b1cd4559ceb026bb487bcc923d15957161a6e2344f525c532c64c7a4f5ef06997adc"
+
+[update]
+[update.modrinth]
+mod-id = "better-combat"
+version = "latest"

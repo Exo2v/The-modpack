@@ -1,0 +1,13 @@
+name = "Cloth Config API"
+filename = "cloth-config-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/cloth-config/versions/cloth-config-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "e7630e633baddd4f7bca325be75d14cca39cc642db0df186c8003139a48c4cc78dd09c4208dd18f3ee34a64f62e990fe9b5268d7b5c21bf83e3b52b146c78763"
+
+[update]
+[update.modrinth]
+mod-id = "cloth-config"
+version = "latest"

@@ -149,3 +149,87 @@ name = "Sophisticated Core"
 slug = "sophisticated-core"
 phase = "M0"
 reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Backported Spears"
+slug = "backported-spears"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Better Combat"
+slug = "better-combat"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Cloth Config API"
+slug = "cloth-config"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Combat Roll"
+slug = "combat-roll"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ParCool"
+slug = "parcool"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ParCool+ Compatibility++"
+slug = "parcool-compatibility-addon"
+phase = "M1"
+reason = "CurseForge project 954321 pending file resolution"
+
+[[pending]]
+name = "GhostSwap"
+slug = "ghostswap"
+phase = "M1"
+reason = "Custom mod to be built locally (e.g. ./gradlew build)"
+
+[[pending]]
+name = "Simply Swords"
+slug = "simply-swords"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Fzzy Config"
+slug = "fzzy-config"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Oracle Index"
+slug = "oracle-index"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Spartan Weaponry"
+slug = "spartan-weaponry"
+phase = "M1"
+reason = "CurseForge project 278141 pending file resolution"
+
+[[pending]]
+name = "Silent Lib"
+slug = "silent-lib"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Silent's Power Scale"
+slug = "silents-power-scale"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "GraveStone Mod"
+slug = "gravestone-mod"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"

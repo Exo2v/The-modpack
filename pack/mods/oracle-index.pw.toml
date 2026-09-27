@@ -1,0 +1,13 @@
+name = "Oracle Index"
+filename = "oracle-index-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/oracle-index/versions/oracle-index-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "5fc905e5ba117bc3a6689e06501064da7ca405819a0a23226a6b8deb1d51c0dba15023ddb7bd88f554b413958fe17debca0f396fe7d6bea538352f7ae2a9c8cd"
+
+[update]
+[update.modrinth]
+mod-id = "oracle-index"
+version = "latest"

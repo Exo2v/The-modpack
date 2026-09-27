@@ -1,0 +1,13 @@
+name = "Simply Swords"
+filename = "simply-swords-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/simply-swords/versions/simply-swords-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "ecacc4fa50a30ef8c6dbe9214b062b47dae2daf6f2731ccb1313fd43db2417a7924c33935ccffc70585076fe0bbe439d8c204e60b4f91901354a4f325c0ae21c"
+
+[update]
+[update.modrinth]
+mod-id = "simply-swords"
+version = "latest"
