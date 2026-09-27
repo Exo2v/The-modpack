@@ -16,11 +16,6 @@ hash = "da50e0d7061d03c99a7d592e0f557a24947895d5ecf3710cfb352a0cef69321c"
 metafile = true
 
 [[files]]
-file = "mods/better-combat.pw.toml"
-hash = "27f9ec154e5b4b2ed0f27fa8e1f485b16eaa6fbbd81356c607e79502af30f789"
-metafile = true
-
-[[files]]
 file = "mods/chunky.pw.toml"
 hash = "f5e33202bbc8c859ca63d3047b4ebacea503374fb02129f8a191d50cc36d6ee0"
 metafile = true

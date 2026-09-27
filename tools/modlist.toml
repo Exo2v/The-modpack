@@ -315,17 +315,6 @@ pin = "1.8.0"
 note = "Spear jab, speed-scaled charge damage, Lunge dash, kinetic_weapon component"
 
 [[mods]]
-name = "Better Combat"
-slug = "better-combat"
-provider = "modrinth"
-category = "combat"
-phase = "M1"
-side = "both"
-risk = "low"
-pin = "latest"
-note = "Dynamic weapon attack animations, combos, sweeping attacks, dual-wielding"
-
-[[mods]]
 name = "Cloth Config API"
 slug = "cloth-config"
 provider = "modrinth"

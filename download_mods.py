@@ -208,13 +208,6 @@ MODS_CATALOG: List[Dict[str, Any]] = [
     },
     # --- PHASE M1: MOVEMENT & COMBAT ---
     {
-        "name": "Better Combat",
-        "slug": "better-combat",
-        "provider": "modrinth",
-        "phase": "M1",
-        "category": "combat",
-    },
-    {
         "name": "Cloth Config API",
         "slug": "cloth-config",
         "provider": "modrinth",
@@ -886,6 +879,13 @@ def clean_corrupted_files(mods_dir: Path) -> int:
             # Check for non-jar files mistakenly placed into mods/
             if item.suffix.lower() in (".mrpack", ".zip", ".tmp", ".txt"):
                 print(f"  [Cleaner] Removing non-mod bundle from mods folder: {item.name}")
+                item.unlink()
+                removed += 1
+                continue
+
+            # Remove excluded/deprecated mods (e.g. Better Combat to preserve vanilla PvP mechanics)
+            if "bettercombat" in item.name.lower():
+                print(f"  [Cleaner] Removing Better Combat JAR (keeping Vanilla PvP mechanics): {item.name}")
                 item.unlink()
                 removed += 1
                 continue

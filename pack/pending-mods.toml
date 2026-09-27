@@ -157,12 +157,6 @@ phase = "M1"
 reason = "Offline / network restricted; generated pinned metadata stub"
 
 [[pending]]
-name = "Better Combat"
-slug = "better-combat"
-phase = "M1"
-reason = "Offline / network restricted; generated pinned metadata stub"
-
-[[pending]]
 name = "Cloth Config API"
 slug = "cloth-config"
 phase = "M1"
