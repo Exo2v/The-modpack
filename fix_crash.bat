@@ -67,7 +67,8 @@ def main():
         ("rubidium", "Deprecated Forge fork replaced by Embeddium"),
         ("magnesium", "Deprecated Forge fork"),
         ("sodium-fabric", "Fabric build in NeoForge folder"),
-        ("iris-fabric", "Fabric build in NeoForge folder")
+        ("iris-fabric", "Fabric build in NeoForge folder"),
+        ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1")
     ]
     
     for gdir in game_dirs:

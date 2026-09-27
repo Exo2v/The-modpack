@@ -342,13 +342,6 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "category": "soulslike",
     },
     {
-        "name": "Shine",
-        "slug": "shine",
-        "provider": "modrinth",
-        "phase": "M2",
-        "category": "visuals",
-    },
-    {
         "name": "Wavify",
         "slug": "wavify",
         "provider": "modrinth",
@@ -1346,6 +1339,7 @@ def clean_unnecessary_and_outdated_mods(mods_dir: Path, catalog_filenames: Set[s
         ("magnesium", "Deprecated Forge fork"),
         ("sodium-fabric", "Fabric build detected in NeoForge folder"),
         ("iris-fabric", "Fabric build detected in NeoForge folder"),
+        ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1"),
     ]
 
     for item in list(mods_dir.glob("*.jar")):
