@@ -1,0 +1,7 @@
+# =============================================================================
+# ASHENFALL — Streams Reflowing Safe World Load Configuration
+# =============================================================================
+fastChunkLoading = false
+flowVanillaRivers = false
+acceleratedStreamGeneration = false
+maxStreamLength = 512
