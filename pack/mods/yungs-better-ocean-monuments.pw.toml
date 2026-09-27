@@ -1,0 +1,13 @@
+name = "YUNG's Better Ocean Monuments"
+filename = "yungs-better-ocean-monuments-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-ocean-monuments/versions/yungs-better-ocean-monuments-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "ce9a79e539caaf9a0e6c0a3fd3ff7e426eec4d5aabacae0910361fb7e3d3ba9fff7f3bcade66cb607ba6ee207d5183a4419c8f490abc840b634420242f8fc167"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-ocean-monuments"
+version = "latest"

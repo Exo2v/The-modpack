@@ -1,0 +1,13 @@
+name = "YUNG's Better Extras"
+filename = "yungs-better-extras-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-extras/versions/yungs-better-extras-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "a85f1ef6057aa4298d7203caf8902d7949cbc8b50aa47963a275176b43630b1a0d17896afe6f48630f9e50babb0405cd0d08ee8b5916d0d44d489fe56f90767a"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-extras"
+version = "latest"

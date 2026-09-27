@@ -1,0 +1,13 @@
+name = "YUNG's Better Bridges"
+filename = "yungs-better-bridges-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-bridges/versions/yungs-better-bridges-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "508510c2d54be9921f275d74c742cecd303de92989ed8986e4e6f374740a054932a84e95b7575748eebc4f4ebf40b4a0f6bc5476a321e4e65733655f3ba6fec3"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-bridges"
+version = "latest"

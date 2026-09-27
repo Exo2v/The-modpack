@@ -1,0 +1,13 @@
+name = "Xaero's World Map"
+filename = "xaeros-world-map-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/xaeros-world-map/versions/xaeros-world-map-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "03bbef5af57311f2b3672afa34ff6447e9aa28263348363c5b7a72e456e50e685e0b9481cd15a6350b81308f69a43631267d867bba0d8cef1fbb4607cb7ecf67"
+
+[update]
+[update.modrinth]
+mod-id = "xaeros-world-map"
+version = "latest"

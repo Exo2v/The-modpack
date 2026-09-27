@@ -1,0 +1,13 @@
+name = "YUNG's Better End Island"
+filename = "yungs-better-end-island-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-end-island/versions/yungs-better-end-island-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "72c128c664e835b61e517909609322c8dd8bcaf3f5101b9731648e83ae42e74d3da1a4369e5b493ba7f1757c964f8bc8024cd51f7be17019ed90eca82bd748b3"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-end-island"
+version = "latest"

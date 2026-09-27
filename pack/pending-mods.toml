@@ -149,3 +149,567 @@ name = "Sophisticated Core"
 slug = "sophisticated-core"
 phase = "M0"
 reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Backported Spears"
+slug = "backported-spears"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Combat Roll"
+slug = "combat-roll"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ParCool"
+slug = "parcool"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ParCool+ Compatibility++"
+slug = "parcool-compatibility-addon"
+phase = "M1"
+reason = "CurseForge project 954321 pending file resolution"
+
+[[pending]]
+name = "GhostSwap"
+slug = "ghostswap"
+phase = "M1"
+reason = "Custom mod to be built locally (e.g. ./gradlew build)"
+
+[[pending]]
+name = "Simply Swords"
+slug = "simply-swords"
+phase = "M1"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Spartan Weaponry"
+slug = "spartan-weaponry"
+phase = "M1"
+reason = "CurseForge project 278141 pending file resolution"
+
+[[pending]]
+name = "Silent's Power Scale"
+slug = "power-scale"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "GraveStone Mod"
+slug = "gravestone-mod"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Terralith"
+slug = "terralith"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Explorify"
+slug = "explorify"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dungeons and Taverns"
+slug = "dungeons-and-taverns"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Towns and Towers"
+slug = "towns-and-towers"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "When Dungeons Arise"
+slug = "when-dungeons-arise"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "FallingTree"
+slug = "falling-tree"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Sophisticated Backpacks"
+slug = "sophisticated-backpacks"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Star Worm Equestrian"
+slug = "swem"
+phase = "M3b"
+reason = "CurseForge project 455648 pending file resolution"
+
+[[pending]]
+name = "Guard Villagers"
+slug = "guard-villagers"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Farmer's Delight"
+slug = "farmers-delight"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Supplementaries"
+slug = "supplementaries"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Comforts"
+slug = "comforts"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Tool Belt"
+slug = "tool-belt"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dynamic Waters"
+slug = "dynamic-waters"
+phase = "M3b"
+reason = "CurseForge project 923841 pending file resolution"
+
+[[pending]]
+name = "Flowing Fluids"
+slug = "flowing-fluids"
+phase = "M3b"
+reason = "CurseForge project 837462 pending file resolution"
+
+[[pending]]
+name = "Boatload"
+slug = "boatload"
+phase = "M3b"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Dungeons"
+slug = "yungs-better-dungeons"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Strongholds"
+slug = "yungs-better-strongholds"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Mineshafts"
+slug = "yungs-better-mineshafts"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Ocean Monuments"
+slug = "yungs-better-ocean-monuments"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Nether Fortresses"
+slug = "yungs-better-nether-fortresses"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Desert Temples"
+slug = "yungs-better-desert-temples"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Jungle Temples"
+slug = "yungs-better-jungle-temples"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Witch Huts"
+slug = "yungs-better-witch-huts"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better End Island"
+slug = "yungs-better-end-island"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Bridges"
+slug = "yungs-better-bridges"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Better Extras"
+slug = "yungs-better-extras"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Repurposed Structures"
+slug = "repurposed-structures"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Hopo Better Ruined Portals"
+slug = "hopo-better-ruined-portals"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Hopo Better Underwater Ruins"
+slug = "hopo-better-underwater-ruins"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "The Graveyard"
+slug = "the-graveyard"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Structory"
+slug = "structory"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dimensional Dungeons"
+slug = "dimensional-dungeons"
+phase = "M3c"
+reason = "CurseForge project 359146 pending file resolution"
+
+[[pending]]
+name = "Iron's Spells 'n Spellbooks"
+slug = "irons-spells-n-spellbooks"
+phase = "M3c"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Monsters & Spellbooks"
+slug = "monsters-and-spellbooks"
+phase = "M3c"
+reason = "CurseForge project 1109823 pending file resolution"
+
+[[pending]]
+name = "Mill\u00e9naire"
+slug = "millenaire"
+phase = "M4"
+reason = "CurseForge project 1045621 pending file resolution"
+
+[[pending]]
+name = "Aviel's Dialogue Mod"
+slug = "aviels-dialogue-mod"
+phase = "M4"
+reason = "CurseForge project 981245 pending file resolution"
+
+[[pending]]
+name = "FTB Quests"
+slug = "ftb-quests-forge"
+phase = "M4"
+reason = "CurseForge project 289412 pending file resolution"
+
+[[pending]]
+name = "FTB Teams"
+slug = "ftb-teams"
+phase = "M4"
+reason = "CurseForge project 404465 pending file resolution"
+
+[[pending]]
+name = "FTB Chunks"
+slug = "ftb-chunks"
+phase = "M4"
+reason = "CurseForge project 314906 pending file resolution"
+
+[[pending]]
+name = "KubeJS"
+slug = "kubejs"
+phase = "M4"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Project MMO"
+slug = "project-mmo"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Project MMO: Classes"
+slug = "project-mmo-classes"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Project MMO: Skill Books"
+slug = "project-mmo-skill-books"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Project MMO: XP Bottles"
+slug = "project-mmo-xp-bottles"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Origins"
+slug = "origins"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Origins: Classes"
+slug = "origins-classes"
+phase = "M5"
+reason = "CurseForge project 458921 pending file resolution"
+
+[[pending]]
+name = "Mob Grinding Utils"
+slug = "mob-grinding-utils"
+phase = "M5"
+reason = "CurseForge project 254241 pending file resolution"
+
+[[pending]]
+name = "Reforged"
+slug = "tiered"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Attribute Modify"
+slug = "attribute-modify"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Mob Champions"
+slug = "mob-champions"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Loot Beams: Refork"
+slug = "loot-beams"
+phase = "M5"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "L_Ender's Cataclysm"
+slug = "cataclysm"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Bosses of Mass Destruction"
+slug = "bosses-of-mass-destruction"
+phase = "M6"
+reason = "CurseForge project 485845 pending file resolution"
+
+[[pending]]
+name = "The Twilight Forest"
+slug = "the-twilight-forest"
+phase = "M6"
+reason = "CurseForge project 227639 pending file resolution"
+
+[[pending]]
+name = "The Aether"
+slug = "aether"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Deeper and Darker"
+slug = "deeperdarker"
+phase = "M6"
+reason = "CurseForge project 659000 pending file resolution"
+
+[[pending]]
+name = "Alex's Caves"
+slug = "alexs-caves"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Alex's Mobs"
+slug = "alexs-mobs"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Mini-boss Boss Bars"
+slug = "mini-boss-boss-bars"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Configurable Boss Bars"
+slug = "configurable-boss-bars"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Boss Music Mod"
+slug = "boss-music-mod"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Floating Damage Indicators"
+slug = "floating-damage-indicators"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's Traveler's Titles"
+slug = "yungs-travelers-titles"
+phase = "M6"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Explorer's Compass"
+slug = "explorers-compass"
+phase = "M7"
+reason = "CurseForge project 317374 pending file resolution"
+
+[[pending]]
+name = "Nature's Compass"
+slug = "natures-compass"
+phase = "M7"
+reason = "CurseForge project 252848 pending file resolution"
+
+[[pending]]
+name = "Lootr"
+slug = "lootr"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Artifacts"
+slug = "artifacts"
+phase = "M7"
+reason = "CurseForge project 312353 pending file resolution"
+
+[[pending]]
+name = "Enigmatic Legacy+"
+slug = "enigmatic-legacy-plus"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Waystones"
+slug = "waystones"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Fast Travel Waypoints"
+slug = "fast-travel-waypoints"
+phase = "M7"
+reason = "CurseForge project 562143 pending file resolution"
+
+[[pending]]
+name = "Just Enough Items (JEI)"
+slug = "jei"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Jade"
+slug = "jade"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "AppleSkin"
+slug = "appleskin"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Mouse Tweaks"
+slug = "mouse-tweaks"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Controlling"
+slug = "controlling"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Carry On"
+slug = "carry-on"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Xaero's Minimap"
+slug = "xaeros-minimap"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Xaero's World Map"
+slug = "xaeros-world-map"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Inventory Profiles Next"
+slug = "inventory-profiles-next"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Shutup Experimental Settings!"
+slug = "shutup-experimental-settings"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Skin Layers 3D"
+slug = "skin-layers-3d"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "AmbientSounds 6"
+slug = "ambientsounds"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Sound Physics Remastered"
+slug = "sound-physics-remastered"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Presence Footsteps"
+slug = "presence-footsteps"
+phase = "M7"
+reason = "Offline / network restricted; generated pinned metadata stub"

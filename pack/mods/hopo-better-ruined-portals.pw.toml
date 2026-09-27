@@ -1,0 +1,13 @@
+name = "Hopo Better Ruined Portals"
+filename = "hopo-better-ruined-portals-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/hopo-better-ruined-portals/versions/hopo-better-ruined-portals-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "0f6905955e9fb4f52c8984b3f6f8a87ecadda2e49e5263592154b5b8cf62eaf20231c536efdc3ebdf8cfd74c379e38531fb3594a4f7cc61924a7f93342b764ad"
+
+[update]
+[update.modrinth]
+mod-id = "hopo-better-ruined-portals"
+version = "latest"

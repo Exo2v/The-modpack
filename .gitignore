@@ -1,6 +1,8 @@
 # Build and cache directories
 build/
 .gradle/
+__pycache__/
+*.pyc
 
 # IDE files
 .idea/

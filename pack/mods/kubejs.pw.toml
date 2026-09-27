@@ -1,0 +1,13 @@
+name = "KubeJS"
+filename = "kubejs-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/kubejs/versions/kubejs-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "0c07c6a4385f8bd87f01c11e7a5effbd7cfecf1f7e30fe89d285f0647c04fdd8eab32c09d89222dcea6c6914965fa1c8be0b7017659fb9a83917e2a49c7e4cff"
+
+[update]
+[update.modrinth]
+mod-id = "kubejs"
+version = "latest"

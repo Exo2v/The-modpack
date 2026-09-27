@@ -1,0 +1,13 @@
+name = "Silent's Power Scale"
+filename = "power-scale-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/power-scale/versions/power-scale-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "d2161382ca6746c89c308c2d3e202d5c4d255b413771c5d9e80d4abc55984776c01553a0ebe823cde79a462ae6b20e1e4f74243bb375c884371dfbd55883baec"
+
+[update]
+[update.modrinth]
+mod-id = "power-scale"
+version = "latest"

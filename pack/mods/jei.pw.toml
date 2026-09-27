@@ -1,0 +1,13 @@
+name = "Just Enough Items (JEI)"
+filename = "jei-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/jei/versions/jei-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "a0d599bf64abca731172e61ef74c38164afafc7fb27bb47fa66fa972b86c2b1c446242b59ffc3d03f91939f9365f81d1b3de1f073606e5a7969ebf39af3cbcc1"
+
+[update]
+[update.modrinth]
+mod-id = "jei"
+version = "latest"

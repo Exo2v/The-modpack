@@ -1,0 +1,13 @@
+name = "AmbientSounds 6"
+filename = "ambientsounds-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/ambientsounds/versions/ambientsounds-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "e7748f3ce41963cad6e248e7b5ff40fe84cfd9fef97a4dad43c35d69f76eca8438d006eded31b867e0217106c3a1b2cf4924dc78f58f61b15a59889525a9a0d7"
+
+[update]
+[update.modrinth]
+mod-id = "ambientsounds"
+version = "latest"

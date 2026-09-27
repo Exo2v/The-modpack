@@ -1,0 +1,13 @@
+name = "Explorify"
+filename = "explorify-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/explorify/versions/explorify-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "af389ff06c2b684a4a55d28d6ebcd28051d5a8abf61bdb3fef9a92a5ca2c1d72dc835a43f9b68e97baa7b89edbb7ead7c25eef66cb1190e0f0c17cedb3f23ae4"
+
+[update]
+[update.modrinth]
+mod-id = "explorify"
+version = "latest"

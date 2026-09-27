@@ -1,0 +1,13 @@
+name = "Loot Beams: Refork"
+filename = "loot-beams-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/loot-beams/versions/loot-beams-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "073735c960b7595e22814473c45573ec4aa91869c50a67e006bbfbb9c93161d15ddd76e3b118f63694ab39ab472ca93bef439a0b4d4332859515c9262e8c9b75"
+
+[update]
+[update.modrinth]
+mod-id = "loot-beams"
+version = "latest"

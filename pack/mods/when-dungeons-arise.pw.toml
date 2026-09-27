@@ -1,0 +1,13 @@
+name = "When Dungeons Arise"
+filename = "when-dungeons-arise-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/when-dungeons-arise/versions/when-dungeons-arise-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "85f98a1aae42e3a9b308855efca6ff51a0757dd9dbe7f32e11a1ea272529466792c8fd4553b18cba3c29b4914cab79eaa4f002991dd9cd4a33000c636c6f8d28"
+
+[update]
+[update.modrinth]
+mod-id = "when-dungeons-arise"
+version = "latest"

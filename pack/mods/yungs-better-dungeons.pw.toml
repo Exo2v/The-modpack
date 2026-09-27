@@ -1,0 +1,13 @@
+name = "YUNG's Better Dungeons"
+filename = "yungs-better-dungeons-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-better-dungeons/versions/yungs-better-dungeons-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "14db421ce85cc5ddb3bb1db74c360002043a2189bfbee01555b476c79e343ffc6da4c44dd7365d83e3911a59924c5c939ce5aad6cad7288f992a45fe6e253003"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-better-dungeons"
+version = "latest"

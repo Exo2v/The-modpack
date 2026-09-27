@@ -1,0 +1,13 @@
+name = "Controlling"
+filename = "controlling-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/controlling/versions/controlling-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "67dfacc2194a230c031dfd1741c15f3a50653e109f90d2b37a821963c01020682bbc0bcb32d57d961f1ec54908fafe8beb0d3081542e49e5a36a26bf4bbb2ca7"
+
+[update]
+[update.modrinth]
+mod-id = "controlling"
+version = "latest"

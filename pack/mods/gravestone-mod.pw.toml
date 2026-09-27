@@ -1,0 +1,13 @@
+name = "GraveStone Mod"
+filename = "gravestone-mod-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/gravestone-mod/versions/gravestone-mod-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "b81548b9b99f97d2b066642e397ba291f76b026403c41cb63e17c3431e10665b76dd662326e1fde4a892c21cb536b50ceb35603069239cd2319856e3a1c3d0b8"
+
+[update]
+[update.modrinth]
+mod-id = "gravestone-mod"
+version = "latest"

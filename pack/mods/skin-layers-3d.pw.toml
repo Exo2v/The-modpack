@@ -1,0 +1,13 @@
+name = "Skin Layers 3D"
+filename = "skin-layers-3d-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/skin-layers-3d/versions/skin-layers-3d-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "8fc5a45c699485f79fd6abeb561f858671c3e861e31ad6efa8a33eeed39d481c80d8eedec418c8d65e180b2042ab1d5892eeeb7db20f5c4e364a670c38754271"
+
+[update]
+[update.modrinth]
+mod-id = "skin-layers-3d"
+version = "latest"
