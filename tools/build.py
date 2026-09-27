@@ -274,6 +274,10 @@ def cmd_sync(args: argparse.Namespace) -> None:
     PACK_DIR.mkdir(parents=True, exist_ok=True)
     MODS_META_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Clean out MODS_META_DIR when syncing a specific phase so only active phase mods exist
+    for existing_pw in MODS_META_DIR.glob("*.pw.toml"):
+        existing_pw.unlink()
+
     mc_ver = pack_info.get("minecraft", "1.21.1")
     loader = pack_info.get("loader", "neoforge")
     loader_ver = pack_info.get("loader_version", "21.1.65")
@@ -532,9 +536,10 @@ def cmd_export(args: argparse.Namespace) -> None:
     downloads_dir = REPO_ROOT / "downloads"
     downloads_dir.mkdir(parents=True, exist_ok=True)
 
-    mrpack_path = EXPORT_DIR / f"ashfall-{pack_ver}.mrpack"
-    cf_zip_path = EXPORT_DIR / f"ashfall-{pack_ver}-curseforge.zip"
-    bundle_path = EXPORT_DIR / f"ashfall-{pack_ver}-complete-bundle.zip"
+    phase_tag = f"-{args.phase}" if args.phase else "-M0"
+    mrpack_path = EXPORT_DIR / f"ashfall-{pack_ver}{phase_tag}.mrpack"
+    cf_zip_path = EXPORT_DIR / f"ashfall-{pack_ver}{phase_tag}-curseforge.zip"
+    bundle_path = EXPORT_DIR / f"ashfall-{pack_ver}{phase_tag}-complete-bundle.zip"
 
     print(f"\n[export] 1. Assembling Modrinth .mrpack archive: {mrpack_path.name}...")
 
