@@ -1,12 +1,13 @@
 # Ashenfall Build Iteration: Map 1 (`builds/map1/`)
 
 ### *The Handcrafted 8,000 × 8,000 Elden Ring Finite Continent of Vantyra*
+*(Powered by Native Lithosphere Continuous Spline Terrain & Still Life Biome Fullness)*
 
 ---
 
 ## 🗺️ About This Build (Iteration: `map1`)
 
-This build represents the first full iteration of the **handcrafted continent of Vantyra**, built using the **Elden Ring method** (pure organic terrain, geological elevations, mountain ranges, canyons, desert dunes, and ocean cliffs with no structures, ready for landmark and dungeon placement).
+This build represents the first full iteration of the **handcrafted continent of Vantyra**, built using the **Elden Ring method** (pure organic terrain, continuous mountain ranges, deep river canyons, sweeping badlands, and ocean cliffs with zero synthetic chunk corruption, ready for landmark and dungeon placement).
 
 ```
                             [ NORTH: Z = -4000 ]
@@ -50,32 +51,38 @@ This build represents the first full iteration of the **handcrafted continent of
 
 ## ⚡ How to Install (Zero Other Steps)
 
-### Method 1: Run Python directly
+### Method 1: Double-Click Batch (Windows)
+Double-click `install_world.bat` or `build_world.bat`.
+It will automatically locate your `.minecraft/saves` (including TLauncher isolated instances), clean any old broken synthetic chunks, write the pristine `level.dat`, and set up the world in under 1 second!
+
+### Method 2: Run Python directly
 ```bash
 python build_world.py
 ```
-*(Or run `python builds/map1/build_world.py`)*
 
-### Method 2: Double-click Batch (Windows)
-Double-click `install_world.bat` in this folder.
+### Method 3: Manual Drag & Drop
+Copy the `saves/Ashenfall` folder directly into your `.minecraft/saves/` directory.
 
 ---
 
-## 📦 What's Inside `builds/map1/`
+## 📦 What's Inside This Release
 
 | File | Description |
 |---|---|
-| **`build_world.py`** | Standalone Python script that builds and installs this world into your Minecraft saves folder automatically with zero pip dependencies. |
-| **`Ashenfall.zip`** | The complete pre-built world archive (9.4 MB) containing `level.dat`, `icon.png`, and 20 Anvil region files (20,480 chunks). |
-| **`level.dat`** | Pre-configured world data (DataVersion 3955, Spawn at `0, 68, 2500`, 8,000-block world border). |
-| **`icon.png`** | Satellite topographic map icon shown in the Minecraft Singleplayer menu. |
-| **`ASHENFALL_CONTINENT_MAP.png`** | High-resolution (1200x1200) topographic satellite render of the entire continent. |
-| **`install_world.bat`** | 1-click Windows runner. |
+| **`build_world.bat` / `install_world.bat`** | 1-click Windows runner that executes the installer automatically. |
+| **`build_world.py` / `install_world.py`** | Standalone Python worldbuilder that writes the clean NBT `level.dat` and cleans stale chunks. |
+| **`saves/Ashenfall/`** | Pre-built world save folder with pre-configured `level.dat` and `icon.png`. |
+| **`download_mods.bat` & `download_mods.py`** | 1-click automated downloader for all required mods (Lithosphere, Still Life, Create, Performance). |
+| **`ASHENFALL_LITHOSPHERE_MAP.png`** | High-resolution topographic continent map showing all 9 faction regions and coordinates. |
+| **`ASHENFALL_CONTINENT_MAP.png`** | Satellite geological elevation render of Vantyra. |
 
 ---
 
-## 🎮 In-Game Verification
+## 🎮 In-Game World Specs
 * **World Name**: `Ashenfall - The Broken Realm`
+* **World Seed**: `4815162342`
 * **Spawn Point**: `X: 0, Y: 68, Z: 2500` (The Forgotten Coast)
-* **World Border**: `8,000 x 8,000 blocks` (The Veil of Salt)
+* **World Border**: `8,000 × 8,000 blocks` (The Veil of Salt)
+* **Max Health**: 20 Hearts (40 HP)
+* **Combat**: 100% Pure Vanilla PvP (cooldowns, crits, sweep, sprint resets)
 * **Compatible Version**: Minecraft 1.21.1 NeoForge

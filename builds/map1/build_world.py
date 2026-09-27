@@ -18,7 +18,7 @@ generate the entire world natively with 100% fullness:
 import os
 import sys
 import struct
-import zlib
+import gzip
 import io
 import platform
 import shutil
@@ -166,14 +166,17 @@ def setup_clean_world(world_dir):
     buf = io.BytesIO()
     write_nbt_tag(buf, 10, "", level_compound)
     with open(level_dat_path, "wb") as f:
-        f.write(zlib.compress(buf.getvalue(), level=9))
+        f.write(gzip.compress(buf.getvalue(), compresslevel=9))
 
     print(f" [✓] Created clean level.dat (Seed: 4815162342, Border: 8000, Spawn: 0, 68, 2500)")
 
     # Copy world icon if available
-    icon_src = Path("ASHENFALL_LITHOSPHERE_MAP.png")
+    base_dir = Path(__file__).resolve().parent
+    icon_src = base_dir / "ASHENFALL_LITHOSPHERE_MAP.png"
     if not icon_src.exists():
-        icon_src = Path("ASHENFALL_CONTINENT_MAP.png")
+        icon_src = base_dir / "ASHENFALL_CONTINENT_MAP.png"
+    if not icon_src.exists():
+        icon_src = Path("ASHENFALL_LITHOSPHERE_MAP.png")
 
     if icon_src.exists():
         try:
