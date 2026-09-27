@@ -452,6 +452,17 @@ def main():
     print("      - Super Duper Vanilla potato-friendly shaderpack installed in shaderpacks.")
     print("      - In-game: Press 'K' (or Video Settings -> Shaders) to turn it ON for")
     print("        rich, warm amber firelight and cinematic sunsets at 90-120+ FPS!")
+
+    # Ensure Ashenfall Handcrafted Elden-Ring World Save is installed
+    saves_zip = Path("saves/Ashenfall.zip")
+    ashenfall_dir = Path("saves/Ashenfall")
+    if saves_zip.exists() and not (ashenfall_dir / "region").exists():
+        import zipfile
+        print("\nExtracting Handcrafted Elden Ring World Save ('Ashenfall - The Broken Realm')...")
+        with zipfile.ZipFile(saves_zip, "r") as zf:
+            zf.extractall(ashenfall_dir)
+        print(" [✓] World Save installed in saves/Ashenfall/")
+
     print("=" * 72 + "\\n")
 
 if __name__ == "__main__":

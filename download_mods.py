@@ -1532,10 +1532,21 @@ def main() -> None:
     print("  * Create 6.0.9 & Create Structures Arise (Steampunk mechanics)")
     print("  * EasyMotionBlur (toggle in-game with 'G')")
     print("  * All required Core APIs & Performance Libraries verified")
+
+    # Ensure Ashenfall Handcrafted Elden-Ring World Save is installed
+    saves_zip = Path("saves/Ashenfall.zip")
+    ashenfall_dir = Path("saves/Ashenfall")
+    if saves_zip.exists() and not (ashenfall_dir / "region").exists():
+        import zipfile
+        print("\nExtracting Handcrafted Elden Ring World Save ('Ashenfall - The Broken Realm')...")
+        with zipfile.ZipFile(saves_zip, "r") as zf:
+            zf.extractall(ashenfall_dir)
+        print(" [✓] World Save installed in saves/Ashenfall/")
+
     print(" Mods folder location:")
     print("  ", target_dir.resolve())
     print("=" * 65 + "\n")
-    print("You can now launch Minecraft 1.21.1 NeoForge and enter your world!")
+    print("You can now launch Minecraft 1.21.1 NeoForge and select 'Ashenfall - The Broken Realm'!")
 
 
 if __name__ == "__main__":
