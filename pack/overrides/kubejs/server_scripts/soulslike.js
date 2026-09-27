@@ -34,14 +34,3 @@ PlayerEvents.respawned(function(event) {
         // Silently prevent respawn error
     }
 });
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_SOULSLIKE = {
-    HOLLOW_CAP: HOLLOW_CAP,
-    REST_TAGS: REST_TAGS,
-    getHollow: getHollow,
-    setHollow: setHollow
-};
-
-global.getHollow = getHollow;
-global.setHollow = setHollow;

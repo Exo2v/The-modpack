@@ -23,7 +23,3 @@ var QUEST_GATES = {
     "ASHEN_FIRST_EMBER": "Claim the First Ember from the Cathedral of Ash",
     "ASHEN_NINE_SOUNDS_MENDED": "Complete the Great Pilgrimage"
 };
-
-// Global export for Rhino engine
-global.QUEST_GATES = QUEST_GATES;
-global.QUEST_IDS = QUEST_GATES;

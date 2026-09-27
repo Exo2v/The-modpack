@@ -63,11 +63,3 @@ function tellRumour(player, rumourId) {
     player.tell("§8Related Landmark: §b" + rumour.landmark);
     player.tell(" ");
 }
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_RUMOURS = {
-    RUMOURS: RUMOURS,
-    tellRumour: tellRumour
-};
-
-global.tellRumour = tellRumour;

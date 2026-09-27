@@ -17,8 +17,3 @@ EntityEvents.spawned(function(event) {
         entity.persistentData.putString("adm_dialogue", NPC_DIALOGUES["the_archivist"]);
     }
 });
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_DIALOGUE = {
-    NPC_DIALOGUES: NPC_DIALOGUES
-};

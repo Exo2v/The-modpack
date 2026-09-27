@@ -47,13 +47,3 @@ function runeCount(player) {
     }
     return count;
 }
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_RUNES = {
-    RUNES: RUNES,
-    hasRune: hasRune,
-    runeCount: runeCount
-};
-
-global.hasRune = hasRune;
-global.runeCount = runeCount;

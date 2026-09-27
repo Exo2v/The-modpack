@@ -48,16 +48,3 @@ function regionOf(entity) {
     if (biome.indexOf("river") !== -1) return "merchant_rivers";
     return "norman_coast";
 }
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_THREAT = {
-    REGIONS: REGIONS,
-    MAX_TIER: MAX_TIER,
-    regionOf: regionOf,
-    tierOf: tierOf,
-    setTier: setTier
-};
-
-global.regionOf = regionOf;
-global.tierOf = tierOf;
-global.setTier = setTier;

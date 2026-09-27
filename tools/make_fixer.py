@@ -69,7 +69,10 @@ def main():
         ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1"),
         ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers"),
         ("streamsreflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
-        ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze")
+        ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
+        ("graveyard", "Causes fatal Registry is already frozen [graveyard:tg_jigsaw] crash in worldgen worker thread"),
+        ("mini_boss_boss_bars", "Contains broken functions referencing uninstalled mods"),
+        ("better-boss-bars", "Contains broken functions referencing uninstalled mods")
     ]
     
     for gdir in game_dirs:

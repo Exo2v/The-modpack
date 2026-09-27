@@ -32,7 +32,7 @@ PlayerEvents.respawned(function(event) {
     }
 });
 
-PlayerEvents.changeDimension(function(event) {
+PlayerEvents.changedDimension(function(event) {
     try {
         var player = event.player;
         if (!player) return;

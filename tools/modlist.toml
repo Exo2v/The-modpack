@@ -886,17 +886,6 @@ pin = "latest"
 note = "Drowned empire cities and coastal sunken ports"
 
 [[mods]]
-name = "The Graveyard"
-slug = "the-graveyard"
-provider = "modrinth"
-category = "dungeons"
-phase = "M3c"
-side = "both"
-risk = "medium"
-pin = "latest"
-note = "Cemeteries, mausoleums, Lich Prison, Lich's Bargain quest chain"
-
-[[mods]]
 name = "Structory"
 slug = "structory"
 provider = "modrinth"
@@ -1227,17 +1216,6 @@ side = "both"
 risk = "medium"
 pin = "latest"
 note = "Fauna and combat creatures enriching the wilderness"
-
-[[mods]]
-name = "Mini-boss Boss Bars"
-slug = "mini-boss-boss-bars"
-provider = "modrinth"
-category = "bosses"
-phase = "M6"
-side = "client"
-risk = "low"
-pin = "latest"
-note = "HUD boss bars for Mob Champions, Hollow Challenge champions, and regional elites"
 
 [[mods]]
 name = "Configurable Boss Bars"

@@ -19,11 +19,3 @@ var STRUCTURE_PROVINCES = {
 function getProvinceForStructure(structureId) {
     return STRUCTURE_PROVINCES[structureId] || null;
 }
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_STRUCTURES = {
-    STRUCTURE_PROVINCES: STRUCTURE_PROVINCES,
-    getProvinceForStructure: getProvinceForStructure
-};
-
-global.getProvinceForStructure = getProvinceForStructure;

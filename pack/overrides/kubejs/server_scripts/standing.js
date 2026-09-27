@@ -37,16 +37,3 @@ function modifyStanding(player, faction, delta) {
     var factionLabel = faction.replace(/_/g, " ").replace(/\b\w/g, function(l) { return l.toUpperCase(); });
     player.tell("§8[§6Faction Rep§8] §f" + factionLabel + ": " + prefix + delta + " §7(Current: " + updated + ")");
 }
-
-// Global export for Rhino engine (explicit key-value pairs)
-global.ASHFALL_STANDING = {
-    NATIONS: NATIONS,
-    CROSS_FACTION: CROSS_FACTION,
-    CHAMPION_THRESHOLD: CHAMPION_THRESHOLD,
-    MAX_NATIONS_CHAMPION: MAX_NATIONS_CHAMPION,
-    getStanding: getStanding,
-    modifyStanding: modifyStanding
-};
-
-global.getStanding = getStanding;
-global.modifyStanding = modifyStanding;
