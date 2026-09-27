@@ -27,41 +27,106 @@ def build_codex():
 ---
 
 ## TABLE OF CONTENTS
-1. [PROLOGUE: The Cosmology of the Triad & The Pre-Shattering Age](#prologue-the-cosmology-of-the-triad--the-pre-shattering-age)
-2. [THE HOUSE OF VALERIUS: The Nine Dynasties & The Imperial Line](#the-house-of-valerius-the-nine-dynasties--the-imperial-line)
-3. [THE NIGHT OF NINE SOUNDS: The Anatomy of the Cataclysm](#the-night-of-nine-sounds-the-anatomy-of-the-cataclysm)
-4. [THE SECRET OF THE TENTH SCION: The Player's True Identity & Curse](#the-secret-of-the-tenth-scion-the-players-true-identity--curse)
-5. [THE NINE REALMS: Architectural Archaeology & Environmental Lore](#the-nine-realms-architectural-archaeology--environmental-lore)
-6. [THE BESTIARY OF LORDS: Comprehensive Boss & Miniboss Grimoire](#the-bestiary-of-lords-comprehensive-boss--miniboss-grimoire)
-7. [THE FIVE ACTS: Campaign Walkthrough & Narrative Arc](#the-five-acts-campaign-walkthrough--narrative-arc)
-8. [THE WANDERING SOULS: Five Tragic NPC Questlines](#the-wandering-souls-five-tragic-npc-questlines)
-9. [THE ARCHAEOLOGICAL PUZZLES: Secrets Pieced Together From the Ruins](#the-archaeological-puzzles-secrets-pieced-together-from-the-ruins)
-10. [THE FOUR DESTINIES: Comprehensive Cinematic Endings](#the-four-destinies-comprehensive-cinematic-endings)
-11. [THE FROM-SOFTWARE ITEM CODEX: 30 Master Inscriptions](#the-from-software-item-codex-30-master-inscriptions)
+1. [PROLOGUE: The Ten-Dimensional Dawn & The Abode of Will](#prologue-the-ten-dimensional-dawn--the-abode-of-will)
+2. [THE NINE FACULTIES: The Individuation of the Divine Psyche](#the-nine-faculties-the-individuation-of-the-divine-psyche)
+3. [THE FALL: The Collapse into Three Dimensions & The Finite Scar](#the-fall-the-collapse-into-three-dimensions--the-finite-scar)
+4. [THE HOUSE OF VALERIUS: The Nine Dynasties & The Imperial Line](#the-house-of-valerius-the-nine-dynasties--the-imperial-line)
+5. [THE NIGHT OF NINE SOUNDS: The Anatomy of the Cataclysm](#the-night-of-nine-sounds-the-anatomy-of-the-cataclysm)
+6. [THE SECRET OF THE TENTH SCION: The Player's True Identity & Curse](#the-secret-of-the-tenth-scion-the-players-true-identity--curse)
+7. [THE NINE REALMS: Architectural Archaeology & Environmental Lore](#the-nine-realms-architectural-archaeology--environmental-lore)
+8. [THE BESTIARY OF LORDS: Comprehensive Boss & Miniboss Grimoire](#the-bestiary-of-lords-comprehensive-boss--miniboss-grimoire)
+9. [THE FIVE ACTS: Campaign Walkthrough & Narrative Arc](#the-five-acts-campaign-walkthrough--narrative-arc)
+10. [THE WANDERING SOULS: Five Tragic NPC Questlines](#the-wandering-souls-five-tragic-npc-questlines)
+11. [THE ARCHAEOLOGICAL PUZZLES: Secrets Pieced Together From the Ruins](#the-archaeological-puzzles-secrets-pieced-together-from-the-ruins)
+12. [THE FOUR DESTINIES: Comprehensive Cinematic Endings](#the-four-destinies-comprehensive-cinematic-endings)
+13. [THE FROM-SOFTWARE ITEM CODEX: 30 Master Inscriptions](#the-from-software-item-codex-30-master-inscriptions)
 
 ---
 """)
 
     # PROLOGUE
-    sections.append("""## PROLOGUE: The Cosmology of the Triad & The Pre-Shattering Age
+    sections.append("""## PROLOGUE: The Ten-Dimensional Dawn & The Abode of Will
 
-### 1. The Primordial Equilibrium: The Three Frequencies
-Before the founding of the High Empire of Vantyra, before stone was laid upon mortar, the world was not governed by gods, stars, or elemental deities. The cosmos was a song sung across three distinct, irreconcilable planes of resonance known as **The Triad of Currents**:
+### 1. The Primordial Universe: The Ten-Dimensional Sanctuary
+Before the geometry of space was stripped down to three bruised physical vectors and a creeping river of time, there was only **The Abode of Will** (*Aethel-Veyr*).
 
-1. **The Abyssal Salt (The First Depth)**
-   * *Domain:* The lightless subterranean oceans, the abyssal trenches beneath the bedrock, and the cold stillness of the grave.
-   * *Philosophical Essence:* Entropy, dissolution, memory, and total silence. The Abyssal Salt is not malicious; it is hungry for stillness. It pulls all heated matter downward, seeking to quench fire and dissolve bone until all existence rests at an absolute, dreamless equilibrium.
-   * *Physical Manifestation:* The black brines found in deep caverns, the barnacle-encrusted black stones of sunken cathedrals, and the damp mold that creeps into ancient vaults.
+In that first dawn, the universe unfolded across **Ten Interconnected Dimensions**. 
 
-2. **The Celestial Ether (The High Stasis)**
-   * *Domain:* The perpetual cloud-sea above the mortal ceiling—what ancient mariners named *The Aether*.
-   * *Philosophical Essence:* Absolute order, geometric perfection, emotionless purity, and immortality through petrification. The Ether abhors flesh, blood, and change. Those who ascend too close to its cold, golden light feel their heartbeats slow, their empathy calcify, and their thoughts turn to crystal.
-   * *Physical Manifestation:* The floating aerolites of the northern mountain chains, the crystalline Valkyrie halos, and the perpetual, breathless blizzards that freeze without snow.
+Physical matter and conscious intent were not separate phenomena; thought was a physical force, and geometry was alive. Space possessed no suffocating horizons. Distance could be traversed across the higher axes in a single pulse of thought. Cellular death was impossible, for any biological organism could rotate along the sixth or seventh dimension into a state of pristine renewal.
 
-3. **The Hearth of Ten Embers (The Crucible of Mortals)**
-   * *Domain:* The terrestrial crust, volcanic rifts, the beating marrow of living beasts, and the forge fires of mankind.
-   * *Philosophical Essence:* Finitude, agony, ambition, invention, and love. The Hearth is the friction created where the crushing weight of the Abyssal Salt grinds against the unyielding ceiling of the Celestial Ether. It is a violent, temporary spark.
-   * *Physical Manifestation:* The crimson magma of the Nether rifts, the red blood of mortal men, and the heat of iron struck upon an anvil.
+At the axis of this ten-dimensional continuum stood Ashenfall: a perfect, unmarred paradise birthed directly from the collective magnanimity of the Primordial Gods. The gods poured the entirety of their benevolence, their creative architecture, and their boundless love into this realm. It was not a world of survival or scarce resources; it was a boundless, self-sustaining **Abode of Will**, illuminated by the **Supreme Light**—a radiant, singular cosmic intelligence that held the ten dimensions in mathematical harmony.
+
+---
+
+## THE NINE FACULTIES: The Individuation of the Divine Psyche
+
+Even a supreme, benevolent godhead is not a static monolith. The Supreme Light possessed varied faculties of mind—dexterity, curiosity, force, instinct, creative craft, and memory.
+
+To govern the ten dimensions and sow creation throughout the infinite planes, the Supreme Light allowed its singular consciousness to **individuate**. Like white light passing through a ten-dimensional prism, the mind of the Light crystallized into **Nine Primary Factions**, each embodying a core element of the divine psyche:
+
+```
+                                [ THE SUPREME LIGHT ]
+                             (The Unified Divine Psyche)
+                                         │
+        ┌─────────────┬─────────────┬────┴────────┬─────────────┬─────────────┐
+        ▼             ▼             ▼             ▼             ▼             ▼
+   [THE ARMOURED] [THE HAMMER] [THE EXPLORER]  [THE JAW]    [THE BEAST]   [THE SCHOLARS]
+   Dexterity &    Creativity &  Curiosity &   Raw Force &    Primal Moral  Infinite Will
+   Strength       Ingenuity     The Record    Matter-Rend    Instincts     & Knowledge
+```
+
+### The Nine Aspects of the Mind:
+1. **The Armoured Faction (*The Aegis-Mind*):** Embodying the dexterity, density, and unyielding physical endurance of the founding light. They forged crystalline carapaces and geometric shields to protect the realm from cosmic entropy. *(Ancestors of House Douglas & the Ironclast Legions)*.
+2. **The Hammer Faction (*The Architect-Mind*):** Embodying the boundless creativity, industrial ingenuity, and metallurgical passion of the light. They shaped tools, kinetic levers, and mechanisms that turned pure will into physical reality. *(Ancestors of Grand Artificer Otto Vance & the Cogwork Dominions)*.
+3. **The Explorer Faction (*The Seeker-Mind*):** Embodying the insatiable desire to wander, chart horizons, and record every star and leyline in the ten dimensions. *(Ancestors of the Far-Voyagers & Pilgrim Cartographers)*.
+4. **The Jaw Faction (*The Breaker-Mind*):** Embodying raw kinetic power, crushing dominance, and the ability to grind stale matter down so it could be recycled and reforged. *(Ancestors of the Tectonic Slayers & Deep Slag Miners)*.
+5. **The Beast Faction (*The Anima-Mind*):** Embodying primal moral instincts, maternal empathy, biological intuition, and the warm, beating blood of living marrow. *(Ancestors of the Mire-Witches of House Belen & the Wyrm-Wardens)*.
+6. **The Scholar Faction (*The Infinite Will*):** Embodying cosmic memory, transcendental intellect, and the retention of the grand equations of the ten dimensions. *(Ancestors of the High Archivists & Monks of the Solitary Spine)*.
+7. **The Colossus Faction (*The Pillar-Mind*):** Embodying immovable mass, tectonic patience, and continental weight. Their spirits later fused with the bedrock as **The Five Slumbering Apex Dragons**.
+8. **The Voice Faction (*The Choral-Mind*):** Embodying acoustic resonance and harmonic frequency that binds disparate atoms into music. *(Ancestors of Cantor Sophia & the Sunken Choir)*.
+9. **The Sovereign Crown (*The Binding Will*):** Embodying hierarchy, political order, and the preservation of the central imperial flame. *(Ancestors of House Valerius)*.
+
+### The Great Individuation & The Sowing of Life
+With the passing of eons, the nine factions developed distinct cultures, languages, and philosophies. Each faction began creating mortal life in its own psychological image:
+* The Hammer crafted men of brass, steam, and clockwork.
+* The Beast gave birth to the horned forest broods, wolves, and living root-kin.
+* The Armoured bred the dense-boned, lead-blooded warriors of the bastions.
+* The Scholars cultivated the silent ascetics of the high crags.
+
+The cosmos was vibrant, but the singular harmony of the Supreme Light was fracturing. Where once there was one divine mind, there were now nine rival egos.
+
+---
+
+## THE FALL: The Collapse into Three Dimensions & The Finite Scar
+
+### The Undying Thirst & The Corruption of the Flame
+Because each faction possessed only one-ninth of the divine mind, each felt an agonizing, gnawing emptiness within its soul—**The Undying Thirst**. 
+
+Separated from the whole, the factions grew insecure, envious, and paranoid. Instead of reuniting in humility, the deities—the supreme living embodiments of each faction—sought to swallow the others to achieve absolute cosmic dominion.
+
+They turned their gaze toward the central reservoir of the founding light: **The Hearth of the Universe**.
+
+The deities believed that whoever absorbed the Hearth in its entirety would become the new, supreme God of existence. The founding light was corrupted by greed and war. The factions forged reality-bending dimensional weaponry: dimensional drills that shattered geometric planes, kinetic pulverizers that cracked planetary mantles, and necrotic hymns that unknitted mathematical laws.
+
+### The Cataclysm in a Single Night
+Historians still debate whether an empire of gods could collapse overnight or whether it required centuries of decay. 
+
+**The horrific archaeological truth is that the Fall occurred in a single, catastrophic night.**
+
+When all nine deities clashed simultaneously around the Resonance Monolith, their conflicting frequencies triggered a **catastrophic dimensional reduction cascade**:
+1. The **Tenth, Ninth, Eighth, Seventh, Sixth, Fifth, and Fourth Dimensions collapsed** inward like a folded sheet of burning parchment.
+2. The boundless paradise was crushed and flattened into the narrow, suffocating physics of **Three Spatial Dimensions and One Vector of Time**.
+3. Millions of beings whose bodies spanned higher dimensions were instantly severed from their higher-dimensional mass, their minds shattered and their organs crushed by sudden, brutal gravity.
+4. The deities tore each other to pieces. Their colossal corpses collapsed into the earth, their divine marrow leaking into the soil like radioactive mutagenic poison.
+
+### The Present Day: The Finite Scar
+Cut to the present. The land of Ashenfall is **vast, but strictly finite**—a scarred continental pocket floating inside an unravelled void, bounded on all sides by **The Veil of Salt**, where three-dimensional space frays into nothingness.
+
+The gods are dead, yet life continues, tortured by the wrath and lingering psychic radiation of their decaying remains. In the foundries of Vantyra, in the flooded crypts of Ostraka, and in the deep volcanic rifts of the sleeping dragons, the fragments of the dead gods still dictate the fate of mortal men.
+
+And upon the salt-crusted shore of the Forgotten Coast, the **Tenth Scion**—the vessel carrying the forgotten Tenth Dimension, marked by 20 Hearts (40 HP) of primordial gold—awakens into the ash.
+
+---
 
 ---
 
