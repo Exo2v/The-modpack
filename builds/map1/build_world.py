@@ -40,20 +40,40 @@ FALLBACK_URL = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}
 # =============================================================================
 
 def get_minecraft_saves_directory():
-    """Detect default Minecraft saves directory based on OS."""
+    """Detect default Minecraft saves directory based on OS, including TLauncher and custom profiles."""
     system = platform.system()
     cwd = Path.cwd()
 
     # If run directly inside a .minecraft instance or launcher instance
     if (cwd / "saves").is_dir():
         return (cwd / "saves").resolve()
-    if cwd.name == ".minecraft":
+    if cwd.name in (".minecraft", "game"):
         return (cwd / "saves").resolve()
 
     if system == "Windows":
         appdata = os.environ.get("APPDATA")
         if appdata:
-            return (Path(appdata) / ".minecraft" / "saves").resolve()
+            appdata_path = Path(appdata)
+
+            # 1. TLauncher / Legacy isolated version instances (e.g. NeoForge 1.21.1)
+            try:
+                tlauncher_instances = list(appdata_path.glob(".tlauncher/legacy/Minecraft/game/home/*/saves"))
+                if tlauncher_instances:
+                    for p in tlauncher_instances:
+                        if "neoforge" in p.parent.name.lower() or "1.21" in p.parent.name:
+                            return p.resolve()
+                    return tlauncher_instances[0].resolve()
+            except Exception:
+                pass
+
+            # 2. General TLauncher legacy directory
+            tlauncher_game = appdata_path / ".tlauncher" / "legacy" / "Minecraft" / "game" / "saves"
+            if tlauncher_game.is_dir():
+                return tlauncher_game.resolve()
+
+            # 3. Standard vanilla .minecraft
+            return (appdata_path / ".minecraft" / "saves").resolve()
+
     elif system == "Darwin":  # macOS
         return (Path.home() / "Library" / "Application Support" / "minecraft" / "saves").resolve()
     else:  # Linux
