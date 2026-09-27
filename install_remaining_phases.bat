@@ -365,13 +365,6 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "category": "worldgen",
     },
     {
-        "name": "Streams Reflowing",
-        "slug": "streams-reflowing",
-        "provider": "modrinth",
-        "phase": "M3",
-        "category": "worldgen",
-    },
-    {
         "name": "Explorify",
         "slug": "explorify",
         "provider": "modrinth",
@@ -400,16 +393,15 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "category": "worldgen",
     },
     {
-        "name": "Streams Reflowing",
-        "slug": "streams-reflowing",
-        "provider": "curseforge",
-        "phase": "M3",
-        "category": "worldgen",
+        "name": "Spark",
+        "slug": "spark",
+        "provider": "modrinth",
+        "phase": "M0",
+        "category": "performance",
         "fallback_url": [
-            "https://edge.forgecdn.net/files/8453/865/StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
-            "https://mediafilez.forgecdn.net/files/8453/865/StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
+            "https://cdn.modrinth.com/data/l6YH9Als/versions/1.10.124-neoforge-1.21.1/spark-1.10.124-neoforge.jar",
         ],
-        "filename": "StreamsReflowing-1.21.1-neoforge-2.8.4.jar",
+        "filename": "spark-1.10.124-neoforge.jar",
     },
     {
         "name": "Create",
@@ -1335,6 +1327,8 @@ def clean_unnecessary_and_outdated_mods(mods_dir: Path, catalog_filenames: Set[s
         ("iris-fabric", "Fabric build detected in NeoForge folder"),
         ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1"),
         ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers"),
+        ("streamsreflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
+        ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
     ]
 
     for item in list(mods_dir.glob("*.jar")):
@@ -1528,7 +1522,8 @@ def main() -> None:
     print("  * 20 Hearts (40 Max HP) base player health")
     print("  * Rare, hard-to-find Apex Boss Dragons (iceandfire-common.toml)")
     print("  * Distant Horizons (LOD far terrain & structure rendering)")
-    print("  * Streams Reflowing (downstream currents, rapids & boat physics)")
+    print("  * Spark Performance Profiler & Freeze Watchdog")
+    print("  * Create 6.0.9 & Create Structures Arise (Steampunk mechanics)")
     print("  * EasyMotionBlur (toggle in-game with 'G')")
     print("  * All required Core APIs & Performance Libraries verified")
     print(" Mods folder location:")

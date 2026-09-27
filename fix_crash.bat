@@ -69,7 +69,9 @@ def main():
         ("sodium-fabric", "Fabric build in NeoForge folder"),
         ("iris-fabric", "Fabric build in NeoForge folder"),
         ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1"),
-        ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers")
+        ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers"),
+        ("streamsreflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
+        ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze")
     ]
     
     for gdir in game_dirs:

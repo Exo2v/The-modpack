@@ -80,6 +80,14 @@ ESSENTIAL_DOWNLOADS = [
         "urls": [
             "https://cdn.modrinth.com/data/Q5Xa6Iv8/versions/1.3.7/superDuperVanilla.zip"
         ]
+    },
+    {
+        "name": "Spark (Live Performance Profiler & Thread Watchdog)",
+        "dest": "mods",
+        "filename": "spark-1.10.124-neoforge.jar",
+        "urls": [
+            "https://cdn.modrinth.com/data/l6YH9Als/versions/1.10.124-neoforge-1.21.1/spark-1.10.124-neoforge.jar"
+        ]
     }
 ]
 
@@ -93,7 +101,9 @@ BLACKLIST = [
     ("magnesium", "Deprecated Forge fork"),
     ("sodium-fabric", "Fabric build in NeoForge folder"),
     ("iris-fabric", "Fabric build in NeoForge folder"),
-    ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers")
+    ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers"),
+    ("streamsreflowing", "Causes 0% world generation infinite loop and chunk lock freeze"),
+    ("streams-reflowing", "Causes 0% world generation infinite loop and chunk lock freeze")
 ]
 
 def find_game_dirs():
@@ -369,7 +379,10 @@ def main():
     print("=" * 72)
     print("Active Features:")
     print("  * BUGGED SHINE MOD PURGED: No more blinding/superbright spots or bloom glitches!")
+    print("  * STREAMS REFLOWING PURGED: Eliminates the 0% 'weaving waterways' infinite freeze!")
+    print("  * WAVIFY BILLBOARDS PURGED: Restores subtle natural shader water ripples!")
     print("  * CREATE 6.0.9 INSTALLED: Missing block registry errors healed; existing worlds load!")
+    print("  * SPARK PROFILER INSTALLED: Live diagnostics & freeze watchdog (/spark health)!")
     print("  * 20 HEARTS (40 MAX HP): Permanent base health across all logins and respawns.")
     print("  * PURE RHINO KUBEJS: 100% fail-safe scripts with try/catch exception shielding.")
     print("  * COGWORK MARCH & CLUNKER BOSS: Steampunk steam cities, airships, and The Harbinger.")

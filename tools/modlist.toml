@@ -512,15 +512,15 @@ pin = "latest"
 note = "Realistic overworld overhaul addon for Lithosphere terrain"
 
 [[mods]]
-name = "Streams Reflowing"
-slug = "streams-reflowing"
+name = "Spark"
+slug = "spark"
 provider = "modrinth"
-category = "worldgen"
-phase = "M3"
+category = "performance"
+phase = "M0"
 side = "both"
 risk = "low"
 pin = "latest"
-note = "Dynamic flowing streams, surface current, downhill water flow"
+note = "Real-time diagnostic profiler, thread watchdog, and freeze detector"
 
 [[mods]]
 name = "Explorify"
