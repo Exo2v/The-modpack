@@ -1,0 +1,13 @@
+name = "FastSuite"
+filename = "fastsuite-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/fastsuite/versions/fastsuite-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "83ee2dce241a2b1c30fbff76238ff8ff23d7b23026a976d767cfa57ef16193d62386ae32a214f8ae5dc1b35336dc3716d008ff7ace869c13a9899db93dfcd68f"
+
+[update]
+[update.modrinth]
+mod-id = "fastsuite"
+version = "latest"

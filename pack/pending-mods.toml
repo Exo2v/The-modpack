@@ -1,0 +1,151 @@
+# Mods that require manual JAR assembly, CurseForge CDN resolution, or custom compilation.
+
+[[pending]]
+name = "Embeddium"
+slug = "embeddium"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Embeddium Extra"
+slug = "embeddium-extra"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ModernFix"
+slug = "modernfix"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "FerriteCore"
+slug = "ferrite-core"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "ImmediatelyFast"
+slug = "immediatelyfast"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Entity Culling"
+slug = "entityculling"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Clumps"
+slug = "clumps"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Alternate Current"
+slug = "alternate-current"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Enhanced Block Entities"
+slug = "enhanced-block-entities"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "FastSuite"
+slug = "fastsuite"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "More Culling"
+slug = "moreculling"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Structure Layout Optimizer"
+slug = "structure-layout-optimizer"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Dynamic FPS"
+slug = "dynamic-fps"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Acedium Sodiumized"
+slug = "acedium-sodiumized"
+phase = "M0"
+reason = "CurseForge project 1012345 pending file resolution"
+
+[[pending]]
+name = "Chunky"
+slug = "chunky"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Curios API"
+slug = "curios"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Lionfish API"
+slug = "lionfish-api"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Citadel"
+slug = "citadel"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Patchouli"
+slug = "patchouli"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Architectury API"
+slug = "architectury-api"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Kotlin for Forge"
+slug = "kotlin-for-forge"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "TerraBlender"
+slug = "terrablender"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Player Animator"
+slug = "playeranimator"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "YUNG's API"
+slug = "yungs-api"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Sophisticated Core"
+slug = "sophisticated-core"
+phase = "M0"
+reason = "Offline / network restricted; generated pinned metadata stub"

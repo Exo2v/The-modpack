@@ -1,0 +1,13 @@
+name = "Clumps"
+filename = "clumps-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/clumps/versions/clumps-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "136210062f60f1be4edca6b8eddba4692e979d94f112409137bfc2675f25421e57f2c4432ee7f2b231bd1625ae452ea37377004980845468e520ec5a3fbfe80f"
+
+[update]
+[update.modrinth]
+mod-id = "clumps"
+version = "latest"

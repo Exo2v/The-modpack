@@ -1,0 +1,13 @@
+name = "Kotlin for Forge"
+filename = "kotlin-for-forge-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/kotlin-for-forge/versions/kotlin-for-forge-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "6e4f22ec43cdcc1496ff61c027c661e5b8316e02442d8a3968fa1a830a758724cad033168f696acb4ff52c583109b3f4eab617b54b25a25104225491b86fef47"
+
+[update]
+[update.modrinth]
+mod-id = "kotlin-for-forge"
+version = "latest"

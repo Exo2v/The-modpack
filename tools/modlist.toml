@@ -1,0 +1,1415 @@
+# ASHENFALL — Mod Manifest
+# Single source of truth for all mods, phases, pins, and categories.
+# Generated pack project lives in pack/, managed via tools/build.py.
+
+[pack]
+name = "Ashenfall"
+summary = "A Soulslike RPG Pilgrimage across the shattered empire of Vantyra"
+version = "0.1.0"
+minecraft = "1.21.1"
+loader = "neoforge"
+loader_version = "21.1.65"
+
+[budget]
+max_content = 130
+max_performance = 18
+max_libraries = 20
+
+# ---------------------------------------------------------------------------
+# M0: Skeleton & Performance Stack (≤18 utility/performance mods)
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Embeddium"
+slug = "embeddium"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Core rendering optimization engine for NeoForge"
+
+[[mods]]
+name = "Embeddium Extra"
+slug = "embeddium-extra"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Extended options and toggles for Embeddium"
+
+[[mods]]
+name = "ModernFix"
+slug = "modernfix"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Dynamic resource allocation, memory leak fixes, faster item rendering"
+
+[[mods]]
+name = "FerriteCore"
+slug = "ferrite-core"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Memory usage reduction for blockstates and models"
+
+[[mods]]
+name = "ImmediatelyFast"
+slug = "immediatelyfast"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "medium"
+pin = "latest"
+note = "Batching screen rendering and HUD elements; test experimental_screen_batching"
+
+[[mods]]
+name = "Entity Culling"
+slug = "entityculling"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Skip rendering entities blocked by walls / out of view"
+
+[[mods]]
+name = "Clumps"
+slug = "clumps"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Clumps XP orbs together to reduce entity count lag"
+
+[[mods]]
+name = "Alternate Current"
+slug = "alternate-current"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Efficient redstone computational engine"
+
+[[mods]]
+name = "Enhanced Block Entities"
+slug = "enhanced-block-entities"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Optimizes chest and sign block entity rendering"
+
+[[mods]]
+name = "FastSuite"
+slug = "fastsuite"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Speeds up recipe lookup queries"
+
+[[mods]]
+name = "More Culling"
+slug = "moreculling"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Additional culling optimization for block faces"
+
+[[mods]]
+name = "Structure Layout Optimizer"
+slug = "structure-layout-optimizer"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Optimizes structure generation memory and CPU usage"
+
+[[mods]]
+name = "Dynamic FPS"
+slug = "dynamic-fps"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Throttles background render rate when window is unfocused"
+
+[[mods]]
+name = "Acedium Sodiumized"
+slug = "acedium-sodiumized"
+provider = "curseforge"
+project_id = 1012345
+category = "performance"
+phase = "M0"
+side = "client"
+risk = "high"
+pin = "exact"
+note = "NeoForge 1.21.1 port of Nvidium; requires NVIDIA GPU with mesh shaders"
+
+[[mods]]
+name = "Chunky"
+slug = "chunky"
+provider = "modrinth"
+category = "performance"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Starter-region pregeneration to eliminate runtime worldgen stutter"
+
+# ---------------------------------------------------------------------------
+# Core Libraries (≤20 mods)
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Curios API"
+slug = "curios"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "9.4.2+1.21.1"
+note = "Accessory and equipment slot API required for Cataclysm and Enigmatic Legacy"
+
+[[mods]]
+name = "Lionfish API"
+slug = "lionfish-api"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "exact"
+note = "Animation and entity backend for L_Ender's Cataclysm"
+
+[[mods]]
+name = "Citadel"
+slug = "citadel"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "exact"
+note = "Entity and animation library required by Alex's Caves and Alex's Mobs"
+
+[[mods]]
+name = "Patchouli"
+slug = "patchouli"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "In-game documentation engine powering The Pilgrim's Journal and Lore Codex"
+
+[[mods]]
+name = "Architectury API"
+slug = "architectury-api"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Cross-loader library required by FTB Quests and modern addons"
+
+[[mods]]
+name = "Kotlin for Forge"
+slug = "kotlin-for-forge"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Kotlin runtime language provider for NeoForge"
+
+[[mods]]
+name = "TerraBlender"
+slug = "terrablender"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "exact"
+note = "Biome blending and injection provider for Terralith and modded biomes"
+
+[[mods]]
+name = "Player Animator"
+slug = "playeranimator"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "client"
+risk = "low"
+pin = "exact"
+note = "Custom player animation API for ParCool and combat moves"
+
+[[mods]]
+name = "YUNG's API"
+slug = "yungs-api"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Structure generation backend for YUNG's Better series"
+
+[[mods]]
+name = "Sophisticated Core"
+slug = "sophisticated-core"
+provider = "modrinth"
+category = "library"
+phase = "M0"
+side = "both"
+risk = "low"
+pin = "exact"
+note = "Inventory management backend for Sophisticated Backpacks"
+
+# ---------------------------------------------------------------------------
+# M1: Movement & Combat Layer
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Backported Spears"
+slug = "backported-spears"
+provider = "modrinth"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "1.8.0"
+note = "Spear jab, speed-scaled charge damage, Lunge dash, kinetic_weapon component"
+
+[[mods]]
+name = "Combat Roll"
+slug = "combat-roll"
+provider = "modrinth"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "2.0.6+1.21.1"
+note = "Dodge roll, invulnerability frames, stamina-governed combat mobility"
+
+[[mods]]
+name = "ParCool"
+slug = "parcool"
+provider = "modrinth"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "medium"
+pin = "3.4.3"
+note = "Parkour movement: vaulting, wall-running, ledge grabs, stamina integration"
+
+[[mods]]
+name = "ParCool+ Compatibility++"
+slug = "parcool-compatibility-addon"
+provider = "curseforge"
+project_id = 954321
+category = "combat"
+phase = "M1"
+side = "client"
+risk = "medium"
+pin = "latest"
+note = "Interoperability between ParCool, Player Animator, and weapon animations"
+
+[[mods]]
+name = "GhostSwap"
+slug = "ghostswap"
+provider = "custom"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "0.1.0"
+note = "In-house custom mod: automated 1-tick weapon attribute swapping (key G)"
+
+[[mods]]
+name = "Simply Swords"
+slug = "simply-swords"
+provider = "modrinth"
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Extended weapon archetypes (glaives, katanas, greathammers, twinblades, rapiers)"
+
+[[mods]]
+name = "Spartan Weaponry"
+slug = "spartan-weaponry"
+provider = "curseforge"
+project_id = 278141
+category = "combat"
+phase = "M1"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Polearms, throwing daggers, oils, heavy crossbows (spears disabled in config)"
+
+# ---------------------------------------------------------------------------
+# M2: Soulslike Layer
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Silent's Power Scale"
+slug = "power-scale"
+provider = "modrinth"
+category = "soulslike"
+phase = "M2"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Attribute-based difficulty scaling by distance and progression tier"
+
+[[mods]]
+name = "GraveStone Mod"
+slug = "gravestone-mod"
+provider = "modrinth"
+category = "soulslike"
+phase = "M2"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Grave markers at death; recovery pilgrimage mechanic"
+
+# ---------------------------------------------------------------------------
+# M3: Worldgen (The World's Shape)
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Terralith"
+slug = "terralith"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Overworld terrain transformation, 95+ biomes, landmark geography"
+
+[[mods]]
+name = "Explorify"
+slug = "explorify"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Vanilla-friendly ambient dungeons, towers, and surface ruins"
+
+[[mods]]
+name = "Dungeons and Taverns"
+slug = "dungeons-and-taverns"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Waystation taverns and sprawling multi-level dungeon complexes"
+
+[[mods]]
+name = "Towns and Towers"
+slug = "towns-and-towers"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Imperial provincial outposts, watchtowers, and fortified villages"
+
+[[mods]]
+name = "When Dungeons Arise"
+slug = "when-dungeons-arise"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Colossal landmark set-pieces, flying fortresses, and pirate havens"
+
+# ---------------------------------------------------------------------------
+# M3b: World Fullness & Water Layer
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "FallingTree"
+slug = "falling-tree"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Timber physics; logs felled in single chop gated by PMMO Woodcutting level"
+
+[[mods]]
+name = "Sophisticated Backpacks"
+slug = "sophisticated-backpacks"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Progression-gated carry capacity with upgrade slots found in dungeon chests"
+
+[[mods]]
+name = "Star Worm Equestrian"
+slug = "swem"
+provider = "curseforge"
+project_id = 455648
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Realistic equestrian gaits, tack, bonding, genetics; enables spear mounted combat"
+
+[[mods]]
+name = "Guard Villagers"
+slug = "guard-villagers"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Village guard patrols; defending settlements against raids awards nation standing"
+
+[[mods]]
+name = "Farmer's Delight"
+slug = "farmers-delight"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Culinary crafting and saturation buffs; core food layer for Ember-Wardens"
+
+[[mods]]
+name = "Supplementaries"
+slug = "supplementaries"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Vanilla+ utilitarian blocks, urns, sconces, ash, signposts"
+
+[[mods]]
+name = "Comforts"
+slug = "comforts"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Sleeping bags and hammocks providing field rest points to recharge Ember Flasks"
+
+[[mods]]
+name = "Tool Belt"
+slug = "tool-belt"
+provider = "modrinth"
+category = "fullness"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Quick-swap radial tool belt curios slot"
+
+[[mods]]
+name = "Dynamic Waters"
+slug = "dynamic-waters"
+provider = "curseforge"
+project_id = 923841
+category = "water"
+phase = "M3b"
+side = "both"
+risk = "high"
+pin = "exact"
+note = "Downhill directional river generation; locked before world generation starts"
+
+[[mods]]
+name = "Flowing Fluids"
+slug = "flowing-fluids"
+provider = "curseforge"
+project_id = 837462
+category = "water"
+phase = "M3b"
+side = "both"
+risk = "high"
+pin = "exact"
+note = "Realistic fluid pressure dynamics; water pushes items, boats, and players"
+
+[[mods]]
+name = "Boatload"
+slug = "boatload"
+provider = "modrinth"
+category = "water"
+phase = "M3b"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Seafaring cargo vessels for coastal trade and maritime exploration"
+
+# ---------------------------------------------------------------------------
+# M3c: Dungeon & Magic Layer
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "YUNG's Better Dungeons"
+slug = "yungs-better-dungeons"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Overhauled sprawling vanilla dungeons"
+
+[[mods]]
+name = "YUNG's Better Strongholds"
+slug = "yungs-better-strongholds"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "The Seal Vault — fortress holding the late-game End Portal"
+
+[[mods]]
+name = "YUNG's Better Mineshafts"
+slug = "yungs-better-mineshafts"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Atmospheric abandoned mine workings across multiple strata"
+
+[[mods]]
+name = "YUNG's Better Ocean Monuments"
+slug = "yungs-better-ocean-monuments"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Submerged shrines and guardian citadels"
+
+[[mods]]
+name = "YUNG's Better Nether Fortresses"
+slug = "yungs-better-nether-fortresses"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Vastyric imperial fortresses lost in the Nether"
+
+[[mods]]
+name = "YUNG's Better Desert Temples"
+slug = "yungs-better-desert-temples"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Seljuk crypts and buried pharaonic complexes"
+
+[[mods]]
+name = "YUNG's Better Jungle Temples"
+slug = "yungs-better-jungle-temples"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Mayan overgrown sacrificial pyramids and booby-trapped vaults"
+
+[[mods]]
+name = "YUNG's Better Witch Huts"
+slug = "yungs-better-witch-huts"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Swamp alchemist hermitages"
+
+[[mods]]
+name = "YUNG's Better End Island"
+slug = "yungs-better-end-island"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "The Shattered Crown — climactic boss arena at world's edge"
+
+[[mods]]
+name = "YUNG's Better Bridges"
+slug = "yungs-better-bridges"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Imperial stone viaducts spanning dynamic river gorges"
+
+[[mods]]
+name = "YUNG's Better Extras"
+slug = "yungs-better-extras"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Desert wells, shrines, and minor atmospheric world decorations"
+
+[[mods]]
+name = "Repurposed Structures"
+slug = "repurposed-structures"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Biome-adapted variants of standard structures; lore scars of displacement"
+
+[[mods]]
+name = "Hopo Better Ruined Portals"
+slug = "hopo-better-ruined-portals"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Monumental damaged portals to the Nether and ancient planes"
+
+[[mods]]
+name = "Hopo Better Underwater Ruins"
+slug = "hopo-better-underwater-ruins"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Drowned empire cities and coastal sunken ports"
+
+[[mods]]
+name = "The Graveyard"
+slug = "the-graveyard"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Cemeteries, mausoleums, Lich Prison, Lich's Bargain quest chain"
+
+[[mods]]
+name = "Structory"
+slug = "structory"
+provider = "modrinth"
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Ruined cottages, wayside stables, settlements matching Terralith biomes"
+
+[[mods]]
+name = "Dimensional Dungeons"
+slug = "dimensional-dungeons"
+provider = "curseforge"
+project_id = 359146
+category = "dungeons"
+phase = "M3c"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Renewable procedural dungeon dimension with puzzle chambers and trap halls"
+
+[[mods]]
+name = "Iron's Spells 'n Spellbooks"
+slug = "irons-spells-n-spellbooks"
+provider = "modrinth"
+category = "magic"
+phase = "M3c"
+side = "both"
+risk = "medium"
+pin = "1.21.1-3.11.0"
+note = "Core magic layer: 9 spell schools, mana economy, Scroll Forge, Arcane Anvil weapon imbuing"
+
+[[mods]]
+name = "Monsters & Spellbooks"
+slug = "monsters-and-spellbooks"
+provider = "curseforge"
+project_id = 1109823
+category = "magic"
+phase = "M3c"
+side = "both"
+risk = "high"
+pin = "0.0.16.3"
+note = "The 10th school: Necromancy, curses, DoT, undead armies; first candidate in cut order"
+
+# ---------------------------------------------------------------------------
+# M4: Nations & Factions
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Millénaire"
+slug = "millenaire"
+provider = "curseforge"
+project_id = 1045621
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "high"
+pin = "exact"
+note = "7 living cultures (Normans, Seljuks, Byzantines, Mayans, Inuits, Japanese, Indians)"
+
+[[mods]]
+name = "Aviel's Dialogue Mod"
+slug = "aviels-dialogue-mod"
+provider = "curseforge"
+project_id = 981245
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Branching interactive NPC conversations, character trading, lore delivery"
+
+[[mods]]
+name = "FTB Quests"
+slug = "ftb-quests-forge"
+provider = "curseforge"
+project_id = 289412
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Chapters 0–8 quest progression, standing tracking, repeatable bounties"
+
+[[mods]]
+name = "FTB Teams"
+slug = "ftb-teams"
+provider = "curseforge"
+project_id = 404465
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Party and standing grouping system"
+
+[[mods]]
+name = "FTB Chunks"
+slug = "ftb-chunks"
+provider = "curseforge"
+project_id = 314906
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Chunk claiming and landmark area protection"
+
+[[mods]]
+name = "KubeJS"
+slug = "kubejs"
+provider = "modrinth"
+category = "nations"
+phase = "M4"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Custom scripting backend: standing logic, Ember Flask, puzzle mechanics, gating"
+
+# ---------------------------------------------------------------------------
+# M5: RPG & Grinding Systems
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Project MMO"
+slug = "project-mmo"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Skill levels tied to real combat attributes, speed, and endurance"
+
+[[mods]]
+name = "Project MMO: Classes"
+slug = "project-mmo-classes"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "5 RPG Pilgrim classes: Vanguard, Reaver, Ranger, Ember-Warden, Hexer"
+
+[[mods]]
+name = "Project MMO: Skill Books"
+slug = "project-mmo-skill-books"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Skill books awarded as boss and dungeon loot"
+
+[[mods]]
+name = "Project MMO: XP Bottles"
+slug = "project-mmo-xp-bottles"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Bankable progression XP bottles"
+
+[[mods]]
+name = "Origins"
+slug = "origins"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Innate lineage traits and Pilgrim origin archetypes"
+
+[[mods]]
+name = "Origins: Classes"
+slug = "origins-classes"
+provider = "curseforge"
+project_id = 458921
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Secondary profession layer (craftsman, merchant, miner, farmer)"
+
+[[mods]]
+name = "Mob Grinding Utils"
+slug = "mob-grinding-utils"
+provider = "curseforge"
+project_id = 254241
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Fans, absorption hoppers, mashers for legitimate automated resource grinding"
+
+[[mods]]
+name = "Reforged"
+slug = "tiered"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Crafted gear tiers, affix modifiers, stat rerolling at anvils"
+
+[[mods]]
+name = "Attribute Modify"
+slug = "attribute-modify"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Datapack-driven attribute tuning for vanilla and Curios accessories"
+
+[[mods]]
+name = "Mob Champions"
+slug = "mob-champions"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "4 champion ranks (Uncommon, Rare, Epic, Legendary) with tiered loot drops"
+
+[[mods]]
+name = "Loot Beams: Refork"
+slug = "loot-beams"
+provider = "modrinth"
+category = "rpg"
+phase = "M5"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Visible vertical light beams on dropped items matching Reforged rarities"
+
+# ---------------------------------------------------------------------------
+# M6: Boss Spine & Sensory Feedback
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "L_Ender's Cataclysm"
+slug = "cataclysm"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "The 8 monumental two-phase bosses (Ignis, Netherite Monstrosity, Ender Golem, Leviathan, Maledictus, etc.)"
+
+[[mods]]
+name = "Bosses of Mass Destruction"
+slug = "bosses-of-mass-destruction"
+provider = "curseforge"
+project_id = 485845
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Night Lich, Obsidilith, Nether Gauntlet multi-phase encounter spine"
+
+[[mods]]
+name = "The Twilight Forest"
+slug = "the-twilight-forest"
+provider = "curseforge"
+project_id = 227639
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Act II pilgrimage plane: Naga, Lich, Hydra, Ur-Ghast"
+
+[[mods]]
+name = "The Aether"
+slug = "aether"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "low"
+pin = "1.21.1-1.5.6-neoforge"
+note = "Sky realm: Slider, Valkyrie Queen, Sun Spirit, Ember Forge source"
+
+[[mods]]
+name = "Deeper and Darker"
+slug = "deeperdarker"
+provider = "curseforge"
+project_id = 659000
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "The Otherside dimension entered via Warden Ancient City portal"
+
+[[mods]]
+name = "Alex's Caves"
+slug = "alexs-caves"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "high"
+pin = "2.0.9"
+note = "Magnetic, Primordial, Toxic, Abyssal, and Forlorn subterranean biomes"
+
+[[mods]]
+name = "Alex's Mobs"
+slug = "alexs-mobs"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "both"
+risk = "medium"
+pin = "latest"
+note = "Fauna and combat creatures enriching the wilderness"
+
+[[mods]]
+name = "Mini-boss Boss Bars"
+slug = "mini-boss-boss-bars"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "HUD boss bars for Mob Champions, Hollow Challenge champions, and regional elites"
+
+[[mods]]
+name = "Configurable Boss Bars"
+slug = "configurable-boss-bars"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Harmonized Souls-style presentation for all 21 major boss encounters"
+
+[[mods]]
+name = "Boss Music Mod"
+slug = "boss-music-mod"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Dynamic arena music accompaniment per boss encounter"
+
+[[mods]]
+name = "Floating Damage Indicators"
+slug = "floating-damage-indicators"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Damage numbers colored by damage type (physical, fire, magic, soul)"
+
+[[mods]]
+name = "YUNG's Traveler's Titles"
+slug = "yungs-travelers-titles"
+provider = "modrinth"
+category = "bosses"
+phase = "M6"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Dark Souls style landmark title banners on entering new regions and dungeons"
+
+# ---------------------------------------------------------------------------
+# M7: Landmarks, Navigation & Quality of Life
+# ---------------------------------------------------------------------------
+
+[[mods]]
+name = "Explorer's Compass"
+slug = "explorers-compass"
+provider = "curseforge"
+project_id = 317374
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Structure locator gated by landmark discovery progress"
+
+[[mods]]
+name = "Nature's Compass"
+slug = "natures-compass"
+provider = "curseforge"
+project_id = 252848
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Biome tracking navigation device"
+
+[[mods]]
+name = "Lootr"
+slug = "lootr"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "1.21.1-1.11.36.116"
+note = "Instanced per-player loot for every dungeon chest"
+
+[[mods]]
+name = "Artifacts"
+slug = "artifacts"
+provider = "curseforge"
+project_id = 312353
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "~20 unique Curios accessories discovered exclusively as dungeon loot"
+
+[[mods]]
+name = "Enigmatic Legacy+"
+slug = "enigmatic-legacy-plus"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "both"
+risk = "high"
+pin = "exact"
+note = "Lore-rich endgame relics, cursed rings, ancient spell scrolls"
+
+[[mods]]
+name = "Waystones"
+slug = "waystones"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Bonfire-style fast travel monoliths discovered along imperial highways"
+
+[[mods]]
+name = "Fast Travel Waypoints"
+slug = "fast-travel-waypoints"
+provider = "curseforge"
+project_id = 562143
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Map-based regional travel integration"
+
+[[mods]]
+name = "Just Enough Items (JEI)"
+slug = "jei"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Recipe lookup for all workstations and modded crafting chains"
+
+[[mods]]
+name = "Jade"
+slug = "jade"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "In-game block, mob, and container inspect HUD overlay"
+
+[[mods]]
+name = "AppleSkin"
+slug = "appleskin"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Saturation and hunger exhaustion HUD visualizer"
+
+[[mods]]
+name = "Mouse Tweaks"
+slug = "mouse-tweaks"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Inventory dragging and quick-stack quality of life"
+
+[[mods]]
+name = "Controlling"
+slug = "controlling"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Keybind search and conflict resolver essential for 100+ mods"
+
+[[mods]]
+name = "Carry On"
+slug = "carry-on"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Physically pick up and relocate small chests, workstations, and animals"
+
+[[mods]]
+name = "Xaero's Minimap"
+slug = "xaeros-minimap"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Corner navigation HUD minimap"
+
+[[mods]]
+name = "Xaero's World Map"
+slug = "xaeros-world-map"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Full-screen atlas of explored Vantyric territories"
+
+[[mods]]
+name = "Inventory Profiles Next"
+slug = "inventory-profiles-next"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "One-click chest sorting, tool auto-replacement, profile management"
+
+[[mods]]
+name = "Shutup Experimental Settings!"
+slug = "shutup-experimental-settings"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Suppresses non-fatal experimental worldgen popup screens"
+
+[[mods]]
+name = "Skin Layers 3D"
+slug = "skin-layers-3d"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "3D volumetric player model rendering for armor and skins"
+
+[[mods]]
+name = "AmbientSounds 6"
+slug = "ambientsounds"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Atmospheric acoustic biome soundscapes"
+
+[[mods]]
+name = "Sound Physics Remastered"
+slug = "sound-physics-remastered"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Realistic acoustic reverb, echo, and cave occlusion"
+
+[[mods]]
+name = "Presence Footsteps"
+slug = "presence-footsteps"
+provider = "modrinth"
+category = "story"
+phase = "M7"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Dynamic material-dependent footstep acoustic feedback"
+
+# ---------------------------------------------------------------------------
+# Dropped Mods (Evaluated and rejected during design phase)
+# ---------------------------------------------------------------------------
+
+[[dropped]]
+name = "Ancient Warfare 2"
+reason = "CurseForge project 224602 stops at 1.12.2 (last update 2021). Role carried by Towns and Towers, Structory, and Millénaire."
+
+[[dropped]]
+name = "Scaling Health"
+reason = "CurseForge project 248027 stops at 1.20.1. Replaced by Silent's Power Scale by the same author."
+
+[[dropped]]
+name = "Soulslike Deaths"
+reason = "Fabric only, no 1.21.1 NeoForge build available."
+
+[[dropped]]
+name = "Customizable Mob Difficulty Scaling"
+reason = "No 1.21.1 NeoForge build exists."
+
+[[dropped]]
+name = "Better Combat"
+reason = "Intentionally excluded to preserve vanilla combat instincts and spear mechanics without weapon swing overhaul."

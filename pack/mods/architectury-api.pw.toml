@@ -1,0 +1,13 @@
+name = "Architectury API"
+filename = "architectury-api-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/architectury-api/versions/architectury-api-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f5e52cdcbaa37e1bfd2f08af85e300387f3273ea7efb44f9a3c4aaa9881216562095f10dd8f269b23e4e678d61a2ad6e2d70db03d2f5fac4d44977429e485307"
+
+[update]
+[update.modrinth]
+mod-id = "architectury-api"
+version = "latest"

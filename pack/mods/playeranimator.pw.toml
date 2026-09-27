@@ -1,0 +1,13 @@
+name = "Player Animator"
+filename = "playeranimator-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/playeranimator/versions/playeranimator-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "3c68ae18b68562a6cf590f50e73301f4cfc6b55bd01f2050d7124137b2bee83c1da23e7162653eeab46a482976a39eb7c74f6f8c1309260835760cd541ab3777"
+
+[update]
+[update.modrinth]
+mod-id = "playeranimator"
+version = "exact"

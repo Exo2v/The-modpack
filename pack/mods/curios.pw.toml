@@ -1,0 +1,13 @@
+name = "Curios API"
+filename = "curios-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/curios/versions/curios-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "7469df7084bd312a19e4b39fe406a09906354fc96f0572c4b696b57ab56eb7bca9a5de1c4f7cf20f2673ba60f841412797c1ca203281226a00961374a5bad728"
+
+[update]
+[update.modrinth]
+mod-id = "curios"
+version = "9.4.2+1.21.1"

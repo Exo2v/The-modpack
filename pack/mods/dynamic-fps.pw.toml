@@ -1,0 +1,13 @@
+name = "Dynamic FPS"
+filename = "dynamic-fps-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/dynamic-fps/versions/dynamic-fps-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f32bdb4ca1677c07d35c034907d423c1b7bdcde24e92d464d307a1a50c13342db02b79abdcf7e3f594a69ff6874c451f152654f687cd31557579bb6cb19ec6ed"
+
+[update]
+[update.modrinth]
+mod-id = "dynamic-fps"
+version = "latest"

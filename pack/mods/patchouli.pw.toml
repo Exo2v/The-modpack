@@ -1,0 +1,13 @@
+name = "Patchouli"
+filename = "patchouli-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/patchouli/versions/patchouli-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "a836256a3382704f1dd1bb218763a22992330ad99087a1877cd325f18a0507b812ea0cec62e1c616999f0714e030af1f4ecaeb33c47640c9de06861b218e454d"
+
+[update]
+[update.modrinth]
+mod-id = "patchouli"
+version = "latest"

@@ -1,0 +1,13 @@
+name = "Structure Layout Optimizer"
+filename = "structure-layout-optimizer-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/structure-layout-optimizer/versions/structure-layout-optimizer-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "8989db97f36043572d5ab466958d72e53068b1d305591d385cb6520cd673d7865566d80ba92f2a6baee53e3d8f3b1736fcd3ba357bb2fffbe96e4354a281d373"
+
+[update]
+[update.modrinth]
+mod-id = "structure-layout-optimizer"
+version = "latest"

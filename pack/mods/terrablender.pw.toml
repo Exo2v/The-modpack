@@ -1,0 +1,13 @@
+name = "TerraBlender"
+filename = "terrablender-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/terrablender/versions/terrablender-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "ac3c823e358a88df250cf3a59655565ab72ac7ccfcb1cd3a90e51e4885d4230a24d1c40c9372938883e46640ad4b9b0f4c8da51b678d5c5a697c816a49ffead2"
+
+[update]
+[update.modrinth]
+mod-id = "terrablender"
+version = "exact"

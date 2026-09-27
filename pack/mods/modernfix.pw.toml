@@ -1,0 +1,13 @@
+name = "ModernFix"
+filename = "modernfix-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/modernfix/versions/modernfix-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "171b9efd905ae0cd05ddb86ffeb2eb9d683a708e4d29d3f0396fe1a47c1dbc572184ebe9f10c32946754e1becfca909b254dc988533d6f503d12147c9abaddf8"
+
+[update]
+[update.modrinth]
+mod-id = "modernfix"
+version = "latest"

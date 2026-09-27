@@ -1,0 +1,121 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/alternate-current.pw.toml"
+hash = "dc5e89315b23a601a4fc374a69e8e5eb03bc47ea013b5e63b3730fa1bdc34cbc"
+metafile = true
+
+[[files]]
+file = "mods/architectury-api.pw.toml"
+hash = "1a6264da6d16486455e4c4ad0d03b44b6a1d559ed98e41eb4921f9c484ceb192"
+metafile = true
+
+[[files]]
+file = "mods/chunky.pw.toml"
+hash = "f5e33202bbc8c859ca63d3047b4ebacea503374fb02129f8a191d50cc36d6ee0"
+metafile = true
+
+[[files]]
+file = "mods/citadel.pw.toml"
+hash = "c1e254a165230a1520f8ed5c83be751624a88b3bf62069813c2bff155d38892d"
+metafile = true
+
+[[files]]
+file = "mods/clumps.pw.toml"
+hash = "764d005246fd06dfb0f9bd582c58c3c93c5e855aa599f1e655bf7bf3cbd7fdaf"
+metafile = true
+
+[[files]]
+file = "mods/curios.pw.toml"
+hash = "10c4ce581103d8ef0cfc913c071eca0a5847ac80274bea979e837dd61e8551a4"
+metafile = true
+
+[[files]]
+file = "mods/dynamic-fps.pw.toml"
+hash = "567d97ed19d007929b3daee06723462248f11e0f285dbf878d1d7496e4d00a32"
+metafile = true
+
+[[files]]
+file = "mods/embeddium-extra.pw.toml"
+hash = "46e7f450bedd85afd7f436a9345066464f04c11217da305b6c01c322f6fa11f2"
+metafile = true
+
+[[files]]
+file = "mods/embeddium.pw.toml"
+hash = "f58c9278f7000b41e292d7b829100036f1c93303e77a2e01cfc45df3e70c2aca"
+metafile = true
+
+[[files]]
+file = "mods/enhanced-block-entities.pw.toml"
+hash = "e8934962ad0fb4b09cd648829cc72b78aefc2f661ec5ad065452531fd4fbd071"
+metafile = true
+
+[[files]]
+file = "mods/entityculling.pw.toml"
+hash = "698a5e8317aac11c9a3d66497dacf76dc9abd49c23e606d3d3a6009a9cb27b86"
+metafile = true
+
+[[files]]
+file = "mods/fastsuite.pw.toml"
+hash = "c0ac3c7f8450a5c8399a050173965ebced6c6c0105120bdacec482945bff4f32"
+metafile = true
+
+[[files]]
+file = "mods/ferrite-core.pw.toml"
+hash = "d9184ac5704b815f21eeff4e0ed50429667b5bf8e916c45a07217edcaed01511"
+metafile = true
+
+[[files]]
+file = "mods/immediatelyfast.pw.toml"
+hash = "35efc4f6d8becfc5069b8c9f0a62bcea7363a46d0de96d6f406cf9f45fddf339"
+metafile = true
+
+[[files]]
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "1db159deddb81e4b41ad87ccbb0d1b0eae04bb2f43e93cd7a327d54b17729670"
+metafile = true
+
+[[files]]
+file = "mods/lionfish-api.pw.toml"
+hash = "6d90451cc24c26540217ec4556488f45c9ad77f53c78615065cb37fa773dbd31"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "78b476e907509009cc99becf437442d9bf8a2d9ee0e11b069ebcfc150e127d7e"
+metafile = true
+
+[[files]]
+file = "mods/moreculling.pw.toml"
+hash = "f95ee6fd4c62888b5679a6896a4e8ad8bcaf74f3dd9f72d702096e26eb05008a"
+metafile = true
+
+[[files]]
+file = "mods/patchouli.pw.toml"
+hash = "cda929f7b90678a1fdf8decab5bbf3d7200d43f130422aac9293982472b34308"
+metafile = true
+
+[[files]]
+file = "mods/playeranimator.pw.toml"
+hash = "dfed63f6c9500298579670c7b4dee633d19dbe6afef2de34e0235aa40957049c"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-core.pw.toml"
+hash = "ac4f3d63442f139e556bc7220bf3565c4037a1f3b0c1d89b34b48340462b2bf3"
+metafile = true
+
+[[files]]
+file = "mods/structure-layout-optimizer.pw.toml"
+hash = "85415e2b6b57dceaa40cf4acad1ad2b83529ec7c76867f026b43bf97e3e0323d"
+metafile = true
+
+[[files]]
+file = "mods/terrablender.pw.toml"
+hash = "59760e91cc8d4565d6166e2452ed8c98f90b6edbc7ffe2bfb815709dbaef2ca6"
+metafile = true
+
+[[files]]
+file = "mods/yungs-api.pw.toml"
+hash = "ba8ab89a5083b3a987db37933fc9b47540c021a470d69af65e3d1cfeda0bdf3b"
+metafile = true

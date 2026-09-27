@@ -1,0 +1,13 @@
+name = "YUNG's API"
+filename = "yungs-api-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/yungs-api/versions/yungs-api-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "debde52f2231fae2f2eeea813e6aef20c45d1a2dd02f60f8213f122d707643c62888ea866479b4a1552007c07c283f0983fd1d81182ecadfcf1deeec000a6317"
+
+[update]
+[update.modrinth]
+mod-id = "yungs-api"
+version = "latest"

@@ -1,0 +1,18 @@
+# Profile: compat
+# Acedium off, stock Embeddium, for GPUs without mesh shader support
+
+[profile]
+name = "compat"
+description = "Compatibility profile for GPUs lacking mesh shader support (fallback to stock Embeddium)"
+
+[graphics]
+mesh_shaders = false
+acedium_enabled = false
+distant_horizons = false
+entity_culling = true
+block_entity_culling = true
+
+[performance]
+max_active_entities = 160
+particle_budget = "medium"
+screen_batching = false

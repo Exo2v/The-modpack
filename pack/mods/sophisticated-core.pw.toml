@@ -1,0 +1,13 @@
+name = "Sophisticated Core"
+filename = "sophisticated-core-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/sophisticated-core/versions/sophisticated-core-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f19ec52cf8aad8a926a40aa0ba14110a718f35572a51655ee1896d4f72c1c51d9e98aa0747e9f4ec047741d7f0aa608c58be69e51a044da8e4259f5fe93e8caa"
+
+[update]
+[update.modrinth]
+mod-id = "sophisticated-core"
+version = "exact"
