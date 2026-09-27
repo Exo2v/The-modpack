@@ -2,7 +2,7 @@
 // ASHENFALL — The Rumour Register System
 // =============================================================================
 
-const RUMOURS = [
+var RUMOURS = [
     {
         id: "cold_tower",
         speaker: "Inuit Elder",
@@ -41,14 +41,26 @@ const RUMOURS = [
 ];
 
 function tellRumour(player, rumourId) {
-    let rumour = RUMOURS.find(r => r.id === rumourId);
+    var rumour = null;
+    for (var i = 0; i < RUMOURS.length; i++) {
+        if (RUMOURS[i].id === rumourId) {
+            rumour = RUMOURS[i];
+            break;
+        }
+    }
     if (!rumour) return;
 
     player.tell(" ");
-    player.tell(`§6[Rumour] §e${rumour.speaker} §7whispers:`);
-    player.tell(`§f"${rumour.text}"`);
-    player.tell(`§8Related Landmark: §b${rumour.landmark}`);
+    player.tell("§6[Rumour] §e" + rumour.speaker + " §7whispers:");
+    player.tell("§f\"" + rumour.text + "\"");
+    player.tell("§8Related Landmark: §b" + rumour.landmark);
     player.tell(" ");
 }
+
+// Global export for Rhino engine (explicit key-value pairs)
+global.ASHFALL_RUMOURS = {
+    RUMOURS: RUMOURS,
+    tellRumour: tellRumour
+};
 
 global.tellRumour = tellRumour;

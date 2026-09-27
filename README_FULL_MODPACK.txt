@@ -10,11 +10,12 @@ QUICK START (1-Click, Zero Prompts):
 3. That's it! The installer will:
    - Locate your Minecraft / TLauncher mods folder:
      C:\Users\<user>\AppData\Roaming\.tlauncher\legacy\Minecraft\game\home\NeoForge 1.21.1\mods
-   - Automatically clean corrupted, 0-byte, or conflicting files (such as Terralith, replaced cleanly by Lithosphere + Still Life).
+   - Automatically clean corrupted, 0-byte, or conflicting files (such as Terralith or Hollowmarch, preventing world-creation crashes).
+   - Automatically heal and modernize KubeJS scripts for Rhino JS engine (replacing globalThis, fixing object shorthands, and modernizing command events).
    - Detect already installed mods as "Already up-to-date".
    - Download verified 1.21.1 NeoForge mod JARs directly:
      * Shoreline & Dynamic Water: Streams Reflowing (downhill water current), Wavify (ocean & shore waves), Visuality: Reforged (water splashes & particle ripples).
-     * Worldgen & Atmosphere: Lithosphere (cinematic terrain), Still Life (realistic overhaul), Hollowmarch (structures & encounters), Shine (atmospheric bloom & lighting).
+     * Worldgen & Atmosphere: Lithosphere (cinematic terrain), Still Life (realistic overhaul), Shine (atmospheric bloom & lighting).
      * Narrative & Dialogue: Aviel's Dialogue Mod (ADM) branching dialogues, The Archivist, Norman Elder, Drowned Fisherman, KubeJS Cutscenes & Boss Monologues.
      * Dungeons & Structures: YUNG's Complete Suite, Repurposed Structures, Hopo Ruins, The Graveyard, Structory.
      * Magic: Iron's Spells 'n Spellbooks (9 spell schools, mana, scrolls).

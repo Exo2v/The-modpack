@@ -512,17 +512,6 @@ pin = "latest"
 note = "Realistic overworld overhaul addon for Lithosphere terrain"
 
 [[mods]]
-name = "Hollowmarch"
-slug = "hollowmarch"
-provider = "modrinth"
-category = "worldgen"
-phase = "M3"
-side = "both"
-risk = "low"
-pin = "latest"
-note = "Handcrafted exploration structures, custom encounters, and dungeon loot"
-
-[[mods]]
 name = "Streams Reflowing"
 slug = "streams-reflowing"
 provider = "modrinth"

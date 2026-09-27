@@ -2,7 +2,7 @@
 // ASHENFALL — Custom Quest IDs Register (FTB XMod Compat Gates)
 // =============================================================================
 
-global.QUEST_GATES = {
+var QUEST_GATES = {
     // Act 0: The Cold Awakening
     "ASHEN_AWAKENING": "Player awakens on the drowned Norman coast",
     "ASHEN_LIGHTHOUSE": "Player reaches and explores the Old Lighthouse",
@@ -23,3 +23,7 @@ global.QUEST_GATES = {
     "ASHEN_FIRST_EMBER": "Claim the First Ember from the Cathedral of Ash",
     "ASHEN_NINE_SOUNDS_MENDED": "Complete the Great Pilgrimage"
 };
+
+// Global export for Rhino engine
+global.QUEST_GATES = QUEST_GATES;
+global.QUEST_IDS = QUEST_GATES;

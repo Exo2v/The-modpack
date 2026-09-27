@@ -191,11 +191,6 @@ hash = "8c2ebc15650e9bb3512cec5e760f39ef17fc0b697d853aeba1e4632283377fd7"
 metafile = true
 
 [[files]]
-file = "mods/hollowmarch.pw.toml"
-hash = "27a387e427d37529ccc0bf0472f675079ed454082f06d3e539c762baaa42fc9d"
-metafile = true
-
-[[files]]
 file = "mods/hopo-better-ruined-portals.pw.toml"
 hash = "cf5d1aa69a166eb1c8578e1275480caa7e96e64de67241be365640b4de866ad8"
 metafile = true

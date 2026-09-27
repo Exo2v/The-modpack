@@ -259,12 +259,6 @@ phase = "M3"
 reason = "Offline / network restricted; generated pinned metadata stub"
 
 [[pending]]
-name = "Hollowmarch"
-slug = "hollowmarch"
-phase = "M3"
-reason = "Offline / network restricted; generated pinned metadata stub"
-
-[[pending]]
 name = "Streams Reflowing"
 slug = "streams-reflowing"
 phase = "M3"
