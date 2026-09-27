@@ -37,6 +37,13 @@ var RUMOURS = [
         text: "Wizards buy raw essence at great cost. Wizards also die down in the catacombs.",
         landmark: "L7b — The Catacombs",
         gate: "essence_held"
+    },
+    {
+        id: "clunker_behemoth",
+        speaker: "Disgraced Aeronaut",
+        text: "The brass airships fell from the sky when the Ancient Factory woke. A metal monster with three cannons sweeps lasers across the rusted foundries. None who entered ever returned.",
+        landmark: "L8 — The Ancient Foundry (Cogwork March)",
+        gate: "none"
     }
 ];
 

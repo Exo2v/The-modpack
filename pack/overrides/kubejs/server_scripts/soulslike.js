@@ -22,11 +22,16 @@ function setHollow(player, val) {
 
 // On player respawn: hollow penalty increments
 PlayerEvents.respawned(function(event) {
-    var player = event.player;
-    var hollow = getHollow(player);
-    if (hollow < HOLLOW_CAP) {
-        setHollow(player, hollow + 1);
-        player.tell("§8[§cDeath§8] §7Your ember fades slightly. Hollow tier: §c" + (hollow + 1) + "§7/" + HOLLOW_CAP);
+    try {
+        var player = event.player;
+        if (!player) return;
+        var hollow = getHollow(player);
+        if (hollow < HOLLOW_CAP) {
+            setHollow(player, hollow + 1);
+            player.tell("§8[§cDeath§8] §7Your ember fades slightly. Hollow tier: §c" + (hollow + 1) + "§7/" + HOLLOW_CAP);
+        }
+    } catch (e) {
+        // Silently prevent respawn error
     }
 });
 

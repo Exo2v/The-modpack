@@ -7,6 +7,7 @@ var NATIONS = [
     "seljuk_expanse",
     "byzantine_choir",
     "witchbane_watch",
+    "cogwork_march",
     "guild_of_merchants",
     "cathedral_of_ash",
     "frostfall",

@@ -3,31 +3,44 @@
 // =============================================================================
 
 PlayerEvents.loggedIn(function(event) {
-    var player = event.player;
-    var server = event.server;
-    
-    // Set base max health to 40.0 (20 full hearts)
-    server.runCommandSilent("attribute " + player.username + " minecraft:generic.max_health base set 40");
-    
-    // Top up health on login if needed
-    if (player.health < 40) {
-        player.setHealth(40);
+    try {
+        var player = event.player;
+        if (!player) return;
+        var attr = player.getAttribute("minecraft:generic.max_health");
+        if (attr) {
+            attr.setBaseValue(40.0);
+        }
+        if (player.health < 40) {
+            player.setHealth(40);
+        }
+    } catch (e) {
+        console.error("Health init exception: " + e);
     }
 });
 
 PlayerEvents.respawned(function(event) {
-    var player = event.player;
-    var server = event.server;
-    
-    // Re-apply 20 hearts upon respawn
-    server.runCommandSilent("attribute " + player.username + " minecraft:generic.max_health base set 40");
-    player.setHealth(40);
+    try {
+        var player = event.player;
+        if (!player) return;
+        var attr = player.getAttribute("minecraft:generic.max_health");
+        if (attr) {
+            attr.setBaseValue(40.0);
+        }
+        player.setHealth(40);
+    } catch (e) {
+        console.error("Health respawn exception: " + e);
+    }
 });
 
 PlayerEvents.changeDimension(function(event) {
-    var player = event.player;
-    var server = event.server;
-    
-    // Maintain 20 hearts across dimension transitions
-    server.runCommandSilent("attribute " + player.username + " minecraft:generic.max_health base set 40");
+    try {
+        var player = event.player;
+        if (!player) return;
+        var attr = player.getAttribute("minecraft:generic.max_health");
+        if (attr) {
+            attr.setBaseValue(40.0);
+        }
+    } catch (e) {
+        console.error("Health dimension exception: " + e);
+    }
 });

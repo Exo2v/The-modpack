@@ -9,6 +9,7 @@ var REGIONS = [
     "seljuk_desert",
     "byzantine_hills",
     "witchbane_woods",
+    "cogwork_march",
     "merchant_rivers",
     "cathedral_depths",
     "frostfall_peaks",

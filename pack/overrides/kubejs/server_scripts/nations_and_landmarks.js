@@ -36,12 +36,12 @@ var NATIONS = [
         lore: "Hunters bound by iron oaths to cleanse the corrupted flora of the blight."
     },
     {
-        id: "guild_of_merchants",
-        name: "The Guild of Merchants",
-        subtitle: "Canals, Trade Barges, and Gilded Vaults",
-        color: "yellow",
-        biomes: ["minecraft:river", "minecraft:forest", "minecraft:birch_forest"],
-        lore: "Where coin speaks louder than creed, and every relic has a price."
+        id: "cogwork_march",
+        name: "The Cogwork March",
+        subtitle: "Steam Cities, Skyward Airships & Brass Canals",
+        color: "gold",
+        biomes: ["minecraft:windswept_hills", "minecraft:windswept_gravelly_hills", "minecraft:badlands", "minecraft:wooded_badlands", "minecraft:river", "minecraft:stony_shore"],
+        lore: "The smog-choked industrial heartland of Vantyra. Massive steam cities, clunking brass cogwheels, and iron airships dominate the skyline, while forgotten foundries rust beneath."
     },
     {
         id: "cathedral_of_ash",
@@ -79,33 +79,41 @@ var NATIONS = [
 
 // Check territory every 100 ticks (5 seconds)
 PlayerEvents.tick(function(event) {
-    var player = event.player;
-    if (player.age % 100 !== 0) return;
+    try {
+        var player = event.player;
+        if (!player || player.age % 100 !== 0) return;
+        if (!player.level) return;
 
-    var biome = player.level.getBiome(player.blockPosition()).unwrapKey().get().location().toString();
-    
-    for (var i = 0; i < NATIONS.length; i++) {
-        var nation = NATIONS[i];
-        if (nation.biomes.indexOf(biome) !== -1) {
-            var tag = "visited_nation_" + nation.id;
-            if (!player.tags.contains(tag)) {
-                player.tags.add(tag);
-                
-                // Audio sting
-                player.level.server.runCommandSilent("playsound minecraft:ui.toast.challenge_complete ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 0.8 1.1");
-                
-                // Territory banner
-                player.level.server.runCommandSilent("title " + player.username + " times 10 70 20");
-                player.level.server.runCommandSilent("title " + player.username + " title {\"text\":\"" + nation.name + "\",\"color\":\"" + nation.color + "\",\"bold\":true}");
-                player.level.server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"" + nation.subtitle + "\",\"color\":\"gray\",\"italic\":true}");
-                
-                // Lore entry in chat
-                player.tell(" ");
-                player.tell("§8[§6Codex Discovered§8] §f" + nation.name);
-                player.tell("§7\"" + nation.lore + "\"");
-                player.tell(" ");
+        var biome = player.level.getBiome(player.blockPosition()).unwrapKey().get().location().toString();
+        
+        for (var i = 0; i < NATIONS.length; i++) {
+            var nation = NATIONS[i];
+            if (nation.biomes.indexOf(biome) !== -1) {
+                var tag = "visited_nation_" + nation.id;
+                if (!player.tags.contains(tag)) {
+                    player.tags.add(tag);
+                    
+                    var server = player.level.server;
+                    if (server) {
+                        // Audio sting
+                        server.runCommandSilent("playsound minecraft:ui.toast.challenge_complete ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 0.8 1.1");
+                        
+                        // Territory banner
+                        server.runCommandSilent("title " + player.username + " times 10 70 20");
+                        server.runCommandSilent("title " + player.username + " title {\"text\":\"" + nation.name + "\",\"color\":\"" + nation.color + "\",\"bold\":true}");
+                        server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"" + nation.subtitle + "\",\"color\":\"gray\",\"italic\":true}");
+                    }
+                    
+                    // Lore entry in chat
+                    player.tell(" ");
+                    player.tell("§8[§6Codex Discovered§8] §f" + nation.name);
+                    player.tell("§7\"" + nation.lore + "\"");
+                    player.tell(" ");
+                }
+                break;
             }
-            break;
         }
+    } catch (e) {
+        // Silently prevent tick failure
     }
 });

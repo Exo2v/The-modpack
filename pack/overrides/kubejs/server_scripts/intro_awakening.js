@@ -58,68 +58,74 @@ function buildLighthouse(server, x, y, z) {
 }
 
 PlayerEvents.loggedIn(function(event) {
-    var player = event.player;
-    var server = event.server;
+    try {
+        var player = event.player;
+        if (!player) return;
+        var server = event.server || (player.level && player.level.server);
+        if (!server) return;
 
-    if (!player.tags.contains("ashfall_awakened")) {
-        player.tags.add("ashfall_awakened");
+        if (!player.tags.contains("ashfall_awakened")) {
+            player.tags.add("ashfall_awakened");
 
-        // 1. Position player safely on the coastal sands
-        var px = Math.floor(player.x);
-        var py = Math.floor(player.y);
-        var pz = Math.floor(player.z);
+            // 1. Position player safely on the coastal sands
+            var px = Math.floor(player.x);
+            var py = Math.floor(player.y);
+            var pz = Math.floor(player.z);
 
-        // Build starter lighthouse nearby on cliff/higher ground
-        var lx = px + 18;
-        var lz = pz + 14;
-        var ly = py + 3;
-        buildLighthouse(server, lx, ly, lz);
+            // Build starter lighthouse nearby on cliff/higher ground
+            var lx = px + 18;
+            var lz = pz + 14;
+            var ly = py + 3;
+            buildLighthouse(server, lx, ly, lz);
 
-        // 2. Play dramatic opening sound effects
-        server.runCommandSilent("playsound minecraft:ambient.underwater.enter ambient " + player.username + " " + px + " " + py + " " + pz + " 1.0 0.8");
-        server.runCommandSilent("playsound minecraft:entity.generic.splash ambient " + player.username + " " + px + " " + py + " " + pz + " 1.0 0.7");
+            // 2. Play dramatic opening sound effects
+            server.runCommandSilent("playsound minecraft:ambient.underwater.enter ambient " + player.username + " " + px + " " + py + " " + pz + " 1.0 0.8");
+            server.runCommandSilent("playsound minecraft:entity.generic.splash ambient " + player.username + " " + px + " " + py + " " + pz + " 1.0 0.7");
 
-        // 3. Apply opening blur / blindness (eyes opening on sand)
-        player.potionEffects.add("minecraft:blindness", 120, 0, false, false);
-        player.potionEffects.add("minecraft:slowness", 140, 3, false, false);
-        player.potionEffects.add("minecraft:water_breathing", 200, 0, false, false);
+            // 3. Apply opening blur / blindness (eyes opening on sand)
+            player.potionEffects.add("minecraft:blindness", 120, 0, false, false);
+            player.potionEffects.add("minecraft:slowness", 140, 3, false, false);
+            player.potionEffects.add("minecraft:water_breathing", 200, 0, false, false);
 
-        // 4. Act I: Awakening on Beach Title
-        server.scheduleInTicks(15, function() {
-            server.runCommandSilent("title " + player.username + " times 20 60 20");
-            server.runCommandSilent("title " + player.username + " title {\"text\":\"ASHENFALL\",\"color\":\"dark_red\",\"bold\":true}");
-            server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"You wash ashore on the cold sands...\",\"color\":\"gray\"}");
-        });
+            // 4. Act I: Awakening on Beach Title
+            server.scheduleInTicks(15, function() {
+                server.runCommandSilent("title " + player.username + " times 20 60 20");
+                server.runCommandSilent("title " + player.username + " title {\"text\":\"ASHENFALL\",\"color\":\"dark_red\",\"bold\":true}");
+                server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"You wash ashore on the cold sands...\",\"color\":\"gray\"}");
+            });
 
-        // 5. Act II: The Tenth Ember Awakens
-        server.scheduleInTicks(80, function() {
-            server.runCommandSilent("playsound minecraft:block.campfire.crackle ambient " + player.username + " " + px + " " + py + " " + pz + " 0.8 1.0");
-            server.runCommandSilent("title " + player.username + " times 15 50 15");
-            server.runCommandSilent("title " + player.username + " title {\"text\":\"The Tenth Ember\",\"color\":\"gold\",\"bold\":true}");
-            server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"A faint warmth smolders within your chest.\",\"color\":\"yellow\"}");
-        });
+            // 5. Act II: The Tenth Ember Awakens
+            server.scheduleInTicks(80, function() {
+                server.runCommandSilent("playsound minecraft:block.campfire.crackle ambient " + player.username + " " + px + " " + py + " " + pz + " 0.8 1.0");
+                server.runCommandSilent("title " + player.username + " times 15 50 15");
+                server.runCommandSilent("title " + player.username + " title {\"text\":\"The Tenth Ember\",\"color\":\"gold\",\"bold\":true}");
+                server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"A faint warmth smolders within your chest.\",\"color\":\"yellow\"}");
+            });
 
-        // 6. Act III: Narrative Introduction
-        server.scheduleInTicks(140, function() {
-            server.runCommandSilent("playsound minecraft:block.bell.use ambient " + player.username + " " + px + " " + py + " " + pz + " 0.7 0.9");
-            player.tell(" ");
-            player.tell("§8━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            player.tell("§c⚔ ASHENFALL §8— §7The Pilgrimage Begins");
-            player.tell("§e\"Nine sounds broke the Empire in a single night.\"");
-            player.tell("§e\"You are not a hero, pilgrim. You are the cause, walking to mend what you shattered.\"");
-            player.tell(" ");
-            player.tell("§bAbove the shoreline bluff looms the Old Lighthouse beacon.");
-            player.tell("§7Scavenge the lighthouse for supplies, then journey inland toward the Norman Remnant.");
-            player.tell("§8━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            player.tell(" ");
-        });
+            // 6. Act III: Narrative Introduction
+            server.scheduleInTicks(140, function() {
+                server.runCommandSilent("playsound minecraft:block.bell.use ambient " + player.username + " " + px + " " + py + " " + pz + " 0.7 0.9");
+                player.tell(" ");
+                player.tell("§8━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                player.tell("§c⚔ ASHENFALL §8— §7The Pilgrimage Begins");
+                player.tell("§e\"Nine sounds broke the Empire in a single night.\"");
+                player.tell("§e\"You are not a hero, pilgrim. You are the cause, walking to mend what you shattered.\"");
+                player.tell(" ");
+                player.tell("§bAbove the shoreline bluff looms the Old Lighthouse beacon.");
+                player.tell("§7Scavenge the lighthouse for supplies, then journey inland toward the Norman Remnant.");
+                player.tell("§8━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                player.tell(" ");
+            });
 
-        // 7. Starter supplies directly in inventory
-        server.scheduleInTicks(150, function() {
-            server.runCommandSilent("give " + player.username + " minecraft:leather_boots[custom_name='{\"text\":\"Waterlogged Boots\",\"color\":\"gray\"}']");
-            server.runCommandSilent("give " + player.username + " minecraft:compass[custom_name='{\"text\":\"Pilgrim\\'s Compass\",\"color\":\"gold\"}']");
-            server.runCommandSilent("give " + player.username + " minecraft:flint");
-            server.runCommandSilent("give " + player.username + " minecraft:bread 4");
-        });
+            // 7. Starter supplies directly in inventory
+            server.scheduleInTicks(150, function() {
+                server.runCommandSilent("give " + player.username + " minecraft:leather_boots[custom_name='{\"text\":\"Waterlogged Boots\",\"color\":\"gray\"}']");
+                server.runCommandSilent("give " + player.username + " minecraft:compass[custom_name='{\"text\":\"Pilgrim\\'s Compass\",\"color\":\"gold\"}']");
+                server.runCommandSilent("give " + player.username + " minecraft:flint");
+                server.runCommandSilent("give " + player.username + " minecraft:bread 4");
+            });
+        }
+    } catch (e) {
+        console.error("Intro awakening error: " + e);
     }
 });

@@ -589,15 +589,26 @@ pin = "latest"
 note = "Colossal landmark set-pieces, flying fortresses, and pirate havens"
 
 [[mods]]
-name = "Streams Reflowing"
-slug = "streams-reflowing"
+name = "Create"
+slug = "create"
+provider = "modrinth"
+category = "technology"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "6.0.9"
+note = "Kinetic mechanical engineering, cogwheels, rotational power, and steam engines"
+
+[[mods]]
+name = "Create: Structures Arise"
+slug = "create-structures-arise"
 provider = "curseforge"
 category = "worldgen"
 phase = "M3"
 side = "both"
 risk = "low"
 pin = "latest"
-note = "Dynamic flowing streams, rapids, and river physics with Distant Horizons support"
+note = "28+ handcrafted Create factories, workshops, and ruined steampunk structures"
 
 # ---------------------------------------------------------------------------
 # M3b: World Fullness & Water Layer

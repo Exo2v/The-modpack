@@ -14,8 +14,8 @@ var BOSS_ENCOUNTERS = {
         sound: "minecraft:entity.ravager.roar"
     },
     "cataclysm:the_harbinger": {
-        name: "The Harbinger",
-        line: "Ancient machinery hums with renewed wrath.",
+        name: "The Harbinger, The Ravager of Iron",
+        line: "RUST AND RUIN. THE GEARS TURN TO GRIND FLESH AND BONE.",
         sound: "minecraft:block.beacon.activate"
     },
     "cataclysm:the_leviathan": {
@@ -31,27 +31,31 @@ var BOSS_ENCOUNTERS = {
 };
 
 EntityEvents.spawned(function(event) {
-    var entity = event.entity;
-    if (!entity) return;
-    var type = entity.type;
+    try {
+        var entity = event.entity;
+        if (!entity) return;
+        var type = entity.type;
 
-    if (BOSS_ENCOUNTERS[type]) {
-        var boss = BOSS_ENCOUNTERS[type];
-        var level = entity.level;
-        if (!level || !level.players) return;
+        if (BOSS_ENCOUNTERS[type]) {
+            var boss = BOSS_ENCOUNTERS[type];
+            var level = entity.level;
+            if (!level || !level.players) return;
 
-        level.players.forEach(function(player) {
-            // Check distance
-            var distSq = player.distanceToSqr(entity);
-            if (distSq < 64 * 64) {
-                // Screen shake & cinematic alert
-                player.potionEffects.add("minecraft:slowness", 60, 1, false, false);
-                level.server.runCommandSilent("playsound " + boss.sound + " ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 1.0 0.8");
-                
-                level.server.runCommandSilent("title " + player.username + " times 10 60 20");
-                level.server.runCommandSilent("title " + player.username + " title {\"text\":\"" + boss.name + "\",\"color\":\"red\",\"bold\":true}");
-                level.server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"\\\"" + boss.line + "\\\"\",\"color\":\"gold\",\"italic\":true}");
-            }
-        });
+            level.players.forEach(function(player) {
+                // Check distance
+                var distSq = player.distanceToSqr(entity);
+                if (distSq < 64 * 64) {
+                    var server = level.server;
+                    if (!server) return;
+                    player.potionEffects.add("minecraft:slowness", 60, 1, false, false);
+                    server.runCommandSilent("playsound " + boss.sound + " ambient " + player.username + " " + player.x + " " + player.y + " " + player.z + " 1.0 0.8");
+                    server.runCommandSilent("title " + player.username + " times 10 60 20");
+                    server.runCommandSilent("title " + player.username + " title {\"text\":\"" + boss.name + "\",\"color\":\"red\",\"bold\":true}");
+                    server.runCommandSilent("title " + player.username + " subtitle {\"text\":\"\\\"" + boss.line + "\\\"\",\"color\":\"gold\",\"italic\":true}");
+                }
+            });
+        }
+    } catch (e) {
+        // Silently prevent event failure
     }
 });

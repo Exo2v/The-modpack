@@ -7,7 +7,7 @@ var RUNES = [
     { id: "seljuk", item: "ashfall:rune_of_the_seljuk", nation: "seljuk_expanse", name: "Rune of Amber Sands" },
     { id: "choir", item: "ashfall:rune_of_the_choir", nation: "byzantine_choir", name: "Rune of Resonant Hymns" },
     { id: "witchbane", item: "ashfall:rune_of_the_witchbane", nation: "witchbane_watch", name: "Rune of the Cold Pyre" },
-    { id: "merchants", item: "ashfall:rune_of_the_merchants", nation: "guild_of_merchants", name: "Rune of Gilded Coin" },
+    { id: "merchants", item: "ashfall:rune_of_the_merchants", nation: "cogwork_march", name: "Rune of Gilded Cog & Steam" },
     { id: "ash", item: "ashfall:rune_of_the_ash", nation: "cathedral_of_ash", name: "Rune of the First Flame" },
     { id: "frostfall", item: "ashfall:rune_of_the_frostfall", nation: "frostfall", name: "Rune of Glacial Spires" },
     { id: "sunken", item: "ashfall:rune_of_the_sunken", nation: "sunken_throne", name: "Rune of the Abyss" },
