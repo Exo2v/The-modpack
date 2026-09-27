@@ -68,7 +68,8 @@ def main():
         ("magnesium", "Deprecated Forge fork"),
         ("sodium-fabric", "Fabric build in NeoForge folder"),
         ("iris-fabric", "Fabric build in NeoForge folder"),
-        ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1")
+        ("shine", "Produces uncalibrated bloom artifacts and blinding superbright spots on 1.21.1"),
+        ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers")
     ]
     
     for gdir in game_dirs:

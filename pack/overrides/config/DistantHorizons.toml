@@ -1,0 +1,14 @@
+# =============================================================================
+# ASHENFALL — Distant Horizons Optimized Configuration
+# =============================================================================
+
+[client.quickOptions]
+lodChunkRenderDistanceRadius = 64
+
+[common.logging.warning]
+showSlowWorldGenSettingWarnings = false
+showHighVanillaRenderDistanceWarning = false
+showPoolInsufficientMemoryWarning = false
+logGarbageCollectorWarning = false
+showGarbageCollectorWarning = false
+showIncompatibleModWarnings = false

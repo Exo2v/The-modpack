@@ -475,17 +475,6 @@ pin = "latest"
 note = "Grave markers at death; recovery pilgrimage mechanic"
 
 [[mods]]
-name = "Wavify"
-slug = "wavify"
-provider = "modrinth"
-category = "visuals"
-phase = "M2"
-side = "client"
-risk = "low"
-pin = "latest"
-note = "Dynamic ocean waves, swells, and shoreline surf"
-
-[[mods]]
 name = "Visuality: Reforged"
 slug = "visuality-forge"
 provider = "modrinth"

@@ -10,6 +10,7 @@ for js_path in sorted(scripts_dir.glob("*.js")):
 startup_script = Path("pack/overrides/kubejs/startup_scripts/items.js").read_text(encoding="utf-8")
 iaf_config = Path("pack/overrides/config/iceandfire-common.toml").read_text(encoding="utf-8")
 streams_config = Path("pack/overrides/config/streamsreflowing.toml").read_text(encoding="utf-8")
+dh_config = Path("pack/overrides/config/DistantHorizons.toml").read_text(encoding="utf-8")
 
 script_template = '''#!/usr/bin/env python3
 # =============================================================================
@@ -40,6 +41,7 @@ CANONICAL_SCRIPTS = __CANONICAL_SCRIPTS__
 ITEMS_JS = __ITEMS_JS__
 IAF_CONFIG = __IAF_CONFIG__
 STREAMS_CONFIG = __STREAMS_CONFIG__
+DH_CONFIG = __DH_CONFIG__
 
 # Essential files to download if missing
 ESSENTIAL_DOWNLOADS = [
@@ -89,7 +91,8 @@ BLACKLIST = [
     ("rubidium", "Deprecated Forge fork replaced by Embeddium"),
     ("magnesium", "Deprecated Forge fork"),
     ("sodium-fabric", "Fabric build in NeoForge folder"),
-    ("iris-fabric", "Fabric build in NeoForge folder")
+    ("iris-fabric", "Fabric build in NeoForge folder"),
+    ("wavify", "Causes spammy white crescent wave billboard artifacts on rivers")
 ]
 
 def find_game_dirs():
@@ -320,6 +323,11 @@ def main():
         print("  [FIXED] Deployed safe Streams Reflowing configuration (stops chunk freeze): config/streamsreflowing.toml")
         healed_count += 1
 
+        dh_dest = config_dir / "DistantHorizons.toml"
+        dh_dest.write_text(DH_CONFIG, encoding="utf-8")
+        print("  [FIXED] Deployed Distant Horizons optimization (silenced chat warnings & balanced LODs): config/DistantHorizons.toml")
+        healed_count += 1
+
         # ---------------------------------------------------------
         # 4. DEPLOY KUBEJS SCRIPTS (20 Hearts & Steampunk Nation)
         # ---------------------------------------------------------
@@ -380,6 +388,7 @@ script_content = script_template.replace("__CANONICAL_SCRIPTS__", json.dumps(can
 script_content = script_content.replace("__ITEMS_JS__", json.dumps(startup_script))
 script_content = script_content.replace("__IAF_CONFIG__", json.dumps(iaf_config))
 script_content = script_content.replace("__STREAMS_CONFIG__", json.dumps(streams_config))
+script_content = script_content.replace("__DH_CONFIG__", json.dumps(dh_config))
 
 # Write fix_everything.py
 with open("fix_everything.py", "w", encoding="utf-8") as f:
