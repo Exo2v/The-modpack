@@ -975,6 +975,30 @@ def download_and_verify(url: str, dest_path: Path, expected_size: int = 0, verbo
         return False
 
 
+def check_and_fix_kubejs(mods_dir: Path) -> int:
+    """Scans .minecraft/kubejs/ for script syntax errors like 'legendary' rarity."""
+    fixed = 0
+    candidate_dirs = [
+        mods_dir.parent / "kubejs",
+        Path.cwd() / "kubejs",
+        mods_dir / "kubejs",
+    ]
+    for kubejs_dir in candidate_dirs:
+        startup_dir = kubejs_dir / "startup_scripts"
+        if startup_dir.exists():
+            for js_file in startup_dir.glob("*.js"):
+                try:
+                    content = js_file.read_text(encoding="utf-8")
+                    if "'legendary'" in content or '"legendary"' in content:
+                        print(f"  [KubeJS Fixer] Detected invalid 'legendary' enum in {js_file.name}. Patching to 'epic'...")
+                        patched = content.replace("'legendary'", "'epic'").replace('"legendary"', '"epic"')
+                        js_file.write_text(patched, encoding="utf-8")
+                        fixed += 1
+                except Exception:
+                    pass
+    return fixed
+
+
 def clean_corrupted_files(mods_dir: Path) -> int:
     """Scans mods_dir and removes 0-byte, corrupted, or non-jar files that break NeoForge."""
     removed = 0
@@ -1056,12 +1080,16 @@ def main() -> None:
     print("=" * 65 + "\n")
 
     # 2. Clean out any corrupted / 0-byte files that trigger "zip END header not found"
-    print("[1/3] Scanning destination folder for corrupted files...")
+    print("[1/3] Scanning destination folder for corrupted files and script issues...")
     cleaned = clean_corrupted_files(target_dir)
     if cleaned > 0:
         print(f"  ✅ Cleaned {cleaned} corrupted/invalid files to prevent startup crash.")
     else:
         print("  ✅ Destination folder is clean.")
+
+    fixed_scripts = check_and_fix_kubejs(target_dir)
+    if fixed_scripts > 0:
+        print(f"  ✅ Patched {fixed_scripts} KubeJS script(s) (replaced invalid 'legendary' with 'epic').")
 
     # 3. Filter mods by phase
     phase_filter = args.phase.upper()
