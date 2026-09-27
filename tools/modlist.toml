@@ -452,20 +452,86 @@ risk = "low"
 pin = "latest"
 note = "Grave markers at death; recovery pilgrimage mechanic"
 
+[[mods]]
+name = "Shine"
+slug = "shine"
+provider = "modrinth"
+category = "visuals"
+phase = "M2"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Atmospheric bloom, colored lighting, and stylized visual effects"
+
+[[mods]]
+name = "Wavify"
+slug = "wavify"
+provider = "modrinth"
+category = "visuals"
+phase = "M2"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Dynamic ocean waves, swells, and shoreline surf"
+
+[[mods]]
+name = "Visuality: Reforged"
+slug = "visuality-forge"
+provider = "modrinth"
+category = "visuals"
+phase = "M2"
+side = "client"
+risk = "low"
+pin = "latest"
+note = "Water splashes, droplets, ripples, and particle visual polish"
+
 # ---------------------------------------------------------------------------
 # M3: Worldgen (The World's Shape)
 # ---------------------------------------------------------------------------
 
 [[mods]]
-name = "Terralith"
-slug = "terralith"
+name = "Lithosphere"
+slug = "lithosphere"
 provider = "modrinth"
 category = "worldgen"
 phase = "M3"
 side = "both"
 risk = "low"
 pin = "latest"
-note = "Overworld terrain transformation, 95+ biomes, landmark geography"
+note = "Cinematic overworld terrain overhaul, high mountains, deep trenches, replaces Terralith"
+
+[[mods]]
+name = "Still Life"
+slug = "still-life"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Realistic overworld overhaul addon for Lithosphere terrain"
+
+[[mods]]
+name = "Hollowmarch"
+slug = "hollowmarch"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Handcrafted exploration structures, custom encounters, and dungeon loot"
+
+[[mods]]
+name = "Streams Reflowing"
+slug = "streams-reflowing"
+provider = "modrinth"
+category = "worldgen"
+phase = "M3"
+side = "both"
+risk = "low"
+pin = "latest"
+note = "Dynamic flowing streams, surface current, downhill water flow"
 
 [[mods]]
 name = "Explorify"

@@ -229,8 +229,44 @@ phase = "M2"
 reason = "Offline / network restricted; generated pinned metadata stub"
 
 [[pending]]
-name = "Terralith"
-slug = "terralith"
+name = "Shine"
+slug = "shine"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Wavify"
+slug = "wavify"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Visuality: Reforged"
+slug = "visuality-forge"
+phase = "M2"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Lithosphere"
+slug = "lithosphere"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Still Life"
+slug = "still-life"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Hollowmarch"
+slug = "hollowmarch"
+phase = "M3"
+reason = "Offline / network restricted; generated pinned metadata stub"
+
+[[pending]]
+name = "Streams Reflowing"
+slug = "streams-reflowing"
 phase = "M3"
 reason = "Offline / network restricted; generated pinned metadata stub"
 

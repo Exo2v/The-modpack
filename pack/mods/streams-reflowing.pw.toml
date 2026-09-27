@@ -1,0 +1,13 @@
+name = "Streams Reflowing"
+filename = "streams-reflowing-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/streams-reflowing/versions/streams-reflowing-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "80a8ecbe8d34885eedebd18b0fb6bd118f64b2c495fe04f08a5c1de6261a63476824039d3f1955a0066495eef8adf4363c7602275e047c2ce6896222d1fb0623"
+
+[update]
+[update.modrinth]
+mod-id = "streams-reflowing"
+version = "latest"

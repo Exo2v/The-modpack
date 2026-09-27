@@ -187,6 +187,13 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "category": "library",
     },
     {
+        "name": "KubeJS",
+        "slug": "kubejs",
+        "provider": "modrinth",
+        "phase": "M0",
+        "category": "core",
+    },
+    {
         "name": "Player Animator",
         "slug": "playeranimator",
         "provider": "modrinth",
@@ -279,10 +286,52 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "phase": "M2",
         "category": "soulslike",
     },
+    {
+        "name": "Shine",
+        "slug": "shine",
+        "provider": "modrinth",
+        "phase": "M2",
+        "category": "visuals",
+    },
+    {
+        "name": "Wavify",
+        "slug": "wavify",
+        "provider": "modrinth",
+        "phase": "M2",
+        "category": "visuals",
+    },
+    {
+        "name": "Visuality: Reforged",
+        "slug": ["visuality-forge", "visuality"],
+        "provider": "modrinth",
+        "phase": "M2",
+        "category": "visuals",
+    },
     # --- PHASE M3: WORLDGEN ---
     {
-        "name": "Terralith",
-        "slug": "terralith",
+        "name": "Lithosphere",
+        "slug": ["lithosphere", "lithosphere-mod"],
+        "provider": "modrinth",
+        "phase": "M3",
+        "category": "worldgen",
+    },
+    {
+        "name": "Still Life",
+        "slug": ["still-life", "still_life"],
+        "provider": "modrinth",
+        "phase": "M3",
+        "category": "worldgen",
+    },
+    {
+        "name": "Hollowmarch",
+        "slug": "hollowmarch",
+        "provider": "modrinth",
+        "phase": "M3",
+        "category": "worldgen",
+    },
+    {
+        "name": "Streams Reflowing",
+        "slug": "streams-reflowing",
         "provider": "modrinth",
         "phase": "M3",
         "category": "worldgen",
@@ -506,6 +555,13 @@ MODS_CATALOG: List[Dict[str, Any]] = [
         "provider": "modrinth",
         "phase": "M4",
         "category": "claims",
+    },
+    {
+        "name": "Aviel's Dialogue Mod",
+        "slug": ["aviel-dialogue-mod", "easy-npc"],
+        "provider": "modrinth",
+        "phase": "M4",
+        "category": "narrative",
     },
     # --- PHASE M5: RPG & GRINDING ---
     {
@@ -902,6 +958,13 @@ def clean_corrupted_files(mods_dir: Path) -> int:
             # Remove excluded/deprecated mods (e.g. Better Combat to preserve vanilla PvP mechanics)
             if "bettercombat" in item.name.lower():
                 print(f"  [Cleaner] Removing Better Combat JAR (keeping Vanilla PvP mechanics): {item.name}")
+                item.unlink()
+                removed += 1
+                continue
+
+            # Remove Terralith if present (replaced by Lithosphere + Still Life)
+            if "terralith" in item.name.lower():
+                print(f"  [Cleaner] Removing Terralith JAR (replaced by Lithosphere + Still Life): {item.name}")
                 item.unlink()
                 removed += 1
                 continue

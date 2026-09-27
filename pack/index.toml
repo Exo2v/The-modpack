@@ -191,6 +191,11 @@ hash = "8c2ebc15650e9bb3512cec5e760f39ef17fc0b697d853aeba1e4632283377fd7"
 metafile = true
 
 [[files]]
+file = "mods/hollowmarch.pw.toml"
+hash = "27a387e427d37529ccc0bf0472f675079ed454082f06d3e539c762baaa42fc9d"
+metafile = true
+
+[[files]]
 file = "mods/hopo-better-ruined-portals.pw.toml"
 hash = "cf5d1aa69a166eb1c8578e1275480caa7e96e64de67241be365640b4de866ad8"
 metafile = true
@@ -238,6 +243,11 @@ metafile = true
 [[files]]
 file = "mods/lionfish-api.pw.toml"
 hash = "6d90451cc24c26540217ec4556488f45c9ad77f53c78615065cb37fa773dbd31"
+metafile = true
+
+[[files]]
+file = "mods/lithosphere.pw.toml"
+hash = "44432da76491f0286a08096948395b4a4c84c8b741d00ff11080d6596806c52e"
 metafile = true
 
 [[files]]
@@ -336,6 +346,11 @@ hash = "4e6fdb3ec7deb29e37ee02e099d3bfdae91842e664cd6dc019128d94bf8d3ce8"
 metafile = true
 
 [[files]]
+file = "mods/shine.pw.toml"
+hash = "9a3fb9117b46cedf629defb68418927f58fedc05b95315e1d05c9cdd2d1501aa"
+metafile = true
+
+[[files]]
 file = "mods/shutup-experimental-settings.pw.toml"
 hash = "a8c5908de53dc4ae0d9db6184283f5269f91a813e5031a95433a6e0b3001b414"
 metafile = true
@@ -376,6 +391,16 @@ hash = "81ccb0f51933aea0e484edb79822b6fce7b0427574b549869e8e93593669895c"
 metafile = true
 
 [[files]]
+file = "mods/still-life.pw.toml"
+hash = "9bcfcfa11737d29e51b0c0b2458f0b4bc48687f6c92621d803c15c8749f042f1"
+metafile = true
+
+[[files]]
+file = "mods/streams-reflowing.pw.toml"
+hash = "de1fb442b980af558a6aa42cecc330a64ca9e925887cfb69d9b770130a76d78f"
+metafile = true
+
+[[files]]
 file = "mods/structory.pw.toml"
 hash = "7abf7dbe55ea6f1bbb03991d320c1e17873fa83922ce39c418205b0d1ba93e49"
 metafile = true
@@ -396,11 +421,6 @@ hash = "59760e91cc8d4565d6166e2452ed8c98f90b6edbc7ffe2bfb815709dbaef2ca6"
 metafile = true
 
 [[files]]
-file = "mods/terralith.pw.toml"
-hash = "55e27d7fb368316e9ff398816b42c5b353070a4aa55502874fdb0f20a155df74"
-metafile = true
-
-[[files]]
 file = "mods/the-graveyard.pw.toml"
 hash = "607fc3fe0955a9afd2c34fe74fcd389e9067dee3519d6eb260d7eb2fa1cdc573"
 metafile = true
@@ -418,6 +438,16 @@ metafile = true
 [[files]]
 file = "mods/towns-and-towers.pw.toml"
 hash = "a494ee75265227cf2740ca1476e590569a011c2b74c2a10e79a9ae5ccf3f08b1"
+metafile = true
+
+[[files]]
+file = "mods/visuality-forge.pw.toml"
+hash = "b37cc99784c92c735076c147d9209b85ca29bb13485633e8a1fad68bdc049f79"
+metafile = true
+
+[[files]]
+file = "mods/wavify.pw.toml"
+hash = "ce1968f378f2f0e21990f194a7c123954b5c649b6017cbb0b57366c6d8fa5c2d"
 metafile = true
 
 [[files]]

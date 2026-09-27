@@ -1,0 +1,27 @@
+{
+  "title": "Drowned Shore Fisherman",
+  "speaker": "Fisherman Tove",
+  "random_start": ["greeting"],
+  "nodes": {
+    "greeting": {
+      "text": "The waves were angry last night. Brought up driftwood, dead fish, and you. Your chest glows in the dark, stranger.",
+      "choices": [
+        { "text": "What do you know of the ocean rifts?", "next": "ocean_rifts" },
+        { "text": "Can I trade for fish or supplies?", "next": "trade_info" },
+        { "text": "(Walk away)", "close": true }
+      ]
+    },
+    "ocean_rifts": {
+      "text": "Out past the shelf, the Choir's great cathedral drowned decades ago. But on quiet nights when the moon is full, you can still hear the hymns rising from the dark water.",
+      "choices": [
+        { "text": "The Sunken Throne...", "close": true }
+      ]
+    },
+    "trade_info": {
+      "text": "Bring me salted kelp or iron scrap from the shipwrecks, and I'll trade you fresh cod and dried tallow.",
+      "choices": [
+        { "text": "(Close)", "close": true }
+      ]
+    }
+  }
+}
