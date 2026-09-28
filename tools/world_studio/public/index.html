@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashenfall WorldStudio — Unified WorldEngine</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            ember: '#ff6b35',
+            void: '#0b0d13',
+            panel: '#151821',
+            panelHover: '#1c212d',
+            borderDark: '#262c3a'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom sleek scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0d13; }
+    ::-webkit-scrollbar-thumb { background: #262c3a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b4459; }
+    .map-canvas-container {
+      background: radial-gradient(circle at center, #131722 0%, #08090d 100%);
+    }
+  </style>
+</head>
+<body class="bg-void text-slate-200 font-sans h-screen flex flex-col overflow-hidden select-none">
+
+  <!-- TOP HEADER BAR -->
+  <header class="h-14 border-b border-borderDark bg-panel flex items-center justify-between px-5 shrink-0 z-20">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-ember flex items-center justify-center shadow-lg shadow-cyan-900/30">
+        <i data-lucide="globe" class="w-5 h-5 text-white"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold tracking-wide text-white text-base">ASHENFALL WORLDSTUDIO</h1>
+          <span class="text-[10px] font-semibold bg-cyan-950 text-cyan-400 border border-cyan-800/60 px-2 py-0.5 rounded-full">v2.4 Unified</span>
+        </div>
+        <p class="text-xs text-slate-400">United Engine: WorldPainter · Lithosphere · Still Life · Continents</p>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex items-center gap-3">
+      <a href="/downloads/worldpainter_suite.zip" download class="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md transition">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span>WorldPainter Suite (Zip)</span>
+      </a>
+      <a href="/downloads/datapack.zip" download class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-borderDark text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+        <i data-lucide="box" class="w-4 h-4"></i>
+        <span>data2 Datapack</span>
+      </a>
+      <button onclick="copyInstallCommand()" class="flex items-center gap-2 bg-ember/90 hover:bg-ember text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md transition">
+        <i data-lucide="terminal" class="w-4 h-4"></i>
+        <span id="btnCopyText">Copy Windows 1-Click Setup</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE (SPLIT SCREEN) -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- LEFT / CENTER: INTERACTIVE MAP VIEWPORT -->
+    <main class="flex-1 flex flex-col relative overflow-hidden map-canvas-container">
+      
+      <!-- Viewport Floating Toolbar -->
+      <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/90 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+        <button onclick="setLayer('topographic')" id="btn-topographic" class="layer-btn active flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-cyan-600 text-white shadow-sm transition">
+          <i data-lucide="satellite" class="w-3.5 h-3.5"></i>
+          <span>Satellite 3D</span>
+        </button>
+        <button onclick="setLayer('heightmap')" id="btn-heightmap" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="mountain" class="w-3.5 h-3.5"></i>
+          <span>16-Bit Grayscale</span>
+        </button>
+        <button onclick="setLayer('populate')" id="btn-populate" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="trees" class="w-3.5 h-3.5"></i>
+          <span>Still Life Populate</span>
+        </button>
+        <button onclick="setLayer('biomes')" id="btn-biomes" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+          <span>Biomes Mask</span>
+        </button>
+      </div>
+
+      <!-- Canvas Controls (Zoom/Reset) -->
+      <div class="absolute top-4 right-4 z-10 flex flex-col gap-1.5 bg-panel/90 backdrop-blur-md p-1 rounded-xl border border-borderDark shadow-xl">
+        <button onclick="zoomIn()" title="Zoom In" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="zoom-in" class="w-4 h-4"></i>
+        </button>
+        <button onclick="zoomOut()" title="Zoom Out" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="zoom-out" class="w-4 h-4"></i>
+        </button>
+        <button onclick="resetZoom()" title="Reset View" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- MAP CANVAS -->
+      <div id="canvas-wrapper" class="flex-1 w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center">
+        <img id="map-image" src="/assets/topographic.png" alt="Map Layer" class="max-w-none origin-center transition-transform duration-75 select-none pointer-events-none" style="transform: translate(0px, 0px) scale(1);">
+      </div>
+
+      <!-- BOTTOM TELEMETRY / HOVER HUD BAR -->
+      <div class="h-12 border-t border-borderDark bg-panel/95 backdrop-blur-md flex items-center justify-between px-5 text-xs text-slate-300 shrink-0 z-10">
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">COORD:</span>
+            <span id="hud-coord" class="font-mono text-cyan-400 font-medium">X: 0 | Z: 0</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">ELEV:</span>
+            <span id="hud-elev" class="font-mono text-emerald-400 font-medium">Y: 62.0 (Sea Level)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">BIOME:</span>
+            <span id="hud-biome" class="font-semibold text-white">The Ashen Caldera</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">POPULATE:</span>
+            <span id="hud-pop" class="text-amber-400 font-medium">Excluded (Barren Volcanic)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-[11px] text-slate-400 font-mono">
+          <span>CANVAS: 4096 x 4096 px</span>
+          <span class="text-slate-600">|</span>
+          <span>SCALE: 1.95 blocks/px</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-cyan-400 font-semibold">WORLD: 8,000 x 8,000 Blocks</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: UNIFIED ENGINE CONTROLS -->
+    <aside class="w-96 border-l border-borderDark bg-panel flex flex-col shrink-0 z-20">
+      
+      <!-- Tabs Navigation -->
+      <div class="flex border-b border-borderDark bg-void/50 p-1 text-xs font-medium">
+        <button onclick="switchTab('continents')" id="tab-continents" class="engine-tab active flex-1 py-2 text-center rounded-lg bg-panel text-cyan-400 font-semibold shadow-sm transition">
+          Continents
+        </button>
+        <button onclick="switchTab('lithosphere')" id="tab-lithosphere" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
+          Lithosphere
+        </button>
+        <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
+          Still Life
+        </button>
+        <button onclick="switchTab('worldpainter')" id="tab-worldpainter" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
+          WorldPainter
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="flex-1 overflow-y-auto p-5 space-y-6 text-sm">
+
+        <!-- TAB 1: CONTINENTS MOD LOGIC -->
+        <div id="content-continents" class="space-y-5">
+          <div class="bg-cyan-950/30 border border-cyan-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Continents Engine (Starmute Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Enforces a bounded fantasy landmass isolated inside <strong>The Veil of Salt</strong> ocean, removing endless vanilla repeating terrain.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Continent Radius</span>
+                <span class="font-mono text-cyan-400 font-bold">3,550 Blocks</span>
+              </div>
+              <input type="range" min="2000" max="5000" value="3550" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                <span>Small (2k)</span>
+                <span>Standard Ashenfall (3.5k)</span>
+                <span>Immense (5k)</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Outer Ocean Trench Depth</span>
+                <span class="font-mono text-cyan-400 font-bold">Y = 21 (Deep Abyss)</span>
+              </div>
+              <input type="range" min="10" max="45" value="21" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Shelf Hermite Falloff Slope</span>
+                <span class="font-mono text-cyan-400 font-bold">600 Blocks Gradual</span>
+              </div>
+              <input type="range" min="200" max="1000" value="600" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Engine Mathematical Formula</span>
+            <code class="block font-mono text-[11px] text-cyan-300 bg-black/40 p-2 rounded border border-slate-800">
+              LandFactor = 0.5 - 0.5 * cos(clamp((3550 - R_warp) / 600, 0, 1) * π)
+            </code>
+            <p class="text-[11px] text-slate-400">Continuous S-curve prevents any vertical water borders or glitch cutoffs.</p>
+          </div>
+        </div>
+
+        <!-- TAB 2: LITHOSPHERE MOD LOGIC -->
+        <div id="content-lithosphere" class="hidden space-y-5">
+          <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold mb-1">
+              <i data-lucide="mountain-snow" class="w-4 h-4"></i>
+              <span>Lithosphere Geology Engine (J4yzet Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Replaces vanilla's jagged piece-wise staircase splines with <strong>continuous cubic hermite harmonics</strong> and quadratic U-shaped river valleys.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Glacial Spine Peak Height</span>
+                <span class="font-mono text-emerald-400 font-bold">Y = 279 (Alpine Cordillera)</span>
+              </div>
+              <input type="range" min="150" max="318" value="279" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Ridge Noise Sharpness (Arêtes)</span>
+                <span class="font-mono text-emerald-400 font-bold">Power 2.2 (Jagged Crests)</span>
+              </div>
+              <input type="range" min="1" max="4" step="0.1" value="2.2" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Cogwork March Terracing Steps</span>
+                <span class="font-mono text-emerald-400 font-bold">9-Block Industrial Benches</span>
+              </div>
+              <input type="range" min="4" max="16" value="9" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">U-Shaped River Canyon Carving</span>
+                <span class="font-mono text-emerald-400 font-bold">34 Blocks Deep</span>
+              </div>
+              <input type="range" min="10" max="50" value="34" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Lithosphere Spline Function</span>
+            <code class="block font-mono text-[11px] text-emerald-300 bg-black/40 p-2 rounded border border-slate-800">
+              S(t) = 3t² - 2t³ (Continuous 1st Derivatives)
+            </code>
+            <p class="text-[11px] text-slate-400">Guarantees zero stair-stepping terracing across hillsides.</p>
+          </div>
+        </div>
+
+        <!-- TAB 3: STILL LIFE MOD LOGIC -->
+        <div id="content-still_life" class="hidden space-y-5">
+          <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
+              <i data-lucide="flower" class="w-4 h-4"></i>
+              <span>Still Life Flora Engine (J4yzet Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Governs slope-aware surface rules, multi-tiered forest canopies, fallen mossy logs, and wildflower field distribution.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Exposed Rock Cliff Threshold</span>
+                <span class="font-mono text-amber-400 font-bold">Slope &gt; 35° (Bare Stone)</span>
+              </div>
+              <input type="range" min="20" max="60" value="35" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Forest Canopy Density</span>
+                <span class="font-mono text-amber-400 font-bold">Dense (Branched Trees)</span>
+              </div>
+              <input type="range" min="20" max="100" value="85" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Fallen Log & Boulder Frequency</span>
+                <span class="font-mono text-amber-400 font-bold">1.2 per Chunk</span>
+              </div>
+              <input type="range" min="0" max="3" step="0.1" value="1.2" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Populate Mask Exclusion Rules</span>
+            <ul class="space-y-1 text-slate-300 text-[11px]">
+              <li class="flex items-center gap-1.5 text-emerald-400">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Habitable Valleys, Plains & Meadows (Active)</span>
+              </li>
+              <li class="flex items-center gap-1.5 text-rose-400">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Ashen Caldera Crater (Excluded - Barren)</span>
+              </li>
+              <li class="flex items-center gap-1.5 text-rose-400">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Sheer Rock Summits &gt; Y=210 (Excluded)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TAB 4: WORLDPAINTER & EXPORT CENTER -->
+        <div id="content-worldpainter" class="hidden space-y-5">
+          <div class="bg-blue-950/30 border border-blue-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-blue-400 font-bold mb-1">
+              <i data-lucide="brush" class="w-4 h-4"></i>
+              <span>WorldPainter Integration Hub</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Export high-resolution master assets or execute the automated 1-click script inside WorldPainter.
+            </p>
+          </div>
+
+          <div class="space-y-2.5">
+            <a href="/downloads/worldpainter_suite.zip" download class="flex items-center justify-between bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white p-3 rounded-xl shadow-lg transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="archive" class="w-5 h-5"></i>
+                <div class="text-left">
+                  <div class="font-bold text-xs">WorldPainter Master Suite</div>
+                  <div class="text-[10px] text-cyan-200">Heightmaps, masks, script & guide (9.9 MB)</div>
+                </div>
+              </div>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+
+            <a href="/downloads/heightmap_16bit.png" download class="flex items-center justify-between bg-panelHover hover:bg-slate-800 border border-borderDark text-slate-200 p-3 rounded-xl transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="image" class="w-5 h-5 text-cyan-400"></i>
+                <div class="text-left">
+                  <div class="font-semibold text-xs">16-Bit Grayscale Heightmap</div>
+                  <div class="text-[10px] text-slate-400">4096 x 4096 uint16 raster (7.6 MB)</div>
+                </div>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </a>
+
+            <a href="/downloads/script.js" download class="flex items-center justify-between bg-panelHover hover:bg-slate-800 border border-borderDark text-slate-200 p-3 rounded-xl transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="code" class="w-5 h-5 text-amber-400"></i>
+                <div class="text-left">
+                  <div class="font-semibold text-xs">Smart Setup Script (v2.0)</div>
+                  <div class="text-[10px] text-slate-400">Auto-locates heightmaps in Downloads</div>
+                </div>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </a>
+
+            <a href="/downloads/datapack.zip" download class="flex items-center justify-between bg-panelHover hover:bg-slate-800 border border-borderDark text-slate-200 p-3 rounded-xl transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="box" class="w-5 h-5 text-emerald-400"></i>
+                <div class="text-left">
+                  <div class="font-semibold text-xs">data2 Unified Datapack</div>
+                  <div class="text-[10px] text-slate-400">Lithosphere + Still Life 1.21.1 Density Functions</div>
+                </div>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </a>
+          </div>
+
+          <!-- Fast WorldPainter Setup Instructions -->
+          <div class="border-t border-borderDark pt-4 space-y-3">
+            <span class="text-xs font-bold text-white uppercase tracking-wider">Fast 3-Click Setup</span>
+            <ol class="space-y-2 text-xs text-slate-300 list-decimal list-inside leading-relaxed">
+              <li>Open WorldPainter $\to$ <code class="text-cyan-300">File &gt; Import &gt; Height map...</code></li>
+              <li>Select <code class="text-cyan-300">ASHENFALL_HEIGHTMAP_16BIT.png</code> (Height: -64 to 320, Water: 62).</li>
+              <li>Click <code class="text-cyan-300">Edit &gt; Import &gt; Mask as layer...</code> and choose <code class="text-cyan-300">ASHENFALL_POPULATE_MASK.png</code> for the <code class="text-emerald-400">Populate</code> layer!</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- LANDMARKS NAVIGATION CARD -->
+        <div class="border-t border-borderDark pt-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white uppercase tracking-wider">Jump to Landmark</span>
+            <span class="text-[10px] text-slate-500">Click to Center</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1.5 text-xs">
+            <button onclick="panTo(0, 2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span class="font-medium text-slate-200">The Forgotten Coast (Spawn)</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, 2500)</span>
+            </button>
+
+            <button onclick="panTo(0, -2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                <span class="font-medium text-slate-200">The Solitary Glacial Spine</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, -2500)</span>
+            </button>
+
+            <button onclick="panTo(-2100, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="font-medium text-slate-200">The Cogwork March</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(-2100, 0)</span>
+            </button>
+
+            <button onclick="panTo(0, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                <span class="font-medium text-slate-200">The Ashen Caldera</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, 0)</span>
+            </button>
+
+            <button onclick="panTo(2300, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="font-medium text-slate-200">The Gilded Dunes</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(2300, 0)</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- INTERACTIVE APPLICATION LOGIC -->
+  <script>
+    lucide.createIcons();
+
+    // Map Transform State
+    let zoom = 1;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    const img = document.getElementById('map-image');
+    const wrapper = document.getElementById('canvas-wrapper');
+
+    function updateTransform() {
+      img.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+    }
+
+    function zoomIn() {
+      zoom = Math.min(zoom * 1.3, 8.0);
+      updateTransform();
+    }
+
+    function zoomOut() {
+      zoom = Math.max(zoom / 1.3, 0.4);
+      updateTransform();
+    }
+
+    function resetZoom() {
+      zoom = 1;
+      panX = 0;
+      panY = 0;
+      updateTransform();
+    }
+
+    function panTo(mcX, mcZ) {
+      // Map -4000..4000 to image coordinate
+      const imgSize = img.naturalWidth || 2048;
+      const px = ((mcX + 4000) / 8000 - 0.5) * imgSize;
+      const pz = ((mcZ + 4000) / 8000 - 0.5) * imgSize;
+      zoom = 2.0;
+      panX = -px * zoom;
+      panY = -pz * zoom;
+      updateTransform();
+      updateHUD(mcX, mcZ);
+    }
+
+    // Drag-to-pan handlers
+    wrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        panX = e.clientX - startX;
+        panY = e.clientY - startY;
+        updateTransform();
+      }
+
+      // Compute Minecraft coordinates from cursor
+      const rect = wrapper.getBoundingClientRect();
+      const mouseX = e.clientX - (rect.left + rect.width / 2) - panX;
+      const mouseY = e.clientY - (rect.top + rect.height / 2) - panY;
+      
+      const imgSize = (img.naturalWidth || 2048) * zoom;
+      const normX = mouseX / imgSize + 0.5;
+      const normZ = mouseY / imgSize + 0.5;
+
+      if (normX >= 0 && normX <= 1 && normZ >= 0 && normZ <= 1) {
+        const mcX = Math.round((normX - 0.5) * 8000);
+        const mcZ = Math.round((normZ - 0.5) * 8000);
+        updateHUD(mcX, mcZ);
+      }
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    wrapper.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.15 : 0.85;
+      zoom = Math.max(0.4, Math.min(8.0, zoom * factor));
+      updateTransform();
+    }, { passive: false });
+
+    // Layer Switcher
+    function setLayer(layer) {
+      document.querySelectorAll('.layer-btn').forEach(b => {
+        b.classList.remove('bg-cyan-600', 'text-white', 'shadow-sm');
+        b.classList.add('text-slate-400');
+      });
+      const activeBtn = document.getElementById(`btn-${layer}`);
+      activeBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-sm');
+      activeBtn.classList.remove('text-slate-400');
+
+      const mapPaths = {
+        topographic: '/assets/topographic.png',
+        heightmap: '/assets/heightmap_preview.png',
+        populate: '/assets/populate_mask.png',
+        biomes: '/assets/biome_mask.png'
+      };
+
+      img.src = mapPaths[layer] || '/assets/topographic.png';
+    }
+
+    // Tabs Switcher
+    function switchTab(tabId) {
+      ['continents', 'lithosphere', 'still_life', 'worldpainter'].forEach(t => {
+        document.getElementById(`content-${t}`).classList.add('hidden');
+        const tabBtn = document.getElementById(`tab-${t}`);
+        tabBtn.classList.remove('bg-panel', 'text-cyan-400', 'font-semibold', 'shadow-sm');
+        tabBtn.classList.add('text-slate-400');
+      });
+
+      document.getElementById(`content-${tabId}`).classList.remove('hidden');
+      const activeTab = document.getElementById(`tab-${tabId}`);
+      activeTab.classList.add('bg-panel', 'text-cyan-400', 'font-semibold', 'shadow-sm');
+      activeTab.classList.remove('text-slate-400');
+    }
+
+    // HUD Telemetry Estimator
+    function updateHUD(x, z) {
+      document.getElementById('hud-coord').textContent = `X: ${x >= 0 ? '+' : ''}${x} | Z: ${z >= 0 ? '+' : ''}${z}`;
+      
+      const dist = Math.sqrt(x*x + z*z);
+      let elev = 66;
+      let biome = "Plains / Rolling Lowlands";
+      let pop = "Active (100% Still Life Foliage)";
+
+      if (dist > 3550) {
+        elev = Math.max(21, 62 - (dist - 3550) * 0.08);
+        biome = "The Veil of Salt (Deep Ocean)";
+        pop = "Excluded (Submarine)";
+      } else if (dist < 650) {
+        if (dist < 120) {
+          elev = 92;
+          biome = "The Obsidian Throne (Resurgent Spire)";
+          pop = "Excluded (Barren Basalt)";
+        } else if (dist < 480) {
+          elev = 40;
+          biome = "The Ashen Caldera (Sunken Crater Basin)";
+          pop = "Excluded (Barren Lava Floor)";
+        } else {
+          elev = 150;
+          biome = "Caldera Volcanic Rim (Crags & Spines)";
+          pop = "Excluded (Barren Basalt Fluting)";
+        }
+      } else if (z < -1600 && Math.abs(x) < 2600) {
+        elev = 220;
+        biome = "The Solitary Glacial Spine (Frozen Peaks)";
+        pop = "Summits Excluded / Foothills Populated";
+      } else if (x < -1200 && Math.abs(z) < 1400) {
+        elev = 88;
+        biome = "The Cogwork March (Terraced Badlands & Gorges)";
+        pop = "Active (Quarry Terraces)";
+      } else if (x > 1200 && Math.abs(z) < 1400) {
+        elev = 85;
+        biome = "The Gilded Dunes (Desert & Mesas)";
+        pop = "Active (Desert Scrub & Oases)";
+      } else if (x > 1200 && z > 1200) {
+        elev = 63;
+        biome = "The Whispering Fen (Murky Bayou & Swamp)";
+        pop = "Active (Mangrove & Peat)";
+      } else if (z > 2000 && Math.abs(x) < 800) {
+        elev = 72;
+        biome = "The Forgotten Coast (Player Spawn - Plains)";
+        pop = "Active (Wildflowers & Medieval Ports)";
+      }
+
+      document.getElementById('hud-elev').textContent = `Y: ${elev.toFixed(1)} blocks`;
+      document.getElementById('hud-biome').textContent = biome;
+      document.getElementById('hud-pop').textContent = pop;
+    }
+
+    function copyInstallCommand() {
+      const cmd = `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Exo2v/The-modpack/arena/01a0e180-the-modpack/setup.ps1', "$env:TEMP\\setup.ps1"); powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\\setup.ps1"`;
+      navigator.clipboard.writeText(cmd).then(() => {
+        const btn = document.getElementById('btnCopyText');
+        btn.textContent = "Copied to Clipboard!";
+        setTimeout(() => { btn.textContent = "Copy Windows 1-Click Setup"; }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>
