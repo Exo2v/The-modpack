@@ -1,0 +1,24 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:deep_cold_ocean",
+        "minecraft:deep_ocean",
+        "minecraft:deep_lukewarm_ocean",
+        {
+            "id": "still_life:cold_deep_ocean",
+            "required": false
+        },
+        {
+            "id": "still_life:tropical_deep_ocean",
+            "required": false
+        },
+        {
+            "id": "still_life:subtropical_deep_ocean",
+            "required": false
+        },
+        {
+            "id": "still_life:temperate_deep_ocean",
+            "required": false
+        }
+    ]
+}

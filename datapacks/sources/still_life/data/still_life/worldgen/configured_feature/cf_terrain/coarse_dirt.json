@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:vegetation_patch",
+	"config": {
+		"surface": "floor",
+		"depth": 1,
+		"vertical_range": 4,
+		"extra_bottom_block_chance": 0,
+		"extra_edge_column_chance": 1,
+		"vegetation_chance": 0,
+		"xz_radius": {
+		  "type": "minecraft:uniform",
+		  "min_inclusive": 1,
+		  "max_inclusive": 4
+		},
+		"replaceable": "#minecraft:dirt",
+		"ground_state": {
+			"type": "minecraft:weighted_state_provider",
+			"entries": [
+				{
+					"data": {"Name": "minecraft:grass_block"},
+					"weight": 50
+				},
+				{
+					"data": {"Name": "minecraft:coarse_dirt"},
+					"weight": 22
+				}
+			]
+		},
+		"vegetation_feature": {
+			"feature": "minecraft:moss_vegetation",
+			"placement": []
+		}
+	}
+}

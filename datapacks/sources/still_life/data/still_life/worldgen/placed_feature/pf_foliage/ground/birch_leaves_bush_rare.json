@@ -1,0 +1,29 @@
+{
+  "feature": "still_life:cf_foliage/ground/birch_leaves_bush",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 1
+    },
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_factor": 60,
+      "noise_offset": 0.1,
+      "noise_to_count_ratio": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

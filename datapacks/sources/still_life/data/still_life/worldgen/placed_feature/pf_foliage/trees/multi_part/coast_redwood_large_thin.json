@@ -1,0 +1,48 @@
+{
+  "feature": {
+    "type": "minecraft:random_selector",
+    "config": {
+      "features": [
+        {
+          "chance": 0.02,
+          "feature": "still_life:pf_foliage/trees/multi_part/coast_redwood/large_thin/coast_redwood_large_thin_foliage"
+        },
+        {
+          "chance": 0.005,
+          "feature": "still_life:pf_foliage/trees/multi_part/coast_redwood/large_thin/coast_redwood_large_thin_foliage_extention"
+        },
+        {
+          "chance": 0.5,
+          "feature": "still_life:pf_foliage/trees/multi_part/coast_redwood/large_thin/coast_redwood_large_thin_trunk"
+        },
+        {
+          "chance": 0.5,
+          "feature": "still_life:pf_foliage/trees/multi_part/coast_redwood/large_thin/coast_redwood_large_thin_trunk_extention"
+        }
+      ],
+      "default": "still_life:pf_foliage/trees/multi_part/coast_redwood/large_thin/coast_redwood_large_thin_foliage"
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 10
+    },
+    {
+      "type": "minecraft:count",
+      "count": 20
+    },
+    {
+      "predicate": {
+        "state": {
+          "Properties": {
+            "stage": "0"
+          },
+          "Name": "minecraft:spruce_sapling"
+        },
+        "type": "minecraft:would_survive"
+      },
+      "type": "minecraft:block_predicate_filter"
+    }
+  ]
+}

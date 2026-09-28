@@ -1,0 +1,76 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+  "type": "cache_2d",
+  "argument": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "max",
+        "argument1": "lithosphere:continents", 
+        "argument2": {
+          "type": "minecraft:spline",
+          "spline": {
+            "coordinate": "lithosphere:volcanic_islands", 
+            "points": [
+              {
+                "location": 0.26,
+                "value": -0.13,
+                "derivative": 18.0
+              },
+              {
+                "location": 0.265,
+                "value": -0.1,
+                "derivative": 0
+              },
+              {
+                "location": 0.32,
+                "value": -0.08,
+                "derivative": 0
+              }
+            ]
+          }
+        }
+      },
+      "points": [
+        {
+          "location": -0.5,
+          "value": -0.5,
+          "derivative": 1
+        },
+        {
+          "location": -0.1,
+          "value": -0.2,
+          "derivative": 0.25
+        },
+        {
+          "location": 0.126,
+          "value": -0.093,
+          "derivative": 0
+        },
+        {
+          "location": 0.177,
+          "value": 0.324,
+          "derivative": 0
+        },
+        {
+          "location": 0.4,
+          "value": 0.4,
+          "derivative": 0.2
+        },
+        {
+          "location": 1.2,
+          "value": 0.5,
+          "derivative": 0.2
+        },
+        {
+          "location": 1.201,
+          "value": 0.5,
+          "derivative": 1.0
+        }
+      ]
+    }
+  }
+  }
+}

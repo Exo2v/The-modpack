@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "features": [
+      {
+        "chance": 0,
+        "feature": "still_life:pf_foliage/trees/multi_part/coast_redwood_large"
+      }
+    ],
+    "default": "still_life:pf_foliage/trees/multi_part/coast_redwood_large"
+  }
+}

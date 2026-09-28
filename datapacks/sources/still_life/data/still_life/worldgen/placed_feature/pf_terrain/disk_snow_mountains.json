@@ -1,0 +1,37 @@
+{
+  "feature": "still_life:cf_terrain/disk_snow_mountains",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_factor": 60,
+      "noise_offset": 0.0,
+      "noise_to_count_ratio": 40
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 512
+        },
+        "min_inclusive": {
+          "absolute": 300
+        }
+      }
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

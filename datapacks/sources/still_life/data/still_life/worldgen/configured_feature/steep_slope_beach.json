@@ -1,0 +1,119 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 50,
+    "xz_spread": 10,
+    "y_spread": 10,
+    "feature": {
+      "feature": {
+		  "type": "minecraft:disk",
+		  "config": {
+			"half_height": 2,
+			"radius": {
+			  "type": "minecraft:uniform",
+			  "max_inclusive": 4,
+			  "min_inclusive": 2
+			},
+			"state_provider": {
+			  "fallback": {
+				"type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:packed_mud"
+				  }
+			  },
+			  "rules": [
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:dirt",
+					  "minecraft:sand",
+					  "minecraft:coarse_dirt"
+					],
+					"offset": [
+					  0,
+					  0,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:packed_mud"
+					}
+				  }
+				}
+			  ]
+			},
+			"target": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": [
+				"minecraft:coarse_dirt",
+				"minecraft:dirt",
+				"minecraft:light_gray_concrete",
+				"minecraft:sand"
+			  ]
+			}
+		  }
+		},
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:any_of",
+            "predicates": [
+			  {
+				"type": "minecraft:matching_blocks",
+				"blocks": [
+				  "minecraft:water",
+				  "minecraft:air"
+				],
+				"offset": [
+				  0,
+				  -6,
+				  3
+				]
+			  },
+			  {
+				"type": "minecraft:matching_blocks",
+				"blocks": [
+				  "minecraft:water",
+				  "minecraft:air"
+				],
+				"offset": [
+				  0,
+				  -6,
+				  -3
+				]
+			  },
+			  {
+				"type": "minecraft:matching_blocks",
+				"blocks": [
+				  "minecraft:water",
+				  "minecraft:air"
+				],
+				"offset": [
+				  3,
+				  -6,
+				  0
+				]
+			  },
+			  {
+				"type": "minecraft:matching_blocks",
+				"blocks": [
+				  "minecraft:water",
+				  "minecraft:air"
+				],
+				"offset": [
+				  -3,
+				  -6,
+				  0
+				]
+			  }
+			]
+          }
+        }
+      ]
+    }
+  }
+}

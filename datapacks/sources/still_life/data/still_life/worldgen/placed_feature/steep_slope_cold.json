@@ -1,0 +1,19 @@
+{
+  "feature": "still_life:steep_slope_cold",
+  "placement": [
+		{
+			"type": "minecraft:count",
+			"count": 50
+		},
+		{
+			"type": "minecraft:in_square"
+		},
+		{
+			"type": "heightmap",
+			"heightmap": "WORLD_SURFACE_WG"
+		},
+		{
+			"type": "minecraft:biome"
+		}
+	]
+}

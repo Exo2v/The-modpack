@@ -1,0 +1,99 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 0,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 8,
+      "min_inclusive": 7
+    },
+    "state_provider": {
+      "fallback": {
+				"type": "minecraft:dual_noise_provider",
+				"seed": 777,
+				"noise": {
+				  "firstOctave": -7,
+				  "amplitudes": [
+					0.1,
+					0.05,
+					0.01
+				  ]
+				},
+				"scale": 1,
+				"variety": {
+				  "min_inclusive": 1,
+				  "max_inclusive": 1
+				},
+				"slow_noise": {
+				  "firstOctave": -9,
+				  "amplitudes": [
+					1.0,
+					0.0,
+					1.0
+				  ]
+				},
+				"slow_scale": 2,
+				"states": [
+				  {
+					"Name": "minecraft:mud"
+				  },
+				  {
+					"Name": "minecraft:mud"
+				  },
+				  {
+					"Name": "minecraft:mud"
+				  },
+				  {
+					"Name": "minecraft:mud"
+				  },
+				  {
+					"Name": "minecraft:mud"
+				  },
+				  {
+					"Name": "minecraft:packed_mud"
+				  },
+				  {
+					"Name": "minecraft:packed_mud"
+				  },
+				  {
+					"Name": "minecraft:clay"
+				  },
+				  {
+					"Name": "minecraft:clay"
+				  },
+				  {
+					"Name": "minecraft:clay"
+				  }
+				]
+      },
+      "rules": [
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air",
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:packed_mud"
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:coarse_dirt",
+        "minecraft:dirt",
+        "minecraft:sand",
+        "minecraft:grass_block"
+      ]
+    }
+  }
+}

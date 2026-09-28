@@ -1,0 +1,18 @@
+{
+  "values": [
+    "minecraft:coarse_dirt",
+    "minecraft:grass_block",
+    "minecraft:packed_mud",
+    "minecraft:podzol",
+    "minecraft:gravel",
+    "minecraft:sand",
+    "minecraft:red_sand",
+    "minecraft:mud",
+    "minecraft:muddy_mangrove_roots",
+    "minecraft:mangrove_roots",
+    "minecraft:moss_carpet",
+    "minecraft:vine",
+    "minecraft:mangrove_propagule",
+    "minecraft:snow"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+    "replace": false,
+  "values": [
+    "minecraft:meadow",
+    "minecraft:frozen_peaks",
+    "minecraft:jagged_peaks",
+    "minecraft:stony_peaks",
+    "minecraft:snowy_slopes",
+    "minecraft:cherry_grove",
+	"still_life:alpine_heathlands",
+	"still_life:alpine_plains",
+	"still_life:alpine_tundra",
+	"still_life:arid_highlands",
+	"still_life:barren_mediterranean_highlands",
+	"still_life:barren_peaks",
+	"still_life:boreal_alpine_tundra",
+	"still_life:cold_barren_highlands",
+	"still_life:dry_tropical_highlands",
+	"still_life:larch_woodlands",
+	"still_life:mediterranean_highlands",
+	"still_life:mediterranean_wooded_highlands",
+	"still_life:savanna_highlands",
+	"still_life:snowy_barren_peaks",
+	"still_life:snowy_boreal_alpine_tundra",
+	"still_life:snowy_peaks",
+	"still_life:taiga_highlands",
+	"still_life:tropical_highlands",
+	"still_life:wooded_highlands"
+	
+  ]
+}

@@ -1,0 +1,74 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+  "type": "cache_2d",
+  "argument": {
+    "type": "mul",
+    "argument1": {
+      "type": "minecraft:spline",
+      "spline": {
+        "coordinate": {
+          "type": "add",
+          "argument1": "lithosphere:roughness", 
+          "argument2": {
+            "type": "noise",
+            "noise": "lithosphere:mountains_base",
+            "xz_scale": 2.0,
+            "y_scale": 0
+          }
+        },
+        "points": [
+          {
+            "location": -0.15,
+            "value": 0.7,
+            "derivative": 0
+          },
+          {
+            "location": -0.05,
+            "value": 0.6,
+            "derivative": 0
+          },
+          {
+            "location": 0.05,
+            "value": 0.5,
+            "derivative": 0
+          },
+          {
+            "location": 0.15,
+            "value": 0.4,
+            "derivative": 0
+          }
+        ]
+      }
+    },
+    "argument2": {
+      "type": "minecraft:spline",
+      "spline": {
+        "coordinate": {
+          "type": "add",
+          "argument1": "lithosphere:roughness", 
+          "argument2": "minecraft:overworld/continents" 
+        },
+        "points": [
+          {
+            "location": -1.2,
+            "value": 1.1,
+            "derivative": 0
+          },
+          {
+            "location": -1.08,
+            "value": 1.0,
+            "derivative": 0
+          },
+          {
+            "location": -1.02,
+            "value": 0.0,
+            "derivative": 0
+          }
+        ]
+      }
+    }
+  }
+  }
+}

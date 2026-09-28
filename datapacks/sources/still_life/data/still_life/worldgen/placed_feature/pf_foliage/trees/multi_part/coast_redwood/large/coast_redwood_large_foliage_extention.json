@@ -1,0 +1,9 @@
+{
+  "feature": "still_life:cf_foliage/trees/multi_part/coast_redwood/large/coast_redwood_large_foliage",
+  "placement": [
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    }
+  ]
+}

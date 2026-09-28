@@ -1,0 +1,220 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:disk",
+		  "config": {
+			"half_height": 3,
+			"radius": {
+			  "type": "minecraft:uniform",
+			  "max_inclusive": 3,
+			  "min_inclusive": 1
+			},
+			"state_provider": {
+			  "fallback": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+				  "Name": "minecraft:rooted_dirt"
+				}
+			  },
+			  "rules": [
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:deepslate",
+					"offset": [
+					  0,
+					  1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:deepslate"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:stone",
+					  "minecraft:gravel"
+					],
+					"offset": [
+					  0,
+					  1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:stone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  -1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:rooted_dirt"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:mycelium"
+					}
+				  }
+				}
+			  ]
+			},
+			"target": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": [
+				"minecraft:deepslate",
+				"minecraft:rooted_dirt",
+				"minecraft:dirt",
+				"minecraft:grass_block",
+				"minecraft:coarse_dirt",
+				"minecraft:stone"
+			  ]
+			}
+		  }
+	    },
+		"placement": [
+			{
+			  "type": "minecraft:block_predicate_filter",
+			  "predicate": {
+				"type": "minecraft:all_of",
+				"predicates": [
+				  {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:deepslate",
+					  "minecraft:mycelium",
+					  "minecraft:coarse_dirt",
+					  "minecraft:dirt",
+					  "minecraft:grass_block",
+					  "minecraft:stone",
+					  "minecraft:granite",
+					  "minecraft:diorite",
+					  "minecraft:tuff",
+					  "minecraft:andesite",
+					  "minecraft:basalt",
+					  "minecraft:smooth_basalt",
+					  "minecraft:blackstone",
+					  "minecraft:calcite"
+					],
+					"offset": [
+					  0,
+					  0,
+					  1
+					]
+				  },
+				  {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:deepslate",
+					  "minecraft:mycelium",
+					  "minecraft:coarse_dirt",
+					  "minecraft:dirt",
+					  "minecraft:grass_block",
+					  "minecraft:stone",
+					  "minecraft:granite",
+					  "minecraft:diorite",
+					  "minecraft:tuff",
+					  "minecraft:andesite",
+					  "minecraft:basalt",
+					  "minecraft:smooth_basalt",
+					  "minecraft:blackstone",
+					  "minecraft:calcite"
+					],
+					"offset": [
+					  0,
+					  0,
+					  -1
+					]
+				  },
+				  {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:deepslate",
+					  "minecraft:mycelium",
+					  "minecraft:coarse_dirt",
+					  "minecraft:dirt",
+					  "minecraft:grass_block",
+					  "minecraft:stone",
+					  "minecraft:granite",
+					  "minecraft:diorite",
+					  "minecraft:tuff",
+					  "minecraft:andesite",
+					  "minecraft:basalt",
+					  "minecraft:smooth_basalt",
+					  "minecraft:blackstone",
+					  "minecraft:calcite"
+					],
+					"offset": [
+					  1,
+					  0,
+					  0
+					]
+				  },
+				  {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:deepslate",
+					  "minecraft:mycelium",
+					  "minecraft:rooted_dirt",
+					  "minecraft:coarse_dirt",
+					  "minecraft:dirt",
+					  "minecraft:grass_block",
+					  "minecraft:stone",
+					  "minecraft:granite",
+					  "minecraft:diorite",
+					  "minecraft:tuff",
+					  "minecraft:andesite",
+					  "minecraft:basalt",
+					  "minecraft:smooth_basalt",
+					  "minecraft:blackstone",
+					  "minecraft:calcite"
+					],
+					"offset": [
+					  1,
+					  0,
+					  0
+					]
+				  }
+				]
+			  }
+			}
+		]
+    },
+    "tries": 20,
+    "xz_spread": 30,
+    "y_spread": 10
+  }
+}

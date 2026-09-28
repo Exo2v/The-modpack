@@ -1,0 +1,43 @@
+//[df-editor]:{"pos":[1368,388],"collapsed":false}
+{
+  //[df-editor]:{"pos":[1110,375],"collapsed":false}
+  "type": "cache_2d",
+  "argument": {
+    //[df-editor]:{"pos":[798,382],"collapsed":false}
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        //[df-editor]:{"pos":[428,375],"collapsed":false}
+        "type": "shifted_noise",
+        "noise": "minecraft:vegetation",
+        "xz_scale": 0.25,
+        "y_scale": 0,
+        "shift_x": "minecraft:shift_x", //[df-editor]:{"pos":[20,305],"collapsed":false}
+        "shift_y": 0, //[df-editor]:{"pos":[-10,451],"collapsed":false}
+        "shift_z": "minecraft:shift_z" //[df-editor]:{"pos":[-23,588],"collapsed":false}
+      },
+      "points": [
+        {
+          "location": -1.0043378094873212,
+          "value": -0.9972387234242646,
+          "derivative": 0
+        },
+        {
+          "location": -1,
+          "value": -1,
+          "derivative": 1
+        },
+        {
+          "location": 1,
+          "value": 1,
+          "derivative": 1
+        },
+        {
+          "location": 1.0049303819796584,
+          "value": 0.9998226818698326,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

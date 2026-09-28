@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:desert",
+	"still_life:xeric_shrubland",
+	"still_life:semiarid_desert",
+	"still_life:wooded_semiarid_desert"
+  ]
+}

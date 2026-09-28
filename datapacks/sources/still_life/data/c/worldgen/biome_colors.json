@@ -1,0 +1,547 @@
+{
+  "still_life:monsoon_forest": {
+    "r": 28,
+    "g": 183,
+    "b": 109
+  },
+  "still_life:grassland_savanna": {
+    "r": 215,
+    "g": 220,
+    "b": 114
+  },
+  "still_life:wooded_savanna": {
+    "r": 185,
+    "g": 207,
+    "b": 95
+  },
+  "still_life:tropical_dry_forest": {
+    "r": 169,
+    "g": 173,
+    "b": 80
+  },
+  "still_life:tropical_rainforest": {
+    "r": 18,
+    "g": 192,
+    "b": 27
+  },
+  "still_life:old_growth_tropical_rainforest": {
+    "r": 16,
+    "g": 129,
+    "b": 19
+  },
+  "still_life:tropical_shallow_ocean": {
+    "r": 88,
+    "g": 204,
+    "b": 228
+  },
+  "still_life:tropical_deep_ocean": {
+    "r": 70,
+    "g": 146,
+    "b": 202
+  },
+  "still_life:tropical_beach": {
+    "r": 248,
+    "g": 211,
+    "b": 163
+  },
+  "still_life:mangrove_marsh": {
+    "r": 28,
+    "g": 225,
+    "b": 147
+  },
+  "still_life:tropical_rainforest_river": {
+    "r": 54,
+    "g": 218,
+    "b": 128
+  },
+  "still_life:savanna_river": {
+    "r": 103,
+    "g": 199,
+    "b": 197
+  },
+  "still_life:desert_river": {
+    "r": 73,
+    "g": 164,
+    "b": 190
+  },
+  "still_life:mediterranean_river": {
+    "r": 87,
+    "g": 223,
+    "b": 238
+  },
+  "still_life:wooded_semiarid_desert": {
+    "r": 213,
+    "g": 183,
+    "b": 94
+  },
+  "still_life:xeric_shrubland": {
+    "r": 214,
+    "g": 200,
+    "b": 152
+  },
+  "still_life:arid_desert": {
+    "r": 243,
+    "g": 220,
+    "b": 171
+  },
+  "still_life:mediterranean_steppe": {
+    "r": 162,
+    "g": 182,
+    "b": 90
+  },
+  "still_life:mediterranean_shrubland": {
+    "r": 143,
+    "g": 187,
+    "b": 62
+  },
+  "still_life:mediterranean_forest": {
+    "r": 84,
+    "g": 120,
+    "b": 48
+  },
+  "still_life:arid_beach": {
+    "r": 255,
+    "g": 227,
+    "b": 145
+  },
+  "still_life:mediterranean_beach": {
+    "r": 249,
+    "g": 247,
+    "b": 145
+  },
+  "still_life:savanna_beach": {
+    "r": 214,
+    "g": 184,
+    "b": 116
+  },
+  "still_life:arctic_desert": {
+    "r": 145,
+    "g": 181,
+    "b": 171
+  },
+  "still_life:barren_arctic_desert": {
+    "r": 176,
+    "g": 199,
+    "b": 200
+  },
+  "still_life:arctic_desert_basin": {
+    "r": 114,
+    "g": 184,
+    "b": 141
+  },
+  "still_life:barren_tundra": {
+    "r": 142,
+    "g": 109,
+    "b": 100
+  },
+  "still_life:lush_tundra": {
+    "r": 180,
+    "g": 175,
+    "b": 92
+  },
+  "still_life:arctic_tundra": {
+    "r": 194,
+    "g": 128,
+    "b": 78
+  },
+  "still_life:snowy_tundra": {
+    "r": 192,
+    "g": 165,
+    "b": 146
+  },
+  "still_life:wooded_tundra": {
+    "r": 139,
+    "g": 149,
+    "b": 72
+  },
+  "still_life:cold_taiga": {
+    "r": 71,
+    "g": 143,
+    "b": 107
+  },
+  "still_life:cold_taiga_clearings": {
+    "r": 112,
+    "g": 167,
+    "b": 124
+  },
+  "still_life:evergreen_taiga": {
+    "r": 95,
+    "g": 140,
+    "b": 74
+  },
+  "still_life:birch_forest": {
+    "r": 138,
+    "g": 208,
+    "b": 136
+  },
+  "still_life:temperate_mixed_forest": {
+    "r": 73,
+    "g": 146,
+    "b": 61
+  },
+  "still_life:temperate_forest": {
+    "r": 65,
+    "g": 167,
+    "b": 63
+  },
+  "still_life:old_growth_temperate_forest": {
+    "r": 41,
+    "g": 124,
+    "b": 39
+  },
+  "still_life:mixed_forest_steppe": {
+    "r": 126,
+    "g": 184,
+    "b": 99
+  },
+  "still_life:cold_steppe": {
+    "r": 170,
+    "g": 196,
+    "b": 123
+  },
+  "still_life:dry_cold_steppe": {
+    "r": 191,
+    "g": 193,
+    "b": 108
+  },
+  "still_life:cold_desert": {
+    "r": 190,
+    "g": 184,
+    "b": 146
+  },
+  "still_life:cold_semi_desert": {
+    "r": 165,
+    "g": 152,
+    "b": 107
+  },
+  "still_life:warm_temperate_clearings": {
+    "r": 134,
+    "g": 204,
+    "b": 87
+  },
+  "still_life:warm_temperate_woodlands": {
+    "r": 111,
+    "g": 166,
+    "b": 49
+  },
+  "still_life:shrub_steppe": {
+    "r": 188,
+    "g": 171,
+    "b": 118
+  },
+  "still_life:temperate_river": {
+    "r": 60,
+    "g": 137,
+    "b": 166
+  },
+  "still_life:warm_temperate_river": {
+    "r": 88,
+    "g": 179,
+    "b": 194
+  },
+  "still_life:boreal_river": {
+    "r": 66,
+    "g": 125,
+    "b": 136
+  },
+  "still_life:steppe_river": {
+    "r": 103,
+    "g": 169,
+    "b": 166
+  },
+  "still_life:tundra_river": {
+    "r": 91,
+    "g": 126,
+    "b": 140
+  },
+  "still_life:arctic_river": {
+    "r": 86,
+    "g": 111,
+    "b": 131
+  },
+  "still_life:snowy_peaks": {
+    "r": 237,
+    "g": 242,
+    "b": 243
+  },
+  "still_life:snowy_barren_peaks": {
+    "r": 213,
+    "g": 213,
+    "b": 193
+  },
+  "still_life:barren_peaks": {
+    "r": 149,
+    "g": 143,
+    "b": 123
+  },
+  "still_life:alpine_heathlands": {
+    "r": 173,
+    "g": 135,
+    "b": 170
+  },
+  "still_life:wooded_highlands": {
+    "r": 74,
+    "g": 121,
+    "b": 72
+  },
+  "still_life:mediterranean_wooded_highlands": {
+    "r": 119,
+    "g": 145,
+    "b": 43
+  },
+  "still_life:alpine_tundra": {
+    "r": 163,
+    "g": 192,
+    "b": 122
+  },
+  "still_life:boreal_alpine_tundra": {
+    "r": 158,
+    "g": 171,
+    "b": 105
+  },
+  "still_life:cold_barren_highlands": {
+    "r": 201,
+    "g": 199,
+    "b": 160
+  },
+  "still_life:larch_woodlands": {
+    "r": 186,
+    "g": 168,
+    "b": 65
+  },
+  "still_life:alpine_plains": {
+    "r": 113,
+    "g": 163,
+    "b": 82
+  },
+  "still_life:taiga_highlands": {
+    "r": 88,
+    "g": 118,
+    "b": 67
+  },
+  "still_life:snowy_boreal_alpine_tundra": {
+    "r": 180,
+    "g": 199,
+    "b": 165
+  },
+  "still_life:subtropical_shallow_ocean": {
+    "r": 90,
+    "g": 181,
+    "b": 207
+  },
+  "still_life:subtropical_deep_ocean": {
+    "r": 56,
+    "g": 143,
+    "b": 169
+  },
+  "still_life:temperate_shallow_ocean": {
+    "r": 91,
+    "g": 153,
+    "b": 215
+  },
+  "still_life:temperate_deep_ocean": {
+    "r": 64,
+    "g": 117,
+    "b": 176
+  },
+  "still_life:cold_deep_ocean": {
+    "r": 82,
+    "g": 112,
+    "b": 167
+  },
+  "still_life:cold_shallow_ocean": {
+    "r": 77,
+    "g": 128,
+    "b": 179
+  },
+  "still_life:arctic_deep_ocean": {
+    "r": 81,
+    "g": 111,
+    "b": 140
+  },
+  "still_life:arctic_shallow_ocean": {
+    "r": 95,
+    "g": 126,
+    "b": 158
+  },
+  "still_life:temperate_beach": {
+    "r": 223,
+    "g": 205,
+    "b": 142
+  },
+  "still_life:taiga_beach": {
+    "r": 189,
+    "g": 180,
+    "b": 128
+  },
+  "still_life:tundra_beach": {
+    "r": 193,
+    "g": 185,
+    "b": 159
+  },
+  "still_life:cold_tundra_beach": {
+    "r": 155,
+    "g": 153,
+    "b": 117
+  },
+  "still_life:arctic_beach": {
+    "r": 198,
+    "g": 197,
+    "b": 176
+  },
+  "still_life:mediterranean_highlands": {
+    "r": 202,
+    "g": 199,
+    "b": 79
+  },
+  "still_life:barren_mediterranean_highlands": {
+    "r": 201,
+    "g": 188,
+    "b": 97
+  },
+  "still_life:wooded_mediterranean_steppe": {
+    "r": 165,
+    "g": 150,
+    "b": 67
+  },
+  "still_life:temperate_swamp": {
+    "r": 69,
+    "g": 124,
+    "b": 78
+  },
+  "still_life:mire": {
+    "r": 139,
+    "g": 113,
+    "b": 84
+  },
+  "still_life:fen": {
+    "r": 177,
+    "g": 158,
+    "b": 95
+  },
+  "still_life:bog": {
+    "r": 131,
+    "g": 83,
+    "b": 61
+  },
+  "still_life:flooded_savanna": {
+    "r": 168,
+    "g": 171,
+    "b": 101
+  },
+  "still_life:mediterranean_swamp": {
+    "r": 68,
+    "g": 136,
+    "b": 114
+  },
+  "still_life:desert_wetlands": {
+    "r": 146,
+    "g": 167,
+    "b": 105
+  },
+  "still_life:flooded_grasslands": {
+    "r": 183,
+    "g": 179,
+    "b": 119
+  },
+  "still_life:arctic_wetlands": {
+    "r": 172,
+    "g": 180,
+    "b": 154
+  },
+  "still_life:mediterranean_marsh": {
+    "r": 183,
+    "g": 190,
+    "b": 97
+  },
+  "still_life:temperate_marsh": {
+    "r": 118,
+    "g": 177,
+    "b": 122
+  },
+  "still_life:arctic_glacier": {
+    "r": 155,
+    "g": 218,
+    "b": 232
+  },
+  "still_life:glacial_basin": {
+    "r": 155,
+    "g": 199,
+    "b": 202
+  },
+  "still_life:tropical_highlands": {
+    "r": 109,
+    "g": 189,
+    "b": 83
+  },
+  "still_life:savanna_highlands": {
+    "r": 208,
+    "g": 206,
+    "b": 108
+  },
+  "still_life:arid_highlands": {
+    "r": 222,
+    "g": 188,
+    "b": 150
+  },
+  "still_life:dry_tropical_highlands": {
+    "r": 149,
+    "g": 170,
+    "b": 85
+  },
+  "still_life:humid_savanna": {
+    "r": 143,
+    "g": 186,
+    "b": 86
+  },
+  "still_life:semiarid_desert": {
+    "r": 232,
+    "g": 208,
+    "b": 125
+  },
+  "still_life:tropical_wetlands": {
+    "r": 108,
+    "g": 174,
+    "b": 68
+  },
+  "still_life:barren_caves": {
+    "r": 137,
+    "g": 123,
+    "b": 99
+  },
+  "still_life:mushroom_caves": {
+    "r": 169,
+    "g": 103,
+    "b": 163
+  },
+  "still_life:glowing_caves": {
+    "r": 107,
+    "g": 165,
+    "b": 164
+  },
+  "still_life:haunted_depths": {
+    "r": 75,
+    "g": 75,
+    "b": 116
+  },
+  "still_life:frozen_caves": {
+    "r": 180,
+    "g": 220,
+    "b": 216
+  },
+  "still_life:infested_tunnels": {
+    "r": 199,
+    "g": 202,
+    "b": 189
+  },
+  "still_life:scorched_caves": {
+    "r": 207,
+    "g": 150,
+    "b": 92
+  },
+  "still_life:pine_woods": {
+    "r": 85,
+    "g": 126,
+    "b": 44
+  }
+}

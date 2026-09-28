@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "still_life:pf_foliage/ground/coral/brain_coral",
+    "features": [
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/ground/coral/brain_coral"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/ground/coral/tube_coral"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/ground/coral/bubble_coral"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/ground/coral/fire_coral"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/ground/coral/horn_coral"
+      }
+    ]
+  }
+}

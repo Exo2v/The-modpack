@@ -1,0 +1,205 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 4,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 8,
+      "min_inclusive": 7
+    },
+    "state_provider": {
+      "fallback": {
+		  "type": "minecraft:weighted_state_provider",
+		  "entries": [
+			{
+			  "data": {
+				"Name": "minecraft:packed_ice"
+			  },
+			  "weight": 80
+			},
+			{
+			  "data": {
+				"Name": "minecraft:ice"
+			  },
+			  "weight": 10
+			},
+			{
+			  "data": {
+				"Name": "minecraft:air"
+			  },
+			  "weight": 1
+			}
+		  ]
+      },
+      "rules": [
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:air",
+				"minecraft:water"
+			],
+            "offset": [
+              0,
+              -4,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:air",
+				"minecraft:water"
+			],
+            "offset": [
+              0,
+              -5,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:air",
+				"minecraft:water"
+			],
+            "offset": [
+              1,
+              -3,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:air",
+				"minecraft:water"
+			],
+            "offset": [
+              -1,
+              -4,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:air",
+				"minecraft:seagrass",
+				"minecraft:tall_seagrass",
+				"minecraft:water"
+			],
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+        },
+        {
+          "if_true": {
+			  "type": "minecraft:all_of",
+			  "predicates": [
+				{
+					"type": "minecraft:matching_blocks",
+					"blocks": [ 
+						"minecraft:air"
+					],
+					"offset": [
+					  1,
+					  0,
+					  0
+					]
+				},
+				{
+					"type": "minecraft:matching_blocks",
+					"blocks": [ 
+						"minecraft:air"
+					],
+					"offset": [
+					  -1,
+					  0,
+					  0
+					]
+				},
+				{
+					"type": "minecraft:matching_blocks",
+					"blocks": [ 
+						"minecraft:air"
+					],
+					"offset": [
+					  0,
+					  0,
+					  1
+					]
+				},
+				{
+					"type": "minecraft:matching_blocks",
+					"blocks": [ 
+						"minecraft:air"
+					],
+					"offset": [
+					  0,
+					  0,
+					  -1
+					]
+				}
+			  ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          }
+		}
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:air",
+        "minecraft:snow",
+        "minecraft:snow_block"
+      ]
+    }
+  }
+}

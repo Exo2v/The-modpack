@@ -1,0 +1,63 @@
+
+{
+  "type": "minecraft:cache_once",
+  "argument": {
+	"type": "minecraft:spline",
+	"spline": {
+	  "coordinate": {
+		"type": "add",
+		"argument1": {
+		  "type": "add",
+		  "argument1": {
+			"type": "minecraft:spline",
+			"spline": {
+			  "coordinate": {
+				"type": "y_clamped_gradient",
+				"from_y": -64,
+				"to_y": 512,
+				"from_value": 1.55,
+				"to_value": -2.55
+			  },
+			  "points": [
+				{
+				  "location": -0.001,
+				  "value": -0.001,
+				  "derivative": 1
+				},
+				{
+				  "location": 0.001,
+				  "value": -0.001,
+				  "derivative": 0.4
+				},
+				{
+				  "location": 1.0,
+				  "value": 1.0,
+				  "derivative": 1
+				}
+			  ]
+			}
+		  },
+		  "argument2": "lithosphere:topography_final" 
+		},
+		"argument2": -0.1
+	  },
+	  "points": [
+		{
+		  "location": -0.001,
+		  "value": 0.0,
+		  "derivative": 1
+		},
+		{
+		  "location": 0.001,
+		  "value": 0.0,
+		  "derivative": 0.6
+		},
+		{
+		  "location": 2.0,
+		  "value": 1.1,
+		  "derivative": 0.6
+		}
+	  ]
+	}
+  }
+}

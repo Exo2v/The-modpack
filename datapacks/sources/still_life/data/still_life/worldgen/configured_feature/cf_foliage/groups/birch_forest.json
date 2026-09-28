@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "still_life:pf_foliage/trees/spruce_sparse",
+    "features": [
+      {
+        "chance": 0.01,
+        "feature": "still_life:pf_foliage/trees/beech"
+      },
+      {
+        "chance": 0.08,
+        "feature": "still_life:pf_foliage/trees/pine_sparse"
+      },
+      {
+        "chance": 0.3,
+        "feature": "still_life:pf_foliage/trees/spruce_sparse"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/trees/spruce"
+      },
+      {
+        "chance": 0.6,
+        "feature": "still_life:pf_foliage/trees/birch_noise"
+      },
+      {
+        "chance": 0.2,
+        "feature": "still_life:pf_foliage/trees/birch"
+      },
+      {
+        "chance": 0.5,
+        "feature": "still_life:pf_foliage/trees/birch_large"
+      },
+      {
+        "chance": 0.01,
+        "feature": "still_life:pf_foliage/bushes/oak_bush"
+      },
+      {
+        "chance": 0.4,
+        "feature": "still_life:pf_foliage/bushes/birch_bush_small"
+      },
+      {
+        "chance": 0.1,
+        "feature": "still_life:pf_foliage/bushes/birch_bush"
+      }
+    ]
+  }
+}

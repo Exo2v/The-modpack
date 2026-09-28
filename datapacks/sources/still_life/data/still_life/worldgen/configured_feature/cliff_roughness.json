@@ -1,0 +1,1199 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+	    "type": "minecraft:simple_random_selector",
+	    "config": {
+		  "features": [
+		    {
+				"feature": {
+				  "type": "minecraft:disk",
+				  "config": {
+					"half_height": 2,
+					"radius": {
+					  "type": "minecraft:biased_to_bottom",
+					  "max_inclusive": 1,
+					  "min_inclusive": 1
+					},
+					"state_provider": {
+					  "fallback": {
+						"type": "minecraft:simple_state_provider",
+						"state": {
+						  "Name": "minecraft:light_gray_concrete"
+						}
+					  },
+					  "rules": [
+					  ]
+					},
+					"target": {
+					  "type": "minecraft:matching_blocks",
+					  "blocks": [
+						"minecraft:tall_grass",
+						"minecraft:short_grass",
+						"minecraft:tall_seagrass",
+						"minecraft:seagrass",
+						"minecraft:snow",
+						"minecraft:water",
+						"minecraft:air",
+						"minecraft:snow_block",
+						"minecraft:powder_snow",
+						"minecraft:sand",
+						"minecraft:gravel",
+						"minecraft:red_sand",
+						"minecraft:podzol",
+						"minecraft:coarse_dirt",
+						"minecraft:packed_mud",
+						"minecraft:mud",
+						"minecraft:dirt",
+						"minecraft:light_gray_concrete",
+						"minecraft:grass_block"
+					  ]
+					}
+				  }
+				},
+			    "placement": [
+					{
+					  "type": "minecraft:random_offset",
+					  "xz_spread": 0,
+					  "y_spread": {
+						"type": "minecraft:biased_to_bottom",
+						  "min_inclusive": -1,
+						  "max_inclusive": -1
+					  }
+					}
+				]
+		    }
+		  ]
+	    }
+	  },
+	  "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:any_of",
+            "predicates": [
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -2,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  2,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -2,
+					  -3,
+					  2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  2,
+					  -3,
+					  2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -3,
+					  2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -3,
+					  2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -2,
+					  -3,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  2,
+					  -3,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -2,
+					  -3,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  2,
+					  -3,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -1,
+					  -1,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  -2,
+					  -3,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -1,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -3,
+					  2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -1,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  -3,
+					  -2
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  1,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:stone",
+                      "minecraft:andesite",
+                      "minecraft:deepslate",
+                      "minecraft:granite",
+                      "minecraft:diorite",
+                      "minecraft:terracotta",
+                      "minecraft:cyan_terracotta",
+                      "minecraft:white_terracotta",
+                      "minecraft:light_gray_terracotta",
+                      "minecraft:gray_terracotta",
+                      "minecraft:black_terracotta",
+                      "minecraft:brown_terracotta",
+                      "minecraft:red_terracotta",
+                      "minecraft:orange_terracotta",
+                      "minecraft:yellow_terracotta",
+                      "minecraft:tuff",
+                      "minecraft:calcite",
+                      "minecraft:deepslate",
+                      "minecraft:basalt",
+                      "minecraft:smooth_basalt",
+                      "minecraft:blackstone",
+                      "minecraft:sandstone",
+                      "minecraft:red_sandstone",
+                      "minecraft:smooth_sandstone",
+                      "minecraft:smooth_red_sandstone"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  -1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  1,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:stone",
+                      "minecraft:andesite",
+                      "minecraft:deepslate",
+                      "minecraft:granite",
+                      "minecraft:diorite",
+                      "minecraft:terracotta",
+                      "minecraft:cyan_terracotta",
+                      "minecraft:white_terracotta",
+                      "minecraft:light_gray_terracotta",
+                      "minecraft:gray_terracotta",
+                      "minecraft:black_terracotta",
+                      "minecraft:brown_terracotta",
+                      "minecraft:red_terracotta",
+                      "minecraft:orange_terracotta",
+                      "minecraft:yellow_terracotta",
+                      "minecraft:tuff",
+                      "minecraft:calcite",
+                      "minecraft:deepslate",
+                      "minecraft:basalt",
+                      "minecraft:smooth_basalt",
+                      "minecraft:blackstone",
+                      "minecraft:sandstone",
+                      "minecraft:red_sandstone",
+                      "minecraft:smooth_sandstone",
+                      "minecraft:smooth_red_sandstone"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  1
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  1,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:stone",
+                      "minecraft:andesite",
+                      "minecraft:deepslate",
+                      "minecraft:granite",
+                      "minecraft:diorite",
+                      "minecraft:terracotta",
+                      "minecraft:cyan_terracotta",
+                      "minecraft:white_terracotta",
+                      "minecraft:light_gray_terracotta",
+                      "minecraft:gray_terracotta",
+                      "minecraft:black_terracotta",
+                      "minecraft:brown_terracotta",
+                      "minecraft:red_terracotta",
+                      "minecraft:orange_terracotta",
+                      "minecraft:yellow_terracotta",
+                      "minecraft:tuff",
+                      "minecraft:calcite",
+                      "minecraft:deepslate",
+                      "minecraft:basalt",
+                      "minecraft:smooth_basalt",
+                      "minecraft:blackstone",
+                      "minecraft:sandstone",
+                      "minecraft:red_sandstone",
+                      "minecraft:smooth_sandstone",
+                      "minecraft:smooth_red_sandstone"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  1,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:air",
+                      "minecraft:snow",
+                      "minecraft:water"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  0,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:grass_block",
+                      "minecraft:sand",
+                      "minecraft:sandstone",
+                      "minecraft:snow_block",
+					  "minecraft:powder_snow",
+                      "minecraft:gravel",
+                      "minecraft:podzol",
+                      "minecraft:coarse_dirt",
+					  "minecraft:packed_mud",
+					  "minecraft:mud",
+                      "minecraft:dirt"
+                    ]
+                  },
+                  {
+                    "type": "minecraft:matching_blocks",
+					"offset": [
+					  0,
+					  1,
+					  0
+				    ],
+                    "blocks": [
+                      "minecraft:stone",
+                      "minecraft:andesite",
+                      "minecraft:deepslate",
+                      "minecraft:granite",
+                      "minecraft:diorite",
+                      "minecraft:terracotta",
+                      "minecraft:cyan_terracotta",
+                      "minecraft:white_terracotta",
+                      "minecraft:light_gray_terracotta",
+                      "minecraft:gray_terracotta",
+                      "minecraft:black_terracotta",
+                      "minecraft:brown_terracotta",
+                      "minecraft:red_terracotta",
+                      "minecraft:orange_terracotta",
+                      "minecraft:yellow_terracotta",
+                      "minecraft:tuff",
+                      "minecraft:calcite",
+                      "minecraft:deepslate",
+                      "minecraft:basalt",
+                      "minecraft:smooth_basalt",
+                      "minecraft:blackstone",
+                      "minecraft:sandstone",
+                      "minecraft:red_sandstone",
+                      "minecraft:smooth_sandstone",
+                      "minecraft:smooth_red_sandstone"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 10,
+    "xz_spread": 10,
+    "y_spread": 1
+  }
+}

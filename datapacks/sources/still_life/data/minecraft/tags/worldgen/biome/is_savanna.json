@@ -1,0 +1,14 @@
+{
+    "replace": false,
+  "values": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+	"still_life:tropical_dry_forest",
+	"still_life:savanna_highlands",
+	"still_life:wooded_savanna",
+	"still_life:grassland_savanna",
+	"still_life:flooded_savanna"
+	
+  ]
+}

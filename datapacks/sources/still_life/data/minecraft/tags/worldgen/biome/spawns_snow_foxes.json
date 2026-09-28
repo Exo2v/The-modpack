@@ -1,0 +1,31 @@
+{
+    "replace": false,
+  "values": [
+    "minecraft:snowy_plains",
+    "minecraft:ice_spikes",
+    "minecraft:frozen_ocean",
+    "minecraft:snowy_taiga",
+    "minecraft:frozen_river",
+    "minecraft:snowy_beach",
+    "minecraft:frozen_peaks",
+    "minecraft:jagged_peaks",
+    "minecraft:snowy_slopes",
+    "minecraft:grove",
+	"still_life:arctic_beach",
+	"still_life:arctic_deep_ocean",
+	"still_life:arctic_desert",
+	"still_life:arctic_desert_basin",
+	"still_life:arctic_glacier",
+	"still_life:arctic_river",
+	"still_life:arctic_shallow_ocean",
+	"still_life:barren_tundra",
+	"still_life:lush_tundra",
+	"still_life:wooded_tundra",
+	"still_life:arctic_wetlands",
+	"still_life:barren_arctic_desert",
+	"still_life:frozen_caves",
+	"still_life:glacial_basin",
+	"still_life:snowy_boreal_alpine_tundra",
+	"still_life:snowy_tundra"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:block_column",
+		  "config": {
+			"allowed_placement": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": "minecraft:water"
+			},
+			"direction": "up",
+			"layers": [
+			  {
+				"height": {
+				  "type": "minecraft:weighted_list",
+				  "distribution": [
+					{
+					  "data": {
+						"type": "minecraft:uniform",
+						"max_inclusive": 5,
+						"min_inclusive": 0
+					  },
+					  "weight": 2
+					},
+					{
+					  "data": {
+						"type": "minecraft:uniform",
+						"max_inclusive": 2,
+						"min_inclusive": 0
+					  },
+					  "weight": 6
+					},
+					{
+					  "data": {
+						"type": "minecraft:uniform",
+						"max_inclusive": 3,
+						"min_inclusive": 0
+					  },
+					  "weight": 5
+					}
+				  ]
+				},
+				"provider": {
+				  "type": "minecraft:weighted_state_provider",
+				  "entries": [
+					{
+					  "data": {
+						"Name": "minecraft:tube_coral_block"
+					  },
+					  "weight": 4
+					},
+					{
+					  "data": {
+						"Name": "minecraft:cave_vines_plant",
+						"Properties": {
+						  "berries": "true"
+						}
+					  },
+					  "weight": 0
+					}
+				  ]
+				}
+			  },
+			  {
+				"height": 1,
+				"provider": {
+				  "type": "minecraft:weighted_state_provider",
+				  "entries": [
+					{
+					  "data": {
+						"Name": "minecraft:tube_coral"
+					  },
+					  "weight": 4
+					},
+					{
+					  "data": {
+						"Name": "minecraft:cave_vines_plant",
+						"Properties": {
+						  "berries": "true"
+						}
+					  },
+					  "weight": 0
+					}
+				  ]
+				}
+			  }
+			],
+			"prioritize_tip": true
+		  }
+	    },
+		"placement": [
+			{
+			  "type": "minecraft:environment_scan",
+			  "allowed_search_condition": {
+				"type": "minecraft:matching_blocks",
+				"blocks": "minecraft:water"
+			  },
+			  "direction_of_search": "down",
+			  "max_steps": 12,
+			  "target_condition": {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+						"minecraft:gravel",
+						"minecraft:sand",
+						"minecraft:dead_tube_coral_block",
+						"minecraft:dead_brain_coral_block",
+						"minecraft:dead_bubble_coral_block",
+						"minecraft:dead_fire_coral_block"
+					],
+					"offset": [
+					  0,
+					  0,
+					  0
+					]
+			  }
+			},
+			{
+			  "type": "minecraft:random_offset",
+			  "xz_spread": 0,
+			  "y_spread": 1
+			}
+		]
+    },
+    "tries": 20,
+    "xz_spread": 3,
+    "y_spread": 5
+  }
+}

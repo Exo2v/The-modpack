@@ -1,0 +1,79 @@
+{
+  "feature": "still_life:cf_foliage/trees/red_mangrove",
+  "placement": [
+    {
+      "type": "minecraft:surface_water_depth_filter",
+      "max_water_depth": 3
+    },
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_to_count_ratio": 1,
+      "noise_factor": 150,
+      "noise_offset": 0.8
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "minecraft:jungle_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:any_of",
+        "predicates": [
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:water"
+            ],
+            "offset": [
+              0,
+              -1,
+              4
+            ]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:water"
+            ],
+            "offset": [
+              0,
+              -1,
+              -4
+            ]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:water"
+            ],
+            "offset": [
+              4,
+              -1,
+              0
+            ]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:water"
+            ],
+            "offset": [
+              -4,
+              -1,
+              0
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

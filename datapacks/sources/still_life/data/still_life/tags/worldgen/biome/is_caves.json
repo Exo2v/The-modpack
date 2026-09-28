@@ -1,0 +1,12 @@
+{
+  "values": [
+	"still_life:scorched_caves",
+	"still_life:mushroom_caves",
+	"still_life:infested_tunnels",
+	"still_life:glowing_caves",
+	"still_life:frozen_caves",
+	"still_life:barren_caves",
+    "minecraft:lush_caves",
+    "minecraft:dripstone_caves"
+  ]
+}

@@ -1,0 +1,75 @@
+
+{
+  "type": "cache_once",
+  "argument": {
+    "type": "add",
+    "argument1": {
+      "type": "y_clamped_gradient",
+      "from_y": 200,
+      "to_y": -20,
+      "from_value": 0.3,
+      "to_value": -0.075
+    },
+    "argument2": {
+      "type": "add",
+      "argument1": {
+        "type": "add",
+        "argument1": {
+          "type": "add",
+          "argument1": {
+            "type": "noise",
+            "noise": "minecraft:cave_cheese",
+            "xz_scale": 0.9,
+            "y_scale": 3.5
+          },
+          "argument2": {
+            "type": "mul",
+            "argument1": {
+              "type": "add",
+              "argument1": {
+                "type": "clamp",
+                "min": 0,
+                "max": 0.5,
+                "input": {
+                  "type": "abs",
+                  "argument": {
+                    "type": "noise",
+                    "noise": "minecraft:calcite",
+                    "xz_scale": 35,
+                    "y_scale": 5.600000000000017
+                  }
+                }
+              },
+              "argument2": -0.7 
+            },
+            "argument2": 0.19999999999999998 
+          }
+        },
+        "argument2": 0.43 
+      },
+      "argument2": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": "minecraft:overworld/caves/pillars", 
+          "points": [
+            {
+              "location": 0.0012496312184001046,
+              "value": 0.0013063269862998994,
+              "derivative": 0
+            },
+            {
+              "location": 0.014718721092381482,
+              "value": 0.009185040349694085,
+              "derivative": 1
+            },
+            {
+              "location": 0.49981080256388744,
+              "value": 1.0045185276661575,
+              "derivative": 3.499120066637755
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:tree",
+		  "config": {
+			"decorators": [
+			  {
+				"type": "minecraft:attached_to_leaves",
+				"block_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:cobweb"
+				  }
+				},
+				"directions": [
+				  "up"
+				],
+				"exclusion_radius_xz": 0,
+				"exclusion_radius_y": 0,
+				"probability": 0.5,
+				"required_empty_blocks": 1
+			  },
+			  {
+				"type": "minecraft:attached_to_leaves",
+				"block_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:cobweb"
+				  }
+				},
+				"directions": [
+				  "north"
+				],
+				"exclusion_radius_xz": 0,
+				"exclusion_radius_y": 0,
+				"probability": 0.5,
+				"required_empty_blocks": 1
+			  },
+			  {
+				"type": "minecraft:attached_to_leaves",
+				"block_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:cobweb"
+				  }
+				},
+				"directions": [
+				  "south"
+				],
+				"exclusion_radius_xz": 0,
+				"exclusion_radius_y": 0,
+				"probability": 0.5,
+				"required_empty_blocks": 1
+			  },
+			  {
+				"type": "minecraft:attached_to_leaves",
+				"block_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:cobweb"
+				  }
+				},
+				"directions": [
+				  "east"
+				],
+				"exclusion_radius_xz": 0,
+				"exclusion_radius_y": 0,
+				"probability": 0.5,
+				"required_empty_blocks": 1
+			  },
+			  {
+				"type": "minecraft:attached_to_leaves",
+				"block_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:cobweb"
+				  }
+				},
+				"directions": [
+				  "west"
+				],
+				"exclusion_radius_xz": 0,
+				"exclusion_radius_y": 0,
+				"probability": 0.5,
+				"required_empty_blocks": 1
+			  }
+			],
+			"dirt_provider": {
+			  "type": "minecraft:simple_state_provider",
+			  "state": {
+				"Name": "minecraft:white_wool"
+			  }
+			},
+			"foliage_placer": {
+			  "type": "minecraft:fancy_foliage_placer",
+			  "height": 8,
+			  "offset": 0,
+			  "radius": 2
+			},
+			"foliage_provider": {
+			  "type": "minecraft:simple_state_provider",
+			  "state": {
+				"Name": "minecraft:white_wool"
+			  }
+			},
+			"force_dirt": false,
+			"ignore_vines": true,
+			"minimum_size": {
+			  "type": "minecraft:two_layers_feature_size",
+			  "limit": 2,
+			  "lower_size": 0,
+			  "upper_size": 2
+			},
+			"trunk_placer": {
+			  "type": "minecraft:straight_trunk_placer",
+			  "base_height": 1,
+			  "height_rand_a": 2,
+			  "height_rand_b": 1
+			},
+			"trunk_provider": {
+			  "type": "minecraft:simple_state_provider",
+			  "state": {
+				"Name": "minecraft:white_wool",
+				"Properties": {
+				  "axis": "y"
+				}
+			  }
+			}
+		  }
+	    },
+		"placement": [
+			{
+			  "type": "minecraft:environment_scan",
+			  "allowed_search_condition": {
+				"type": "minecraft:matching_blocks",
+				"blocks": "minecraft:air"
+			  },
+			  "direction_of_search": "down",
+			  "max_steps": 12,
+			  "target_condition": {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+						"minecraft:stone",
+						"minecraft:white_terracotta"
+					],
+					"offset": [
+					  0,
+					  0,
+					  0
+					]
+			  }
+			},
+			{
+			  "type": "minecraft:random_offset",
+			  "xz_spread": 0,
+			  "y_spread": 1
+			}
+		]
+    },
+    "tries": 10,
+    "xz_spread": 15,
+    "y_spread": 5
+  }
+}

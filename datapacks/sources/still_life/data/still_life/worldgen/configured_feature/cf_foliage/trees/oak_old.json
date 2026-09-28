@@ -1,0 +1,160 @@
+{
+	"type": "minecraft:vegetation_patch",
+	"config": {
+		"surface": "floor",
+		"depth": 1,
+		"vertical_range": 4,
+		"extra_bottom_block_chance": 0,
+		"extra_edge_column_chance": 1,
+		"vegetation_chance": 1,
+		"xz_radius": 0,
+		"replaceable": "#minecraft:dirt",
+		"ground_state": {
+			"type": "minecraft:simple_state_provider",
+			"state": {
+				"Name": "minecraft:dirt"
+			}
+		},
+		"vegetation_feature": {
+			"feature": {
+				"type": "minecraft:tree",
+				"config": {
+				"decorators": [],
+				"dirt_provider": {
+				"type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:dirt"
+				  }
+				},
+				"foliage_placer": {
+				  "type": "minecraft:fancy_foliage_placer",
+				  "height": 4,
+				  "offset": 2,
+				  "radius": 2
+				},
+				"foliage_provider": {
+				  "type": "minecraft:weighted_state_provider",
+				  "entries": [
+					{
+					  "data": {
+						"Name": "minecraft:oak_leaves",
+						"Properties": {
+						  "distance": "7",
+						  "persistent": "false",
+						  "waterlogged": "false"
+						}
+					  },
+					  "weight": 6
+					},
+					{
+					  "data": {"Name": "minecraft:air"},
+					  "weight": 2
+					}
+				  ]
+				},
+				"force_dirt": false,
+				"ignore_vines": false,
+				"minimum_size": {
+				  "type": "minecraft:two_layers_feature_size",
+				  "limit": 1,
+				  "lower_size": 0,
+				  "upper_size": 0
+				},
+				"trunk_placer": {
+				  "type": "minecraft:cherry_trunk_placer",
+				  "base_height": 5,
+				  "branch_count": {
+					"type": "minecraft:weighted_list",
+					"distribution": [
+					  {
+						"data": 2,
+						"weight": 3
+					  },
+					  {
+						"data": 3,
+						"weight": 2
+					  }
+					]
+				  },
+				  "branch_end_offset_from_top": {
+					"type": "minecraft:uniform",
+					  "max_inclusive": 4,
+					  "min_inclusive": -1
+				  },
+				  "branch_horizontal_length": {
+					"type": "minecraft:uniform",
+					  "max_inclusive": 5,
+					  "min_inclusive": 2
+				  },
+				  "branch_start_offset_from_top": {
+					"max_inclusive": 0,
+					"min_inclusive": -2
+				  },
+				  "height_rand_a": 4,
+				  "height_rand_b": 2
+				},
+				"trunk_provider": {
+				  "type": "minecraft:simple_state_provider",
+				  "state": {
+					"Name": "minecraft:oak_log",
+					"Properties": {
+					  "axis": "y"
+					}
+				  }
+				},
+				"root_placer": {
+				  "type": "minecraft:mangrove_root_placer",
+				  "above_root_placement": {
+					"above_root_placement_chance": 0.0,
+					"above_root_provider": {
+					  "type": "minecraft:simple_state_provider",
+					  "state": {
+						"Name": "minecraft:air"
+					  }
+					}
+				  },
+				  "mangrove_root_placement": {
+					"can_grow_through": "#minecraft:mangrove_roots_can_grow_through",
+					"max_root_length": 15,
+					"max_root_width": 3,
+					"muddy_roots_in": [
+					  "minecraft:mud",
+					  "minecraft:oak_log"
+					],
+					"muddy_roots_provider": {
+					  "type": "minecraft:simple_state_provider",
+					  "state": {
+						"Name": "minecraft:oak_wood",
+						"Properties": {
+						  "axis": "y"
+						}
+					  }
+					},
+					"random_skew_chance": 0.5
+				  },
+				  "root_provider": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:oak_wood",
+					  "Properties": {
+						  "axis": "y"
+					  }
+					}
+				  },
+				  "trunk_offset_y": {
+					"type": "minecraft:uniform",
+					"max_inclusive": 1,
+					"min_inclusive": 0
+				  }
+				}
+			  }
+			},
+			"placement": [
+				{
+				  "type": "minecraft:count",
+				  "count": 2
+				}
+			]
+		}
+	}
+}

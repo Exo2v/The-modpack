@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "minecraft:dark_forest",
+	"still_life:temperate_swamp",
+	"still_life:old_growth_temperate_forest"
+  ]
+}

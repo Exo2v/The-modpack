@@ -1,0 +1,21 @@
+{
+  "feature": "still_life:cf_foliage/bushes/birch_bush",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 2
+    },
+	{
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "minecraft:jungle_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+	}
+  ]
+}

@@ -1,0 +1,38 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+  "type": "cache_2d",
+  "argument": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "abs",
+        "argument": {
+          "type": "noise",
+          "noise": "lithosphere:rivers",
+          "xz_scale": 0.7,
+          "y_scale": 0
+        }
+      },
+      "points": [
+        {
+          "location": 0,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 0.01,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 0.1,
+          "value": 1,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+  }
+}

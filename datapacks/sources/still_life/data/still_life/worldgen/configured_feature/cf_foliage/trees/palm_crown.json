@@ -1,0 +1,1323 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 4,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 8,
+      "min_inclusive": 8
+    },
+    "state_provider": {
+      "fallback": {
+		"type": "minecraft:simple_state_provider",
+		"state": {
+		  "Name": "minecraft:air"
+		}
+      },
+      "rules": [
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -2,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              3,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -3,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              3
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              -1,
+              -3
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              -2,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              -2,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              -2,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              -2,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              -3,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              -3,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              -3,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              -3,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              -3,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              -3,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              -3,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              -3,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              0,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              0,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              0,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              0,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              0,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              0,
+              1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              1,
+              0,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -1,
+              0,
+              -1
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              0,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              0,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              0,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              0,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              4,
+              0,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -4,
+              0,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              0,
+              4
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              0,
+              -4
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              1,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              1,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              1,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              1,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              1,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              1,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              2,
+              2,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              -2,
+              2,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              2,
+              2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        },
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [ 
+				"minecraft:oak_wood"
+			],
+            "offset": [
+              0,
+              2,
+              -2
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+			  "Name": "minecraft:azalea_leaves",
+			  "Properties": {
+				"distance": "7",
+				"persistent": "true",
+				"waterlogged": "false"
+			  }
+			}
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:air"
+      ]
+    }
+  }
+}

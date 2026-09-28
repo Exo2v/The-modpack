@@ -1,0 +1,47 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+	  "type": "cache_2d",
+	  "argument": {
+		  "type": "mul",
+		  "argument1": "lithosphere:roughness", 
+		  "argument2": {
+			"type": "minecraft:spline",
+			"spline": {
+			  "coordinate": {
+				"type": "abs",
+				"argument": {
+				  "type": "noise",
+				  "noise": "lithosphere:rivers",
+				  "xz_scale": 0.7,
+				  "y_scale": 0
+				}
+			  },
+			  "points": [
+				{
+				  "location": 0.0010537059864972331,
+				  "value": 0.004126671646150548,
+				  "derivative": 0
+				},
+				{
+				  "location": 0.029203935180293905,
+				  "value": 0.0823975951013069,
+				  "derivative": 7.44416873449137
+				},
+				{
+				  "location": 0.057658190170974344,
+				  "value": 0.503543855067291,
+				  "derivative": 14.516129032258162
+				},
+				{
+				  "location": 0.1497165175582627,
+				  "value": 1.0016307049315492,
+				  "derivative": 0
+				}
+			  ]
+			}
+		  }
+	  }
+  }
+}

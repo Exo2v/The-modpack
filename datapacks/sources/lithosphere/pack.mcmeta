@@ -1,0 +1,37 @@
+{
+	"pack": {
+        "supported_formats": [15,900],
+        "min_format": 15,
+        "max_format": 900,
+		"pack_format": 15,
+		"description": "Created by Jayzet"
+	},
+    "overlays": {
+        "entries": [
+            {
+                "directory": "overlay_1.21.5",
+				"formats": [26, 900],
+                "min_format": 26,
+                "max_format": 900
+            },
+            {
+                "directory": "overlay_1.21.9",
+				"formats": [82, 900],
+                "min_format": 82,
+                "max_format": 900
+            },
+            {
+                "directory": "overlay_26.1",
+				"formats": [101.1, 900],
+                "min_format": 101.1,
+                "max_format": 900
+            },
+            {
+                "directory": "overlay_26.2",
+				"formats": [107.1, 900],
+                "min_format": 107.1,
+                "max_format": 900
+            }
+        ]
+    }
+}

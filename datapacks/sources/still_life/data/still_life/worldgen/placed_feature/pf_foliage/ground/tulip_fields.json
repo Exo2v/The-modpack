@@ -1,0 +1,29 @@
+{
+  "feature": "still_life:cf_foliage/ground/tulips",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 3
+    },
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_to_count_ratio": 20,
+      "noise_factor": 470,
+      "noise_offset": -0.6
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

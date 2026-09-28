@@ -1,0 +1,270 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:disk",
+		  "config": {
+			"half_height": 3,
+			"radius": {
+			  "type": "minecraft:uniform",
+			  "max_inclusive": 2,
+			  "min_inclusive": 1
+			},
+			"state_provider": {
+			  "fallback": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+				  "Name": "minecraft:podzol"
+				}
+			  },
+			  "rules": [
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": [
+					  "minecraft:air"
+					],
+					"offset": [
+					  0,
+					  -1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:packed_mud"
+					}
+				  }
+				}
+			  ]
+			},
+			"target": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": [
+				"minecraft:grass_block"
+			  ]
+			}
+		  }
+	    },
+		"placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:any_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  4,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  5,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  6,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  7,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  8,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  9,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  10,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  11,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  12,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  13,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  14,
+				  0
+				]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+				  "minecraft:oak_log",
+				  "minecraft:dark_oak_log",
+				  "minecraft:stripped_dark_oak_log",
+				  "minecraft:oak_leaves",
+				  "minecraft:dark_oak_leaves",
+				  "minecraft:spruce_leaves",
+				  "minecraft:mangrove_leaves"
+				],
+				"offset": [
+				  0,
+				  15,
+				  0
+				]
+              }
+            ]
+          }
+        }
+	  ]
+    },
+    "tries": 5,
+    "xz_spread": 10,
+    "y_spread": 10
+  }
+}

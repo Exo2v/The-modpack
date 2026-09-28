@@ -1,0 +1,160 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:disk",
+		  "config": {
+			"half_height": 3,
+			"radius": {
+			  "type": "minecraft:uniform",
+			  "max_inclusive": 4,
+			  "min_inclusive": 2
+			},
+			"state_provider": {
+			  "fallback": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+				  "Name": "minecraft:mud"
+				}
+			  },
+			  "rules": [
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:deepslate",
+					"offset": [
+					  0,
+					  2,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:deepslate"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:stone",
+					"offset": [
+					  0,
+					  2,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:stone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  -1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:blackstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  1,
+					  0,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:blackstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  0,
+					  1
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:blackstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  -1,
+					  0,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:blackstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  0,
+					  -1
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:blackstone"
+					}
+				  }
+				}
+			  ]
+			},
+			"target": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": [
+				"minecraft:deepslate",
+				"minecraft:obsidian",
+				"minecraft:blackstone",
+				"minecraft:stone"
+			  ]
+			}
+		  }
+	    },
+		"placement": []
+    },
+    "tries": 10,
+    "xz_spread": 20,
+    "y_spread": 10
+  }
+}

@@ -1,0 +1,28 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+  "type": "cache_2d",
+  "argument": {
+	  "type": "min",
+	  "argument1": "lithosphere:river_valleys", 
+	  "argument2": {
+		"type": "add",
+		"argument1": {
+		  "type": "add",
+		  "argument1": {
+		    "type": "add",
+		    "argument1": {
+			  "type": "mul",
+		      "argument1": "lithosphere:topography_cliffs", 
+		      "argument2": "lithosphere:lakes_placement" 
+		    },
+		    "argument2": "lithosphere:karst" 
+		  },
+		  "argument2": "lithosphere:lakes_depth" 
+		},
+		"argument2": "lithosphere:volcanic_mountains"
+	  }
+  }
+  }
+}

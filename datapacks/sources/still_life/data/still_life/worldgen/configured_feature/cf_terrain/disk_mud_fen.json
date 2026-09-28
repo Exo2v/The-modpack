@@ -1,0 +1,57 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 2
+    },
+    "state_provider": {
+      "fallback": {
+		  "type": "minecraft:weighted_state_provider",
+		  "entries": [
+			{
+			  "data": {
+				"Name": "minecraft:mud"
+			  },
+			  "weight": 3
+			},
+			{
+			  "data": {
+				"Name": "minecraft:podzol"
+			  },
+			  "weight": 0
+			}
+		  ]
+      },
+      "rules": [
+        {
+          "if_true": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air",
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          },
+          "then": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:packed_mud"
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:coarse_dirt",
+        "minecraft:dirt",
+        "minecraft:grass_block"
+      ]
+    }
+  }
+}

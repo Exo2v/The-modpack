@@ -1,0 +1,115 @@
+
+{
+  "type": "flat_cache",
+  "argument": {
+  "type": "cache_2d",
+  "argument": {
+    "type": "add",
+    "argument1": -0.555, 
+    "argument2": {
+      "type": "minecraft:spline",
+      "spline": {
+        "coordinate": {
+          "type": "add",
+          "argument1": "lithosphere:river_roughness", 
+          "argument2": {
+            "type": "mul",
+            "argument1": {
+              "type": "abs",
+              "argument": {
+                "type": "noise",
+                "noise": "lithosphere:rivers",
+                "xz_scale": 0.7,
+                "y_scale": 0
+              }
+            },
+            "argument2": {
+              "type": "clamp",
+              "min": 0,
+              "max": 1,
+              "input": {
+                "type": "add",
+                "argument1": {
+                  "type": "clamp",
+                  "min": 0,
+                  "max": 1.0,
+                  "input": {
+                    "type": "add",
+                    "argument1": {
+                      "type": "mul",
+                      "argument1": "lithosphere:river_mask", 
+                      "argument2": -1.0 
+                    },
+                    "argument2": 1.0 
+                  }
+                },
+                "argument2": {
+                  "type": "add",
+                  "argument1": 0.1, 
+                  "argument2": {
+                    "type": "add",
+                    "argument1": {
+                      "type": "abs",
+                      "argument": {
+                        "type": "noise",
+                        "noise": "lithosphere:rivers_detail",
+                        "xz_scale": 3,
+                        "y_scale": 0
+                      }
+                    },
+                    "argument2": {
+                      "type": "mul",
+                      "argument1": {
+                        "type": "abs",
+                        "argument": {
+                          "type": "noise",
+                          "noise": "lithosphere:rivers",
+                          "xz_scale": 0.7,
+                          "y_scale": 0
+                        }
+                      },
+                      "argument2": 1.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "points": [
+          {
+            "location": 0.002150713233593282,
+            "value": 0.00283157812902024,
+            "derivative": 0
+          },
+          {
+            "location": 0.05916748863798171,
+            "value": 0.05144477569651196,
+            "derivative": 0
+          },
+          {
+            "location": 0.19897245586388027,
+            "value": 0.12606260307540926,
+            "derivative": 0.9366564776007699
+          },
+          {
+            "location": 0.6421418963420271,
+            "value": 0.6781976604534464,
+            "derivative": 1.90617809476648
+          },
+          {
+            "location": 0.9115889184005059,
+            "value": 1.4742994511987502,
+            "derivative": 3.9509873236978024
+          },
+          {
+            "location": 1.0040835486261095,
+            "value": 2.0034070394217585,
+            "derivative": 6.86687905660854
+          }
+        ]
+      }
+    }
+  }
+  }
+}

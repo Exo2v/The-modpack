@@ -1,0 +1,38 @@
+{
+  "feature": "still_life:cf_other/ground/ice_sheet",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 20
+    },
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_to_count_ratio": 40,
+      "noise_factor": 710,
+      "noise_offset": -0.6
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 63
+        },
+        "min_inclusive": {
+          "above_bottom": 62
+        }
+      }
+    },
+    {
+      "type": "minecraft:random_offset",
+      "xz_spread": 0,
+      "y_spread": 0
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

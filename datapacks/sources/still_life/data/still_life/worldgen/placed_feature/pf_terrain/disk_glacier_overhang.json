@@ -1,0 +1,27 @@
+{
+  "feature": "still_life:cf_terrain/disk_glacier_overhang",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 80
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 75
+        },
+        "min_inclusive": {
+          "absolute": 67
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

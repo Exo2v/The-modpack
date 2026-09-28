@@ -1,0 +1,13 @@
+{
+    "replace": false,
+  "values": [
+    "minecraft:bamboo_jungle",
+    "minecraft:jungle",
+    "minecraft:sparse_jungle",
+	"still_life:old_growth_tropical_rainforest",
+	"still_life:tropical_rainforest",
+	"still_life:tropical_wetlands",
+	"still_life:monsoon_forest",
+	"still_life:humid_savanna"
+  ]
+}

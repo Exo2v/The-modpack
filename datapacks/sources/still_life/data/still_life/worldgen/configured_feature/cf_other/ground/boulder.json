@@ -1,0 +1,1290 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+	    "type": "minecraft:simple_random_selector",
+	    "config": {
+		  "features": [
+		    {
+				"feature": {
+				  "type": "minecraft:disk",
+				  "config": {
+					"half_height": 2,
+					"radius": {
+					  "type": "minecraft:biased_to_bottom",
+					  "max_inclusive": 1,
+					  "min_inclusive": 0
+					},
+					"state_provider": {
+					  "fallback": {
+						"type": "minecraft:dual_noise_provider",
+						"seed": 666,
+						"noise": {
+						  "firstOctave": -6,
+						  "amplitudes": [
+							0.2,
+							0.5,
+							1.5,
+							1.5,
+							0.5,
+							0.5,
+							0.5
+						  ]
+						},
+						"scale": 1,
+						"variety": {
+						  "min_inclusive": 1,
+						  "max_inclusive": 1.75
+						},
+						"slow_noise": {
+						  "firstOctave": -15,
+						  "amplitudes": [
+							0.6,
+							1.0,
+							1.0,
+							0.0,
+							1.0,
+							1.0
+						  ]
+						},
+						"slow_scale": 1,
+						"states": [
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  }
+						]
+					  },
+					  "rules": [
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -1,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -2,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -3,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -4,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						}
+					  ]
+					},
+					"target": {
+					  "type": "minecraft:matching_blocks",
+					  "blocks": [
+						"minecraft:dark_oak_leaves",
+						"minecraft:acacia_leaves",
+						"minecraft:spruce_leaves",
+						"minecraft:jungle_leaves",
+						"minecraft:flowering_azalea_leaves",
+						"minecraft:azalea_leaves",
+						"minecraft:mangrove_leaves",
+						"minecraft:cherry_leaves",
+						"minecraft:oak_leaves",
+						"minecraft:birch_leaves",
+						"minecraft:fern",
+						"minecraft:tall_grass",
+						"minecraft:short_grass",
+						"minecraft:tall_seagrass",
+						"minecraft:seagrass",
+						"minecraft:snow",
+						"minecraft:water",
+						"minecraft:air",
+						"minecraft:snow_block",
+						"minecraft:powder_snow",
+						"minecraft:sand",
+						"minecraft:gravel",
+						"minecraft:red_sand",
+						"minecraft:podzol",
+						"minecraft:coarse_dirt",
+						"minecraft:packed_mud",
+						"minecraft:mud",
+						"minecraft:dirt",
+						"minecraft:light_gray_concrete",
+						"minecraft:grass_block"
+					  ]
+					}
+				  }
+				},
+			    "placement": [
+					{
+					  "type": "minecraft:random_offset",
+					  "xz_spread": 0,
+					  "y_spread": {
+						"type": "minecraft:biased_to_bottom",
+						  "min_inclusive": -2,
+						  "max_inclusive": -2
+					  }
+					}
+				]
+		    },
+			{
+				"feature": {
+				  "type": "minecraft:disk",
+				  "config": {
+					"half_height": 2,
+					"radius": {
+					  "type": "minecraft:uniform",
+					  "max_inclusive": 1,
+					  "min_inclusive": 0
+					},
+					"state_provider": {
+					  "fallback": {
+						"type": "minecraft:dual_noise_provider",
+						"seed": 666,
+						"noise": {
+						  "firstOctave": -6,
+						  "amplitudes": [
+							0.2,
+							0.5,
+							1.5,
+							1.5,
+							0.5,
+							0.5,
+							0.5
+						  ]
+						},
+						"scale": 1,
+						"variety": {
+						  "min_inclusive": 1,
+						  "max_inclusive": 1.75
+						},
+						"slow_noise": {
+						  "firstOctave": -15,
+						  "amplitudes": [
+							0.6,
+							1.0,
+							1.0,
+							0.0,
+							1.0,
+							1.0
+						  ]
+						},
+						"slow_scale": 1,
+						"states": [
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:deepslate"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:cyan_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:orange_terracotta"
+						  },
+						  {
+							"Name": "minecraft:terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:light_gray_terracotta"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:granite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:diorite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:andesite"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:smooth_basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:basalt"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:tuff"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  },
+						  {
+							"Name": "minecraft:stone"
+						  }
+						]
+					  },
+					  "rules": [
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -1,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -2,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -3,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						},
+						{
+						  "if_true": {
+							"type": "minecraft:matching_blocks",
+							"blocks": [
+							  "minecraft:snow_block",
+							  "minecraft:ice",
+							  "minecraft:packed_ice"
+							],
+							"offset": [
+							  0,
+							  -4,
+							  0
+							]
+						  },
+						  "then": {
+							"type": "minecraft:simple_state_provider",
+							"state": {
+							  "Name": "minecraft:calcite"
+							}
+						  }
+						}
+					  ]
+					},
+					"target": {
+					  "type": "minecraft:matching_blocks",
+					  "blocks": [
+						"minecraft:dark_oak_leaves",
+						"minecraft:acacia_leaves",
+						"minecraft:spruce_leaves",
+						"minecraft:jungle_leaves",
+						"minecraft:flowering_azalea_leaves",
+						"minecraft:azalea_leaves",
+						"minecraft:mangrove_leaves",
+						"minecraft:cherry_leaves",
+						"minecraft:oak_leaves",
+						"minecraft:birch_leaves",
+						"minecraft:fern",
+						"minecraft:tall_grass",
+						"minecraft:short_grass",
+						"minecraft:tall_seagrass",
+						"minecraft:seagrass",
+						"minecraft:snow",
+						"minecraft:water",
+						"minecraft:air",
+						"minecraft:snow_block",
+						"minecraft:powder_snow",
+						"minecraft:sand",
+						"minecraft:gravel",
+						"minecraft:red_sand",
+						"minecraft:podzol",
+						"minecraft:coarse_dirt",
+						"minecraft:packed_mud",
+						"minecraft:mud",
+						"minecraft:dirt",
+						"minecraft:light_gray_concrete",
+						"minecraft:light",
+						"minecraft:grass_block"
+					  ]
+					}
+				  }
+				},
+			    "placement": [
+					{
+					  "type": "minecraft:random_offset",
+					  "xz_spread": 0,
+					  "y_spread": {
+						"type": "minecraft:biased_to_bottom",
+						  "min_inclusive": -2,
+						  "max_inclusive": -2
+					  }
+					}
+				]
+		    }
+		  ]
+	    }
+	  },
+			"placement": [
+				{
+				  "type": "minecraft:count",
+				  "count": 2
+				},
+				{
+				  "type": "minecraft:block_predicate_filter",
+				  "predicate": {
+					"type": "minecraft:any_of",
+					"predicates": [
+					  {
+						"type": "minecraft:matching_blocks",
+						"blocks": [
+						  "minecraft:grass_block",
+						  "minecraft:mud",
+						  "minecraft:packed_mud",
+						  "minecraft:coarse_dirt",
+						  "minecraft:dirt",
+						  "minecraft:sand",
+						  "minecraft:gravel",
+						  "minecraft:moss_block",
+						  "minecraft:red_sand",
+						  "minecraft:clay",
+						  "minecraft:podzol",
+						  "minecraft:mycelium"
+						],
+						"offset": [
+						  0,
+						  -1,
+						  0
+						]
+					  },
+					  {
+						"type": "minecraft:matching_blocks",
+						"blocks": [
+						  "minecraft:grass_block",
+						  "minecraft:mud",
+						  "minecraft:packed_mud",
+						  "minecraft:coarse_dirt",
+						  "minecraft:dirt",
+						  "minecraft:sand",
+						  "minecraft:gravel",
+						  "minecraft:moss_block",
+						  "minecraft:red_sand",
+						  "minecraft:clay",
+						  "minecraft:podzol",
+						  "minecraft:mycelium"
+						],
+						"offset": [
+						  0,
+						  -2,
+						  0
+						]
+					  },
+					  {
+						"type": "minecraft:matching_blocks",
+						"blocks": [
+						  "minecraft:grass_block",
+						  "minecraft:mud",
+						  "minecraft:packed_mud",
+						  "minecraft:coarse_dirt",
+						  "minecraft:dirt",
+						  "minecraft:sand",
+						  "minecraft:gravel",
+						  "minecraft:moss_block",
+						  "minecraft:red_sand",
+						  "minecraft:clay",
+						  "minecraft:podzol",
+						  "minecraft:mycelium"
+						],
+						"offset": [
+						  0,
+						  -3,
+						  0
+						]
+					  }
+					]
+				  }
+				}
+			]
+    },
+    "tries": 8,
+    "xz_spread": 1,
+    "y_spread": 1
+  }
+}

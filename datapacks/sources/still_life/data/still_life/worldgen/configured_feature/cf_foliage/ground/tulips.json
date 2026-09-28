@@ -1,0 +1,102 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+				"type": "minecraft:dual_noise_provider",
+				"seed": 999,
+				"noise": {
+				  "firstOctave": -6,
+				  "amplitudes": [
+					0.5,
+					0.5,
+					0.5,
+					0.5,
+					0.05,
+					0.01
+				  ]
+				},
+				"scale": 1,
+				"variety": {
+				  "min_inclusive": 1,
+				  "max_inclusive": 1
+				},
+				"slow_noise": {
+				  "firstOctave": -9,
+				  "amplitudes": [
+					1.0,
+					1.0,
+					1.0,
+					0.0,
+					1.0,
+					1.0
+				  ]
+				},
+				"slow_scale": 1,
+				"states": [
+				  {
+					"Name": "minecraft:red_tulip"
+				  },
+				  {
+					"Name": "minecraft:orange_tulip"
+				  },
+				  {
+					"Name": "minecraft:red_tulip"
+				  },
+				  {
+					"Name": "minecraft:orange_tulip"
+				  },
+				  {
+					"Name": "minecraft:white_tulip"
+				  },
+				  {
+					"Name": "minecraft:pink_tulip"
+				  },
+				  {
+					"Name": "minecraft:white_tulip"
+				  },
+				  {
+					"Name": "minecraft:pink_tulip"
+				  },
+				  {
+					"Name": "minecraft:red_tulip"
+				  }
+				]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": [
+                  "minecraft:grass_block",
+                  "minecraft:coarse_dirt"
+                ],
+                "offset": [
+                  0,
+                  -1,
+                  0
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 70,
+    "xz_spread": 5,
+    "y_spread": 3
+  }
+}

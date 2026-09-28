@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bamboo_jungle",
+    "minecraft:jungle",
+	"still_life:old_growth_tropical_rainforest",
+	"still_life:tropical_rainforest",
+	"still_life:monsoon_forest"
+  ]
+}

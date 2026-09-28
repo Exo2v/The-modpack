@@ -1,0 +1,20 @@
+{
+    "replace": false,
+  "values": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+	"still_life:temperate_swamp",
+	"still_life:mediterranean_swamp",
+	"still_life:mire",
+	"still_life:temperate_marsh",
+	"still_life:mediterranean_marsh",
+	"still_life:tropical_wetlands",
+	"still_life:bog",
+	"still_life:flooded_savanna",
+	"still_life:flooded_grasslands",
+	"still_life:desert_wetlands",
+	"still_life:mangrove_marsh",
+	"still_life:arctic_wetlands",
+	"still_life:fen"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+	  "feature": {
+		  "type": "minecraft:disk",
+		  "config": {
+			"half_height": 2,
+			"radius": {
+			  "type": "minecraft:uniform",
+			  "max_inclusive": 4,
+			  "min_inclusive": 3
+			},
+			"state_provider": {
+			  "fallback": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+				  "Name": "minecraft:red_sand"
+				}
+			  },
+			  "rules": [
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:deepslate",
+					"offset": [
+					  0,
+					  1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:deepslate"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:stone",
+					"offset": [
+					  0,
+					  2,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:terracotta"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  -1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:red_sandstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:red_sandstone",
+					"offset": [
+					  0,
+					  1,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:red_sandstone"
+					}
+				  }
+				},
+				{
+				  "if_true": {
+					"type": "minecraft:matching_blocks",
+					"blocks": "minecraft:air",
+					"offset": [
+					  0,
+					  -2,
+					  0
+					]
+				  },
+				  "then": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+					  "Name": "minecraft:red_sandstone"
+					}
+				  }
+				}
+			  ]
+			},
+			"target": {
+			  "type": "minecraft:matching_blocks",
+			  "blocks": [
+				"minecraft:terracotta",
+				"minecraft:red_terracotta",
+				"minecraft:orange_terracotta",
+				"minecraft:brown_terracotta",
+				"minecraft:white_terracotta",
+				"minecraft:light_gray_terracotta",
+				"minecraft:stone",
+				"minecraft:deepslate"
+			  ]
+			}
+		  }
+	    },
+		"placement": []
+    },
+    "tries": 20,
+    "xz_spread": 20,
+    "y_spread": 10
+  }
+}

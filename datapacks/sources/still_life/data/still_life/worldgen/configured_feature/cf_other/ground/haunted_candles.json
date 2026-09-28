@@ -1,0 +1,122 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "true",
+					  "candles": "1",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "true",
+					  "candles": "2",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "true",
+					  "candles": "3",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "true",
+					  "candles": "4",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "false",
+					  "candles": "1",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 3
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "false",
+					  "candles": "2",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 3
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "false",
+					  "candles": "3",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 3
+              },
+              {
+                "data": {
+					"Name": "minecraft:black_candle",
+					"Properties": {
+					  "lit": "false",
+					  "candles": "4",
+					  "waterlogged": "false"
+					}
+                },
+                "weight": 3
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 32,
+    "xz_spread": 3,
+    "y_spread": 3
+  }
+}
