@@ -277,6 +277,9 @@ shutil.copy2(heightmap_16_path, BUILDS_MAP1_DIR / "ASHENFALL_HEIGHTMAP_16BIT.png
 # Export 8-bit preview heightmap
 print(" [✓] Exporting 8-bit preview heightmap...")
 uint8_data = (uint16_data >> 8).astype(np.uint8)
+# Export 8-bit preview heightmap
+print(" [✓] Exporting 8-bit preview heightmap...")
+uint8_data = (uint16_data >> 8).astype(np.uint8)
 heightmap_8_path = BASE_DIR / "ASHENFALL_HEIGHTMAP_PREVIEW.png"
 img_8 = Image.fromarray(uint8_data, mode="L")
 img_8.save(heightmap_8_path)
@@ -287,9 +290,90 @@ del uint16_data, uint8_data
 gc.collect()
 
 # ---------------------------------------------------------------------------
-# 5. Export Full-Color 3D Hillshaded Satellite Topographic Map
+# 5. Export 1:1 Pre-Population Mask & Biome Mask for WorldPainter
 # ---------------------------------------------------------------------------
-print("\n [5/5] Rendering 3D hillshaded full-color satellite topographic atlas...")
+print("\n [5/7] Synthesizing 1:1 Pre-Population Layer Mask & Biome Mask (4096x4096)...")
+
+# Populate Mask: 255 = Populate ON (trees, underbrush, towns, caves), 0 = Populate OFF
+# ON across all habitable land (elevation >= 62, land_factor > 0.25)
+# OFF inside Ashen Caldera (R_raw <= 650) and sheer peaks (elevation >= 210)
+pop_mask = np.zeros((RES, RES), dtype=np.uint8)
+habitable_land = (elevation >= 62.0) & (land_factor > 0.25) & (R_raw > 650.0) & (elevation < 210.0)
+pop_mask[habitable_land] = 255
+
+pop_mask_path = BASE_DIR / "ASHENFALL_POPULATE_MASK.png"
+img_pop = Image.fromarray(pop_mask, mode="L")
+img_pop.save(pop_mask_path)
+print(f" [✓] Created Populate Layer Mask: {pop_mask_path} ({pop_mask_path.stat().st_size:,} bytes)")
+shutil.copy2(pop_mask_path, BUILDS_MAP1_DIR / "ASHENFALL_POPULATE_MASK.png")
+del pop_mask, img_pop, habitable_land
+gc.collect()
+
+# Biome Mask: Numeric Minecraft Biome IDs (8-bit grayscale)
+biome_mask = np.full((RES, RES), 24, dtype=np.uint8) # Default: deep_ocean (24)
+
+# Ocean shelf
+m_ocean = (elevation >= 48.0) & (elevation < 62.0)
+biome_mask[m_ocean] = 0 # ocean (0)
+
+# Beaches & Coastlines
+m_beach = (elevation >= 62.0) & (elevation < 66.0)
+biome_mask[m_beach] = 16 # beach (16)
+
+# Lowland plains & rolling hills
+m_plains = (elevation >= 66.0) & (elevation < 95.0)
+biome_mask[m_plains] = 1 # plains (1)
+
+# Highland meadows
+m_meadow = (elevation >= 95.0) & (elevation < 140.0)
+biome_mask[m_meadow] = 185 # meadow (185)
+
+# Solitary Glacial Spine (North)
+m_north = (Z_w < -1400.0) & (np.abs(X_w) < 2800.0)
+biome_mask[m_north & (elevation >= 90.0) & (elevation < 135.0)] = 32 # old_growth_pine_taiga (32)
+biome_mask[m_north & (elevation >= 135.0) & (elevation < 175.0)] = 183 # snowy_slopes (183)
+biome_mask[m_north & (elevation >= 175.0)] = 180 # frozen_peaks (180)
+
+# Ashen Caldera (Center)
+m_caldera_rim = (R_raw < 650.0) & (elevation >= 60.0)
+biome_mask[m_caldera_rim] = 173 # basalt_deltas (173)
+m_caldera_floor = (R_raw < 480.0) & (elevation < 60.0)
+biome_mask[m_caldera_floor] = 8 # nether_wastes (8)
+
+# Cogwork March (West)
+dist_cog_full = np.sqrt((X_w - (-2100.0))**2 + Z_w**2)
+m_cog = (dist_cog_full < 1250.0) & (elevation >= 64.0)
+biome_mask[m_cog] = 37 # badlands (37)
+biome_mask[m_cog & (elevation > 105.0)] = 3 # windswept_hills (3)
+
+# Gilded Dunes (East)
+dist_dunes_full = np.sqrt((X_w - 2300.0)**2 + Z_w**2)
+m_dunes = (dist_dunes_full < 1350.0) & (elevation >= 64.0)
+biome_mask[m_dunes] = 2 # desert (2)
+biome_mask[m_dunes & (elevation > 105.0)] = 39 # eroded_badlands (39)
+
+# Whispering Fen (Southeast)
+dist_fen_full = np.sqrt((X_w - 2000.0)**2 + (Z_w - 2000.0)**2)
+m_fen = (dist_fen_full < 1100.0) & (elevation >= 62.0)
+biome_mask[m_fen] = 6 # swamp (6)
+
+# Sunken Reach (Southwest)
+dist_reach_full = np.sqrt((X_w - (-2400.0))**2 + (Z_w - 1600.0)**2)
+m_reach = (dist_reach_full < 1000.0) & (elevation < 62.0)
+biome_mask[m_reach] = 44 # warm_ocean (44)
+
+biome_mask_path = BASE_DIR / "ASHENFALL_BIOME_MASK.png"
+img_bio = Image.fromarray(biome_mask, mode="L")
+img_bio.save(biome_mask_path)
+print(f" [✓] Created Biome Mask: {biome_mask_path} ({biome_mask_path.stat().st_size:,} bytes)")
+shutil.copy2(biome_mask_path, BUILDS_MAP1_DIR / "ASHENFALL_BIOME_MASK.png")
+del img_bio
+gc.collect()
+
+# ---------------------------------------------------------------------------
+# 6. Export Full-Color 3D Hillshaded Satellite Topographic Map
+# ---------------------------------------------------------------------------
+print("\n [6/7] Rendering 3D hillshaded full-color satellite topographic atlas...")
 
 # Downsample by 2 for ultra-fast, memory-efficient hillshading (2048 x 2048)
 sub = 2
@@ -431,64 +515,71 @@ print(f" [✓] Created Topographic Render: {topo_path} ({topo_path.stat().st_siz
 shutil.copy2(topo_path, BUILDS_MAP1_DIR / "ASHENFALL_TOPOGRAPHIC_RENDER.png")
 
 # ---------------------------------------------------------------------------
-# 6. Generate Updated WorldPainter Import Guide
+# 7. Generate Updated WorldPainter Import Guide
 # ---------------------------------------------------------------------------
-print("\n [6/6] Updating WorldPainter Import Guide...")
+print("\n [7/7] Updating WorldPainter Import Guide...")
 guide_path = BASE_DIR / "WORLDPAINTER_IMPORT_GUIDE.md"
 with open(guide_path, "w", encoding="utf-8") as f:
     f.write("""# WorldPainter Import Guide: Ashenfall Continent of Vantyra
-### *How to Import the Master 16-Bit Heightmap into WorldPainter*
+### *How to Import the Master 16-Bit Heightmap & Pre-Populated Biomes into WorldPainter*
 
 ---
 
 ## 🗺️ Master Deliverables
-* **16-Bit Grayscale Heightmap:** `ASHENFALL_HEIGHTMAP_16BIT.png` (4096 x 4096, 16-bit uint16)
-* **Satellite Visual Reference:** `ASHENFALL_TOPOGRAPHIC_RENDER.png`
-* **Preview Heightmap:** `ASHENFALL_HEIGHTMAP_PREVIEW.png`
+* **16-Bit Grayscale Heightmap:** `ASHENFALL_HEIGHTMAP_16BIT.png` (4096 x 4096, 16-bit uint16 master)
+* **Pre-Population Layer Mask:** `ASHENFALL_POPULATE_MASK.png` (4096 x 4096, 1:1 vegetation & town mask)
+* **Numeric Biome Mask:** `ASHENFALL_BIOME_MASK.png` (4096 x 4096, Minecraft 1.21.1 Biome IDs)
+* **Automated Setup Script:** `ashenfall_worldpainter_setup.js` (Turnkey 1-click script for WorldPainter)
+* **Satellite Visual Reference:** `ASHENFALL_TOPOGRAPHIC_RENDER.png` (2048 x 2048 3D hillshaded atlas)
+* **Preview Heightmap:** `ASHENFALL_HEIGHTMAP_PREVIEW.png` (8-bit grayscale for image viewers)
 
 ---
 
-## 🛠️ Step-by-Step WorldPainter Import Instructions
+## ⚡ Method 1: Automated 1-Click Script (Fastest)
 
-1. **Launch WorldPainter**.
-2. Click **`File` ➔ `Import` ➔ `Height map...`**
-3. Browse and select: **`ASHENFALL_HEIGHTMAP_16BIT.png`**.
-4. In the **Import Height Map** dialog, configure these **exact settings**:
+WorldPainter has a built-in JavaScript engine (`Tools` ➔ `Run script...`). You can create, populate, and configure the entire continent in 5 seconds:
 
-### ⚙️ Exact Height Settings:
-* **Mapping:**
-  - **Scale:** `100%` (produces an exact $4{,}096 \\times 4{,}096$ block world; or `200%` for full $8{,}000 \\times 8{,}000$ blocks)
-  - **Height:** Set **`Lower limit: -64`** and **`Upper limit: 320`** (Total 384 blocks).
-* **Water:**
-  - **Water level:** **`62`**
-  - Check: **`Create water in areas lower than water level`**
-* **Terrain:**
-  - Surface material: **`Bare stone / grass`**
-* **Border:**
-  - Border type: **`Endless water`** (This naturally creates The Veil of Salt ocean surrounding your continent!)
+1. Launch **WorldPainter**.
+2. Click **`Tools` ➔ `Run Script...`** in the top menu bar.
+3. Select **`ashenfall_worldpainter_setup.js`**.
+4. WorldPainter will automatically:
+   * Load `ASHENFALL_HEIGHTMAP_16BIT.png`.
+   * Configure height range ($-64$ to $320$) and sea level ($62$).
+   * Apply `ASHENFALL_POPULATE_MASK.png` across all habitable valleys, plains, and riverbanks.
+   * Save the completed project as **`Ashenfall_Continent.world`**!
+5. Open `Ashenfall_Continent.world`, inspect the 3D continent, and export directly!
 
+---
+
+## 🛠️ Method 2: Manual Heightmap & Mask Import (Visual GUI)
+
+If you prefer using WorldPainter's standard visual menus:
+
+### Step 1: Import the Heightmap
+1. Click **`File` ➔ `Import` ➔ `Height map...`**
+2. Browse and select: **`ASHENFALL_HEIGHTMAP_16BIT.png`**.
+3. In the dialog, set:
+   * **Scale:** `100%` (or `200%` for an exact 1:1 $8{,}000 \\times 8{,}000$ block world).
+   * **Height:** Set **`Lower limit: -64`** and **`Upper limit: 320`** (Total 384 blocks).
+   * **Water level:** **`62`** (Check *"Create water in areas lower than water level"*).
+   * **Terrain:** Surface material: **`Bare stone / grass`**.
+   * **Border:** Select **`Endless water`**.
+4. Click **`OK`**.
+
+### Step 2: Apply the Pre-Population Mask
+1. Click **`Edit` ➔ `Import` ➔ `Mask as layer...`**
+2. Browse and select: **`ASHENFALL_POPULATE_MASK.png`**.
+3. In the layer dropdown, select: **`Populate`**.
+4. Set mapping: **`White (255)` ➔ `100% intensity`**.
 5. Click **`OK`**.
-   WorldPainter will sculpt the entire continent in seconds!
+   *All habitable valleys, forests, riverbanks, and plains are now instantly painted with the Populate layer!*
+   *The volcanic crater of the Ashen Caldera and sheer rock walls remain clean and barren.*
 
----
-
-## 🎨 Recommended Biome & Layer Painting in WorldPainter:
-
-1. **The Ashen Caldera (Center: `0, 0`):**
-   - Paint **`Basalt Deltas`** or **`Nether Wastes`** inside the crater basin.
-   - Use the **`Blackstone`** or **`Basalt`** terrain palette for the volcanic rim ($Y=145$).
-2. **The Cogwork March (West: `-2100, 0`):**
-   - Paint **`Windswept Gravelly Hills`** and **`Badlands`**.
-   - Carve Create factory foundations along the brass river canyons.
-3. **The Solitary Glacial Spine (North: `0, -2500`):**
-   - Paint **`Frozen Peaks`** on the summits ($Y \\ge 180$).
-   - Paint **`Snowy Slopes`** and **`Grove`** down the mountainsides.
-4. **The Gilded Dunes (East: `2300, 0`):**
-   - Paint **`Desert`** on the rolling barchan dunes.
-   - Paint **`Red Sand`** and **`Terracotta`** on the flat-topped mesas.
-5. **The Forgotten Coast (South: `0, 2500`):**
-   - Paint **`Plains`** and **`Meadow`** on the coastal bluffs.
-   - Paint **`Stony Shore`** along the waterline.
+### Step 3: Apply Biomes
+1. Click **`Edit` ➔ `Import` ➔ `Mask as layer...`**
+2. Browse and select: **`ASHENFALL_BIOME_MASK.png`**.
+3. In the layer dropdown, select: **`Biomes`**.
+4. Click **`OK`**.
 
 ---
 
@@ -497,10 +588,14 @@ with open(guide_path, "w", encoding="utf-8") as f:
 1. Click **`File` ➔ `Export` ➔ `Export as Minecraft map...`**
 2. In the Export dialog:
    - **Game version:** Select **`Minecraft 1.19 or later (Deepslate / 384 blocks)`**.
+   - Ensure **`Populate`** is checked.
    - Check **`Allow Cheats`** and select **`Survival`**.
-3. **The Populate Layer (Still Life Compatibility):**
-   - If you want **Still Life** to generate all dense trees, fallen logs, and wildflowers: enable **`Populate`** on the land!
-4. Click **`Export`** and choose your `.minecraft/saves/Ashenfall` directory!
+3. Click **`Export`** and choose your `.minecraft/saves/Ashenfall` directory!
+
+When Minecraft loads:
+* **Still Life** will dynamically populate every chunk with photorealistic branches, fallen logs, mossy boulders, and wildflower carpets.
+* **Towns and Towers** will detect flat coastal shorelines and generate medieval fishing ports, taverns, and inns.
+* **Explorify** and **YUNG's mods** will place dungeons, desert temples, and bridges across river canyons!
 """)
 
 shutil.copy2(guide_path, BUILDS_MAP1_DIR / "WORLDPAINTER_IMPORT_GUIDE.md")

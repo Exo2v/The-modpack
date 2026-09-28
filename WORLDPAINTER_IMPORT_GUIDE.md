@@ -1,56 +1,63 @@
 # WorldPainter Import Guide: Ashenfall Continent of Vantyra
-### *How to Import the Master 16-Bit Heightmap into WorldPainter*
+### *How to Import the Master 16-Bit Heightmap & Pre-Populated Biomes into WorldPainter*
 
 ---
 
 ## 🗺️ Master Deliverables
-* **16-Bit Grayscale Heightmap:** `ASHENFALL_HEIGHTMAP_16BIT.png` (4096 x 4096, 16-bit uint16)
-* **Satellite Visual Reference:** `ASHENFALL_TOPOGRAPHIC_RENDER.png`
-* **Preview Heightmap:** `ASHENFALL_HEIGHTMAP_PREVIEW.png`
+* **16-Bit Grayscale Heightmap:** `ASHENFALL_HEIGHTMAP_16BIT.png` (4096 x 4096, 16-bit uint16 master)
+* **Pre-Population Layer Mask:** `ASHENFALL_POPULATE_MASK.png` (4096 x 4096, 1:1 vegetation & town mask)
+* **Numeric Biome Mask:** `ASHENFALL_BIOME_MASK.png` (4096 x 4096, Minecraft 1.21.1 Biome IDs)
+* **Automated Setup Script:** `ashenfall_worldpainter_setup.js` (Turnkey 1-click script for WorldPainter)
+* **Satellite Visual Reference:** `ASHENFALL_TOPOGRAPHIC_RENDER.png` (2048 x 2048 3D hillshaded atlas)
+* **Preview Heightmap:** `ASHENFALL_HEIGHTMAP_PREVIEW.png` (8-bit grayscale for image viewers)
 
 ---
 
-## 🛠️ Step-by-Step WorldPainter Import Instructions
+## ⚡ Method 1: Automated 1-Click Script (Fastest)
 
-1. **Launch WorldPainter**.
-2. Click **`File` ➔ `Import` ➔ `Height map...`**
-3. Browse and select: **`ASHENFALL_HEIGHTMAP_16BIT.png`**.
-4. In the **Import Height Map** dialog, configure these **exact settings**:
+WorldPainter has a built-in JavaScript engine (`Tools` ➔ `Run script...`). You can create, populate, and configure the entire continent in 5 seconds:
 
-### ⚙️ Exact Height Settings:
-* **Mapping:**
-  - **Scale:** `100%` (produces an exact $4{,}096 \times 4{,}096$ block world; or `200%` for full $8{,}000 \times 8{,}000$ blocks)
-  - **Height:** Set **`Lower limit: -64`** and **`Upper limit: 320`** (Total 384 blocks).
-* **Water:**
-  - **Water level:** **`62`**
-  - Check: **`Create water in areas lower than water level`**
-* **Terrain:**
-  - Surface material: **`Bare stone / grass`**
-* **Border:**
-  - Border type: **`Endless water`** (This naturally creates The Veil of Salt ocean surrounding your continent!)
+1. Launch **WorldPainter**.
+2. Click **`Tools` ➔ `Run Script...`** in the top menu bar.
+3. Select **`ashenfall_worldpainter_setup.js`**.
+4. WorldPainter will automatically:
+   * Load `ASHENFALL_HEIGHTMAP_16BIT.png`.
+   * Configure height range ($-64$ to $320$) and sea level ($62$).
+   * Apply `ASHENFALL_POPULATE_MASK.png` across all habitable valleys, plains, and riverbanks.
+   * Save the completed project as **`Ashenfall_Continent.world`**!
+5. Open `Ashenfall_Continent.world`, inspect the 3D continent, and export directly!
 
+---
+
+## 🛠️ Method 2: Manual Heightmap & Mask Import (Visual GUI)
+
+If you prefer using WorldPainter's standard visual menus:
+
+### Step 1: Import the Heightmap
+1. Click **`File` ➔ `Import` ➔ `Height map...`**
+2. Browse and select: **`ASHENFALL_HEIGHTMAP_16BIT.png`**.
+3. In the dialog, set:
+   * **Scale:** `100%` (or `200%` for an exact 1:1 $8{,}000 \times 8{,}000$ block world).
+   * **Height:** Set **`Lower limit: -64`** and **`Upper limit: 320`** (Total 384 blocks).
+   * **Water level:** **`62`** (Check *"Create water in areas lower than water level"*).
+   * **Terrain:** Surface material: **`Bare stone / grass`**.
+   * **Border:** Select **`Endless water`**.
+4. Click **`OK`**.
+
+### Step 2: Apply the Pre-Population Mask
+1. Click **`Edit` ➔ `Import` ➔ `Mask as layer...`**
+2. Browse and select: **`ASHENFALL_POPULATE_MASK.png`**.
+3. In the layer dropdown, select: **`Populate`**.
+4. Set mapping: **`White (255)` ➔ `100% intensity`**.
 5. Click **`OK`**.
-   WorldPainter will sculpt the entire continent in seconds!
+   *All habitable valleys, forests, riverbanks, and plains are now instantly painted with the Populate layer!*
+   *The volcanic crater of the Ashen Caldera and sheer rock walls remain clean and barren.*
 
----
-
-## 🎨 Recommended Biome & Layer Painting in WorldPainter:
-
-1. **The Ashen Caldera (Center: `0, 0`):**
-   - Paint **`Basalt Deltas`** or **`Nether Wastes`** inside the crater basin.
-   - Use the **`Blackstone`** or **`Basalt`** terrain palette for the volcanic rim ($Y=145$).
-2. **The Cogwork March (West: `-2100, 0`):**
-   - Paint **`Windswept Gravelly Hills`** and **`Badlands`**.
-   - Carve Create factory foundations along the brass river canyons.
-3. **The Solitary Glacial Spine (North: `0, -2500`):**
-   - Paint **`Frozen Peaks`** on the summits ($Y \ge 180$).
-   - Paint **`Snowy Slopes`** and **`Grove`** down the mountainsides.
-4. **The Gilded Dunes (East: `2300, 0`):**
-   - Paint **`Desert`** on the rolling barchan dunes.
-   - Paint **`Red Sand`** and **`Terracotta`** on the flat-topped mesas.
-5. **The Forgotten Coast (South: `0, 2500`):**
-   - Paint **`Plains`** and **`Meadow`** on the coastal bluffs.
-   - Paint **`Stony Shore`** along the waterline.
+### Step 3: Apply Biomes
+1. Click **`Edit` ➔ `Import` ➔ `Mask as layer...`**
+2. Browse and select: **`ASHENFALL_BIOME_MASK.png`**.
+3. In the layer dropdown, select: **`Biomes`**.
+4. Click **`OK`**.
 
 ---
 
@@ -59,7 +66,11 @@
 1. Click **`File` ➔ `Export` ➔ `Export as Minecraft map...`**
 2. In the Export dialog:
    - **Game version:** Select **`Minecraft 1.19 or later (Deepslate / 384 blocks)`**.
+   - Ensure **`Populate`** is checked.
    - Check **`Allow Cheats`** and select **`Survival`**.
-3. **The Populate Layer (Still Life Compatibility):**
-   - If you want **Still Life** to generate all dense trees, fallen logs, and wildflowers: enable **`Populate`** on the land!
-4. Click **`Export`** and choose your `.minecraft/saves/Ashenfall` directory!
+3. Click **`Export`** and choose your `.minecraft/saves/Ashenfall` directory!
+
+When Minecraft loads:
+* **Still Life** will dynamically populate every chunk with photorealistic branches, fallen logs, mossy boulders, and wildflower carpets.
+* **Towns and Towers** will detect flat coastal shorelines and generate medieval fishing ports, taverns, and inns.
+* **Explorify** and **YUNG's mods** will place dungeons, desert temples, and bridges across river canyons!
