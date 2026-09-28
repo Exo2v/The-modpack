@@ -38,9 +38,12 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_HEAD(self):
-        self.do_GET()
+        self.handle_request(send_body=False)
 
     def do_GET(self):
+        self.handle_request(send_body=True)
+
+    def handle_request(self, send_body=True):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
 
@@ -93,11 +96,13 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
                     {"id": "reach", "name": "The Sunken Reach", "x": -2400, "z": 1600, "y": 54, "biome": "Warm Ocean / Atolls"}
                 ]
             }
-            self.wfile.write(json.dumps(status_data, indent=2).encode("utf-8"))
+            if send_body:
+                self.wfile.write(json.dumps(status_data, indent=2).encode("utf-8"))
             return
 
         # 2. File Downloads & Asset Proxies
         asset_map = {
+            "/assets/still_life_populate.png": BASE_DIR / "ASHENFALL_STILL_LIFE_POPULATE_VIEW.png",
             "/assets/topographic.png": BASE_DIR / "ASHENFALL_TOPOGRAPHIC_RENDER.png",
             "/assets/heightmap_preview.png": BASE_DIR / "ASHENFALL_HEIGHTMAP_PREVIEW.png",
             "/assets/populate_mask.png": BASE_DIR / "ASHENFALL_POPULATE_MASK.png",
@@ -106,7 +111,10 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
             "/downloads/worldpainter_suite.zip": BASE_DIR / "ASHENFALL_WORLDPAINTER_SUITE.zip",
             "/downloads/datapack.zip": BASE_DIR / "builds" / "data2.zip",
             "/downloads/setup.ps1": BASE_DIR / "setup.ps1",
-            "/downloads/script.js": BASE_DIR / "ashenfall_worldpainter_setup.js"
+            "/downloads/script.js": BASE_DIR / "ashenfall_worldpainter_setup.js",
+            "/downloads/lithosphere.zip": BASE_DIR / "lithosphere 1.8.2 28.08.2026.zip",
+            "/downloads/still_life.zip": BASE_DIR / "still_life 0.1.1 25.07.2025.zip",
+            "/downloads/tectonic.zip": BASE_DIR / "tectonic-datapack-3.0.25.zip"
         }
 
         if path in asset_map:
@@ -119,16 +127,20 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
                 if "/downloads/" in path:
                     self.send_header("Content-Disposition", f'attachment; filename="{target_file.name}"')
                 self.end_headers()
-                with open(target_file, "rb") as f:
-                    while chunk := f.read(65536):
-                        self.wfile.write(chunk)
+                if send_body:
+                    with open(target_file, "rb") as f:
+                        while chunk := f.read(65536):
+                            self.wfile.write(chunk)
                 return
             else:
                 self.send_error(404, f"File {target_file.name} not found")
                 return
 
         # 3. Fallback to standard static file serving from public/
-        return super().do_GET()
+        if send_body:
+            return super().do_GET()
+        else:
+            return super().do_HEAD()
 
 def run_server():
     server_address = ("0.0.0.0", PORT)

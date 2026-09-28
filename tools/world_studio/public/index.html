@@ -82,18 +82,22 @@
     <main class="flex-1 flex flex-col relative overflow-hidden map-canvas-container">
       
       <!-- Viewport Floating Toolbar -->
-      <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/90 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
-        <button onclick="setLayer('topographic')" id="btn-topographic" class="layer-btn active flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-cyan-600 text-white shadow-sm transition">
+      <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+        <button onclick="setLayer('still_life_populate')" id="btn-still_life_populate" class="layer-btn active flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md shadow-emerald-900/40 transition">
+          <i data-lucide="flower-2" class="w-4 h-4"></i>
+          <span>Still Life & Populate</span>
+        </button>
+        <button onclick="setLayer('topographic')" id="btn-topographic" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
           <i data-lucide="satellite" class="w-3.5 h-3.5"></i>
-          <span>Satellite 3D</span>
+          <span>Satellite Topo</span>
+        </button>
+        <button onclick="setLayer('populate')" id="btn-populate" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="trees" class="w-3.5 h-3.5"></i>
+          <span>Populate Mask</span>
         </button>
         <button onclick="setLayer('heightmap')" id="btn-heightmap" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
           <i data-lucide="mountain" class="w-3.5 h-3.5"></i>
           <span>16-Bit Grayscale</span>
-        </button>
-        <button onclick="setLayer('populate')" id="btn-populate" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
-          <i data-lucide="trees" class="w-3.5 h-3.5"></i>
-          <span>Still Life Populate</span>
         </button>
         <button onclick="setLayer('biomes')" id="btn-biomes" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
           <i data-lucide="palette" class="w-3.5 h-3.5"></i>
@@ -116,7 +120,8 @@
 
       <!-- MAP CANVAS -->
       <div id="canvas-wrapper" class="flex-1 w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center">
-        <img id="map-image" src="/assets/topographic.png" alt="Map Layer" class="max-w-none origin-center transition-transform duration-75 select-none pointer-events-none" style="transform: translate(0px, 0px) scale(1);">
+        <img id="map-image" src="/assets/still_life_populate.png" alt="Map Layer" class="max-w-none origin-center transition-transform duration-75 select-none pointer-events-none" style="transform: translate(0px, 0px) scale(1);">
+      </div>
       </div>
 
       <!-- BOTTOM TELEMETRY / HOVER HUD BAR -->
@@ -155,14 +160,14 @@
       
       <!-- Tabs Navigation -->
       <div class="flex border-b border-borderDark bg-void/50 p-1 text-xs font-medium">
-        <button onclick="switchTab('continents')" id="tab-continents" class="engine-tab active flex-1 py-2 text-center rounded-lg bg-panel text-cyan-400 font-semibold shadow-sm transition">
+        <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab active flex-1 py-2 text-center rounded-lg bg-panel text-amber-400 font-semibold shadow-sm transition">
+          Still Life
+        </button>
+        <button onclick="switchTab('continents')" id="tab-continents" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
           Continents
         </button>
         <button onclick="switchTab('lithosphere')" id="tab-lithosphere" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
           Lithosphere
-        </button>
-        <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
-          Still Life
         </button>
         <button onclick="switchTab('worldpainter')" id="tab-worldpainter" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
           WorldPainter
@@ -173,7 +178,7 @@
       <div class="flex-1 overflow-y-auto p-5 space-y-6 text-sm">
 
         <!-- TAB 1: CONTINENTS MOD LOGIC -->
-        <div id="content-continents" class="space-y-5">
+        <div id="content-continents" class="hidden space-y-5">
           <div class="bg-cyan-950/30 border border-cyan-800/40 rounded-xl p-4">
             <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1">
               <i data-lucide="compass" class="w-4 h-4"></i>
@@ -280,7 +285,7 @@
         </div>
 
         <!-- TAB 3: STILL LIFE MOD LOGIC -->
-        <div id="content-still_life" class="hidden space-y-5">
+        <div id="content-still_life" class="space-y-5">
           <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
             <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
               <i data-lucide="flower" class="w-4 h-4"></i>
@@ -550,21 +555,26 @@
     // Layer Switcher
     function setLayer(layer) {
       document.querySelectorAll('.layer-btn').forEach(b => {
-        b.classList.remove('bg-cyan-600', 'text-white', 'shadow-sm');
+        b.classList.remove('bg-emerald-600', 'bg-cyan-600', 'text-white', 'shadow-md', 'shadow-emerald-900/40', 'shadow-sm');
         b.classList.add('text-slate-400');
       });
       const activeBtn = document.getElementById(`btn-${layer}`);
-      activeBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-sm');
+      if (layer === 'still_life_populate') {
+        activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-md', 'shadow-emerald-900/40');
+      } else {
+        activeBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-sm');
+      }
       activeBtn.classList.remove('text-slate-400');
 
       const mapPaths = {
+        still_life_populate: '/assets/still_life_populate.png',
         topographic: '/assets/topographic.png',
         heightmap: '/assets/heightmap_preview.png',
         populate: '/assets/populate_mask.png',
         biomes: '/assets/biome_mask.png'
       };
 
-      img.src = mapPaths[layer] || '/assets/topographic.png';
+      img.src = mapPaths[layer] || '/assets/still_life_populate.png';
     }
 
     // Tabs Switcher
@@ -572,13 +582,14 @@
       ['continents', 'lithosphere', 'still_life', 'worldpainter'].forEach(t => {
         document.getElementById(`content-${t}`).classList.add('hidden');
         const tabBtn = document.getElementById(`tab-${t}`);
-        tabBtn.classList.remove('bg-panel', 'text-cyan-400', 'font-semibold', 'shadow-sm');
+        tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-cyan-400', 'font-semibold', 'shadow-sm');
         tabBtn.classList.add('text-slate-400');
       });
 
       document.getElementById(`content-${tabId}`).classList.remove('hidden');
       const activeTab = document.getElementById(`tab-${tabId}`);
-      activeTab.classList.add('bg-panel', 'text-cyan-400', 'font-semibold', 'shadow-sm');
+      const colorClass = tabId === 'still_life' ? 'text-amber-400' : 'text-cyan-400';
+      activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
       activeTab.classList.remove('text-slate-400');
     }
 
