@@ -102,19 +102,19 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
 
         # 2. File Downloads & Asset Proxies
         asset_map = {
-            "/assets/still_life_populate.png": BASE_DIR / "ASHENFALL_STILL_LIFE_POPULATE_VIEW.png",
-            "/assets/topographic.png": BASE_DIR / "ASHENFALL_TOPOGRAPHIC_RENDER.png",
-            "/assets/heightmap_preview.png": BASE_DIR / "ASHENFALL_HEIGHTMAP_PREVIEW.png",
-            "/assets/populate_mask.png": BASE_DIR / "ASHENFALL_POPULATE_MASK.png",
-            "/assets/biome_mask.png": BASE_DIR / "ASHENFALL_BIOME_MASK.png",
-            "/downloads/heightmap_16bit.png": BASE_DIR / "ASHENFALL_HEIGHTMAP_16BIT.png",
-            "/downloads/worldpainter_suite.zip": BASE_DIR / "ASHENFALL_WORLDPAINTER_SUITE.zip",
-            "/downloads/datapack.zip": BASE_DIR / "builds" / "data2.zip",
+            "/assets/still_life_populate.png": BASE_DIR / "worldpainter" / "ASHENFALL_STILL_LIFE_POPULATE_VIEW.png",
+            "/assets/topographic.png": BASE_DIR / "worldpainter" / "ASHENFALL_TOPOGRAPHIC_RENDER.png",
+            "/assets/heightmap_preview.png": BASE_DIR / "worldpainter" / "ASHENFALL_HEIGHTMAP_PREVIEW.png",
+            "/assets/populate_mask.png": BASE_DIR / "worldpainter" / "ASHENFALL_POPULATE_MASK.png",
+            "/assets/biome_mask.png": BASE_DIR / "worldpainter" / "ASHENFALL_BIOME_MASK.png",
+            "/downloads/heightmap_16bit.png": BASE_DIR / "worldpainter" / "ASHENFALL_HEIGHTMAP_16BIT.png",
+            "/downloads/worldpainter_suite.zip": BASE_DIR / "worldpainter" / "ASHENFALL_WORLDPAINTER_SUITE.zip",
+            "/downloads/datapack.zip": BASE_DIR / "datapacks" / "ashenfall_data2.zip",
             "/downloads/setup.ps1": BASE_DIR / "setup.ps1",
-            "/downloads/script.js": BASE_DIR / "ashenfall_worldpainter_setup.js",
-            "/downloads/lithosphere.zip": BASE_DIR / "lithosphere 1.8.2 28.08.2026.zip",
-            "/downloads/still_life.zip": BASE_DIR / "still_life 0.1.1 25.07.2025.zip",
-            "/downloads/tectonic.zip": BASE_DIR / "tectonic-datapack-3.0.25.zip"
+            "/downloads/script.js": BASE_DIR / "worldpainter" / "ashenfall_worldpainter_setup.js",
+            "/downloads/lithosphere.zip": BASE_DIR / "datapacks" / "sources" / "lithosphere-1.8.2.zip",
+            "/downloads/still_life.zip": BASE_DIR / "datapacks" / "sources" / "still_life-0.1.1.zip",
+            "/downloads/tectonic.zip": BASE_DIR / "datapacks" / "sources" / "tectonic-3.0.25.zip"
         }
 
         if path in asset_map:
