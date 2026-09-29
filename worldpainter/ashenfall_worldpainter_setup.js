@@ -1,23 +1,31 @@
 // =============================================================================
-// ASHENFALL: WorldPainter Turnkey World Synthesis Script (v2.0)
-// Auto-Locates Heightmaps in Downloads, Desktop, or prompts with File Picker
+// ASHENFALL: WorldPainter JSR223 API Automated Synthesis Script
+// World: Ashenfall_Continent
+// Dimensions: Y=-64 to Y=320 | Sea Level: Y=62
+// Built with WorldPainter API Integration Engine v2.5
 // =============================================================================
 
 print("=====================================================================");
-print("   ⚔ ASHENFALL — Synthesizing Pre-Populated Master World ⚔");
+print("   ⚔ ASHENFALL — WorldPainter JSR223 API Synthesis ⚔");
+print("   World: Ashenfall_Continent");
+print("   Elevation Range: [-64 -> 320] | Sea Level: 62");
 print("=====================================================================");
 
+// -----------------------------------------------------------------------------
+// Smart Path Resolver (Inspects relative dir, Downloads, Desktop, or prompts)
+// -----------------------------------------------------------------------------
 function resolveFile(filename) {
-    // 1. Check relative to current working directory
     var f = new java.io.File(filename);
     if (f.exists()) {
-        print(" -> Found: " + f.getAbsolutePath());
+        print(" -> Located file: " + f.getAbsolutePath());
         return f.getAbsolutePath();
     }
 
-    // 2. Check user's Downloads and Desktop folders
     var userHome = java.lang.System.getProperty("user.home");
     var searchPaths = [
+        filename,
+        "worldpainter/" + filename,
+        "../worldpainter/" + filename,
         userHome + "/Downloads/" + filename,
         userHome + "/Downloads/ASHENFALL_WORLDPAINTER_SUITE/" + filename,
         userHome + "/Desktop/" + filename,
@@ -28,34 +36,62 @@ function resolveFile(filename) {
     for (var i = 0; i < searchPaths.length; i++) {
         var candidate = new java.io.File(searchPaths[i]);
         if (candidate.exists()) {
-            print(" -> Found in: " + candidate.getAbsolutePath());
+            print(" -> Located file: " + candidate.getAbsolutePath());
             return candidate.getAbsolutePath();
         }
     }
 
-    // 3. Fallback: Prompt user with native Windows File Chooser
-    print(" -> Prompting for file: " + filename);
-    var chooser = new javax.swing.JFileChooser(userHome + "/Downloads");
-    chooser.setDialogTitle("Ashenfall: Please select " + filename);
-    var result = chooser.showOpenDialog(null);
-    if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
-        var selected = chooser.getSelectedFile().getAbsolutePath();
-        print(" -> Selected: " + selected);
-        return selected;
+    // Headless / GUI Fallback
+    try {
+        if (!java.awt.GraphicsEnvironment.isHeadless()) {
+            print(" -> Prompting for file: " + filename);
+            var chooser = new javax.swing.JFileChooser(userHome + "/Downloads");
+            chooser.setDialogTitle("WorldPainter API: Please select " + filename);
+            var result = chooser.showOpenDialog(null);
+            if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
+                return chooser.getSelectedFile().getAbsolutePath();
+            }
+        }
+    } catch (guiErr) {
+        // Headless execution mode
     }
 
-    throw new java.lang.RuntimeException("File not found: " + filename);
+    throw new java.lang.RuntimeException("WorldPainter API Error: Could not locate " + filename);
 }
 
-// 1. Locate and Load 16-Bit Master Heightmap
-print("\n[1/4] Locating 16-bit Master Heightmap...");
-var heightMapPath = resolveFile("ASHENFALL_HEIGHTMAP_16BIT.png");
+function resolveTargetFilePath(target) {
+    var userHome = java.lang.System.getProperty("user.home");
+    var expanded = target.replace(/^~/, userHome);
+    var targetFile = new java.io.File(expanded);
+    if (targetFile.getParentFile() != null && !targetFile.getParentFile().exists()) {
+        targetFile.getParentFile().mkdirs();
+    }
+    return targetFile.getAbsolutePath();
+}
+
+function resolveTargetDirectory(target) {
+    var userHome = java.lang.System.getProperty("user.home");
+    var expanded = target.replace(/^~/, userHome);
+    var targetDir = new java.io.File(expanded);
+    if (!targetDir.exists()) {
+        targetDir.mkdirs();
+    }
+    return targetDir.getAbsolutePath();
+}
+
+// -----------------------------------------------------------------------------
+// STEP 1: Load 16-Bit Master Topographic Heightmap
+// -----------------------------------------------------------------------------
+print("\n[1/5] Loading 16-bit Master Heightmap...");
+var heightMapFile = resolveFile("worldpainter/ASHENFALL_HEIGHTMAP_16BIT.png");
 var heightMap = wp.getHeightMap()
-    .fromFile(heightMapPath)
+    .fromFile(heightMapFile)
     .go();
 
-// 2. Sculpt 3D Continent (-64 to +320, Sea Level: 62)
-print("[2/4] Sculpting 3D Continent (-64 to +320, Sea Level: 62)...");
+// -----------------------------------------------------------------------------
+// STEP 2: Create 3D World (Y=-64 to Y=320, Water=62)
+// -----------------------------------------------------------------------------
+print("\n[2/5] Sculpting 3D Continent Dimensions...");
 var world = wp.createWorld()
     .fromHeightMap(heightMap)
     .scale(100)
@@ -65,39 +101,68 @@ var world = wp.createWorld()
     .withLowerBuildLimit(-64)
     .withUpperBuildLimit(320)
     .go();
+print(" [✓] 3D World geometry initialized.");
 
-// 3. Apply 100% Pre-Population Mask
-print("[3/4] Applying Pre-Population Layer (Trees, Foliage, Towns, Caverns)...");
-try {
-    var popMaskPath = resolveFile("ASHENFALL_POPULATE_MASK.png");
-    var popMask = wp.getHeightMap()
-        .fromFile(popMaskPath)
+// Optional Terrain Stratification
+    wp.applyHeightMap(heightMap)
+        .toWorld(world)
+        .applyToTerrain()
+        .fromLevels(-64, 64).toTerrain(36) // Ocean Floor & Coast
+        .fromLevels(65, 140).toTerrain(0) // Fertile Lowlands & Valleys
+        .fromLevels(141, 190).toTerrain(3) // Subalpine Heathlands
+        .fromLevels(191, 250).toTerrain(74) // High Crags & Bare Rock
+        .fromLevels(251, 320).toTerrain(40) // Glacial Summits & Permafrost
         .go();
+    print(" [✓] Terrain stratification successfully applied.");
 
+
+// -----------------------------------------------------------------------------
+// STEP 3: Apply Still Life Pre-Population Layer (Foliage, Towns, Caverns)
+// -----------------------------------------------------------------------------
+print("\n[3/5] Applying Still Life Pre-Population Layer...");
+try {
+    var popMaskFile = resolveFile("worldpainter/ASHENFALL_POPULATE_MASK.png");
+    var popMask = wp.getHeightMap().fromFile(popMaskFile).go();
     var populateLayer = wp.getLayer().withName("Populate").go();
 
     wp.applyHeightMap(popMask)
         .toWorld(world)
-        .toLayer(populateLayer)
+        .applyToLayer(populateLayer)
         .fromLevels(128, 255).toLevel(1)
         .go();
-    print(" [✓] Populate Layer applied across all habitable valleys & plains!");
+    print(" [✓] Populate Layer applied across all valleys, forests, and settlements!");
 } catch (e) {
-    print(" [!] Notice on Populate Layer: " + e);
+    print(" [!] Note on Populate Layer: " + e);
 }
 
-// 4. Save the Pre-Populated Master Project in the user's Downloads or working dir
-var userHome = java.lang.System.getProperty("user.home");
-var saveTarget = userHome + "/Downloads/Ashenfall_Continent.world";
-print("\n[4/4] Saving Pre-Populated Project: " + saveTarget + "...");
 
-wp.saveWorld(world)
-    .toFile(saveTarget)
-    .go();
 
+// -----------------------------------------------------------------------------
+// STEP 4: Apply High-Altitude Glacial Frost Layer
+// -----------------------------------------------------------------------------
+print("\n[4/5] Applying High-Altitude Glacial Frost Layer (Y >= 210)...");
+try {
+    var frostLayer = wp.getLayer().withName("Frost").go();
+    wp.applyHeightMap(heightMap)
+        .toWorld(world)
+        .applyToLayer(frostLayer)
+        .fromLevels(0, 209).toLevel(0)
+        .fromLevels(210, 320).toLevel(1)
+        .go();
+    print(" [✓] Glacial Frost layer painted across high mountain peaks!");
+} catch (e) {
+    print(" [!] Note on Frost Layer: " + e);
+}
+
+
+
+// -----------------------------------------------------------------------------
+// STEP 5: Save WorldPainter Master Project File (.world)
+// -----------------------------------------------------------------------------
+var saveTarget = resolveTargetFilePath("~/Downloads/Ashenfall_Continent.world");
+print("\n[5/5] Saving WorldPainter Master Project: " + saveTarget + "...");
+wp.saveWorld(world).toFile(saveTarget).go();
 print("\n=====================================================================");
-print(" [✓] SUCCESS! Ashenfall continent generated and pre-populated!");
+print(" [✓] SUCCESS! Ashenfall continent project created and configured!");
 print(" Saved to: " + saveTarget);
-print(" You can now open it in WorldPainter and click:");
-print(" File -> Export -> Export as Minecraft map...");
 print("=====================================================================");

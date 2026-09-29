@@ -172,6 +172,9 @@
         <button onclick="switchTab('worldpainter')" id="tab-worldpainter" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
           WorldPainter
         </button>
+        <button onclick="switchTab('wpapi')" id="tab-wpapi" class="engine-tab flex-1 py-2 text-center rounded-lg text-slate-400 hover:text-white transition">
+          WP API
+        </button>
       </div>
 
       <!-- Tab Content Area -->
@@ -417,6 +420,129 @@
           </div>
         </div>
 
+        <!-- TAB 5: WORLDPAINTER JSR223 SCRIPTING API -->
+        <div id="content-wpapi" class="hidden space-y-5">
+          <div class="bg-indigo-950/30 border border-indigo-800/40 rounded-xl p-4">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold">
+                <i data-lucide="code" class="w-4 h-4"></i>
+                <span>WorldPainter JSR223 API</span>
+              </div>
+              <span id="wp-engine-status" class="text-[10px] bg-indigo-900/60 text-indigo-300 px-2 py-0.5 rounded-full font-mono">wpscript v2.5</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Headless synthesis, multi-layer masks, custom terrain stratification, and programmatic export.
+            </p>
+          </div>
+
+          <!-- Parameter Configuration -->
+          <div class="space-y-3 bg-panel/70 border border-borderDark rounded-xl p-3.5">
+            <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Script Configuration</span>
+              <button onclick="refreshWPScript()" class="text-indigo-400 hover:text-indigo-300 text-[10px] flex items-center gap-1 font-normal">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh
+              </button>
+            </div>
+
+            <div>
+              <label class="text-[10px] text-slate-400 block mb-1">World Name</label>
+              <input id="wp-world-name" type="text" value="Ashenfall_Continent" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2.5 py-1.5 focus:border-indigo-500 focus:outline-none font-mono">
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Min Y</label>
+                <input id="wp-min-y" type="number" value="-64" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Max Y</label>
+                <input id="wp-max-y" type="number" value="320" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Sea Level</label>
+                <input id="wp-sea-level" type="number" value="62" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+            </div>
+
+            <div class="space-y-2 pt-1 border-t border-borderDark/60">
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                <input id="wp-opt-pop" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                <span>Apply Still Life Populate Mask</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                <input id="wp-opt-strat" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                <span>Apply Geological Strata (Beaches $\to$ Snow)</span>
+              </label>
+
+              <div class="space-y-1">
+                <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                  <input id="wp-opt-frost" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                  <span>Glacial Frost Above Y</span>
+                </label>
+                <div class="flex items-center gap-2 pl-5">
+                  <input id="wp-frost-alt" type="range" min="150" max="280" value="210" oninput="document.getElementById('wp-frost-val').textContent = this.value; refreshWPScript()" class="w-full accent-indigo-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+                  <span id="wp-frost-val" class="font-mono text-[10px] text-indigo-400 font-bold w-7">210</span>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Export Mode</label>
+                <select id="wp-export-mode" onchange="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1.5 focus:border-indigo-500 focus:outline-none">
+                  <option value="world">Save as WorldPainter Master (.world)</option>
+                  <option value="save">Direct Minecraft Anvil Save (saves/Ashenfall)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Generated Script Viewer -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span class="font-mono text-indigo-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="file-code" class="w-3.5 h-3.5"></i> Generated JSR223 Script
+              </span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="copyWPScript()" id="btn-copy-wpscript" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[10px] transition">
+                  Copy
+                </button>
+                <button onclick="downloadCustomScript()" class="px-2 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[10px] transition">
+                  Download .js
+                </button>
+              </div>
+            </div>
+
+            <pre class="bg-black/90 border border-slate-800 rounded-lg p-3 text-[10px] font-mono text-cyan-300 max-h-52 overflow-y-auto overflow-x-hidden leading-relaxed select-all"><code id="wp-code-box">// Initializing WorldPainter API Script...</code></pre>
+          </div>
+
+          <!-- Headless Automation Launchers -->
+          <div class="space-y-2 pt-2 border-t border-borderDark">
+            <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Turnkey Runners & Python SDK</span>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="/downloads/run_worldpainter_api.bat" download class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-200 transition">
+                <i data-lucide="play-circle" class="w-4 h-4 text-emerald-400"></i>
+                <div class="text-left">
+                  <div class="font-bold text-[11px]">Runner (.bat)</div>
+                  <div class="text-[9px] text-slate-500">Auto-detects wpscript</div>
+                </div>
+              </a>
+              <a href="/downloads/worldpainter_api.py" download class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-200 transition">
+                <i data-lucide="terminal" class="w-4 h-4 text-indigo-400"></i>
+                <div class="text-left">
+                  <div class="font-bold text-[11px]">Python API SDK</div>
+                  <div class="text-[9px] text-slate-500">CLI & Code Bridge</div>
+                </div>
+              </a>
+            </div>
+
+            <button onclick="runHeadlessScript()" id="btn-run-headless" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold py-2 rounded-lg shadow-md transition mt-2">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+              <span>Test Headless Execution (wpscript)</span>
+            </button>
+            <div id="wp-run-status" class="hidden text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight"></div>
+          </div>
+        </div>
+
         <!-- LANDMARKS NAVIGATION CARD -->
         <div class="border-t border-borderDark pt-5 space-y-3">
           <div class="flex items-center justify-between">
@@ -586,19 +712,160 @@
 
     // Tabs Switcher
     function switchTab(tabId) {
-      ['continents', 'lithosphere', 'still_life', 'worldpainter'].forEach(t => {
-        document.getElementById(`content-${t}`).classList.add('hidden');
+      ['continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
+        const el = document.getElementById(`content-${t}`);
+        if (el) el.classList.add('hidden');
         const tabBtn = document.getElementById(`tab-${t}`);
-        tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-cyan-400', 'font-semibold', 'shadow-sm');
-        tabBtn.classList.add('text-slate-400');
+        if (tabBtn) {
+          tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-cyan-400', 'text-indigo-400', 'font-semibold', 'shadow-sm');
+          tabBtn.classList.add('text-slate-400');
+        }
       });
 
-      document.getElementById(`content-${tabId}`).classList.remove('hidden');
+      const activeEl = document.getElementById(`content-${tabId}`);
+      if (activeEl) activeEl.classList.remove('hidden');
       const activeTab = document.getElementById(`tab-${tabId}`);
-      const colorClass = tabId === 'still_life' ? 'text-amber-400' : 'text-cyan-400';
-      activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
-      activeTab.classList.remove('text-slate-400');
+      if (activeTab) {
+        let colorClass = 'text-cyan-400';
+        if (tabId === 'still_life') colorClass = 'text-amber-400';
+        else if (tabId === 'wpapi') colorClass = 'text-indigo-400';
+        activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
+        activeTab.classList.remove('text-slate-400');
+      }
+
+      if (tabId === 'wpapi') {
+        refreshWPScript();
+      }
     }
+
+    // WorldPainter API Live Script Generator
+    let currentGeneratedScript = "";
+
+    async function refreshWPScript() {
+      const codeBox = document.getElementById('wp-code-box');
+      if (!codeBox) return;
+
+      const worldNameEl = document.getElementById('wp-world-name');
+      const minYEl = document.getElementById('wp-min-y');
+      const maxYEl = document.getElementById('wp-max-y');
+      const seaLevelEl = document.getElementById('wp-sea-level');
+      const popEl = document.getElementById('wp-opt-pop');
+      const stratEl = document.getElementById('wp-opt-strat');
+      const frostEl = document.getElementById('wp-opt-frost');
+      const frostAltEl = document.getElementById('wp-frost-alt');
+      const exportModeEl = document.getElementById('wp-export-mode');
+
+      const payload = {
+        world_name: worldNameEl ? worldNameEl.value : "Ashenfall_Continent",
+        min_y: minYEl ? parseInt(minYEl.value) : -64,
+        max_y: maxYEl ? parseInt(maxYEl.value) : 320,
+        sea_level: seaLevelEl ? parseInt(seaLevelEl.value) : 62,
+        enable_populate: popEl ? popEl.checked : true,
+        enable_stratification: stratEl ? stratEl.checked : true,
+        enable_frost: frostEl ? frostEl.checked : true,
+        frost_altitude: frostAltEl ? parseInt(frostAltEl.value) : 210,
+        export_mode: exportModeEl ? exportModeEl.value : "world"
+      };
+
+      try {
+        const resp = await fetch('/api/worldpainter/generate-script', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (data.success) {
+          currentGeneratedScript = data.script;
+          codeBox.textContent = data.script;
+        }
+      } catch (err) {
+        console.warn("WorldPainter API refresh notice:", err);
+      }
+    }
+
+    function copyWPScript() {
+      if (!currentGeneratedScript) {
+        const codeBox = document.getElementById('wp-code-box');
+        currentGeneratedScript = codeBox ? codeBox.textContent : "";
+      }
+      navigator.clipboard.writeText(currentGeneratedScript).then(() => {
+        const btn = document.getElementById('btn-copy-wpscript');
+        if (btn) {
+          const orig = btn.textContent;
+          btn.textContent = "Copied!";
+          btn.classList.add('bg-emerald-600', 'text-white');
+          setTimeout(() => {
+            btn.textContent = orig;
+            btn.classList.remove('bg-emerald-600', 'text-white');
+          }, 2000);
+        }
+      });
+    }
+
+    function downloadCustomScript() {
+      if (!currentGeneratedScript) {
+        const codeBox = document.getElementById('wp-code-box');
+        currentGeneratedScript = codeBox ? codeBox.textContent : "";
+      }
+      const blob = new Blob([currentGeneratedScript], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ashenfall_worldpainter_setup.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    async function runHeadlessScript() {
+      const statusDiv = document.getElementById('wp-run-status');
+      const runBtn = document.getElementById('btn-run-headless');
+      if (!statusDiv) return;
+
+      statusDiv.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-800', 'text-emerald-300', 'bg-amber-950/40', 'border-amber-800', 'text-amber-300');
+      statusDiv.classList.add('bg-indigo-950/40', 'border-indigo-800', 'text-indigo-300');
+      statusDiv.textContent = "⚙ Invoking WorldPainter headless engine (wpscript)...";
+
+      try {
+        const resp = await fetch('/api/worldpainter/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ script_path: "worldpainter/ashenfall_worldpainter_setup.js" })
+        });
+        const res = await resp.json();
+
+        if (res.success) {
+          statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-emerald-950/40 border-emerald-800 text-emerald-300';
+          statusDiv.textContent = `[✓] Execution Succeeded (Exit Code: ${res.exit_code})\nEngine: ${res.wpscript}\n\n${res.stdout || "World synthesis finished."}`;
+        } else {
+          statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-amber-950/40 border-amber-800 text-amber-300';
+          let msg = `[!] Local Sandbox Notice:\n${res.error || 'wpscript not found on server'}\n\n`;
+          msg += `To run on your computer:\n1. Run: scripts\\run_worldpainter_api.bat (Windows)\n2. Or WorldPainter GUI: Tools -> Run script...`;
+          statusDiv.textContent = msg;
+        }
+      } catch (err) {
+        statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-red-950/40 border-red-800 text-red-300';
+        statusDiv.textContent = "[!] Connection error executing script: " + err.message;
+      }
+    }
+
+    // Check system status on page load
+    async function checkWPStatus() {
+      try {
+        const resp = await fetch('/api/worldpainter/status');
+        const data = await resp.json();
+        const badge = document.getElementById('wp-engine-status');
+        if (badge && data.installed) {
+          badge.textContent = 'wpscript Online';
+          badge.classList.remove('bg-indigo-900/60', 'text-indigo-300');
+          badge.classList.add('bg-emerald-900/60', 'text-emerald-300');
+        }
+      } catch (e) {
+        // quiet ignore
+      }
+    }
+    checkWPStatus();
 
     // HUD Telemetry Estimator
     function updateHUD(x, z) {

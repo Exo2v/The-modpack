@@ -57,6 +57,7 @@ The-modpack/
 │   └── WORLDPAINTER_IMPORT_GUIDE.md       # Detailed step-by-step import manual
 │
 ├── tools/                         # Tooling & Generation Engines
+│   ├── worldpainter_api.py        # WorldPainter JSR223 Python SDK & headless bridge
 │   ├── world_studio/              # Unified Web GUI (Server & SPA frontend)
 │   │   ├── server.py              # Multi-threaded Python HTTP/API backend
 │   │   └── public/index.html      # Modern Tailwind + Lucide single-page interface
@@ -67,9 +68,11 @@ The-modpack/
 │   ├── lore/                      # Narrative, faction chronicles & Abode of Will
 │   ├── design/                    # Architectural blueprints, handovers & PDFs
 │   ├── phases/                    # Milestone gate criteria (M0 through M3b)
-│   └── guides/                    # Modlists, install instructions & references
+│   └── guides/                    # Modlists, WorldPainter API guide & references
 │
 ├── scripts/                       # Modular Windows batch & bash utility scripts
+│   ├── run_worldpainter_api.bat   # 1-Click headless WorldPainter automation runner
+│   ├── run_worldpainter_api.sh    # Linux / macOS WorldPainter automation runner
 │   ├── download_mods.py / .bat    # Automated mod JAR downloader
 │   ├── install_full_modpack.bat   # Modpack profile installer
 │   ├── fix_everything.py / .bat   # Comprehensive dependency conflict resolver
@@ -127,3 +130,28 @@ The $8{,}000 \times 8{,}000$ continent features 7 landmark factions:
 | **The Gilded Dunes** | `(2300, 0)` | Desert / Eroded Badlands | $45^\circ$ transverse barchan dunes, flat-topped terracotta mesas |
 | **The Whispering Fen** | `(2000, 2000)`| Swamp / Mangrove | Flat sunken bayou ($Y=63$), braided delta channels, witch huts |
 | **The Sunken Reach** | `(-2400, 1600)`| Warm Ocean / Atoll | Drowned caldera shelf ($Y=54$), coral reefs, barrier sandbars |
+
+---
+
+## 🎨 WorldPainter JSR-223 Scripting API Integration
+
+The repository includes a turnkey programmatic integration for WorldPainter's Java Scripting API:
+
+1. **Python API SDK (`tools/worldpainter_api.py`)**:
+   * Parametric code generator (`WorldPainterScriptBuilder`) producing valid JSR223 ECMAScript / Rhino JavaScript.
+   * Auto-detection engine (`WorldPainterCLIBridge`) finding `wpscript.exe` across Windows, macOS, and Linux.
+   * Direct CLI commands:
+     ```bash
+     python tools/worldpainter_api.py detect
+     python tools/worldpainter_api.py generate --min-y -64 --max-y 320 --sea-level 62 --output worldpainter/ashenfall_worldpainter_setup.js
+     ```
+
+2. **1-Click Headless Runners**:
+   * **Windows:** Double-click `scripts\run_worldpainter_api.bat`
+   * **Linux/macOS:** Run `bash scripts/run_worldpainter_api.sh`
+
+3. **Live Web Studio API Console (Port 3000)**:
+   * Navigate to the **WP API** tab in WorldStudio (`http://localhost:3000`).
+   * Interactively configure build limits, sea level, strata rules, and populate layers with real-time live JSR223 script preview, clipboard copying, and direct download.
+   * For complete API docs and terrain index tables, see [`docs/guides/WORLDPAINTER_API_INTEGRATION.md`](docs/guides/WORLDPAINTER_API_INTEGRATION.md).
+
