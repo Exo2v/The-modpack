@@ -16,6 +16,7 @@ import sys
 import time
 import zipfile
 from pathlib import Path
+from typing import Optional
 
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR))
@@ -24,22 +25,41 @@ from tools.ashfall_engine.generator import AshfallContinentEngine
 from tools.ashfall_engine.color_to_terrain import ColorToTerrainConverter
 from tools.worldpainter_api import WorldPainterScriptBuilder
 
-def run_pipeline(resolution: int = 2048, output_dir: Path = BASE_DIR / "worldpainter"):
+def run_pipeline(
+    resolution: int = 2048,
+    output_dir: Path = BASE_DIR / "worldpainter",
+    gaea_heightmap: Optional[Path] = None,
+    gaea_satmap: Optional[Path] = None
+):
     print("=====================================================================")
     print("   ⚔ ASHFALL MASTER CONTINENT & POPULATION PIPELINE ⚔")
     print(f"   Resolution: {resolution}x{resolution} | Destination: {output_dir}")
+    if gaea_heightmap:
+        print(f"   Mode: Ingesting Gaea Export ({gaea_heightmap.name})")
+    else:
+        print("   Mode: Procedural Continental Geology (Lithosphere + Continents)")
     print("=====================================================================")
 
     # STAGE 1: Continent Heightmap & Still Life Population
-    engine = AshfallContinentEngine(resolution=resolution)
-    files = engine.generate_all(output_dir)
+    if gaea_heightmap and gaea_heightmap.exists():
+        files = AshfallContinentEngine.ingest_gaea_map(
+            heightmap_path=gaea_heightmap,
+            satmap_path=gaea_satmap,
+            output_dir=output_dir,
+            target_res=resolution
+        )
+        source_color = gaea_satmap if gaea_satmap and gaea_satmap.exists() else files["topographic_render"]
+    else:
+        engine = AshfallContinentEngine(resolution=resolution)
+        files = engine.generate_all(output_dir)
+        source_color = files["topographic_render"]
 
     # STAGE 2: creativitRy ColorToTerrain Conversion
     print("[+] Executing creativitRy ColorToTerrain Quantization...")
     color_preview = output_dir / "ASHFALL_COLOR_TO_TERRAIN_PREVIEW.png"
     terrain_indexed = output_dir / "ASHFALL_TERRAIN_INDEXED.png"
     ColorToTerrainConverter.convert_image(
-        files["topographic_render"],
+        source_color,
         output_preview_path=color_preview,
         output_indexed_path=terrain_indexed
     )
@@ -85,8 +105,19 @@ def run_pipeline(resolution: int = 2048, output_dir: Path = BASE_DIR / "worldpai
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(description="Ashfall Continent & Population Generator")
+    parser = argparse.ArgumentParser(description="Ashfall Continent & Population Generator (Supports QuadSpinner Gaea)")
     parser.add_argument("--res", type=int, default=2048, choices=[1024, 2048, 4096], help="Resolution (default: 2048)")
     parser.add_argument("--out", type=str, default="worldpainter", help="Output directory")
+    parser.add_argument("--gaea-heightmap", type=str, default=None, help="Path to 1024x1024 Gaea heightmap (.png, .tiff)")
+    parser.add_argument("--gaea-satmap", type=str, default=None, help="Path to 1024x1024 Gaea SatMap/RGB colormap (.png)")
     args = parser.parse_args()
-    run_pipeline(resolution=args.res, output_dir=Path(args.out).resolve())
+
+    h_path = Path(args.gaea_heightmap).resolve() if args.gaea_heightmap else None
+    s_path = Path(args.gaea_satmap).resolve() if args.gaea_satmap else None
+
+    run_pipeline(
+        resolution=args.res,
+        output_dir=Path(args.out).resolve(),
+        gaea_heightmap=h_path,
+        gaea_satmap=s_path
+    )

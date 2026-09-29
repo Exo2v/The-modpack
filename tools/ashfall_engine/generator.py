@@ -17,7 +17,7 @@ import math
 import time
 import json
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
@@ -363,6 +363,140 @@ class AshfallContinentEngine:
             "populate_mask": p_pop,
             "still_life_view": p_emerald,
             "biome_mask": p_biome
+        }
+
+    @classmethod
+    def ingest_gaea_map(
+        cls,
+        heightmap_path: Path,
+        satmap_path: Optional[Path] = None,
+        output_dir: Path = BASE_DIR / "worldpainter",
+        target_res: int = 2048,
+        min_y: float = -64.0,
+        max_y: float = 320.0,
+        sea_level: float = 62.0,
+        verbose: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Ingest any 1024x1024 heightmap & SatMap from QuadSpinner Gaea (Free/Community Edition),
+        resample with bicubic interpolation to target_res (e.g. 2048 or 4096),
+        compute Still Life slope texturing, and output WorldPainter assets.
+        """
+        start_t = time.time()
+        output_dir.mkdir(parents=True, exist_ok=True)
+        if verbose:
+            print("=====================================================================")
+            print(f" [⚔] INGESTING GAEA COMMUNITY EDITION TERRAIN MAPS")
+            print(f" Source Heightmap: {heightmap_path}")
+            print(f" Target Resolution: {target_res}x{target_res} (Upscaled via Bicubic Spline)")
+            print(f" Elevation: Y={min_y} -> Y={max_y} (Sea Level: Y={sea_level})")
+            print("=====================================================================")
+
+        # 1. Load and upscale heightmap
+        img_h = Image.open(heightmap_path)
+        orig_w, orig_h = img_h.size
+        if verbose: print(f"[1/5] Loaded Gaea Heightmap: {orig_w}x{orig_h} (Mode: {img_h.mode})")
+
+        if (orig_w, orig_h) != (target_res, target_res):
+            if verbose: print(f"      Upscaling {orig_w}x{orig_h} -> {target_res}x{target_res} with Bicubic Resampling...")
+            img_h = img_h.resize((target_res, target_res), Image.Resampling.BICUBIC)
+
+        # Convert to normalized float 0..1
+        raw_arr = np.array(img_h, dtype=np.float32)
+        if raw_arr.ndim == 3:
+            raw_arr = raw_arr[:, :, 0]
+
+        max_val = 65535.0 if img_h.mode in ('I;16', 'I', 'F') or raw_arr.max() > 256.0 else 255.0
+        h_norm = np.clip(raw_arr / max_val, 0.0, 1.0)
+        total_h = max_y - min_y
+        H = min_y + h_norm * total_h
+
+        # 2. Compute 3D Slopes (Still Life Rule: < 35° fertile, > 45° rock scree)
+        if verbose: print("[2/5] Calculating 3D Geological Slopes & Still Life Foliage Rules...")
+        dx, dz = np.gradient(H)
+        slope_rad = np.arctan(np.sqrt(dx**2 + dz**2))
+        slope_deg = np.degrees(slope_rad)
+
+        # 3. Generate Still Life Populate Mask
+        fertile = (slope_deg <= 35.0) & (H > sea_level + 1.0) & (H <= 235.0)
+        pop_mask_u8 = np.where(fertile, 255, 0).astype(np.uint8)
+
+        # 4. Synthesize or Process RGB SatMap
+        if satmap_path and Path(satmap_path).exists():
+            if verbose: print(f"[3/5] Loading Gaea SatMap: {satmap_path}...")
+            img_sat = Image.open(satmap_path).convert('RGB')
+            if img_sat.size != (target_res, target_res):
+                img_sat = img_sat.resize((target_res, target_res), Image.Resampling.BICUBIC)
+            sat_rgb = np.array(img_sat, dtype=np.uint8)
+        else:
+            if verbose: print("[3/5] No SatMap provided — synthesizing palette from Gaea terrain slopes...")
+            sat_rgb = np.zeros((target_res, target_res, 3), dtype=np.uint8)
+            sat_rgb[H <= sea_level] = [45, 95, 160]                                  # Ocean
+            sat_rgb[(H > sea_level) & (H <= sea_level + 2.0)] = [219, 211, 160]      # Beach
+            sat_rgb[(H > sea_level + 2.0) & (H <= 150.0) & (slope_deg <= 35.0)] = [76, 125, 42] # Grass
+            sat_rgb[(H > 150.0) & (H <= 210.0) & (slope_deg <= 35.0)] = [110, 78, 54] # Taiga Soil
+            sat_rgb[(slope_deg > 35.0) & (H > sea_level)] = [125, 125, 125]         # Bare Rock Scree
+            sat_rgb[H > 240.0] = [239, 251, 251]                                     # Glacial Snow
+
+        # Hillshading
+        sun_azimuth = 315.0
+        sun_altitude = 45.0
+        az_rad = np.radians(sun_azimuth)
+        alt_rad = np.radians(sun_altitude)
+        aspect = np.arctan2(-dx, dz)
+        shaded = np.sin(alt_rad) * np.cos(slope_rad) + np.cos(alt_rad) * np.sin(slope_rad) * np.cos(az_rad - aspect)
+        shaded = np.clip(shaded, 0.0, 1.0)
+        shaded_factor = 0.45 + 0.55 * shaded
+        hillshade_rgb = (sat_rgb.astype(np.float32) * shaded_factor[:, :, np.newaxis]).clip(0, 255).astype(np.uint8)
+
+        # 5. Export Master Files
+        if verbose: print("[4/5] Writing 16-Bit Master Heightmap & WorldPainter Maps...")
+        h_u16 = (h_norm * 65535.0).astype(np.uint16)
+        img_16bit = Image.fromarray(h_u16, mode='I;16')
+        p_16bit = output_dir / "ASHFALL_HEIGHTMAP_16BIT.png"
+        img_16bit.save(p_16bit)
+
+        img_preview = Image.fromarray((h_norm * 255.0).astype(np.uint8), mode='L')
+        p_preview = output_dir / "ASHFALL_HEIGHTMAP_PREVIEW.png"
+        img_preview.save(p_preview)
+
+        img_topographic = Image.fromarray(hillshade_rgb, mode='RGB')
+        p_topographic = output_dir / "ASHFALL_TOPOGRAPHIC_RENDER.png"
+        img_topographic.save(p_topographic)
+
+        img_pop = Image.fromarray(pop_mask_u8, mode='L')
+        p_pop = output_dir / "ASHFALL_POPULATE_MASK.png"
+        img_pop.save(p_pop)
+
+        emerald_overlay = hillshade_rgb.copy()
+        mask_bool = pop_mask_u8 > 128
+        emerald_overlay[mask_bool, 1] = np.clip(emerald_overlay[mask_bool, 1].astype(np.int32) + 55, 0, 255).astype(np.uint8)
+        p_emerald = output_dir / "ASHFALL_STILL_LIFE_POPULATE_VIEW.png"
+        Image.fromarray(emerald_overlay, mode='RGB').save(p_emerald)
+
+        # Biome mask
+        biome_mask_u8 = np.zeros((target_res, target_res), dtype=np.uint8)
+        biome_mask_u8[H <= sea_level] = 0
+        biome_mask_u8[(H > sea_level) & (slope_deg <= 35.0) & (H <= 140.0)] = 1  # Plains
+        biome_mask_u8[(H > sea_level) & (slope_deg <= 35.0) & (H > 140.0)] = 5   # Taiga
+        biome_mask_u8[(H > sea_level) & (slope_deg > 35.0)] = 3                  # Windswept Hills / Rock
+        biome_mask_u8[H > 240.0] = 12                                            # Snowy Plains
+        p_biome = output_dir / "ASHFALL_BIOME_MASK.png"
+        Image.fromarray(biome_mask_u8, mode='L').save(p_biome)
+
+        elapsed = time.time() - start_t
+        if verbose:
+            print(f"[5/5] Ingestion complete in {elapsed:.2f} seconds!")
+            print(f"      Lossless 16-bit heightmap & masks saved to: {output_dir}")
+
+        return {
+            "heightmap_16bit": p_16bit,
+            "heightmap_preview": p_preview,
+            "topographic_render": p_topographic,
+            "populate_mask": p_pop,
+            "still_life_view": p_emerald,
+            "biome_mask": p_biome,
+            "raw_satmap": sat_rgb
         }
 
 
