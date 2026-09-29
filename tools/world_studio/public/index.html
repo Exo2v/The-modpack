@@ -6,14 +6,8 @@
   <title>Ashenfall WorldStudio — Unified WorldEngine</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "/js/three.module.js",
-      "three/addons/controls/OrbitControls.js": "/js/OrbitControls.js"
-    }
-  }
-  </script>
+  <!-- Three.js + OrbitControls Bundle (Self-contained UMD) -->
+  <script src="/js/three.bundle.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -769,12 +763,9 @@
   </div>
 
   <!-- INTERACTIVE APPLICATION LOGIC & 3D WEBGL ENGINE -->
-  <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-    window.THREE = THREE;
-    window.OrbitControls = OrbitControls;
+  <script>
+    const THREE = window.THREE;
+    const OrbitControls = window.OrbitControls;
 
     lucide.createIcons();
 
@@ -1188,6 +1179,7 @@
       requestAnimationFrame(stepFly);
       updateHUD(mcX, mcZ);
     }
+    window.flyTo3DCoordinates = flyTo3DCoordinates;
 
     window.flyTo3DLandmark = function(id) {
       const lm = LANDMARKS_3D[id];
