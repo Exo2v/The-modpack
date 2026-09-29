@@ -1,8 +1,0 @@
-{
-    "replace": false,
-  "values": [
-	"still_life:arctic_shallow_ocean",
-    "minecraft:frozen_ocean",
-    "minecraft:deep_frozen_ocean"
-  ]
-}

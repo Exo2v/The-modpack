@@ -68,13 +68,13 @@
 
     <!-- 2D / 3D Mode Switcher -->
     <div class="flex items-center bg-void/90 p-1 rounded-xl border border-borderDark shadow-inner">
-      <button id="view-mode-2d" onclick="setViewMode('2d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 text-white shadow-sm transition">
+      <button id="view-mode-3d" onclick="setViewMode('3d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition">
+        <i data-lucide="box" class="w-3.5 h-3.5 text-purple-300"></i>
+        <span>3D Continent Globe</span>
+      </button>
+      <button id="view-mode-2d" onclick="setViewMode('2d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
         <i data-lucide="map" class="w-3.5 h-3.5"></i>
         <span>2D Map</span>
-      </button>
-      <button id="view-mode-3d" onclick="setViewMode('3d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
-        <i data-lucide="box" class="w-3.5 h-3.5 text-purple-400"></i>
-        <span>3D WebGL Globe</span>
       </button>
     </div>
 
@@ -101,8 +101,8 @@
     <!-- LEFT / CENTER: INTERACTIVE MAP VIEWPORT -->
     <main class="flex-1 flex flex-col relative overflow-hidden map-canvas-container">
       
-      <!-- Viewport Floating Toolbar -->
-      <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+      <!-- 2D Viewport Floating Toolbar (Hidden when in 3D Mode) -->
+      <div id="toolbar-2d" class="hidden absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
         <button onclick="setLayer('still_life_populate')" id="btn-still_life_populate" class="layer-btn active flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md shadow-emerald-900/40 transition">
           <i data-lucide="flower-2" class="w-4 h-4"></i>
           <span>Still Life & Populate</span>
@@ -125,8 +125,8 @@
         </button>
       </div>
 
-      <!-- Canvas Controls (Zoom/Reset) -->
-      <div class="absolute top-4 right-4 z-10 flex flex-col gap-1.5 bg-panel/90 backdrop-blur-md p-1 rounded-xl border border-borderDark shadow-xl">
+      <!-- 2D Canvas Controls (Hidden when in 3D Mode) -->
+      <div id="controls-2d" class="hidden absolute top-4 right-4 z-10 flex flex-col gap-1.5 bg-panel/90 backdrop-blur-md p-1 rounded-xl border border-borderDark shadow-xl">
         <button onclick="zoomIn()" title="Zoom In" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
           <i data-lucide="zoom-in" class="w-4 h-4"></i>
         </button>
@@ -138,13 +138,13 @@
         </button>
       </div>
 
-      <!-- MAP CANVAS -->
-      <div id="canvas-wrapper" class="flex-1 w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center">
+      <!-- 2D MAP CANVAS (Hidden when in 3D Mode) -->
+      <div id="canvas-wrapper" class="hidden flex-1 w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center">
         <img id="map-image" src="/assets/still_life_populate.png" alt="Map Layer" class="max-w-none origin-center transition-transform duration-75 select-none pointer-events-none" style="transform: translate(0px, 0px) scale(1);">
       </div>
 
-      <!-- 3D WEBGL VIEWPORT CONTAINER -->
-      <div id="webgl-container" class="hidden flex-1 w-full h-full relative overflow-hidden bg-void select-none">
+      <!-- 3D WEBGL VIEWPORT CONTAINER (ACTIVE BY DEFAULT) -->
+      <div id="webgl-container" class="flex-1 w-full h-full relative overflow-hidden bg-void select-none">
         <div id="webgl-canvas-mount" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
 
         <!-- 3D Floating Controls Toolbar -->
@@ -920,8 +920,8 @@
       const btn3d = document.getElementById('view-mode-3d');
       const canvas2d = document.getElementById('canvas-wrapper');
       const container3d = document.getElementById('webgl-container');
-      const toolbar2d = document.querySelector('.map-canvas-container > div:first-child');
-      const controls2d = document.querySelector('.map-canvas-container > div:nth-child(2)');
+      const toolbar2d = document.getElementById('toolbar-2d');
+      const controls2d = document.getElementById('controls-2d');
 
       if (mode === '3d') {
         if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
@@ -1505,6 +1505,14 @@
         }
       });
     };
+
+    // Auto-launch 3D WebGL Continent Viewport by default
+    window.addEventListener('DOMContentLoaded', () => {
+      setViewMode('3d');
+    });
+    setTimeout(() => {
+      setViewMode('3d');
+    }, 200);
   </script>
 </body>
 </html>
