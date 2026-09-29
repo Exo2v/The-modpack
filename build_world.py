@@ -534,7 +534,7 @@ ServerEvents.commandRegistry(function(event) {
 # 5. ALL-IN-ONE WORLD BUILDER & VALIDATOR
 # =============================================================================
 
-def setup_all_in_one():
+def setup_all_in_one(use_worldpainter=False):
     print("=" * 70)
     print("   ⚔ ASHENFALL — All-in-One World & Worldgen Installer (Single Script) ⚔")
     print("======================================================================")
@@ -616,11 +616,11 @@ def setup_all_in_one():
         f.write(dp_zip_bytes)
     print(f"      [✓] Deployed into save: saves/Ashenfall/datapacks/ashenfall_data2.zip ({len(dp_zip_bytes):,} bytes)")
 
-    # Also mirror into builds/data2.zip and pack/overrides/datapacks/
+    # Also mirror into datapacks/ashenfall_data2.zip and pack/overrides/datapacks/
     base_dir = Path(__file__).resolve().parent
-    builds_dp_zip = base_dir / "builds" / "data2.zip"
-    builds_dp_zip.parent.mkdir(parents=True, exist_ok=True)
-    with open(builds_dp_zip, "wb") as f:
+    dp_mirror = base_dir / "datapacks" / "ashenfall_data2.zip"
+    dp_mirror.parent.mkdir(parents=True, exist_ok=True)
+    with open(dp_mirror, "wb") as f:
         f.write(dp_zip_bytes)
 
     pack_dp_zip = base_dir / "pack" / "overrides" / "datapacks" / "ashenfall_data2.zip"
@@ -647,9 +647,9 @@ def setup_all_in_one():
     # 6. Copy world icon if available
     print(f"\n[5/5] Finalizing Assets & Running Verification...")
     for icon_name in ["ASHENFALL_LITHOSPHERE_MAP.png", "ASHENFALL_CONTINENT_MAP.png"]:
-        icon_src = base_dir / icon_name
+        icon_src = base_dir / "worldpainter" / icon_name
         if not icon_src.exists():
-            icon_src = base_dir / "builds" / "map1" / icon_name
+            icon_src = base_dir / icon_name
         if icon_src.exists():
             try:
                 from PIL import Image
@@ -660,6 +660,37 @@ def setup_all_in_one():
             except Exception:
                 shutil.copy2(icon_src, world_dir / "icon.png")
                 break
+
+    # Optional WorldPainter Headless API Export
+    if use_worldpainter:
+        print(f"\n[+] Invoking WorldPainter JSR223 API...")
+        try:
+            sys.path.insert(0, str(base_dir))
+            from tools.worldpainter_api import WorldPainterCLIBridge, WorldPainterScriptBuilder
+            wp_bin = WorldPainterCLIBridge.find_wpscript()
+            script_path = world_dir / "ashenfall_worldpainter_setup.js"
+            builder = WorldPainterScriptBuilder(
+                world_name="Ashenfall",
+                min_y=-64,
+                max_y=320,
+                sea_level=62,
+                export_mode="save",
+                export_target=str(world_dir)
+            )
+            builder.write_script_file(str(script_path))
+            if wp_bin:
+                print(f"      [✓] Located WorldPainter CLI: {wp_bin}")
+                print(f"      [⚙] Running WorldPainter headless export to {world_dir}...")
+                res = WorldPainterCLIBridge.execute_script(str(script_path), wpscript_path=str(wp_bin))
+                if res.get("success"):
+                    print(f"      [✓] WorldPainter region files exported successfully!")
+                else:
+                    print(f"      [!] Notice: {res.get('error') or res.get('stderr')}")
+            else:
+                print(f"      [!] wpscript not detected in system PATH. Script saved to: {script_path}")
+                print(f"          To run: scripts\\run_worldpainter_api.bat or WorldPainter GUI (Tools > Run script...)")
+        except Exception as wp_err:
+            print(f"      [!] WorldPainter API notice: {wp_err}")
 
     # Automated Validation Check
     biomes = generate_multi_noise_biomes()
@@ -688,4 +719,12 @@ def setup_all_in_one():
 
 
 if __name__ == "__main__":
-    setup_all_in_one()
+    import argparse
+    parser = argparse.ArgumentParser(description="Ashenfall World & Worldgen Installer")
+    parser.add_argument(
+        "--worldpainter", "-wp",
+        action="store_true",
+        help="Invoke WorldPainter JSR223 API headlessly to carve terrain & export region chunks"
+    )
+    args = parser.parse_args()
+    setup_all_in_one(use_worldpainter=args.worldpainter)

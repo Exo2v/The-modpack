@@ -83,7 +83,6 @@ The-modpack/
 │   ├── mods/                      # Tracked mod TOML references
 │   └── overrides/                 # KubeJS scripts & configs
 │
-├── builds/                        # Build releases and packaged archives
 └── downloads/                     # Release distribution bundles
 ```
 

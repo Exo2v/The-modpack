@@ -1,4 +1,4 @@
-# Ashenfall Datapack: data2 (`builds/data2/`)
+# Ashenfall Datapack: data2 (`datapacks/ashenfall_data2/`)
 
 ### *Unified Lithosphere Continuous Spline & Still Life Biome Engine*
 *(Minecraft 1.21.1 NeoForge · Data Pack Format 48)*
