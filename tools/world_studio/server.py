@@ -111,6 +111,38 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode("utf-8"))
             return
 
+        # 3. API: Generate Ashfall Continent & Still Life Population (Python)
+        elif path == "/api/ashfall/generate":
+            import time
+            from tools.ashfall_engine.generator import AshfallContinentEngine
+            from tools.ashfall_engine.color_to_terrain import ColorToTerrainConverter
+
+            t0 = time.time()
+            res = int(req_data.get("resolution", 2048))
+            engine = AshfallContinentEngine(resolution=res)
+            out_files = engine.generate_all(BASE_DIR / "worldpainter")
+
+            color_preview = BASE_DIR / "worldpainter" / "ASHFALL_COLOR_TO_TERRAIN_PREVIEW.png"
+            terrain_indexed = BASE_DIR / "worldpainter" / "ASHFALL_TERRAIN_INDEXED.png"
+            ColorToTerrainConverter.convert_image(
+                out_files["topographic_render"],
+                output_preview_path=color_preview,
+                output_indexed_path=terrain_indexed
+            )
+            dt = time.time() - t0
+
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            resp = {
+                "success": True,
+                "resolution": res,
+                "time_seconds": round(dt, 2),
+                "message": f"Ashfall Continent & Still Life population generated in {dt:.2f}s"
+            }
+            self.wfile.write(json.dumps(resp).encode("utf-8"))
+            return
+
         else:
             self.send_error(404, "API endpoint not found")
             return
@@ -191,13 +223,21 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
             return
 
         # 3. File Downloads & Asset Proxies
+        def get_file(candidates):
+            for c in candidates:
+                p = BASE_DIR / c
+                if p.exists():
+                    return p
+            return BASE_DIR / candidates[0]
+
         asset_map = {
-            "/assets/still_life_populate.png": BASE_DIR / "worldpainter" / "ASHENFALL_STILL_LIFE_POPULATE_VIEW.png",
-            "/assets/topographic.png": BASE_DIR / "worldpainter" / "ASHENFALL_TOPOGRAPHIC_RENDER.png",
-            "/assets/heightmap_preview.png": BASE_DIR / "worldpainter" / "ASHENFALL_HEIGHTMAP_PREVIEW.png",
-            "/assets/populate_mask.png": BASE_DIR / "worldpainter" / "ASHENFALL_POPULATE_MASK.png",
-            "/assets/biome_mask.png": BASE_DIR / "worldpainter" / "ASHENFALL_BIOME_MASK.png",
-            "/downloads/heightmap_16bit.png": BASE_DIR / "worldpainter" / "ASHENFALL_HEIGHTMAP_16BIT.png",
+            "/assets/still_life_populate.png": get_file(["worldpainter/ASHFALL_STILL_LIFE_POPULATE_VIEW.png", "worldpainter/ASHENFALL_STILL_LIFE_POPULATE_VIEW.png"]),
+            "/assets/topographic.png": get_file(["worldpainter/ASHFALL_TOPOGRAPHIC_RENDER.png", "worldpainter/ASHENFALL_TOPOGRAPHIC_RENDER.png"]),
+            "/assets/heightmap_preview.png": get_file(["worldpainter/ASHFALL_HEIGHTMAP_PREVIEW.png", "worldpainter/ASHENFALL_HEIGHTMAP_PREVIEW.png"]),
+            "/assets/populate_mask.png": get_file(["worldpainter/ASHFALL_POPULATE_MASK.png", "worldpainter/ASHENFALL_POPULATE_MASK.png"]),
+            "/assets/biome_mask.png": get_file(["worldpainter/ASHFALL_BIOME_MASK.png", "worldpainter/ASHENFALL_BIOME_MASK.png"]),
+            "/assets/color_to_terrain.png": get_file(["worldpainter/ASHFALL_COLOR_TO_TERRAIN_PREVIEW.png", "worldpainter/ASHENFALL_TOPOGRAPHIC_RENDER.png"]),
+            "/downloads/heightmap_16bit.png": get_file(["worldpainter/ASHFALL_HEIGHTMAP_16BIT.png", "worldpainter/ASHENFALL_HEIGHTMAP_16BIT.png"]),
             "/downloads/worldpainter_suite.zip": BASE_DIR / "worldpainter" / "ASHENFALL_WORLDPAINTER_SUITE.zip",
             "/downloads/datapack.zip": BASE_DIR / "datapacks" / "ashenfall_data2.zip",
             "/downloads/setup.ps1": BASE_DIR / "setup.ps1",

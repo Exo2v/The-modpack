@@ -1,13 +1,13 @@
 // =============================================================================
 // ASHENFALL: WorldPainter JSR223 API Automated Synthesis Script
-// World: Ashenfall_Continent
+// World: Ashfall_Continent
 // Dimensions: Y=-64 to Y=320 | Sea Level: Y=62
 // Built with WorldPainter API Integration Engine v2.5
 // =============================================================================
 
 print("=====================================================================");
 print("   ⚔ ASHENFALL — WorldPainter JSR223 API Synthesis ⚔");
-print("   World: Ashenfall_Continent");
+print("   World: Ashfall_Continent");
 print("   Elevation Range: [-64 -> 320] | Sea Level: 62");
 print("=====================================================================");
 
@@ -83,7 +83,7 @@ function resolveTargetDirectory(target) {
 // STEP 1: Load 16-Bit Master Topographic Heightmap
 // -----------------------------------------------------------------------------
 print("\n[1/5] Loading 16-bit Master Heightmap...");
-var heightMapFile = resolveFile("worldpainter/ASHENFALL_HEIGHTMAP_16BIT.png");
+var heightMapFile = resolveFile("worldpainter/ASHFALL_HEIGHTMAP_16BIT.png");
 var heightMap = wp.getHeightMap()
     .fromFile(heightMapFile)
     .go();
@@ -121,7 +121,7 @@ print(" [✓] 3D World geometry initialized.");
 // -----------------------------------------------------------------------------
 print("\n[3/5] Applying Still Life Pre-Population Layer...");
 try {
-    var popMaskFile = resolveFile("worldpainter/ASHENFALL_POPULATE_MASK.png");
+    var popMaskFile = resolveFile("worldpainter/ASHFALL_POPULATE_MASK.png");
     var popMask = wp.getHeightMap().fromFile(popMaskFile).go();
     var populateLayer = wp.getLayer().withName("Populate").go();
 
@@ -159,7 +159,7 @@ try {
 // -----------------------------------------------------------------------------
 // STEP 5: Save WorldPainter Master Project File (.world)
 // -----------------------------------------------------------------------------
-var saveTarget = resolveTargetFilePath("~/Downloads/Ashenfall_Continent.world");
+var saveTarget = resolveTargetFilePath("~/Downloads/Ashfall_Continent.world");
 print("\n[5/5] Saving WorldPainter Master Project: " + saveTarget + "...");
 wp.saveWorld(world).toFile(saveTarget).go();
 print("\n=====================================================================");
