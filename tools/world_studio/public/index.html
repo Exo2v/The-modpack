@@ -2394,11 +2394,17 @@
 
     // Auto-launch 3D WebGL Continent Viewport by default & prefetch Schematics
     window.addEventListener('DOMContentLoaded', () => {
-      setViewMode('3d');
+      const urlParams = new URLSearchParams(window.location.search);
+      const hash = window.location.hash;
+      const initialMode = (urlParams.get('mode') || (hash.includes('schematic') ? 'schematics' : '3d'));
+      setViewMode(initialMode);
       fetchSchematicsCatalog();
     });
     setTimeout(() => {
-      setViewMode('3d');
+      const urlParams = new URLSearchParams(window.location.search);
+      const hash = window.location.hash;
+      const initialMode = (urlParams.get('mode') || (hash.includes('schematic') ? 'schematics' : '3d'));
+      setViewMode(initialMode);
     }, 200);
   </script>
 </body>
