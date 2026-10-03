@@ -527,17 +527,33 @@
             <div class="flex items-center justify-between mb-1.5">
               <div class="flex items-center gap-2 text-pink-400 font-bold text-sm">
                 <i data-lucide="palette" class="w-4 h-4"></i>
-                <span>National Panoramas Atlas</span>
+                <span>Continental Architectural Atlas & Concept Art</span>
               </div>
-              <span class="text-[10px] bg-pink-900/60 text-pink-300 px-2 py-0.5 rounded-full font-mono">7 Nations</span>
+              <span class="text-[10px] bg-pink-900/60 text-pink-300 px-2 py-0.5 rounded-full font-mono">16 Visual References</span>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Full wide-scale panoramic reference landscapes of all seven continental nations. Illustrates macro civilization scale, mountain-spanning walls, canyon aqueducts, alpine ice spires, and sunken Atlantis ruins.
+              Complete visual design bible for the continent of Vantyra: macro wide-scale national landscape panoramas paired with close-up architectural studies of castles, walls, towns, cities, and ruins.
             </p>
+            
+            <!-- Art View Mode Switcher -->
+            <div class="grid grid-cols-2 gap-2 pt-3 mt-3 border-t border-slate-800/80">
+              <button onclick="switchArtSection('panoramas')" id="btn-art-panoramas" class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-pink-600/90 text-white shadow transition">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                <span>National Panoramas (7)</span>
+              </button>
+              <button onclick="switchArtSection('closeups')" id="btn-art-closeups" class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+                <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                <span>Close-Up Studies (9)</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Gallery List of 7 Full Wide-Scale Nations -->
-          <div class="space-y-4">
+          <!-- SECTION 1: MACRO NATIONAL PANORAMAS (7 NATIONS) -->
+          <div id="art-section-panoramas" class="space-y-4">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Macro National Horizons</span>
+              <span class="text-[10px] text-slate-500 font-mono">7 Realms</span>
+            </div>
 
             <!-- 1. The Coastal Kingdom of the Grey Frontier -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
@@ -555,7 +571,7 @@
                   <span class="font-mono text-[10px] text-cyan-400">(0, 2500)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Miles of mountain-spanning curtain walls, fortified harbor city with docked galleys, and a high promontory citadel under storm-lashed skies with sweeping god rays.
+                  Miles of mountain-spanning curtain walls, fortified harbor city with docked galleys, and a high promontory keep under storm-lashed skies with sweeping god rays.
                 </p>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('grey_frontier_watchtower')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
@@ -750,6 +766,339 @@
             </div>
 
           </div>
+
+          <!-- SECTION 2: CLOSE-UP ARCHITECTURAL STUDIES (9 ARTWORKS) -->
+          <div id="art-section-closeups" class="hidden space-y-4">
+            
+            <!-- Category Filter Pills -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] scrollbar-thin">
+              <button onclick="filterCloseups('all')" id="filter-all" class="closeup-filter px-2.5 py-1 rounded-full bg-pink-600 text-white font-semibold">All (9)</button>
+              <button onclick="filterCloseups('castle')" id="filter-castle" class="closeup-filter px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white font-medium">Castles (2)</button>
+              <button onclick="filterCloseups('wall')" id="filter-wall" class="closeup-filter px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white font-medium">Walls (2)</button>
+              <button onclick="filterCloseups('town')" id="filter-town" class="closeup-filter px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white font-medium">Towns & Cities (3)</button>
+              <button onclick="filterCloseups('ruins')" id="filter-ruins" class="closeup-filter px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white font-medium">Ruins (2)</button>
+            </div>
+
+            <!-- 1. Castle: Grey Frontier High Keep -->
+            <div class="closeup-card card-castle bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_castle_grey_frontier_keep.png" alt="High Keep Gatehouse" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">CASTLE</span>
+                  <span class="text-[10px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">Grey Frontier</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">High Castle Keep of House Douglas</h4>
+                  <span class="text-[10px] text-amber-400 font-mono">Courtyard Entrance</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Twin soaring drum gatehouses with projecting machicolations, raised iron portcullis, red and slate-grey banners, blazing wall braziers, and rutted granite courtyard paving.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stone Bricks</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Deepslate Stairs</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Iron Bars</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Banners</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('grey_frontier_watchtower')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Watchtower</span>
+                  </button>
+                  <a href="/art/closeup_castle_grey_frontier_keep.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Castle: Glacial Spine Alpine Citadel -->
+            <div class="closeup-card card-castle bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_castle_glacial_spine_citadel.png" alt="Alpine Ice Citadel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">CASTLE</span>
+                  <span class="text-[10px] font-medium bg-cyan-950/90 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-full font-mono">Glacial Spine</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">High Alpine Citadel of House Vane</h4>
+                  <span class="text-[10px] text-cyan-400 font-mono">Chasm Gate</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Needle-sharp gothic ice spires, frost-encrusted flying buttresses, lancet stained glass windows glowing with cold blue light, gargoyles, and snow-dusted chasm bridge.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Calcite</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Blue Ice</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Soul Lantern</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stained Glass</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('glacial_hermit_cloister')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Cloister</span>
+                  </button>
+                  <a href="/art/closeup_castle_glacial_spine_citadel.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Wall: Coastal Defense Ramparts & Sea Gate -->
+            <div class="closeup-card card-wall bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_wall_frontier_coastal_ramparts.png" alt="Coastal Ramparts" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-sky-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">WALL</span>
+                  <span class="text-[10px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">Grey Frontier</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Coastal Ramparts & Fortified Sea Gate</h4>
+                  <span class="text-[10px] text-sky-400 font-mono">Parapet Walk</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Wide 5m battlement walkway with crenellated merlons, ballistas, smoking pitch cauldrons, sloped talus foundation against crashing ocean waves, and vaulted sea gate arches.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stone Brick Wall</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Cauldrons</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Spruce Wood</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Iron Portcullis</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <a href="/art/closeup_wall_frontier_coastal_ramparts.png" target="_blank" class="w-full flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold py-1.5 rounded-lg border border-slate-700 transition">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                    <span>Inspect Full Concept Art</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Wall: Obsidian Bastion Wall -->
+            <div class="closeup-card card-wall bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_wall_ashen_obsidian_bulwark.png" alt="Obsidian Bastion Wall" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-sky-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">WALL</span>
+                  <span class="text-[10px] font-medium bg-red-950/90 text-red-300 border border-red-800 px-2 py-0.5 rounded-full font-mono">Ashen Caldera</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Obsidian Bastion Bulwark & Lava Moat</h4>
+                  <span class="text-[10px] text-red-400 font-mono">Caldera Moat</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Enormous polished blackstone defense wall with vertical weeping obsidian seams pulsing with violet rift energy, spiked battlements, gargoyles, and bubbling molten lava moat.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Polished Blackstone</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Crying Obsidian</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Lava</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Soul Lantern</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <a href="/art/closeup_wall_ashen_obsidian_bulwark.png" target="_blank" class="w-full flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold py-1.5 rounded-lg border border-slate-700 transition">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                    <span>Inspect Full Concept Art</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. City: Cogwork March Industrial Avenue -->
+            <div class="closeup-card card-town bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_city_cogwork_foundry_avenue.png" alt="Cogwork Industrial Avenue" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">CITY</span>
+                  <span class="text-[10px] font-medium bg-amber-950/90 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full font-mono">Cogwork March</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Cogwork Industrial Foundry Avenue</h4>
+                  <span class="text-[10px] text-amber-400 font-mono">Workshop Street</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Steampunk street lined with brick arcades, blacksmith forge hearths, exposed copper pipes venting steam, overhead railway trestle carrying ore carts, and glowing gas lamps.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Cut Copper</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Mud Bricks</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Rail & Minecart</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Copper Bulbs</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('cogwork_steam_foundry')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Steam Foundry</span>
+                  </button>
+                  <a href="/art/closeup_city_cogwork_foundry_avenue.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Town: Oasis Street Bazaar of Al-Qadira -->
+            <div class="closeup-card card-town bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_town_gilded_dunes_bazaar.png" alt="Oasis Street Bazaar" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-yellow-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">TOWN</span>
+                  <span class="text-[10px] font-medium bg-yellow-950/90 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full font-mono">Gilded Dunes</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Oasis Street Bazaar of Al-Qadira</h4>
+                  <span class="text-[10px] text-yellow-400 font-mono">Market Promenade</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Sandstone facades with Moorish arches, mashrabiya cedar balconies, colorful silk awnings overhead, turquoise-and-gold mosaic fountain, spice stalls, and soaring minaret.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Cut Sandstone</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Prismarine Tiles</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Gold Blocks</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Dyed Wool</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('al_qadira_sunken_bazaar')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Bazaar</span>
+                  </button>
+                  <a href="/art/closeup_town_gilded_dunes_bazaar.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Town: Bayou Stilt Hamlet of House Belen -->
+            <div class="closeup-card card-town bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_town_fen_stilt_hamlet.png" alt="Bayou Stilt Hamlet" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-yellow-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">TOWN</span>
+                  <span class="text-[10px] font-medium bg-purple-950/90 text-purple-300 border border-purple-800 px-2 py-0.5 rounded-full font-mono">Whispering Fen</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Bayou Stilt Hamlet of House Belen</h4>
+                  <span class="text-[10px] text-purple-400 font-mono">Boardwalk Village</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Thatched mangrove stilt houses built on ancient tree roots, elevated boardwalks with rope railings, wicker cages with glowing cyan mushrooms, skiffs, and misty swamp water.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Mangrove Roots</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Mud Bricks</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Glow Lichen</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Oak Boats</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('fen_witch_stilt_dwelling')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Stilt Dwelling</span>
+                  </button>
+                  <a href="/art/closeup_town_fen_stilt_hamlet.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. Ruins: Drowned Colonnade & Forum of Port Ostraka -->
+            <div class="closeup-card card-ruins bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_ruins_sunken_atlantis_colonnade.png" alt="Drowned Colonnade" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-teal-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">RUINS</span>
+                  <span class="text-[10px] font-medium bg-teal-950/90 text-teal-300 border border-teal-800 px-2 py-0.5 rounded-full font-mono">Sunken Reach</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Drowned Colonnade & Forum of Port Ostraka</h4>
+                  <span class="text-[10px] text-teal-400 font-mono">Submerged Forum</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Half-submerged Corinthian columns of white quartz in turquoise water, submerged marble steps descending to mosaic floors, glowing sea lanterns, and vibrant coral reefs.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Quartz Pillars</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Prismarine</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Sea Lanterns</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Coral Fans</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('drowned_cathedral_spire')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Cathedral Spire</span>
+                  </button>
+                  <a href="/art/closeup_ruins_sunken_atlantis_colonnade.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. Ruins: Shattered Volcanic Temple of the Caldera -->
+            <div class="closeup-card card-ruins bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/closeup_ruins_ancient_caldera_temple.png" alt="Shattered Volcanic Temple" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-teal-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">RUINS</span>
+                  <span class="text-[10px] font-medium bg-red-950/90 text-red-300 border border-red-800 px-2 py-0.5 rounded-full font-mono">Ashen Caldera</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">Shattered Volcanic Temple of the Old Will</h4>
+                  <span class="text-[10px] text-red-400 font-mono">Runic Sanctum</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Collapsed gothic ribbed vaults beneath volcanic smoke, tilted basalt pillars, cracked stone floor with glowing orange lava fissures, and ancient runic stone throne.
+                </p>
+                <div class="flex flex-wrap gap-1 pt-1">
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Deepslate Tiles</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Basalt Pillars</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Magma & Lava</span>
+                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Crying Obsidian</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('obsidian_imperial_dais')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Imperial Dais</span>
+                  </button>
+                  <a href="/art/closeup_ruins_ancient_caldera_temple.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         <!-- TAB 0: ASHFALL 3D & STILL LIFE PIPELINE -->
@@ -2454,6 +2803,51 @@
         refreshWPScript();
       }
     };
+    // ---------------------------------------------------------------------------
+    // Art Gallery Switchers & Filters
+    // ---------------------------------------------------------------------------
+    window.switchArtSection = function(section) {
+      const pSec = document.getElementById('art-section-panoramas');
+      const cSec = document.getElementById('art-section-closeups');
+      const pBtn = document.getElementById('btn-art-panoramas');
+      const cBtn = document.getElementById('btn-art-closeups');
+
+      if (section === 'panoramas') {
+        if (pSec) pSec.classList.remove('hidden');
+        if (cSec) cSec.classList.add('hidden');
+        if (pBtn) pBtn.className = 'flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-pink-600/90 text-white shadow transition';
+        if (cBtn) cBtn.className = 'flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition';
+      } else {
+        if (pSec) pSec.classList.add('hidden');
+        if (cSec) cSec.classList.remove('hidden');
+        if (cBtn) cBtn.className = 'flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-pink-600/90 text-white shadow transition';
+        if (pBtn) pBtn.className = 'flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition';
+      }
+    };
+
+    window.filterCloseups = function(cat) {
+      document.querySelectorAll('.closeup-filter').forEach(btn => {
+        btn.className = 'closeup-filter px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white font-medium';
+      });
+      const activeBtn = document.getElementById('filter-' + cat);
+      if (activeBtn) {
+        activeBtn.className = 'closeup-filter px-2.5 py-1 rounded-full bg-pink-600 text-white font-semibold';
+      }
+
+      const cards = document.querySelectorAll('.closeup-card');
+      cards.forEach(card => {
+        if (cat === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          if (card.classList.contains('card-' + cat)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        }
+      });
+    };
+
 
     // ---------------------------------------------------------------------------
     // WorldPainter API Live Script Generator
