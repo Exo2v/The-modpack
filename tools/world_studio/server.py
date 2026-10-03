@@ -278,6 +278,28 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
                 self.send_error(404, f"Schematic file {s_name} not found")
                 return
 
+        # 6. Regional Reference Art Serving
+        if path.startswith("/art/") and (path.endswith(".png") or path.endswith(".jpg")):
+            art_name = Path(path).name
+            art_candidates = [
+                PUBLIC_DIR / "art" / art_name,
+                BASE_DIR / "docs" / "art" / art_name
+            ]
+            for target_art in art_candidates:
+                if target_art.exists():
+                    self.send_response(200)
+                    self.send_header("Content-Type", "image/png")
+                    self.send_header("Content-Length", str(target_art.stat().st_size))
+                    self.send_header("Cache-Control", "public, max-age=86400")
+                    self.end_headers()
+                    if send_body:
+                        with open(target_art, "rb") as f:
+                            while chunk := f.read(65536):
+                                self.wfile.write(chunk)
+                    return
+            self.send_error(404, f"Reference art {art_name} not found")
+            return
+
         def get_file(candidates):
             for c in candidates:
                 p = BASE_DIR / c

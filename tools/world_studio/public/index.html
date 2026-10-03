@@ -338,6 +338,10 @@
           <i data-lucide="castle" class="w-3.5 h-3.5 text-amber-400"></i>
           <span>Schematics</span>
         </button>
+        <button onclick="switchTab('art')" id="tab-art" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap flex items-center gap-1">
+          <i data-lucide="palette" class="w-3.5 h-3.5 text-pink-400"></i>
+          <span>Reference Art</span>
+        </button>
         <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
           Still Life
         </button>
@@ -357,6 +361,21 @@
 
         <!-- TAB: 3D SCHEMATICS INSPECTION & VOXEL DOSSIER -->
         <div id="content-schematics" class="hidden space-y-5">
+          <!-- Regional Concept Reference Art Card -->
+          <div class="relative rounded-xl overflow-hidden border border-amber-500/40 shadow-xl group bg-slate-950">
+            <img id="schem-concept-img" src="/art/01_grey_frontier_watchtower.png" alt="Regional Reference Art" class="w-full h-44 object-cover object-center group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+            <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
+              <div>
+                <span class="text-[9px] font-bold uppercase tracking-wider bg-amber-500/90 text-black px-1.5 py-0.5 rounded font-mono">Reference Art</span>
+                <div id="schem-concept-caption" class="text-xs font-bold text-white drop-shadow mt-0.5">The Grey Frontier Watchtower</div>
+              </div>
+              <a id="schem-concept-link" href="/art/01_grey_frontier_watchtower.png" target="_blank" class="p-1.5 rounded-lg bg-black/60 hover:bg-black/90 text-white text-xs border border-white/20 transition backdrop-blur-sm" title="View Full High-Res Painting">
+                <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
           <!-- Active Schematic Banner -->
           <div class="bg-gradient-to-br from-amber-950/40 via-panel to-slate-900 border border-amber-600/30 rounded-xl p-4 shadow-xl">
             <div class="flex items-start justify-between gap-2 mb-2">
@@ -499,6 +518,237 @@
             <div id="schem-quick-grid" class="grid grid-cols-2 gap-2 text-xs">
               <!-- 8 structure cards dynamically rendered -->
             </div>
+          </div>
+        </div>
+
+        <!-- TAB: REGIONAL CONCEPT REFERENCE ART GALLERY -->
+        <div id="content-art" class="hidden space-y-5">
+          <div class="bg-gradient-to-br from-pink-950/40 via-panel to-slate-900 border border-pink-700/30 rounded-xl p-4 shadow-xl">
+            <div class="flex items-center justify-between mb-1.5">
+              <div class="flex items-center gap-2 text-pink-400 font-bold text-sm">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+                <span>National Panoramas Atlas</span>
+              </div>
+              <span class="text-[10px] bg-pink-900/60 text-pink-300 px-2 py-0.5 rounded-full font-mono">7 Nations</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Full wide-scale panoramic reference landscapes of all seven continental nations. Illustrates macro civilization scale, mountain-spanning walls, canyon aqueducts, alpine ice spires, and sunken Atlantis ruins.
+            </p>
+          </div>
+
+          <!-- Gallery List of 7 Full Wide-Scale Nations -->
+          <div class="space-y-4">
+
+            <!-- 1. The Coastal Kingdom of the Grey Frontier -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_01_grey_frontier_kingdom.png" alt="Coastal Kingdom of the Grey Frontier" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Grey Frontier</span>
+                  <span class="text-[10px] font-medium bg-rose-950/80 text-rose-300 border border-rose-800/60 px-2 py-0.5 rounded-full font-mono">House Douglas</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Coastal Kingdom of the Grey Frontier</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(0, 2500)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Miles of mountain-spanning curtain walls, fortified harbor city with docked galleys, and a high promontory citadel under storm-lashed skies with sweeping god rays.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('grey_frontier_watchtower')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Watchtower</span>
+                  </button>
+                  <a href="/art/nation_01_grey_frontier_kingdom.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. The Brass Dominion of the Cogwork March -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_02_cogwork_march_dominion.png" alt="Brass Dominion of the Cogwork March" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-amber-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Cogwork March</span>
+                  <span class="text-[10px] font-medium bg-amber-950/80 text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded-full font-mono">House Vance</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Brass Dominion of the Cogwork March</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(-2100, 95, 40)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Canyon-spanning railway viaducts, multi-tiered clockwork foundries, colossal copper domes, and glowing molten metal cascades carved into red rock quarry steps.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('cogwork_steam_foundry')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Steam Foundry</span>
+                  </button>
+                  <a href="/art/nation_02_cogwork_march_dominion.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. The Obsidian Imperium of the Ashen Caldera -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_03_ashen_caldera_imperium.png" alt="Obsidian Imperium of the Ashen Caldera" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-red-400 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Ashen Caldera</span>
+                  <span class="text-[10px] font-medium bg-red-950/80 text-red-300 border border-red-800/60 px-2 py-0.5 rounded-full font-mono">Valerius IX</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Obsidian Imperium of the Ashen Caldera</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(0, 146, 0)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Enormous 10km volcanic crater city ringed by black basalt peaks, crisscrossed by molten lava rivers, crowned by towering crying obsidian spires glowing with violet rift light.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('obsidian_imperial_dais')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Imperial Dais</span>
+                  </button>
+                  <a href="/art/nation_03_ashen_caldera_imperium.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. The Glacial Dominion of House Vane -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_04_glacial_spine_realm.png" alt="Glacial Dominion of House Vane" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-cyan-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Glacial Spine</span>
+                  <span class="text-[10px] font-medium bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 px-2 py-0.5 rounded-full font-mono">House Vane</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Glacial Dominion of House Vane</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(0, -2500)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Alpine empire of gothic blue ice cathedrals and monastic keeps perched on knife-edge summits, connected by abyssal suspension bridges beneath swirling polar auroras.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('glacial_hermit_cloister')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Cloister</span>
+                  </button>
+                  <a href="/art/nation_04_glacial_spine_realm.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. The Seljuk Sultanate of the Gilded Dunes -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_05_gilded_dunes_sultanate.png" alt="Seljuk Sultanate of the Gilded Dunes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-yellow-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Gilded Dunes</span>
+                  <span class="text-[10px] font-medium bg-yellow-950/80 text-yellow-300 border border-yellow-800/60 px-2 py-0.5 rounded-full font-mono">House Seljuk</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Seljuk Sultanate of the Gilded Dunes</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(2300, 0)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Vast sandstone oasis megalopolis carved into desert canyons, crowned by shining gold domes, multi-tiered aqueducts, silk-draped sunken bazaars, and caravan dunes.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('al_qadira_sunken_bazaar')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Sunken Bazaar</span>
+                  </button>
+                  <a href="/art/nation_05_gilded_dunes_sultanate.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. The Mycelial Wetlands of the Whispering Fen -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_06_whispering_fen_wetlands.png" alt="Mycelial Wetlands of the Whispering Fen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-purple-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Whispering Fen</span>
+                  <span class="text-[10px] font-medium bg-purple-950/80 text-purple-300 border border-purple-800/60 px-2 py-0.5 rounded-full font-mono">House Belen</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Mycelial Wetlands of the Whispering Fen</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(2000, 2000)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Endless mangrove stilt-city anchored on ancient world-tree roots, interconnected by illuminated rope bridges, canal gondolas, and billions of glowing bioluminescent mushrooms.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('fen_witch_stilt_dwelling')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Stilt Dwelling</span>
+                  </button>
+                  <a href="/art/nation_06_whispering_fen_wetlands.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. The Drowned Realm of Port Ostraka -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="/art/nation_07_sunken_reach_atlantis.png" alt="Drowned Realm of Port Ostraka" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold bg-slate-900/90 text-teal-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Sunken Reach</span>
+                  <span class="text-[10px] font-medium bg-teal-950/80 text-teal-300 border border-teal-800/60 px-2 py-0.5 rounded-full font-mono">Port Ostraka</span>
+                </div>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-white text-xs">The Drowned Realm of Port Ostraka</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">(-2400, 1600)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                  Sunken classical marble metropolis in turquoise lagoon waters; soaring flooded campaniles, glowing underwater sea-lantern cloisters, statues, and living maritime raft towns.
+                </p>
+                <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+                  <button onclick="openSchematicViewer('drowned_cathedral_spire')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
+                    <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                    <span>Inspect 3D Cathedral Spire</span>
+                  </button>
+                  <a href="/art/nation_07_sunken_reach_atlantis.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Panorama">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1847,6 +2097,14 @@
     function updateSchematicSidebarUI(data) {
       const meta = data.metadata || {};
 
+      const conceptImg = document.getElementById('schem-concept-img');
+      const conceptLink = document.getElementById('schem-concept-link');
+      const conceptCap = document.getElementById('schem-concept-caption');
+      const artPath = meta.concept_art || `/art/${data.id}.png`;
+      if (conceptImg) conceptImg.src = artPath;
+      if (conceptLink) conceptLink.href = artPath;
+      if (conceptCap) conceptCap.textContent = meta.title || data.id;
+
       const titleEl = document.getElementById('schem-sidebar-title');
       if (titleEl) titleEl.textContent = meta.title || data.id;
 
@@ -2169,12 +2427,12 @@
     // Tabs Switcher
     // ---------------------------------------------------------------------------
     window.switchTab = function(tabId) {
-      ['ashfall', 'schematics', 'continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
+      ['ashfall', 'schematics', 'art', 'continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
         const el = document.getElementById(`content-${t}`);
         if (el) el.classList.add('hidden');
         const tabBtn = document.getElementById(`tab-${t}`);
         if (tabBtn) {
-          tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-cyan-400', 'text-indigo-400', 'text-purple-400', 'font-semibold', 'shadow-sm');
+          tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-pink-400', 'text-cyan-400', 'text-indigo-400', 'text-purple-400', 'font-semibold', 'shadow-sm');
           tabBtn.classList.add('text-slate-400');
         }
       });
@@ -2185,6 +2443,7 @@
       if (activeTab) {
         let colorClass = 'text-cyan-400';
         if (tabId === 'still_life' || tabId === 'schematics') colorClass = 'text-amber-400';
+        else if (tabId === 'art') colorClass = 'text-pink-400';
         else if (tabId === 'wpapi') colorClass = 'text-indigo-400';
         else if (tabId === 'ashfall') colorClass = 'text-purple-400';
         activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
