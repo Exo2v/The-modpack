@@ -21,9 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from tools.worldpainter_api import WorldPainterScriptBuilder, WorldPainterCLIBridge, TERRAIN_TYPES, MINECRAFT_BIOME_IDS
+from tools.world_studio.schematics import SchematicsEngine
 
 STUDIO_DIR = Path(__file__).resolve().parent
 PUBLIC_DIR = STUDIO_DIR / "public"
+STRUCTURES_DIR = BASE_DIR / "datapacks" / "ashenfall_data2" / "data" / "ashenfall" / "structure"
+schematics_engine = SchematicsEngine(STRUCTURES_DIR)
 
 PORT = 3000
 
@@ -222,7 +225,59 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(json.dumps(resp, indent=2).encode("utf-8"))
             return
 
-        # 3. File Downloads & Asset Proxies
+        # 3. API: Schematics Catalog (Summaries)
+        if path == "/api/schematics":
+            summaries = schematics_engine.get_all_summaries()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            resp = {
+                "success": True,
+                "count": len(summaries),
+                "schematics": summaries
+            }
+            if send_body:
+                self.wfile.write(json.dumps(resp, indent=2).encode("utf-8"))
+            return
+
+        # 4. API: Schematic Detail & Voxel Geometry
+        if path.startswith("/api/schematics/"):
+            schematic_id = path.replace("/api/schematics/", "").strip("/").split("?")[0]
+            detail = schematics_engine.get_schematic(schematic_id)
+            if detail:
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                resp = {
+                    "success": True,
+                    "schematic": detail
+                }
+                if send_body:
+                    self.wfile.write(json.dumps(resp).encode("utf-8"))
+                return
+            else:
+                self.send_error(404, f"Schematic '{schematic_id}' not found")
+                return
+
+        # 5. File Downloads & Asset Proxies
+        if path.startswith("/downloads/schematics/") and path.endswith(".nbt"):
+            s_name = Path(path).name
+            s_file = STRUCTURES_DIR / s_name
+            if s_file.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "application/octet-stream")
+                self.send_header("Content-Length", str(s_file.stat().st_size))
+                self.send_header("Content-Disposition", f'attachment; filename="{s_name}"')
+                self.end_headers()
+                if send_body:
+                    with open(s_file, "rb") as f:
+                        while chunk := f.read(65536):
+                            self.wfile.write(chunk)
+                return
+            else:
+                self.send_error(404, f"Schematic file {s_name} not found")
+                return
+
         def get_file(candidates):
             for c in candidates:
                 p = BASE_DIR / c
@@ -239,6 +294,8 @@ class WorldStudioHandler(SimpleHTTPRequestHandler):
             "/assets/color_to_terrain.png": get_file(["worldpainter/ASHFALL_COLOR_TO_TERRAIN_PREVIEW.png", "worldpainter/ASHENFALL_TOPOGRAPHIC_RENDER.png"]),
             "/downloads/heightmap_16bit.png": get_file(["worldpainter/ASHFALL_HEIGHTMAP_16BIT.png", "worldpainter/ASHENFALL_HEIGHTMAP_16BIT.png"]),
             "/downloads/worldpainter_suite.zip": BASE_DIR / "worldpainter" / "ASHENFALL_WORLDPAINTER_SUITE.zip",
+            "/downloads/schematics_bundle.zip": BASE_DIR / "downloads" / "ASHENFALL_LORE_SCHEMATICS_BUNDLE.zip",
+            "/downloads/schematics_guide.md": BASE_DIR / "docs" / "guides" / "ASHENFALL_LORE_ACCURATE_STRUCTURES_GUIDE.md",
             "/downloads/datapack.zip": BASE_DIR / "datapacks" / "ashenfall_data2.zip",
             "/downloads/setup.ps1": BASE_DIR / "setup.ps1",
             "/downloads/script.js": BASE_DIR / "worldpainter" / "ashenfall_worldpainter_setup.js",

@@ -62,11 +62,15 @@
 
     <!-- 2D / 3D Mode Switcher -->
     <div class="flex items-center bg-void/90 p-1 rounded-xl border border-borderDark shadow-inner">
-      <button id="view-mode-3d" onclick="setViewMode('3d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition">
+      <button id="view-mode-3d" onclick="setViewMode('3d')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition">
         <i data-lucide="box" class="w-3.5 h-3.5 text-purple-300"></i>
-        <span>3D Continent Globe</span>
+        <span>3D Continent</span>
       </button>
-      <button id="view-mode-2d" onclick="setViewMode('2d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+      <button id="view-mode-schematics" onclick="setViewMode('schematics')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+        <i data-lucide="castle" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>3D Schematics</span>
+      </button>
+      <button id="view-mode-2d" onclick="setViewMode('2d')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
         <i data-lucide="map" class="w-3.5 h-3.5"></i>
         <span>2D Map</span>
       </button>
@@ -141,8 +145,8 @@
       <div id="webgl-container" class="flex-1 w-full h-full relative overflow-hidden bg-void select-none">
         <div id="webgl-canvas-mount" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
 
-        <!-- 3D Floating Controls Toolbar -->
-        <div class="absolute top-4 left-4 z-10 flex flex-wrap items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+        <!-- 3D Floating Controls Toolbar (Continent Mode) -->
+        <div id="toolbar-3d-continent" class="absolute top-4 left-4 z-10 flex flex-wrap items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
           <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider px-1.5 flex items-center gap-1">
             <i data-lucide="layers" class="w-3.5 h-3.5"></i> 3D Mode:
           </span>
@@ -183,8 +187,71 @@
           </button>
         </div>
 
-        <!-- 3D Landmark Quick Fly Overlay -->
-        <div class="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 bg-panel/90 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-xl text-xs">
+        <!-- 3D Schematics Floating Controls Toolbar (Schematics Mode) -->
+        <div id="toolbar-3d-schematics" class="hidden absolute top-4 left-4 right-4 z-10 flex flex-wrap items-center justify-between gap-2.5 bg-panel/95 backdrop-blur-md p-2 rounded-xl border border-amber-600/30 shadow-2xl">
+          <!-- Structure Select Dropdown -->
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider px-1 flex items-center gap-1">
+              <i data-lucide="castle" class="w-3.5 h-3.5"></i> Structure:
+            </span>
+            <select id="schematic-select" onchange="selectSchematic(this.value)" class="bg-slate-900 border border-slate-700 text-xs font-semibold text-white rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-amber-400 cursor-pointer shadow-inner">
+              <!-- Populated via API -->
+            </select>
+          </div>
+
+          <!-- Layer Slicing & Exploded Controls -->
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <!-- Layer Slicer -->
+            <div class="flex items-center gap-1.5 bg-slate-900/90 px-2.5 py-1 rounded-lg border border-slate-800 shadow-inner">
+              <span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
+                <i data-lucide="layers" class="w-3 h-3 text-cyan-400"></i> Layer:
+              </span>
+              <button onclick="stepSlice(-1)" title="Step Down 1 Layer" class="p-0.5 hover:text-white text-slate-400 transition"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></button>
+              <input id="slider-slice" type="range" min="0" max="18" value="18" oninput="updateSlice(parseInt(this.value))" class="w-24 accent-amber-400 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+              <button onclick="stepSlice(1)" title="Step Up 1 Layer" class="p-0.5 hover:text-white text-slate-400 transition"><i data-lucide="chevron-up" class="w-3.5 h-3.5"></i></button>
+              <span id="label-slice" class="font-mono text-[10px] text-amber-400 font-bold min-w-[64px] text-center">All Layers</span>
+              <button onclick="resetSlice()" title="Reset to All Layers" class="text-[10px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded transition">All</button>
+            </div>
+
+            <!-- Explode Axonometric -->
+            <div class="flex items-center gap-1.5 bg-slate-900/90 px-2.5 py-1 rounded-lg border border-slate-800 shadow-inner">
+              <span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
+                <i data-lucide="box" class="w-3 h-3 text-purple-400"></i> Explode:
+              </span>
+              <input id="slider-explode" type="range" min="0" max="2" step="0.05" value="0" oninput="updateExplode(parseFloat(this.value))" class="w-16 accent-purple-400 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+              <span id="label-explode" class="font-mono text-[10px] text-purple-400 font-bold min-w-[28px] text-right">0%</span>
+            </div>
+          </div>
+
+          <!-- Visual Styles & Tools -->
+          <div class="flex items-center gap-1.5">
+            <!-- X-Ray Mode -->
+            <button onclick="toggleXRay()" id="btn-xray" title="Translucent Shell / Reveal Functional Blocks" class="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">
+              <i data-lucide="eye" class="w-3 h-3 text-cyan-400"></i>
+              <span id="label-xray">X-Ray Off</span>
+            </button>
+
+            <!-- Ground Grid Toggle -->
+            <button onclick="toggleGridPlane()" id="btn-grid" title="Toggle Coordinate Grid Plane" class="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md transition">
+              <i data-lucide="hash" class="w-3 h-3"></i>
+              <span>Grid</span>
+            </button>
+
+            <!-- Auto-Rotate -->
+            <button onclick="toggleSchematicAutoRotate()" id="btn-schem-rotate" title="Turntable Rotation" class="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">
+              <i data-lucide="rotate-cw" class="w-3 h-3 text-amber-400"></i>
+              <span id="label-schem-rotate">Rotate</span>
+            </button>
+
+            <!-- Reset Camera -->
+            <button onclick="resetSchematicCamera()" title="Reset Camera" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition border border-slate-800">
+              <i data-lucide="focus" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Landmark Quick Fly Overlay (Continent Mode) -->
+        <div id="overlay-landmarks" class="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 bg-panel/90 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-xl text-xs">
           <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 flex items-center gap-1">
             <i data-lucide="navigation" class="w-3 h-3 text-cyan-400"></i> Fly To:
           </span>
@@ -193,6 +260,32 @@
           <button onclick="flyTo3DLandmark('caldera')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-red-400 border border-slate-800 font-medium transition text-[11px]">Ashen Caldera</button>
           <button onclick="flyTo3DLandmark('cogwork')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-800 font-medium transition text-[11px]">Cogwork March</button>
           <button onclick="flyTo3DLandmark('dunes')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-yellow-300 border border-slate-800 font-medium transition text-[11px]">Gilded Dunes</button>
+        </div>
+
+        <!-- 3D Schematics Quick Info Overlay (Schematics Mode) -->
+        <div id="overlay-schematic-quickstats" class="hidden absolute bottom-4 left-4 z-10 flex items-center gap-3 bg-panel/90 backdrop-blur-md px-3 py-2 rounded-xl border border-amber-600/30 shadow-xl text-xs">
+          <div class="flex items-center gap-2">
+            <div id="overlay-schem-dot" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></div>
+            <div>
+              <div id="overlay-schem-name" class="font-bold text-white leading-tight">Grey Frontier Watchtower</div>
+              <div id="overlay-schem-sub" class="text-[10px] text-amber-400 font-mono">9x17x9 · 666 Blocks</div>
+            </div>
+          </div>
+          <div class="h-6 w-px bg-slate-800"></div>
+          <button onclick="switchTab('schematics')" class="text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 underline flex items-center gap-1">
+            <span>Dossier</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </button>
+        </div>
+
+        <!-- Floating Block Tooltip -->
+        <div id="schematic-tooltip" class="hidden pointer-events-none fixed z-50 bg-panel/95 backdrop-blur-md px-3 py-2 rounded-lg border border-amber-500/50 shadow-2xl text-xs font-sans text-white transition-opacity duration-75">
+          <div class="flex items-center gap-2">
+            <div id="schem-tooltip-swatch" class="w-3.5 h-3.5 rounded-sm border border-white/20 shrink-0"></div>
+            <span id="schem-tooltip-name" class="font-bold text-amber-300">Stone Bricks</span>
+          </div>
+          <div id="schem-tooltip-id" class="text-[10px] text-slate-400 font-mono mt-0.5">minecraft:stone_bricks</div>
+          <div id="schem-tooltip-coords" class="text-[10px] text-cyan-300 font-mono mt-0.5">Pos: (4, 12, 4) · Layer: Y=12</div>
         </div>
 
         <!-- 3D Hint Badge -->
@@ -241,6 +334,10 @@
         <button onclick="switchTab('ashfall')" id="tab-ashfall" class="engine-tab active px-2.5 py-2 text-center rounded-lg bg-panel text-purple-400 font-semibold shadow-sm transition whitespace-nowrap">
           Ashfall 3D
         </button>
+        <button onclick="switchTab('schematics')" id="tab-schematics" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap flex items-center gap-1">
+          <i data-lucide="castle" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Schematics</span>
+        </button>
         <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
           Still Life
         </button>
@@ -257,6 +354,153 @@
 
       <!-- Tab Content Area -->
       <div class="flex-1 overflow-y-auto p-5 space-y-6 text-sm">
+
+        <!-- TAB: 3D SCHEMATICS INSPECTION & VOXEL DOSSIER -->
+        <div id="content-schematics" class="hidden space-y-5">
+          <!-- Active Schematic Banner -->
+          <div class="bg-gradient-to-br from-amber-950/40 via-panel to-slate-900 border border-amber-600/30 rounded-xl p-4 shadow-xl">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2.5">
+                <div id="schem-sidebar-icon-wrap" class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0 shadow-inner">
+                  <i data-lucide="castle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 id="schem-sidebar-title" class="font-bold text-white text-base leading-tight">Grey Frontier Watchtower</h3>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span id="schem-sidebar-realm" class="text-[11px] text-amber-400 font-medium">The Grey Frontier</span>
+                    <span class="text-slate-600">·</span>
+                    <span id="schem-sidebar-faction" class="text-[11px] text-slate-400">House Douglas</span>
+                  </div>
+                </div>
+              </div>
+              <span id="schem-sidebar-biome" class="text-[10px] font-semibold bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full shrink-0">Plains</span>
+            </div>
+            <p id="schem-sidebar-lore" class="text-xs text-slate-300 leading-relaxed border-t border-slate-800/80 pt-2.5 mt-2">
+              Loading canonical lore dossier...
+            </p>
+          </div>
+
+          <!-- Voxel Architecture Metrics Grid -->
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div class="bg-panelHover p-2 rounded-lg border border-slate-800">
+              <div class="text-[10px] text-slate-400 uppercase font-semibold">Dimensions</div>
+              <div id="schem-metric-dims" class="font-mono text-xs font-bold text-white mt-0.5">9x17x9</div>
+              <div class="text-[9px] text-slate-500">W × H × L</div>
+            </div>
+            <div class="bg-panelHover p-2 rounded-lg border border-slate-800">
+              <div class="text-[10px] text-slate-400 uppercase font-semibold">Total Blocks</div>
+              <div id="schem-metric-blocks" class="font-mono text-xs font-bold text-amber-400 mt-0.5">666</div>
+              <div class="text-[9px] text-slate-500">Voxels</div>
+            </div>
+            <div class="bg-panelHover p-2 rounded-lg border border-slate-800">
+              <div class="text-[10px] text-slate-400 uppercase font-semibold">Palette</div>
+              <div id="schem-metric-palette" class="font-mono text-xs font-bold text-cyan-400 mt-0.5">18 Types</div>
+              <div class="text-[9px] text-slate-500">Materials</div>
+            </div>
+          </div>
+
+          <!-- In-Game 1-Click Action Center -->
+          <div class="space-y-2.5 bg-panel/90 border border-borderDark rounded-xl p-3.5 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="terminal" class="w-3.5 h-3.5 text-amber-400"></i> In-Game Commands
+              </span>
+              <span class="text-[10px] text-slate-500 font-mono">Minecraft 1.21.1</span>
+            </div>
+
+            <!-- Teleport Command -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span>Teleport to Canonical Lore Site:</span>
+              </div>
+              <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-lg p-1.5 font-mono text-[11px]">
+                <input id="schem-input-tp" type="text" readonly value="/tp @s 120 72 2380" class="bg-transparent text-slate-300 w-full focus:outline-none select-all px-1">
+                <button onclick="copySchematicCmd('tp')" id="btn-copy-schem-tp" class="shrink-0 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 font-sans text-[11px] font-semibold transition border border-slate-700 flex items-center gap-1">
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Structure Load Command -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span>Load Structure Template:</span>
+              </div>
+              <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-lg p-1.5 font-mono text-[11px]">
+                <input id="schem-input-load" type="text" readonly value="/structure load ashenfall:grey_frontier_watchtower ~ ~ ~" class="bg-transparent text-slate-300 w-full focus:outline-none select-all px-1">
+                <button onclick="copySchematicCmd('load')" id="btn-copy-schem-load" class="shrink-0 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 font-sans text-[11px] font-semibold transition border border-slate-700 flex items-center gap-1">
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Direct Downloads -->
+            <div class="pt-1.5 flex items-center gap-2">
+              <a id="btn-download-nbt" href="/downloads/schematics/grey_frontier_watchtower.nbt" download class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white font-semibold py-1.5 px-2 rounded-lg text-xs transition shadow-md shadow-amber-950/40">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Download .NBT</span>
+              </a>
+              <a href="/downloads/schematics_bundle.zip" download class="flex-1 flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold py-1.5 px-2 rounded-lg text-xs transition">
+                <i data-lucide="package" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>All 8 (Zip)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive Material Palette Breakdown -->
+          <div class="space-y-2 bg-panel/70 border border-borderDark rounded-xl p-3.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-slate-200 uppercase tracking-wider">
+                <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>Voxel Palette Breakdown</span>
+              </div>
+              <button onclick="clearMaterialIsolation()" id="btn-clear-isolate" class="hidden text-[10px] text-amber-400 hover:text-amber-300 underline font-semibold">
+                Show All
+              </button>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-snug">
+              Click any block below to isolate and illuminate it in the 3D viewer.
+            </p>
+
+            <!-- Palette Table Container -->
+            <div id="schem-palette-list" class="space-y-1 max-h-56 overflow-y-auto pr-1">
+              <!-- Dynamically generated rows -->
+            </div>
+          </div>
+
+          <!-- Architectural & Survival Dossier -->
+          <div class="space-y-2 bg-panel/50 border border-borderDark rounded-xl p-3.5 text-xs">
+            <div class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Architectural & Survival Notes</span>
+            </div>
+            <div class="space-y-2 pt-1 text-slate-300 text-[11px] leading-relaxed">
+              <div>
+                <span class="font-semibold text-slate-200 block mb-0.5">Tactical Layout:</span>
+                <p id="schem-dossier-arch">Detailed architectural specifications.</p>
+              </div>
+              <div class="border-t border-slate-800/80 pt-2">
+                <span class="font-semibold text-slate-200 block mb-0.5">Survival Spawning Tips:</span>
+                <p id="schem-dossier-tips">Survival building advice.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8-Schematic Quick Gallery Grid -->
+          <div class="space-y-2 border-t border-borderDark pt-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="grid" class="w-3.5 h-3.5 text-amber-400"></i> All 8 Lore Schematics
+              </span>
+              <span class="text-[10px] text-slate-500">1-Click Switch</span>
+            </div>
+            <div id="schem-quick-grid" class="grid grid-cols-2 gap-2 text-xs">
+              <!-- 8 structure cards dynamically rendered -->
+            </div>
+          </div>
+        </div>
 
         <!-- TAB 0: ASHFALL 3D & STILL LIFE PIPELINE -->
         <div id="content-ashfall" class="space-y-5">
@@ -715,45 +959,96 @@
           </div>
 
           <div class="grid grid-cols-1 gap-1.5 text-xs">
-            <button onclick="panTo(0, 2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
-              <span class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                <span class="font-medium text-slate-200">The Forgotten Coast (Spawn)</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-400">(0, 2500)</span>
-            </button>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(0, 2500)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Forgotten Coast (Spawn)</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(0, 2500)</span>
+                <button onclick="openSchematicViewer('grey_frontier_watchtower')" title="View 3D Watchtower Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
 
-            <button onclick="panTo(0, -2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
-              <span class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
-                <span class="font-medium text-slate-200">The Solitary Glacial Spine</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-400">(0, -2500)</span>
-            </button>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(0, -2500)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Solitary Glacial Spine</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(0, -2500)</span>
+                <button onclick="openSchematicViewer('glacial_hermit_cloister')" title="View 3D Cloister Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
 
-            <button onclick="panTo(-2100, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
-              <span class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                <span class="font-medium text-slate-200">The Cogwork March</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-400">(-2100, 0)</span>
-            </button>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(-2100, 0)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Cogwork March</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(-2100, 0)</span>
+                <button onclick="openSchematicViewer('cogwork_steam_foundry')" title="View 3D Steam Foundry Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
 
-            <button onclick="panTo(0, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
-              <span class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-                <span class="font-medium text-slate-200">The Ashen Caldera</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-400">(0, 0)</span>
-            </button>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(0, 0)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Ashen Caldera</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(0, 0)</span>
+                <button onclick="openSchematicViewer('obsidian_imperial_dais')" title="View 3D Imperial Dais Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
 
-            <button onclick="panTo(2300, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
-              <span class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-                <span class="font-medium text-slate-200">The Gilded Dunes</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-400">(2300, 0)</span>
-            </button>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(2300, 0)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Gilded Dunes</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(2300, 0)</span>
+                <button onclick="openSchematicViewer('al_qadira_sunken_bazaar')" title="View 3D Sunken Bazaar Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(2000, 2000)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Whispering Fen</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(2000, 2000)</span>
+                <button onclick="openSchematicViewer('fen_witch_stilt_dwelling')" title="View 3D Stilt Dwelling Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition">
+              <button onclick="panTo(-2400, 1600)" class="flex items-center gap-2 text-left flex-1 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shrink-0"></span>
+                <span class="font-medium text-slate-200 truncate">The Sunken Reach</span>
+              </button>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="font-mono text-[10px] text-slate-500">(-2400, 1600)</span>
+                <button onclick="openSchematicViewer('drowned_cathedral_spire')" title="View 3D Cathedral Spire Schematic" class="p-1 rounded bg-amber-950/40 hover:bg-amber-900/60 text-amber-400 border border-amber-800/50 transition">
+                  <i data-lucide="castle" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -885,15 +1180,40 @@
     };
 
     // ---------------------------------------------------------------------------
-    // 3D WebGL Continent Viewport (Three.js & OrbitControls)
+    // 3D WebGL Continent & Schematics Viewport (Three.js & OrbitControls)
     // ---------------------------------------------------------------------------
     let scene3D, camera3D, renderer3D, controls3D, terrainMesh3D, waterMesh3D;
+    let continentGroup, schematicsGroup, schematicMeshGroup, schematicGrid, schematicPedestal;
     let texTopo, texStillLife, texColorToTerrain, texDisplacement;
     let current3DTextureMode = 'still_life';
     let is3DInitialized = false;
     let autoRotate3D = false;
     let currentExaggeration = 1.8;
-    let currentViewMode = '2d';
+    let currentViewMode = '3d';
+
+    // Schematics State
+    let schematicsCatalog = [];
+    let activeSchematicData = null;
+    let activeVoxelList = [];
+    let schematicInstancedMesh = null;
+    let currentSliceY = 999;
+    let currentExplodeFactor = 0.0;
+    let isXRayActive = false;
+    let showGridPlane = true;
+    let schematicAutoRotate = false;
+    let isolatedMaterialIndex = null;
+    let currentSchematicId = 'grey_frontier_watchtower';
+
+    const FUNCTIONAL_KEYWORDS = [
+      'chest', 'barrel', 'furnace', 'anvil', 'smithing', 'grindstone', 'cauldron',
+      'brewing', 'lantern', 'bell', 'lectern', 'crying_obsidian', 'magma', 'anchor',
+      'gold_block', 'fire', 'campfire', 'torch', 'end_rod', 'iron_bars', 'chain'
+    ];
+
+    function isFunctionalBlock(name) {
+      const clean = (name || '').toLowerCase();
+      return FUNCTIONAL_KEYWORDS.some(k => clean.includes(k));
+    }
 
     const LANDMARKS_3D = {
       spawn:   { name: "The Forgotten Coast (Spawn)", x: 0,   z: 50,  elev: 72 },
@@ -909,27 +1229,85 @@
       currentViewMode = mode;
       const btn2d = document.getElementById('view-mode-2d');
       const btn3d = document.getElementById('view-mode-3d');
+      const btnSchem = document.getElementById('view-mode-schematics');
       const canvas2d = document.getElementById('canvas-wrapper');
       const container3d = document.getElementById('webgl-container');
       const toolbar2d = document.getElementById('toolbar-2d');
       const controls2d = document.getElementById('controls-2d');
+      const toolbarContinent = document.getElementById('toolbar-3d-continent');
+      const toolbarSchematics = document.getElementById('toolbar-3d-schematics');
+      const overlayLandmarks = document.getElementById('overlay-landmarks');
+      const overlaySchemStats = document.getElementById('overlay-schematic-quickstats');
 
-      if (mode === '3d') {
-        if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
-        if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition';
+      // Reset top buttons
+      if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+      if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+      if (btnSchem) btnSchem.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+
+      if (mode === 'schematics') {
+        if (btnSchem) btnSchem.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 text-white shadow-md transition';
         if (canvas2d) canvas2d.classList.add('hidden');
         if (toolbar2d) toolbar2d.classList.add('hidden');
         if (controls2d) controls2d.classList.add('hidden');
         if (container3d) container3d.classList.remove('hidden');
+
+        if (toolbarContinent) toolbarContinent.classList.add('hidden');
+        if (overlayLandmarks) overlayLandmarks.classList.add('hidden');
+        if (toolbarSchematics) toolbarSchematics.classList.remove('hidden');
+        if (overlaySchemStats) overlaySchemStats.classList.remove('hidden');
 
         if (!is3DInitialized) {
           init3DScene();
         } else {
           onWindowResize();
         }
+
+        if (continentGroup) continentGroup.visible = false;
+        if (schematicsGroup) schematicsGroup.visible = true;
+
+        if (controls3D) {
+          controls3D.minDistance = 3;
+          controls3D.maxDistance = 140;
+        }
+
+        if (!activeSchematicData) {
+          loadAndRenderSchematic(currentSchematicId);
+        } else {
+          resetSchematicCamera();
+        }
+
+        switchTab('schematics');
+      } else if (mode === '3d') {
+        if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition';
+        if (canvas2d) canvas2d.classList.add('hidden');
+        if (toolbar2d) toolbar2d.classList.add('hidden');
+        if (controls2d) controls2d.classList.add('hidden');
+        if (container3d) container3d.classList.remove('hidden');
+
+        if (toolbarSchematics) toolbarSchematics.classList.add('hidden');
+        if (overlaySchemStats) overlaySchemStats.classList.add('hidden');
+        if (toolbarContinent) toolbarContinent.classList.remove('hidden');
+        if (overlayLandmarks) overlayLandmarks.classList.remove('hidden');
+
+        if (!is3DInitialized) {
+          init3DScene();
+        } else {
+          onWindowResize();
+        }
+
+        if (continentGroup) continentGroup.visible = true;
+        if (schematicsGroup) schematicsGroup.visible = false;
+
+        if (controls3D) {
+          controls3D.minDistance = 15;
+          controls3D.maxDistance = 600;
+          controls3D.target.set(0, 0, 0);
+          if (camera3D) camera3D.position.set(0, 90, 145);
+          controls3D.update();
+        }
       } else {
-        if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
-        if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 text-white shadow-sm transition';
+        // 2D mode
+        if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 text-white shadow-sm transition';
         if (container3d) container3d.classList.add('hidden');
         if (canvas2d) canvas2d.classList.remove('hidden');
         if (toolbar2d) toolbar2d.classList.remove('hidden');
@@ -967,17 +1345,41 @@
       controls3D.maxDistance = 600;
       controls3D.target.set(0, 0, 0);
 
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.82);
       scene3D.add(ambientLight);
 
-      const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.4);
+      const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.45);
       sunLight.position.set(-130, 180, 100);
       scene3D.add(sunLight);
 
-      const skyFillLight = new THREE.DirectionalLight(0x60a5fa, 0.45);
+      const skyFillLight = new THREE.DirectionalLight(0x60a5fa, 0.55);
       skyFillLight.position.set(120, 140, -100);
       scene3D.add(skyFillLight);
 
+      // Continent Group
+      continentGroup = new THREE.Group();
+      scene3D.add(continentGroup);
+
+      // Schematics Group
+      schematicsGroup = new THREE.Group();
+      schematicsGroup.visible = false;
+      scene3D.add(schematicsGroup);
+
+      schematicGrid = new THREE.GridHelper(26, 26, 0xf59e0b, 0x272f45);
+      schematicGrid.position.y = -0.01;
+      schematicsGroup.add(schematicGrid);
+
+      schematicPedestal = new THREE.Mesh(
+        new THREE.BoxGeometry(20, 0.4, 20),
+        new THREE.MeshStandardMaterial({ color: 0x0f121d, roughness: 0.85, metalness: 0.1 })
+      );
+      schematicPedestal.position.y = -0.21;
+      schematicsGroup.add(schematicPedestal);
+
+      schematicMeshGroup = new THREE.Group();
+      schematicsGroup.add(schematicMeshGroup);
+
+      // Textures for continent
       const loader = new THREE.TextureLoader();
       texTopo = loader.load('/assets/topographic.png');
       texStillLife = loader.load('/assets/still_life_populate.png');
@@ -1001,7 +1403,7 @@
 
       terrainMesh3D = new THREE.Mesh(terrainGeo, terrainMat);
       terrainMesh3D.rotation.x = -Math.PI / 2;
-      scene3D.add(terrainMesh3D);
+      continentGroup.add(terrainMesh3D);
 
       const waterGeo = new THREE.PlaneGeometry(240, 240);
       const waterMat = new THREE.MeshStandardMaterial({
@@ -1014,7 +1416,7 @@
       waterMesh3D = new THREE.Mesh(waterGeo, waterMat);
       waterMesh3D.rotation.x = -Math.PI / 2;
       waterMesh3D.position.y = 0.0;
-      scene3D.add(waterMesh3D);
+      continentGroup.add(waterMesh3D);
 
       // 3D Beacons for Landmarks
       Object.keys(LANDMARKS_3D).forEach(k => {
@@ -1027,10 +1429,10 @@
         });
         const beacon = new THREE.Mesh(beaconGeo, beaconMat);
         beacon.position.set(lm.x, 7.0, lm.z);
-        scene3D.add(beacon);
+        continentGroup.add(beacon);
       });
 
-      // Raycaster for cursor hover telemetry
+      // Raycaster for cursor hover telemetry & schematic voxel inspection
       const raycaster = new THREE.Raycaster();
       const mouse = new THREE.Vector2();
 
@@ -1039,19 +1441,41 @@
         mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
         mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-        raycaster.setFromCamera(mouse, camera3D);
-        const intersects = raycaster.intersectObject(terrainMesh3D);
-        if (intersects.length > 0) {
-          const pt = intersects[0].point;
-          const mcX = Math.round(pt.x / 0.02);
-          const mcZ = Math.round(pt.z / 0.02);
-          updateHUD(mcX, mcZ);
+        if (currentViewMode === 'schematics' && schematicInstancedMesh) {
+          raycaster.setFromCamera(mouse, camera3D);
+          const intersects = raycaster.intersectObject(schematicInstancedMesh);
+          if (intersects.length > 0) {
+            const instanceId = intersects[0].instanceId;
+            const v = activeVoxelList[instanceId];
+            if (v && v.y <= currentSliceY) {
+              showSchematicTooltip(v, e.clientX, e.clientY);
+              return;
+            }
+          }
+          hideSchematicTooltip();
+        } else if (currentViewMode === '3d' && terrainMesh3D) {
+          raycaster.setFromCamera(mouse, camera3D);
+          const intersects = raycaster.intersectObject(terrainMesh3D);
+          if (intersects.length > 0) {
+            const pt = intersects[0].point;
+            const mcX = Math.round(pt.x / 0.02);
+            const mcZ = Math.round(pt.z / 0.02);
+            updateHUD(mcX, mcZ);
+          }
         }
+      });
+
+      mount.addEventListener('mouseleave', () => {
+        hideSchematicTooltip();
       });
 
       window.addEventListener('resize', onWindowResize);
       is3DInitialized = true;
       animate3D();
+
+      if (currentViewMode === 'schematics' && activeSchematicData) {
+        buildSchematicMesh(activeSchematicData);
+      }
     }
 
     function onWindowResize() {
@@ -1068,15 +1492,485 @@
     function animate3D() {
       requestAnimationFrame(animate3D);
       if (controls3D) controls3D.update();
-      if (autoRotate3D && terrainMesh3D) {
-        terrainMesh3D.rotation.z += 0.002;
+      if (autoRotate3D && continentGroup && currentViewMode === '3d') {
+        continentGroup.rotation.y += 0.002;
       }
-      if (waterMesh3D) {
+      if (schematicAutoRotate && schematicsGroup && currentViewMode === 'schematics') {
+        schematicsGroup.rotation.y += 0.006;
+      }
+      if (waterMesh3D && currentViewMode === '3d') {
         waterMesh3D.position.y = Math.sin(performance.now() * 0.0018) * 0.15;
       }
       if (renderer3D && scene3D && camera3D) {
         renderer3D.render(scene3D, camera3D);
       }
+    }
+
+    // ---------------------------------------------------------------------------
+    // 3D Schematics Voxel Engine & Interactivity
+    // ---------------------------------------------------------------------------
+    async function fetchSchematicsCatalog() {
+      try {
+        const res = await fetch('/api/schematics');
+        const data = await res.json();
+        if (data.success && data.schematics) {
+          schematicsCatalog = data.schematics;
+          populateSchematicsUI();
+          if (!activeSchematicData) {
+            await loadAndRenderSchematic(currentSchematicId);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load schematics catalog:', err);
+      }
+    }
+
+    function populateSchematicsUI() {
+      const select = document.getElementById('schematic-select');
+      if (select) {
+        select.innerHTML = '';
+        schematicsCatalog.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.id;
+          opt.textContent = `${s.title} (${s.size[0]}×${s.size[1]}×${s.size[2]})`;
+          if (s.id === currentSchematicId) opt.selected = true;
+          select.appendChild(opt);
+        });
+      }
+
+      const grid = document.getElementById('schem-quick-grid');
+      if (grid) {
+        grid.innerHTML = '';
+        schematicsCatalog.forEach(s => {
+          const card = document.createElement('button');
+          card.className = `p-2 rounded-lg border text-left transition flex flex-col justify-between ${
+            s.id === currentSchematicId
+              ? 'bg-amber-950/40 border-amber-500/60 shadow-md shadow-amber-950/30'
+              : 'bg-panelHover hover:bg-slate-800 border-slate-800'
+          }`;
+          card.onclick = () => selectSchematic(s.id);
+          card.innerHTML = `
+            <div class="flex items-center justify-between w-full mb-1">
+              <span class="font-bold text-white truncate text-[11px]">${s.title}</span>
+              <span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${s.accent_color || '#f59e0b'}"></span>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-400">
+              <span>${s.size[0]}×${s.size[1]}×${s.size[2]}</span>
+              <span class="font-mono text-amber-400">${s.total_blocks} voxels</span>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+    }
+
+    window.selectSchematic = async function(id) {
+      currentSchematicId = id;
+      isolatedMaterialIndex = null;
+      currentExplodeFactor = 0.0;
+
+      const sliderExplode = document.getElementById('slider-explode');
+      if (sliderExplode) sliderExplode.value = 0;
+      const labelExplode = document.getElementById('label-explode');
+      if (labelExplode) labelExplode.textContent = '0%';
+
+      const select = document.getElementById('schematic-select');
+      if (select && select.value !== id) select.value = id;
+
+      populateSchematicsUI();
+      await loadAndRenderSchematic(id);
+    };
+
+    window.openSchematicViewer = function(schematicId) {
+      selectSchematic(schematicId);
+      setViewMode('schematics');
+    };
+
+    async function loadAndRenderSchematic(id) {
+      try {
+        const res = await fetch(`/api/schematics/${id}`);
+        const resData = await res.json();
+        if (!resData.success || !resData.schematic) return;
+
+        activeSchematicData = resData.schematic;
+        updateSchematicSidebarUI(activeSchematicData);
+
+        if (is3DInitialized) {
+          buildSchematicMesh(activeSchematicData);
+        }
+      } catch (err) {
+        console.error(`Error loading schematic ${id}:`, err);
+      }
+    }
+
+    function buildSchematicMesh(data) {
+      if (!schematicMeshGroup) return;
+
+      while (schematicMeshGroup.children.length > 0) {
+        const obj = schematicMeshGroup.children[0];
+        schematicMeshGroup.remove(obj);
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+          else obj.material.dispose();
+        }
+      }
+
+      const [sx, sy, sz] = data.size;
+      const blocks = data.blocks;
+      const palette = data.palette;
+
+      const cx = sx / 2;
+      const cz = sz / 2;
+
+      activeVoxelList = [];
+      blocks.forEach((b, idx) => {
+        const x = b[0], y = b[1], z = b[2], state = b[3];
+        const pItem = palette[state] || { name: 'minecraft:air', display_name: 'Air', color: '#888888' };
+        activeVoxelList.push({
+          index: idx,
+          x: x,
+          y: y,
+          z: z,
+          state: state,
+          origX: x - cx + 0.5,
+          origY: y + 0.5,
+          origZ: z - cz + 0.5,
+          name: pItem.name,
+          displayName: pItem.display_name,
+          color: pItem.color,
+          isFunctional: isFunctionalBlock(pItem.name)
+        });
+      });
+
+      const geom = new THREE.BoxGeometry(0.96, 0.96, 0.96);
+      const mat = new THREE.MeshStandardMaterial({
+        roughness: 0.65,
+        metalness: 0.15,
+        transparent: true,
+        opacity: 1.0
+      });
+
+      schematicInstancedMesh = new THREE.InstancedMesh(geom, mat, activeVoxelList.length);
+      schematicInstancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+
+      const maxFootprint = Math.max(sx, sz);
+      if (schematicGrid) {
+        const gridDim = Math.max(16, maxFootprint + 8);
+        schematicGrid.scale.set(gridDim / 26, 1, gridDim / 26);
+      }
+      if (schematicPedestal) {
+        schematicPedestal.scale.set((sx + 3) / 20, 1, (sz + 3) / 20);
+      }
+
+      const sliderSlice = document.getElementById('slider-slice');
+      if (sliderSlice) {
+        sliderSlice.max = sy;
+        sliderSlice.value = sy;
+      }
+      currentSliceY = sy;
+
+      recomputeVoxelMatrices();
+      schematicMeshGroup.add(schematicInstancedMesh);
+      resetSchematicCamera();
+    }
+
+    function recomputeVoxelMatrices() {
+      if (!schematicInstancedMesh || !activeVoxelList) return;
+      const dummy = new THREE.Object3D();
+      const colorHelper = new THREE.Color();
+
+      for (let i = 0; i < activeVoxelList.length; i++) {
+        const v = activeVoxelList[i];
+
+        if (v.y > currentSliceY) {
+          dummy.position.set(0, -999, 0);
+          dummy.scale.set(0, 0, 0);
+          dummy.updateMatrix();
+          schematicInstancedMesh.setMatrixAt(i, dummy.matrix);
+          continue;
+        }
+
+        let px = v.origX;
+        let py = v.origY;
+        let pz = v.origZ;
+        if (currentExplodeFactor > 0) {
+          px = v.origX * (1 + currentExplodeFactor * 0.45);
+          py = v.origY * (1 + currentExplodeFactor * 0.35);
+          pz = v.origZ * (1 + currentExplodeFactor * 0.45);
+        }
+        dummy.position.set(px, py, pz);
+
+        let scale = 1.0;
+        if (isolatedMaterialIndex !== null) {
+          if (v.state === isolatedMaterialIndex) {
+            scale = 1.08;
+            colorHelper.set(v.color);
+          } else {
+            scale = 0.55;
+            colorHelper.set('#242938');
+          }
+        } else if (isXRayActive) {
+          if (v.isFunctional) {
+            scale = 1.06;
+            colorHelper.set(v.color);
+          } else {
+            scale = 0.94;
+            colorHelper.set('#3a4459');
+          }
+        } else {
+          colorHelper.set(v.color);
+        }
+
+        dummy.scale.set(scale, scale, scale);
+        dummy.updateMatrix();
+        schematicInstancedMesh.setMatrixAt(i, dummy.matrix);
+        schematicInstancedMesh.setColorAt(i, colorHelper);
+      }
+
+      schematicInstancedMesh.instanceMatrix.needsUpdate = true;
+      if (schematicInstancedMesh.instanceColor) schematicInstancedMesh.instanceColor.needsUpdate = true;
+    }
+
+    window.updateSlice = function(maxY) {
+      currentSliceY = maxY;
+      const label = document.getElementById('label-slice');
+      if (label && activeSchematicData) {
+        if (maxY >= activeSchematicData.size[1]) {
+          label.textContent = `All (${activeSchematicData.total_blocks})`;
+        } else {
+          let count = 0;
+          activeVoxelList.forEach(v => { if (v.y <= maxY) count++; });
+          label.textContent = `Y ≤ ${maxY} (${count})`;
+        }
+      }
+      recomputeVoxelMatrices();
+    };
+
+    window.stepSlice = function(delta) {
+      if (!activeSchematicData) return;
+      const sy = activeSchematicData.size[1];
+      let next = currentSliceY + delta;
+      if (next < 0) next = 0;
+      if (next > sy) next = sy;
+      const slider = document.getElementById('slider-slice');
+      if (slider) slider.value = next;
+      updateSlice(next);
+    };
+
+    window.resetSlice = function() {
+      if (!activeSchematicData) return;
+      const sy = activeSchematicData.size[1];
+      const slider = document.getElementById('slider-slice');
+      if (slider) slider.value = sy;
+      updateSlice(sy);
+    };
+
+    window.updateExplode = function(val) {
+      currentExplodeFactor = val;
+      const label = document.getElementById('label-explode');
+      if (label) label.textContent = `${Math.round((val / 2.0) * 100)}%`;
+      recomputeVoxelMatrices();
+    };
+
+    window.toggleXRay = function() {
+      isXRayActive = !isXRayActive;
+      const btn = document.getElementById('btn-xray');
+      const label = document.getElementById('label-xray');
+      if (btn) {
+        if (isXRayActive) {
+          btn.className = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-600 text-white shadow-md transition';
+          if (label) label.textContent = 'X-Ray On';
+        } else {
+          btn.className = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition';
+          if (label) label.textContent = 'X-Ray Off';
+        }
+      }
+      if (schematicInstancedMesh) {
+        schematicInstancedMesh.material.opacity = isXRayActive ? 0.45 : 1.0;
+        schematicInstancedMesh.material.needsUpdate = true;
+      }
+      recomputeVoxelMatrices();
+    };
+
+    window.toggleGridPlane = function() {
+      showGridPlane = !showGridPlane;
+      if (schematicGrid) schematicGrid.visible = showGridPlane;
+      const btn = document.getElementById('btn-grid');
+      if (btn) {
+        btn.className = showGridPlane
+          ? 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md transition'
+          : 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition';
+      }
+    };
+
+    window.toggleSchematicAutoRotate = function() {
+      schematicAutoRotate = !schematicAutoRotate;
+      const btn = document.getElementById('btn-schem-rotate');
+      const label = document.getElementById('label-schem-rotate');
+      if (btn) {
+        if (schematicAutoRotate) {
+          btn.className = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-600 text-white shadow-md transition';
+          if (label) label.textContent = 'Rotating';
+        } else {
+          btn.className = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition';
+          if (label) label.textContent = 'Rotate';
+        }
+      }
+    };
+
+    window.resetSchematicCamera = function() {
+      if (!activeSchematicData || !controls3D || !camera3D) return;
+      const [sx, sy, sz] = activeSchematicData.size;
+      controls3D.target.set(0, sy / 2, 0);
+      const dist = Math.max(sx, sy, sz) * 1.6;
+      camera3D.position.set(dist * 0.9, sy + dist * 0.45, dist * 1.1);
+      controls3D.update();
+    };
+
+    window.isolateMaterial = function(idx) {
+      if (isolatedMaterialIndex === idx) {
+        isolatedMaterialIndex = null;
+      } else {
+        isolatedMaterialIndex = idx;
+      }
+      updateSchematicSidebarUI(activeSchematicData);
+      recomputeVoxelMatrices();
+    };
+
+    window.clearMaterialIsolation = function() {
+      isolatedMaterialIndex = null;
+      updateSchematicSidebarUI(activeSchematicData);
+      recomputeVoxelMatrices();
+    };
+
+    function updateSchematicSidebarUI(data) {
+      const meta = data.metadata || {};
+
+      const titleEl = document.getElementById('schem-sidebar-title');
+      if (titleEl) titleEl.textContent = meta.title || data.id;
+
+      const realmEl = document.getElementById('schem-sidebar-realm');
+      if (realmEl) realmEl.textContent = meta.realm || 'Ashenfall';
+
+      const factionEl = document.getElementById('schem-sidebar-faction');
+      if (factionEl) factionEl.textContent = meta.faction || '';
+
+      const biomeEl = document.getElementById('schem-sidebar-biome');
+      if (biomeEl) biomeEl.textContent = meta.biome ? meta.biome.split('/')[0].trim() : 'Plains';
+
+      const loreEl = document.getElementById('schem-sidebar-lore');
+      if (loreEl) loreEl.textContent = meta.lore || '';
+
+      const dimsEl = document.getElementById('schem-metric-dims');
+      if (dimsEl) dimsEl.textContent = `${data.size[0]}×${data.size[1]}×${data.size[2]}`;
+
+      const blocksEl = document.getElementById('schem-metric-blocks');
+      if (blocksEl) blocksEl.textContent = data.total_blocks.toLocaleString();
+
+      const palEl = document.getElementById('schem-metric-palette');
+      if (palEl) palEl.textContent = `${data.palette.length} Types`;
+
+      const tpInput = document.getElementById('schem-input-tp');
+      if (tpInput) tpInput.value = data.in_game ? data.in_game.tp : `/tp @s 0 64 0`;
+
+      const loadInput = document.getElementById('schem-input-load');
+      if (loadInput) loadInput.value = data.in_game ? data.in_game.load : `/structure load ashenfall:${data.id} ~ ~ ~`;
+
+      const downloadNbt = document.getElementById('btn-download-nbt');
+      if (downloadNbt) {
+        downloadNbt.href = `/downloads/schematics/${data.id}.nbt`;
+        downloadNbt.download = `${data.id}.nbt`;
+      }
+
+      const archEl = document.getElementById('schem-dossier-arch');
+      if (archEl) archEl.textContent = meta.architecture || 'Authentic Minecraft structure.';
+
+      const tipsEl = document.getElementById('schem-dossier-tips');
+      if (tipsEl) tipsEl.textContent = meta.survival_tips || 'Spawns with standard orientation.';
+
+      const palList = document.getElementById('schem-palette-list');
+      if (palList) {
+        palList.innerHTML = '';
+        const sortedPalette = [...data.palette].sort((a, b) => b.count - a.count);
+        sortedPalette.forEach(p => {
+          const row = document.createElement('button');
+          row.className = `w-full flex items-center justify-between p-1.5 rounded-lg border text-left transition ${
+            isolatedMaterialIndex === p.index
+              ? 'bg-amber-950/60 border-amber-500 shadow-sm'
+              : 'bg-slate-900/60 hover:bg-slate-800/80 border-slate-800/80'
+          }`;
+          row.onclick = () => isolateMaterial(p.index);
+          row.innerHTML = `
+            <div class="flex items-center gap-2 min-w-0 pr-2">
+              <span class="w-3.5 h-3.5 rounded shrink-0 border border-white/20 shadow-sm" style="background-color: ${p.color}"></span>
+              <span class="text-xs text-slate-200 font-medium truncate">${p.display_name}</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <div class="w-12 bg-slate-800 rounded-full h-1.5 overflow-hidden hidden sm:block">
+                <div class="h-full rounded-full" style="width: ${p.percent}%; background-color: ${p.color}"></div>
+              </div>
+              <span class="font-mono text-[10px] text-slate-400 w-8 text-right">${p.count}</span>
+              <span class="font-mono text-[10px] text-amber-400/90 w-10 text-right">${p.percent}%</span>
+            </div>
+          `;
+          palList.appendChild(row);
+        });
+      }
+
+      const clearBtn = document.getElementById('btn-clear-isolate');
+      if (clearBtn) {
+        if (isolatedMaterialIndex !== null) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+
+      const ovName = document.getElementById('overlay-schem-name');
+      if (ovName) ovName.textContent = meta.title || data.id;
+
+      const ovSub = document.getElementById('overlay-schem-sub');
+      if (ovSub) ovSub.textContent = `${data.size[0]}×${data.size[1]}×${data.size[2]} · ${data.total_blocks} Blocks`;
+
+      const labelSlice = document.getElementById('label-slice');
+      if (labelSlice) labelSlice.textContent = `All (${data.total_blocks})`;
+
+      lucide.createIcons();
+    }
+
+    window.copySchematicCmd = function(type) {
+      if (!activeSchematicData) return;
+      const text = type === 'tp' ? activeSchematicData.in_game.tp : activeSchematicData.in_game.load;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(`btn-copy-schem-${type}`);
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<i data-lucide="check" class="w-3 h-3 text-emerald-400"></i><span class="text-emerald-400">Copied!</span>`;
+          lucide.createIcons();
+          setTimeout(() => { btn.innerHTML = orig; lucide.createIcons(); }, 2000);
+        }
+      });
+    };
+
+    function showSchematicTooltip(v, clientX, clientY) {
+      const tooltip = document.getElementById('schematic-tooltip');
+      if (!tooltip) return;
+      const swatch = document.getElementById('schem-tooltip-swatch');
+      const name = document.getElementById('schem-tooltip-name');
+      const id = document.getElementById('schem-tooltip-id');
+      const coords = document.getElementById('schem-tooltip-coords');
+
+      if (swatch) swatch.style.backgroundColor = v.color;
+      if (name) name.textContent = v.displayName;
+      if (id) id.textContent = v.name;
+      if (coords) coords.textContent = `Pos: (${v.x}, ${v.y}, ${v.z}) · Layer: Y=${v.y}`;
+
+      tooltip.style.left = `${clientX + 14}px`;
+      tooltip.style.top = `${clientY + 14}px`;
+      tooltip.classList.remove('hidden');
+    }
+
+    function hideSchematicTooltip() {
+      const tooltip = document.getElementById('schematic-tooltip');
+      if (tooltip) tooltip.classList.add('hidden');
     }
 
     window.set3DTexture = function(mode) {
@@ -1275,7 +2169,7 @@
     // Tabs Switcher
     // ---------------------------------------------------------------------------
     window.switchTab = function(tabId) {
-      ['ashfall', 'continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
+      ['ashfall', 'schematics', 'continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
         const el = document.getElementById(`content-${t}`);
         if (el) el.classList.add('hidden');
         const tabBtn = document.getElementById(`tab-${t}`);
@@ -1290,7 +2184,7 @@
       const activeTab = document.getElementById(`tab-${tabId}`);
       if (activeTab) {
         let colorClass = 'text-cyan-400';
-        if (tabId === 'still_life') colorClass = 'text-amber-400';
+        if (tabId === 'still_life' || tabId === 'schematics') colorClass = 'text-amber-400';
         else if (tabId === 'wpapi') colorClass = 'text-indigo-400';
         else if (tabId === 'ashfall') colorClass = 'text-purple-400';
         activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
@@ -1498,9 +2392,10 @@
       });
     };
 
-    // Auto-launch 3D WebGL Continent Viewport by default
+    // Auto-launch 3D WebGL Continent Viewport by default & prefetch Schematics
     window.addEventListener('DOMContentLoaded', () => {
       setViewMode('3d');
+      fetchSchematicsCatalog();
     });
     setTimeout(() => {
       setViewMode('3d');
