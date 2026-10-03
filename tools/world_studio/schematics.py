@@ -226,7 +226,7 @@ SCHEMATIC_METADATA = {
         "faction": "House Douglas Border Guard",
         "icon": "shield",
         "accent_color": "#94a3b8",
-        "concept_art": "/art/nation_01_grey_frontier_kingdom.png",
+        "concept_art": "/art/wide_castle_grey_frontier_complete.png",
         "target_coords": {"x": 120, "y": 72, "z": 2380},
         "biome": "Plains / Windswept Hills / Frontier Passes",
         "lore": (
@@ -252,7 +252,7 @@ SCHEMATIC_METADATA = {
         "faction": "Pebble Bluffs Fisherfolk",
         "icon": "anchor",
         "accent_color": "#38bdf8",
-        "concept_art": "/art/nation_01_grey_frontier_kingdom.png",
+        "concept_art": "/art/wide_town_grey_frontier_harbor.png",
         "target_coords": {"x": -350, "y": 62, "z": 2600},
         "biome": "Warm Ocean / Pebble Bluffs / Shoreline",
         "lore": (
@@ -275,7 +275,7 @@ SCHEMATIC_METADATA = {
         "faction": "House Vance Mechanists",
         "icon": "cog",
         "accent_color": "#f97316",
-        "concept_art": "/art/nation_02_cogwork_march_dominion.png",
+        "concept_art": "/art/wide_town_cogwork_industrial.png",
         "target_coords": {"x": -2100, "y": 95, "z": 40},
         "biome": "Badlands / Canyons / Terraced Quarries",
         "lore": (
@@ -298,7 +298,7 @@ SCHEMATIC_METADATA = {
         "faction": "The Cinder Conclave & Valerius IX",
         "icon": "flame",
         "accent_color": "#ef4444",
-        "concept_art": "/art/nation_03_ashen_caldera_imperium.png",
+        "concept_art": "/art/wide_castle_ashen_imperium_complete.png",
         "target_coords": {"x": 0, "y": 146, "z": 0},
         "biome": "Basalt Deltas / Magma Rim / Nether Wastes",
         "lore": (
@@ -321,7 +321,7 @@ SCHEMATIC_METADATA = {
         "faction": "House Vane & The Silent Order",
         "icon": "snowflake",
         "accent_color": "#67e8f9",
-        "concept_art": "/art/nation_04_glacial_spine_realm.png",
+        "concept_art": "/art/wide_castle_glacial_citadel_complete.png",
         "target_coords": {"x": 15, "y": 265, "z": -2480},
         "biome": "Frozen Peaks / Jagged Arêtes / Jagged Spires",
         "lore": (
@@ -344,7 +344,7 @@ SCHEMATIC_METADATA = {
         "faction": "House Seljuk & Desert Caravans",
         "icon": "gem",
         "accent_color": "#eab308",
-        "concept_art": "/art/nation_05_gilded_dunes_sultanate.png",
+        "concept_art": "/art/wide_city_al_qadira_oasis.png",
         "target_coords": {"x": 2310, "y": 84, "z": -20},
         "biome": "Desert / Eroded Badlands / Red Sand Canyons",
         "lore": (
@@ -367,7 +367,7 @@ SCHEMATIC_METADATA = {
         "faction": "The Mycelial Covenant & House Belen",
         "icon": "skull",
         "accent_color": "#a855f7",
-        "concept_art": "/art/nation_06_whispering_fen_wetlands.png",
+        "concept_art": "/art/wide_town_whispering_fen_stilt.png",
         "target_coords": {"x": 1980, "y": 63, "z": 2020},
         "biome": "Swamp / Mangrove Bayous / Murky Deltas",
         "lore": (
@@ -390,7 +390,7 @@ SCHEMATIC_METADATA = {
         "faction": "Cataclysm Ruins & Port Ostraka",
         "icon": "landmark",
         "accent_color": "#2dd4bf",
-        "concept_art": "/art/nation_07_sunken_reach_atlantis.png",
+        "concept_art": "/art/wide_ruins_sunken_atlantis_complete.png",
         "target_coords": {"x": -2380, "y": 38, "z": 1590},
         "biome": "Warm Ocean / Coral Reef Atoll / Seabed Trench",
         "lore": (
