@@ -1,0 +1,13 @@
+name = "Project MMO: XP Bottles"
+filename = "project-mmo-xp-bottles-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/project-mmo-xp-bottles/versions/project-mmo-xp-bottles-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "8481c8ec6499766f087e9bbac0c42163caf3cbc64635cdcc18b7420023511b21d36c9ac17ca7c374c08219ac571d421806913770b1d2bf45d553b485ddc89ebb"
+
+[update]
+[update.modrinth]
+mod-id = "project-mmo-xp-bottles"
+version = "latest"

@@ -1,0 +1,13 @@
+name = "Moonlight Lib"
+filename = "moonlight-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/moonlight/versions/moonlight-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "65240dec52888bc6ab3632bb08a21f5b07eb4533b76f58620bec78016800f225489829dff06e7edb4582cbb23da894f03ec77df50e168a1d6e35bcbc2f8e56e9"
+
+[update]
+[update.modrinth]
+mod-id = "moonlight"
+version = "latest"

@@ -1,0 +1,13 @@
+name = "Entity Culling"
+filename = "entityculling-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/entityculling/versions/entityculling-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "5231c6fcc034823917341d603190211481b04d1cd33b63d166a8861ff77f60a096ccd3438ab5b7b5dcf084700e953bd16739055b8ad32cef7b04ea2661f1826e"
+
+[update]
+[update.modrinth]
+mod-id = "entityculling"
+version = "latest"

@@ -1,0 +1,13 @@
+name = "Embeddium Extra"
+filename = "embeddium-extra-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/embeddium-extra/versions/embeddium-extra-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "c07a51626256b612ef9c8ff1a7ceb84d50d1440c89ab709b1af80be4b633501ec6a6ced15e00430419056bf1dcc87f575a241935a3fa0db4a23e1e7463d8d3e3"
+
+[update]
+[update.modrinth]
+mod-id = "embeddium-extra"
+version = "latest"

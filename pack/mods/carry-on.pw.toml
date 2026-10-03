@@ -1,0 +1,13 @@
+name = "Carry On"
+filename = "carry-on-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/carry-on/versions/carry-on-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "55ddf0703b1ead8dd5f7066bdd2f53cd02da1bb5208481cf1469618a7ff02f2cae162727fd15c1b1c665f57496f0c4dc754ee574bf1c9cd30722694d986aba79"
+
+[update]
+[update.modrinth]
+mod-id = "carry-on"
+version = "latest"

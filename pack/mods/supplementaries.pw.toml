@@ -1,0 +1,13 @@
+name = "Supplementaries"
+filename = "supplementaries-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/supplementaries/versions/supplementaries-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f249b1fd336f1b0a1ac5cce099064cc8c6a5c64db9e91757e1535bf4756c71b3f1f73bef3f2d0e0d239bf02fd7fab161557d5041541f672bf561ac84c7ddf518"
+
+[update]
+[update.modrinth]
+mod-id = "supplementaries"
+version = "latest"

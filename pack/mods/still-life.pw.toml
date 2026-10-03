@@ -1,0 +1,13 @@
+name = "Still Life"
+filename = "still-life-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/still-life/versions/still-life-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "220447c91c33ad00903368a721711339ec63b892bd432a0b7a33830130d4a46fe0c3bc01d20c569541028685d7429ee5554908887f9a8970d718d5e2a86f508f"
+
+[update]
+[update.modrinth]
+mod-id = "still-life"
+version = "latest"

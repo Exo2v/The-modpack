@@ -1,0 +1,13 @@
+name = "Citadel"
+filename = "citadel-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/citadel/versions/citadel-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "dbeef18db8c8a81fda0ff1b7a5c5c5aa2f27a97bd13899782b3195e43f4b80616e864b809eb472cfaef2130ed4af13249c22a9110a35cbb2e2ecef67c66c2225"
+
+[update]
+[update.modrinth]
+mod-id = "citadel"
+version = "exact"

@@ -1,0 +1,13 @@
+name = "Inventory Profiles Next"
+filename = "inventory-profiles-next-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/inventory-profiles-next/versions/inventory-profiles-next-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "a490bc7f5e18a562d0034bba8c30d356a30cffe2d8df61f07e32472389a93d196defe92bf040512b6bf9ca9648d1305464f337cc494dde1e297fd4dd30450f1a"
+
+[update]
+[update.modrinth]
+mod-id = "inventory-profiles-next"
+version = "latest"

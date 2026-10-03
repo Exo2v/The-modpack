@@ -1,0 +1,13 @@
+name = "Lithosphere"
+filename = "lithosphere-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/lithosphere/versions/lithosphere-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "d3b13c538d73d8064bed1a06a2fdd12139f0ce12bda1e8a30d3d183b2a2a9b5079b7796fdae30d5422aaaf1d5d4b6fa3813f67e098cd47dacbafcbbd1b1dfd3b"
+
+[update]
+[update.modrinth]
+mod-id = "lithosphere"
+version = "latest"

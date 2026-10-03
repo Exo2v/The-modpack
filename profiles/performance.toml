@@ -1,0 +1,18 @@
+# Profile: performance
+# Acedium on, all culling on, no Distant Horizons, entity caps tight
+
+[profile]
+name = "performance"
+description = "Maximum FPS profile with Acedium mesh shaders and aggressive culling"
+
+[graphics]
+mesh_shaders = true
+acedium_enabled = true
+distant_horizons = false
+entity_culling = true
+block_entity_culling = true
+
+[performance]
+max_active_entities = 128
+particle_budget = "minimal"
+screen_batching = true

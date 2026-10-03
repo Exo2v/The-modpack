@@ -1,0 +1,13 @@
+name = "ImmediatelyFast"
+filename = "immediatelyfast-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/immediatelyfast/versions/immediatelyfast-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "4fa32dc4ab59f2e6e4884a5f70b5a40c0e69dbdcf1d28cab40c7260e65e18853d240a50dbc051f474b63aea2076ce2d0902228fd15aba9511368fd149a5a90bd"
+
+[update]
+[update.modrinth]
+mod-id = "immediatelyfast"
+version = "latest"

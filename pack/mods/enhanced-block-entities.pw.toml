@@ -1,0 +1,13 @@
+name = "Enhanced Block Entities"
+filename = "enhanced-block-entities-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/enhanced-block-entities/versions/enhanced-block-entities-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "6da5006ebe223e914ec8a7ccff4a6ef4826d4d5b202385c2b8ad6d57425ee3b62fe6fdc2ccbd41a869dca905dc616adf6284938d6f172ac2c765da811f62b5a9"
+
+[update]
+[update.modrinth]
+mod-id = "enhanced-block-entities"
+version = "latest"

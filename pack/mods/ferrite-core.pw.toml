@@ -1,0 +1,13 @@
+name = "FerriteCore"
+filename = "ferrite-core-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ferrite-core/versions/ferrite-core-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "48e57dec96882fd0104c2b3eb54ff0d7c2dec3f739620ca4ebc742672f9dd55c1f40fae3c00c53de90791205525b933f32f7be86b4683571c76408ab20ae6dab"
+
+[update]
+[update.modrinth]
+mod-id = "ferrite-core"
+version = "latest"

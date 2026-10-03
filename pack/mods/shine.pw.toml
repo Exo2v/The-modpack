@@ -1,0 +1,13 @@
+name = "Shine"
+filename = "shine-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/shine/versions/shine-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "dcf599a9ee8458c863331585459fac3fb44eea39a2bb4663fe61f3fd734fc32532b884a72fa6d3b24e15ccc1046caac4dd55728e99de20d335dc0731ec8461a9"
+
+[update]
+[update.modrinth]
+mod-id = "shine"
+version = "latest"

@@ -1,0 +1,18 @@
+# Build and cache directories
+build/
+.gradle/
+__pycache__/
+*.pyc
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# World save local files
+saves/
+

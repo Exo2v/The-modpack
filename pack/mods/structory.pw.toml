@@ -1,0 +1,13 @@
+name = "Structory"
+filename = "structory-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/structory/versions/structory-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "781b6011371579b75b3cda5960c036030d2687ed86d0d8f85b5725503cbc7e27dc58f1c4aab628c39c945e5a3cd3463c37d0a81eebd7ef8b42c53dcf5ec8c3c2"
+
+[update]
+[update.modrinth]
+mod-id = "structory"
+version = "latest"

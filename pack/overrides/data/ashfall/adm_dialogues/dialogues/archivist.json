@@ -1,0 +1,74 @@
+{
+  "title": "The Archivist",
+  "speaker": "The Archivist",
+  "random_start": ["greeting", "greeting_ember", "greeting_wandering"],
+  "nodes": {
+    "greeting": {
+      "text": "You're the drowned one. Sit. The floor is cold and so is the story.",
+      "choices": [
+        { "text": "What happened here?", "next": "the_fall" },
+        { "text": "Who built the lighthouse on the shore?", "next": "the_lighthouse" },
+        { "text": "(Leave)", "close": true }
+      ]
+    },
+    "greeting_ember": {
+      "text": "I can smell the ash in your chest. The Tenth Ember... dormant, but burning nonetheless.",
+      "choices": [
+        { "text": "Can it be quenched?", "next": "quench_ember" },
+        { "text": "Where are the other nine?", "next": "the_fall" },
+        { "text": "(Leave)", "close": true }
+      ]
+    },
+    "greeting_wandering": {
+      "text": "The roads are choked with blight and the Nine Nations squabble over crumbs. What brings you to this sanctuary?",
+      "choices": [
+        { "text": "I seek the First Ember.", "next": "the_fall" },
+        { "text": "(Leave)", "close": true }
+      ]
+    },
+    "the_lighthouse": {
+      "text": "The Old Lighthouse was raised when the Norman fleets still sailed freely. It guides dead souls who wash ashore. Now it only warns the living to stay away from the deep trenches.",
+      "choices": [
+        { "text": "Tell me of the fall.", "next": "the_fall" },
+        { "text": "(Leave)", "close": true }
+      ]
+    },
+    "the_fall": {
+      "text": "Nine sounds, in one night. We counted them. Then we stopped counting, because the counting was worse. The sky cracked, and each kingdom took a piece of the divine flame.",
+      "choices": [
+        {
+          "text": "Show me the Annals.",
+          "requires_flags": ["annals_4_found"],
+          "next": "annals_gate"
+        },
+        { "text": "Who counted?", "next": "who_counted" },
+        { "text": "(Close)", "close": true }
+      ]
+    },
+    "who_counted": {
+      "text": "The Byzantine Choir in the east, before their voices drowned. The Witchbane Inquisitors in the dark woods. And the Hermits atop the high peaks. None of them survived unchanged.",
+      "choices": [
+        { "text": "I will find them all.", "next": "resolve" },
+        { "text": "(Close)", "close": true }
+      ]
+    },
+    "quench_ember": {
+      "text": "Only in the molten basin of the Cathedral of Ash. Or when your breath is swallowed by the Sunken Throne.",
+      "choices": [
+        { "text": "(Nod and step away)", "close": true }
+      ]
+    },
+    "annals_gate": {
+      "text": "Four of twelve Annals gathered. You walk the path of the true Pilgrim. Take this ink and parchment; record what remains of the shattered world.",
+      "choices": [
+        { "text": "(Accept reward)", "close": true }
+      ]
+    },
+    "resolve": {
+      "text": "May your embers stay warm on the cold road, Pilgrim.",
+      "choices": [
+        { "text": "(Farewell)", "close": true }
+      ]
+    }
+  }
+}

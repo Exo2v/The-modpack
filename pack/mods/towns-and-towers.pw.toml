@@ -1,0 +1,13 @@
+name = "Towns and Towers"
+filename = "towns-and-towers-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/towns-and-towers/versions/towns-and-towers-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f8e419c4b248b862f45d7f0c5652eaed9c062740499cabf4df4f13e117221ace76777e95f13486d9a55b48eba9fa758f7d9f6c2ea71bff14429bf471b2b75cb1"
+
+[update]
+[update.modrinth]
+mod-id = "towns-and-towers"
+version = "latest"

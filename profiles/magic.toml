@@ -1,0 +1,11 @@
+# Profile: magic
+# Monsters & Spellbooks disabled for stability testing
+
+[profile]
+name = "magic"
+description = "Stability test profile with experimental Necromancy magic addon disabled"
+
+[features]
+monsters_and_spellbooks = false
+irons_spells_core = true
+necro_school_active = false

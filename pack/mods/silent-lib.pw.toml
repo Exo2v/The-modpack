@@ -1,0 +1,13 @@
+name = "Silent Lib"
+filename = "silent-lib-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/silent-lib/versions/silent-lib-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "625618e6802fc749831269048d197b932fca0dd09596a91b9acee2ba86189f897502732a406f65dc270ad062b9189ee2b3001fe0276d6098939004df0baa6449"
+
+[update]
+[update.modrinth]
+mod-id = "silent-lib"
+version = "latest"

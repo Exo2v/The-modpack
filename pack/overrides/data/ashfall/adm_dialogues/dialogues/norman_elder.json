@@ -1,0 +1,27 @@
+{
+  "title": "Norman Remnant Elder",
+  "speaker": "Elder Baldwin",
+  "random_start": ["greeting"],
+  "nodes": {
+    "greeting": {
+      "text": "The salt wind bites hard today. Did the tide bring you in, drowned one? The Norman coast has buried better men than you.",
+      "choices": [
+        { "text": "Where is the nearest settlement?", "next": "settlement" },
+        { "text": "What dangers lurk inland?", "next": "inland" },
+        { "text": "(Leave)", "close": true }
+      ]
+    },
+    "settlement": {
+      "text": "Follow the cliffside cobble past the Old Lighthouse. Our bastion lies across the bay. Keep your weapon drawn; the blighted things crawl from the kelp at dusk.",
+      "choices": [
+        { "text": "Thank you, elder.", "close": true }
+      ]
+    },
+    "inland": {
+      "text": "Past the dunes lie the Witchbane Watch and the crumbling roads of the Choir. Don't wander into the mist unless you've rekindled your Ember Flask.",
+      "choices": [
+        { "text": "Understood.", "close": true }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+name = "Chunky"
+filename = "chunky-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/chunky/versions/chunky-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "c798252f3dc50c2f05f2ebc669cdba6cef733fa42d9de4b407cc7454932e57d36f04bb923097281babc8a4a52a19af7bf00abaa429db6c55853db10ade5045b9"
+
+[update]
+[update.modrinth]
+mod-id = "chunky"
+version = "latest"

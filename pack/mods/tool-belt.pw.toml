@@ -1,0 +1,13 @@
+name = "Tool Belt"
+filename = "tool-belt-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/tool-belt/versions/tool-belt-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "f89d4659166a2d94e5bc62badda5216ad764bb3228b48411bcb59d1d1b26e8ed3e6e86553d728597a5f85c1c7980afe443bde722bac6ffdb88197d629e2f2fa7"
+
+[update]
+[update.modrinth]
+mod-id = "tool-belt"
+version = "latest"

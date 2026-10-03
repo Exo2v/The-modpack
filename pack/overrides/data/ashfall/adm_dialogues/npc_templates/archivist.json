@@ -1,0 +1,10 @@
+{
+  "name": "The Archivist",
+  "dialogue": "archivist.json",
+  "scale": 1.0,
+  "name_visible": true,
+  "invulnerable": true,
+  "look_distance": 10.0,
+  "model": "steve",
+  "skin": "ashfall:textures/entity/npc/archivist.png"
+}

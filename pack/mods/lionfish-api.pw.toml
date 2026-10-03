@@ -1,0 +1,13 @@
+name = "Lionfish API"
+filename = "lionfish-api-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/lionfish-api/versions/lionfish-api-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "85b6be7d75d6dd1ed6d517cf72917583a663dfaa5b331a788dc53c96c7d0b08463408ae240459394860538efed525c34491d5db9d9ca1ddf3d51b81689e388af"
+
+[update]
+[update.modrinth]
+mod-id = "lionfish-api"
+version = "exact"

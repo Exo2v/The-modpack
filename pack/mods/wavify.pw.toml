@@ -1,0 +1,13 @@
+name = "Wavify"
+filename = "wavify-mc1.21.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/wavify/versions/wavify-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "da6f6df37136d300392029068c5157e96a4d3367f586ee2dd368222c05665c292f9f5fe75ff54f93f2ea0c7be10d3d40d7f9fab25b9e87aa83cb2d52eb5d0969"
+
+[update]
+[update.modrinth]
+mod-id = "wavify"
+version = "latest"

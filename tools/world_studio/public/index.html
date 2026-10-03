@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashenfall WorldStudio — Unified WorldEngine</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js + OrbitControls Bundle (Self-contained UMD) -->
+  <script src="/js/three.bundle.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            ember: '#ff6b35',
+            void: '#0b0d13',
+            panel: '#151821',
+            panelHover: '#1c212d',
+            borderDark: '#262c3a'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom sleek scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0d13; }
+    ::-webkit-scrollbar-thumb { background: #262c3a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b4459; }
+    .map-canvas-container {
+      background: radial-gradient(circle at center, #131722 0%, #08090d 100%);
+    }
+  </style>
+</head>
+<body class="bg-void text-slate-200 font-sans h-screen flex flex-col overflow-hidden select-none">
+
+  <!-- TOP HEADER BAR -->
+  <header class="h-14 border-b border-borderDark bg-panel flex items-center justify-between px-5 shrink-0 z-20">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-ember flex items-center justify-center shadow-lg shadow-cyan-900/30">
+        <i data-lucide="globe" class="w-5 h-5 text-white"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold tracking-wide text-white text-base">ASHFALL WORLDSTUDIO</h1>
+          <span class="text-[10px] font-semibold bg-purple-950 text-purple-400 border border-purple-800/60 px-2 py-0.5 rounded-full">v2.6 3D WebGL</span>
+        </div>
+        <p class="text-xs text-slate-400">Continent Generator · Still Life Population · ColorToTerrain · 3D WebGL</p>
+      </div>
+    </div>
+
+    <!-- 2D / 3D Mode Switcher -->
+    <div class="flex items-center bg-void/90 p-1 rounded-xl border border-borderDark shadow-inner">
+      <button id="view-mode-3d" onclick="setViewMode('3d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition">
+        <i data-lucide="box" class="w-3.5 h-3.5 text-purple-300"></i>
+        <span>3D Continent Globe</span>
+      </button>
+      <button id="view-mode-2d" onclick="setViewMode('2d')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+        <i data-lucide="map" class="w-3.5 h-3.5"></i>
+        <span>2D Map</span>
+      </button>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex items-center gap-3">
+      <a href="/downloads/worldpainter_suite.zip" download class="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md transition">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span>WorldPainter Suite (Zip)</span>
+      </a>
+      <a href="/downloads/datapack.zip" download class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-borderDark text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+        <i data-lucide="box" class="w-4 h-4"></i>
+        <span>data2 Datapack</span>
+      </a>
+      <button onclick="copyInstallCommand()" class="flex items-center gap-2 bg-ember/90 hover:bg-ember text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md transition">
+        <i data-lucide="terminal" class="w-4 h-4"></i>
+        <span id="btnCopyText">Copy Windows 1-Click Setup</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE (SPLIT SCREEN) -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- LEFT / CENTER: INTERACTIVE MAP VIEWPORT -->
+    <main class="flex-1 flex flex-col relative overflow-hidden map-canvas-container">
+      
+      <!-- 2D Viewport Floating Toolbar (Hidden when in 3D Mode) -->
+      <div id="toolbar-2d" class="hidden absolute top-4 left-4 z-10 flex items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+        <button onclick="setLayer('still_life_populate')" id="btn-still_life_populate" class="layer-btn active flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md shadow-emerald-900/40 transition">
+          <i data-lucide="flower-2" class="w-4 h-4"></i>
+          <span>Still Life & Populate</span>
+        </button>
+        <button onclick="setLayer('topographic')" id="btn-topographic" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="satellite" class="w-3.5 h-3.5"></i>
+          <span>Satellite Topo</span>
+        </button>
+        <button onclick="setLayer('populate')" id="btn-populate" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="trees" class="w-3.5 h-3.5"></i>
+          <span>Populate Mask</span>
+        </button>
+        <button onclick="setLayer('heightmap')" id="btn-heightmap" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="mountain" class="w-3.5 h-3.5"></i>
+          <span>16-Bit Grayscale</span>
+        </button>
+        <button onclick="setLayer('biomes')" id="btn-biomes" class="layer-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+          <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+          <span>Biomes Mask</span>
+        </button>
+      </div>
+
+      <!-- 2D Canvas Controls (Hidden when in 3D Mode) -->
+      <div id="controls-2d" class="hidden absolute top-4 right-4 z-10 flex flex-col gap-1.5 bg-panel/90 backdrop-blur-md p-1 rounded-xl border border-borderDark shadow-xl">
+        <button onclick="zoomIn()" title="Zoom In" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="zoom-in" class="w-4 h-4"></i>
+        </button>
+        <button onclick="zoomOut()" title="Zoom Out" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="zoom-out" class="w-4 h-4"></i>
+        </button>
+        <button onclick="resetZoom()" title="Reset View" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-slate-800 transition">
+          <i data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- 2D MAP CANVAS (Hidden when in 3D Mode) -->
+      <div id="canvas-wrapper" class="hidden flex-1 w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center">
+        <img id="map-image" src="/assets/still_life_populate.png" alt="Map Layer" class="max-w-none origin-center transition-transform duration-75 select-none pointer-events-none" style="transform: translate(0px, 0px) scale(1);">
+      </div>
+
+      <!-- 3D WEBGL VIEWPORT CONTAINER (ACTIVE BY DEFAULT) -->
+      <div id="webgl-container" class="flex-1 w-full h-full relative overflow-hidden bg-void select-none">
+        <div id="webgl-canvas-mount" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+        <!-- 3D Floating Controls Toolbar -->
+        <div class="absolute top-4 left-4 z-10 flex flex-wrap items-center gap-2 bg-panel/95 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-2xl">
+          <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider px-1.5 flex items-center gap-1">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i> 3D Mode:
+          </span>
+          <button onclick="set3DTexture('topographic')" id="btn-3d-topographic" class="btn-3d-tex flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium text-slate-300 hover:text-white transition">
+            <i data-lucide="satellite" class="w-3 h-3 text-cyan-400"></i>
+            <span>Satellite Topo</span>
+          </button>
+          <button onclick="set3DTexture('still_life')" id="btn-3d-still_life" class="btn-3d-tex flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-600 text-white shadow-md transition">
+            <i data-lucide="flower-2" class="w-3 h-3"></i>
+            <span>Still Life Foliage</span>
+          </button>
+          <button onclick="set3DTexture('colortoterrain')" id="btn-3d-colortoterrain" class="btn-3d-tex flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium text-slate-300 hover:text-white transition">
+            <i data-lucide="box" class="w-3 h-3 text-amber-400"></i>
+            <span>ColorToTerrain</span>
+          </button>
+          <button onclick="toggle3DWireframe()" id="btn-3d-wireframe" class="btn-3d-tex flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition border border-slate-700">
+            <i data-lucide="grid" class="w-3 h-3"></i>
+            <span>Wireframe</span>
+          </button>
+
+          <div class="h-4 w-px bg-borderDark mx-1"></div>
+
+          <div class="flex items-center gap-2 text-xs text-slate-300 px-1">
+            <span class="text-[10px] text-slate-400">Exaggeration:</span>
+            <input id="slider-3d-exaggeration" type="range" min="0.5" max="3.5" step="0.1" value="1.8" oninput="update3DExaggeration(this.value)" class="w-20 accent-purple-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            <span id="label-3d-exaggeration" class="font-mono text-[10px] text-purple-400 font-bold w-6">1.8x</span>
+          </div>
+
+          <div class="h-4 w-px bg-borderDark mx-1"></div>
+
+          <button onclick="toggle3DAutoRotate()" id="btn-3d-autorotate" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span id="label-3d-rotate">Auto-Rotate</span>
+          </button>
+
+          <button onclick="reset3DCamera()" title="Reset Camera" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+            <i data-lucide="focus" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- 3D Landmark Quick Fly Overlay -->
+        <div class="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 bg-panel/90 backdrop-blur-md p-1.5 rounded-xl border border-borderDark shadow-xl text-xs">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 flex items-center gap-1">
+            <i data-lucide="navigation" class="w-3 h-3 text-cyan-400"></i> Fly To:
+          </span>
+          <button onclick="flyTo3DLandmark('spawn')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-rose-300 border border-slate-800 font-medium transition text-[11px]">Spawn (Coast)</button>
+          <button onclick="flyTo3DLandmark('spine')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 font-medium transition text-[11px]">Glacial Spine</button>
+          <button onclick="flyTo3DLandmark('caldera')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-red-400 border border-slate-800 font-medium transition text-[11px]">Ashen Caldera</button>
+          <button onclick="flyTo3DLandmark('cogwork')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-800 font-medium transition text-[11px]">Cogwork March</button>
+          <button onclick="flyTo3DLandmark('dunes')" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-yellow-300 border border-slate-800 font-medium transition text-[11px]">Gilded Dunes</button>
+        </div>
+
+        <!-- 3D Hint Badge -->
+        <div class="absolute bottom-4 right-4 z-10 pointer-events-none bg-panel/85 backdrop-blur-md px-3 py-1.5 rounded-lg border border-borderDark/80 text-[10px] text-slate-400 font-mono flex items-center gap-2">
+          <i data-lucide="mouse-pointer" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Left-Drag: Rotate 360° · Right-Drag: Pan · Scroll: Zoom</span>
+        </div>
+      </div>
+
+      <!-- BOTTOM TELEMETRY / HOVER HUD BAR -->
+      <div class="h-12 border-t border-borderDark bg-panel/95 backdrop-blur-md flex items-center justify-between px-5 text-xs text-slate-300 shrink-0 z-10">
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">COORD:</span>
+            <span id="hud-coord" class="font-mono text-cyan-400 font-medium">X: 0 | Z: 0</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">ELEV:</span>
+            <span id="hud-elev" class="font-mono text-emerald-400 font-medium">Y: 62.0 (Sea Level)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">BIOME:</span>
+            <span id="hud-biome" class="font-semibold text-white">The Ashen Caldera</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-500 font-mono">POPULATE:</span>
+            <span id="hud-pop" class="text-amber-400 font-medium">Excluded (Barren Volcanic)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-[11px] text-slate-400 font-mono">
+          <span>CANVAS: 4096 x 4096 px</span>
+          <span class="text-slate-600">|</span>
+          <span>SCALE: 1.95 blocks/px</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-cyan-400 font-semibold">WORLD: 8,000 x 8,000 Blocks</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: UNIFIED ENGINE CONTROLS -->
+    <aside class="w-96 border-l border-borderDark bg-panel flex flex-col shrink-0 z-20">
+      
+      <!-- Tabs Navigation -->
+      <div class="flex border-b border-borderDark bg-void/50 p-1 text-[11px] font-medium overflow-x-auto">
+        <button onclick="switchTab('ashfall')" id="tab-ashfall" class="engine-tab active px-2.5 py-2 text-center rounded-lg bg-panel text-purple-400 font-semibold shadow-sm transition whitespace-nowrap">
+          Ashfall 3D
+        </button>
+        <button onclick="switchTab('still_life')" id="tab-still_life" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+          Still Life
+        </button>
+        <button onclick="switchTab('lithosphere')" id="tab-lithosphere" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+          Lithosphere
+        </button>
+        <button onclick="switchTab('wpapi')" id="tab-wpapi" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+          WP API
+        </button>
+        <button onclick="switchTab('worldpainter')" id="tab-worldpainter" class="engine-tab px-2.5 py-2 text-center rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+          Export
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="flex-1 overflow-y-auto p-5 space-y-6 text-sm">
+
+        <!-- TAB 0: ASHFALL 3D & STILL LIFE PIPELINE -->
+        <div id="content-ashfall" class="space-y-5">
+          <div class="bg-purple-950/30 border border-purple-800/40 rounded-xl p-4">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2 text-purple-400 font-bold">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Ashfall Continent Synthesizer</span>
+              </div>
+              <span class="text-[10px] bg-purple-900/60 text-purple-300 px-2 py-0.5 rounded-full font-mono">Python 3.11</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Generates the $8{,}000 \times 8{,}000$ block continent with Still Life multi-tier foliage & creativitRy ColorToTerrain blocks.
+            </p>
+          </div>
+
+          <!-- Quick Action: Python Regenerator -->
+          <div class="space-y-2 bg-panel/80 border border-borderDark rounded-xl p-3.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-300 uppercase tracking-wider text-[11px]">Generate Continent</span>
+              <span class="font-mono text-[10px] text-cyan-400">2048 x 2048 (4.2M px)</span>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-normal">
+              Executes continuous Hermite splines, Still Life slope vegetation, and creativitRy color quantization.
+            </p>
+            <button onclick="triggerPythonRegen()" id="btn-regen-ashfall" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-2 rounded-lg text-xs shadow-lg transition">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+              <span>⚡ Generate Ashfall Continent (Python)</span>
+            </button>
+            <div id="regen-status-box" class="hidden text-[10px] p-2 rounded-lg font-mono border"></div>
+          </div>
+
+          <!-- Still Life Population Rules Card -->
+          <div class="space-y-2.5 bg-panel/60 border border-borderDark rounded-xl p-3.5">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs">
+              <i data-lucide="trees" class="w-4 h-4"></i>
+              <span>Still Life Population Logic</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-300">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">Slope &lt; 35° (Valleys):</span>
+                <span class="font-mono text-emerald-400 font-semibold">100% Topsoil & Foliage</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">Slope &gt; 45° (Cliffs):</span>
+                <span class="font-mono text-rose-400 font-semibold">0% Trees / Bare Stone Scree</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">Glacial Tree Line:</span>
+                <span class="font-mono text-cyan-400 font-semibold">Cutoff at Y = 225 blocks</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">Ashen Caldera (R &lt; 650):</span>
+                <span class="font-mono text-amber-400 font-semibold">Barren Basalt & Lava Basin</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">Multi-Tier Features:</span>
+                <span class="font-mono text-slate-200">Logs, Shrubs, Erratic Boulders</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ColorToTerrain Palette Card -->
+          <div class="space-y-2.5 bg-panel/60 border border-borderDark rounded-xl p-3.5">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2 text-amber-400 font-bold">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+                <span>creativitRy ColorToTerrain Palette</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">37 Block Types</span>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Vectorized Euclidean RGB matching maps photorealistic colors directly to Minecraft blocks:
+            </p>
+            <div class="grid grid-cols-4 gap-1.5 text-[10px] font-mono text-center pt-1">
+              <div class="p-1 rounded bg-[#4c7d2a]/30 border border-[#4c7d2a] text-[#78c944]">Grass</div>
+              <div class="p-1 rounded bg-[#5a3f1c]/30 border border-[#5a3f1c] text-[#b38549]">Podzol</div>
+              <div class="p-1 rounded bg-[#dbd3a0]/30 border border-[#dbd3a0] text-[#e6e0b8]">Sand</div>
+              <div class="p-1 rounded bg-[#965c42]/30 border border-[#965c42] text-[#d68a69]">Terracotta</div>
+              <div class="p-1 rounded bg-[#7b7b7b]/30 border border-[#7b7b7b] text-[#bfbfbf]">Rock</div>
+              <div class="p-1 rounded bg-[#677967]/30 border border-[#677967] text-[#9fc79f]">Mossy</div>
+              <div class="p-1 rounded bg-[#14121d]/50 border border-slate-700 text-purple-300">Obsidian</div>
+              <div class="p-1 rounded bg-[#effbfb]/30 border border-cyan-400 text-cyan-200">Snow</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 1: CONTINENTS MOD LOGIC -->
+        <div id="content-continents" class="hidden space-y-5">
+          <div class="bg-cyan-950/30 border border-cyan-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Continents Engine (Starmute Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Enforces a bounded fantasy landmass isolated inside <strong>The Veil of Salt</strong> ocean, removing endless vanilla repeating terrain.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Continent Radius</span>
+                <span class="font-mono text-cyan-400 font-bold">3,550 Blocks</span>
+              </div>
+              <input type="range" min="2000" max="5000" value="3550" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                <span>Small (2k)</span>
+                <span>Standard Ashenfall (3.5k)</span>
+                <span>Immense (5k)</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Outer Ocean Trench Depth</span>
+                <span class="font-mono text-cyan-400 font-bold">Y = 21 (Deep Abyss)</span>
+              </div>
+              <input type="range" min="10" max="45" value="21" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Shelf Hermite Falloff Slope</span>
+                <span class="font-mono text-cyan-400 font-bold">600 Blocks Gradual</span>
+              </div>
+              <input type="range" min="200" max="1000" value="600" class="w-full accent-cyan-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Engine Mathematical Formula</span>
+            <code class="block font-mono text-[11px] text-cyan-300 bg-black/40 p-2 rounded border border-slate-800">
+              LandFactor = 0.5 - 0.5 * cos(clamp((3550 - R_warp) / 600, 0, 1) * π)
+            </code>
+            <p class="text-[11px] text-slate-400">Continuous S-curve prevents any vertical water borders or glitch cutoffs.</p>
+          </div>
+        </div>
+
+        <!-- TAB 2: LITHOSPHERE MOD LOGIC -->
+        <div id="content-lithosphere" class="hidden space-y-5">
+          <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold mb-1">
+              <i data-lucide="mountain-snow" class="w-4 h-4"></i>
+              <span>Lithosphere Geology Engine (J4yzet Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Replaces vanilla's jagged piece-wise staircase splines with <strong>continuous cubic hermite harmonics</strong> and quadratic U-shaped river valleys.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Glacial Spine Peak Height</span>
+                <span class="font-mono text-emerald-400 font-bold">Y = 279 (Alpine Cordillera)</span>
+              </div>
+              <input type="range" min="150" max="318" value="279" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Ridge Noise Sharpness (Arêtes)</span>
+                <span class="font-mono text-emerald-400 font-bold">Power 2.2 (Jagged Crests)</span>
+              </div>
+              <input type="range" min="1" max="4" step="0.1" value="2.2" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Cogwork March Terracing Steps</span>
+                <span class="font-mono text-emerald-400 font-bold">9-Block Industrial Benches</span>
+              </div>
+              <input type="range" min="4" max="16" value="9" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">U-Shaped River Canyon Carving</span>
+                <span class="font-mono text-emerald-400 font-bold">34 Blocks Deep</span>
+              </div>
+              <input type="range" min="10" max="50" value="34" class="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Lithosphere Spline Function</span>
+            <code class="block font-mono text-[11px] text-emerald-300 bg-black/40 p-2 rounded border border-slate-800">
+              S(t) = 3t² - 2t³ (Continuous 1st Derivatives)
+            </code>
+            <p class="text-[11px] text-slate-400">Guarantees zero stair-stepping terracing across hillsides.</p>
+          </div>
+        </div>
+
+        <!-- TAB 3: STILL LIFE MOD LOGIC -->
+        <div id="content-still_life" class="space-y-5">
+          <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
+              <i data-lucide="flower" class="w-4 h-4"></i>
+              <span>Still Life Flora Engine (J4yzet Logic)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Governs slope-aware surface rules, multi-tiered forest canopies, fallen mossy logs, and wildflower field distribution.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Exposed Rock Cliff Threshold</span>
+                <span class="font-mono text-amber-400 font-bold">Slope &gt; 35° (Bare Stone)</span>
+              </div>
+              <input type="range" min="20" max="60" value="35" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Forest Canopy Density</span>
+                <span class="font-mono text-amber-400 font-bold">Dense (Branched Trees)</span>
+              </div>
+              <input type="range" min="20" max="100" value="85" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-400">Fallen Log & Boulder Frequency</span>
+                <span class="font-mono text-amber-400 font-bold">1.2 per Chunk</span>
+              </div>
+              <input type="range" min="0" max="3" step="0.1" value="1.2" class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-borderDark rounded-xl p-3.5 space-y-2 text-xs">
+            <span class="text-slate-400 font-semibold uppercase text-[10px] tracking-wider">Populate Mask Exclusion Rules</span>
+            <ul class="space-y-1 text-slate-300 text-[11px]">
+              <li class="flex items-center gap-1.5 text-emerald-400">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Habitable Valleys, Plains & Meadows (Active)</span>
+              </li>
+              <li class="flex items-center gap-1.5 text-rose-400">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Ashen Caldera Crater (Excluded - Barren)</span>
+              </li>
+              <li class="flex items-center gap-1.5 text-rose-400">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Sheer Rock Summits &gt; Y=210 (Excluded)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TAB 4: WORLDPAINTER & EXPORT CENTER -->
+        <div id="content-worldpainter" class="hidden space-y-5">
+          <div class="bg-blue-950/30 border border-blue-800/40 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-blue-400 font-bold mb-1">
+              <i data-lucide="brush" class="w-4 h-4"></i>
+              <span>WorldPainter Integration Hub</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Export high-resolution master assets or execute the automated 1-click script inside WorldPainter.
+            </p>
+          </div>
+
+          <div class="space-y-2.5">
+            <a href="/downloads/worldpainter_suite.zip" download class="flex items-center justify-between bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white p-3 rounded-xl shadow-lg transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="archive" class="w-5 h-5"></i>
+                <div class="text-left">
+                  <div class="font-bold text-xs">WorldPainter Master Suite</div>
+                  <div class="text-[10px] text-cyan-200">Heightmaps, masks, script & guide (9.9 MB)</div>
+                </div>
+              </div>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+
+            <a href="/downloads/heightmap_16bit.png" download class="flex items-center justify-between bg-panelHover hover:bg-slate-800 border border-borderDark text-slate-200 p-3 rounded-xl transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="image" class="w-5 h-5 text-cyan-400"></i>
+                <div class="text-left">
+                  <div class="font-semibold text-xs">16-Bit Grayscale Heightmap</div>
+                  <div class="text-[10px] text-slate-400">4096 x 4096 uint16 raster (7.6 MB)</div>
+                </div>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </a>
+
+            <a href="/downloads/datapack.zip" download class="flex items-center justify-between bg-panelHover hover:bg-slate-800 border border-borderDark text-slate-200 p-3 rounded-xl transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="box" class="w-5 h-5 text-emerald-400"></i>
+                <div class="text-left">
+                  <div class="font-semibold text-xs">data2 Unified Datapack</div>
+                  <div class="text-[10px] text-slate-400">Lithosphere + Still Life 1.21.1 Density Functions</div>
+                </div>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </a>
+
+            <div class="border-t border-borderDark pt-2 mt-2">
+              <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Source Datapacks (1.21.1)</span>
+              <div class="grid grid-cols-3 gap-2 mt-2">
+                <a href="/downloads/still_life.zip" download class="flex flex-col items-center p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-center transition">
+                  <span class="text-[11px] font-bold text-amber-400">Still Life</span>
+                  <span class="text-[9px] text-slate-500">v0.1.1 (764KB)</span>
+                </a>
+                <a href="/downloads/lithosphere.zip" download class="flex flex-col items-center p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-center transition">
+                  <span class="text-[11px] font-bold text-emerald-400">Lithosphere</span>
+                  <span class="text-[9px] text-slate-500">v1.8.2 (178KB)</span>
+                </a>
+                <a href="/downloads/tectonic.zip" download class="flex flex-col items-center p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-center transition">
+                  <span class="text-[11px] font-bold text-cyan-400">Tectonic</span>
+                  <span class="text-[9px] text-slate-500">v3.0.25 (194KB)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fast WorldPainter Setup Instructions -->
+          <div class="border-t border-borderDark pt-4 space-y-3">
+            <span class="text-xs font-bold text-white uppercase tracking-wider">Fast 3-Click Setup</span>
+            <ol class="space-y-2 text-xs text-slate-300 list-decimal list-inside leading-relaxed">
+              <li>Open WorldPainter $\to$ <code class="text-cyan-300">File &gt; Import &gt; Height map...</code></li>
+              <li>Select <code class="text-cyan-300">ASHENFALL_HEIGHTMAP_16BIT.png</code> (Height: -64 to 320, Water: 62).</li>
+              <li>Click <code class="text-cyan-300">Edit &gt; Import &gt; Mask as layer...</code> and choose <code class="text-cyan-300">ASHENFALL_POPULATE_MASK.png</code> for the <code class="text-emerald-400">Populate</code> layer!</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- TAB 5: WORLDPAINTER JSR223 SCRIPTING API -->
+        <div id="content-wpapi" class="hidden space-y-5">
+          <div class="bg-indigo-950/30 border border-indigo-800/40 rounded-xl p-4">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold">
+                <i data-lucide="code" class="w-4 h-4"></i>
+                <span>WorldPainter JSR223 API</span>
+              </div>
+              <span id="wp-engine-status" class="text-[10px] bg-indigo-900/60 text-indigo-300 px-2 py-0.5 rounded-full font-mono">wpscript v2.5</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Headless synthesis, multi-layer masks, custom terrain stratification, and programmatic export.
+            </p>
+          </div>
+
+          <!-- Parameter Configuration -->
+          <div class="space-y-3 bg-panel/70 border border-borderDark rounded-xl p-3.5">
+            <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Script Configuration</span>
+              <button onclick="refreshWPScript()" class="text-indigo-400 hover:text-indigo-300 text-[10px] flex items-center gap-1 font-normal">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh
+              </button>
+            </div>
+
+            <div>
+              <label class="text-[10px] text-slate-400 block mb-1">World Name</label>
+              <input id="wp-world-name" type="text" value="Ashenfall_Continent" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2.5 py-1.5 focus:border-indigo-500 focus:outline-none font-mono">
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Min Y</label>
+                <input id="wp-min-y" type="number" value="-64" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Max Y</label>
+                <input id="wp-max-y" type="number" value="320" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Sea Level</label>
+                <input id="wp-sea-level" type="number" value="62" oninput="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1 focus:border-indigo-500 focus:outline-none font-mono text-center">
+              </div>
+            </div>
+
+            <div class="space-y-2 pt-1 border-t border-borderDark/60">
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                <input id="wp-opt-pop" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                <span>Apply Still Life Populate Mask</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                <input id="wp-opt-strat" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                <span>Apply Geological Strata (Beaches $\to$ Snow)</span>
+              </label>
+
+              <div class="space-y-1">
+                <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+                  <input id="wp-opt-frost" type="checkbox" checked onchange="refreshWPScript()" class="accent-indigo-500 rounded">
+                  <span>Glacial Frost Above Y</span>
+                </label>
+                <div class="flex items-center gap-2 pl-5">
+                  <input id="wp-frost-alt" type="range" min="150" max="280" value="210" oninput="document.getElementById('wp-frost-val').textContent = this.value; refreshWPScript()" class="w-full accent-indigo-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer">
+                  <span id="wp-frost-val" class="font-mono text-[10px] text-indigo-400 font-bold w-7">210</span>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-[10px] text-slate-400 block mb-1">Export Mode</label>
+                <select id="wp-export-mode" onchange="refreshWPScript()" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded-lg px-2 py-1.5 focus:border-indigo-500 focus:outline-none">
+                  <option value="world">Save as WorldPainter Master (.world)</option>
+                  <option value="save">Direct Minecraft Anvil Save (saves/Ashenfall)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Generated Script Viewer -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span class="font-mono text-indigo-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="file-code" class="w-3.5 h-3.5"></i> Generated JSR223 Script
+              </span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="copyWPScript()" id="btn-copy-wpscript" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[10px] transition">
+                  Copy
+                </button>
+                <button onclick="downloadCustomScript()" class="px-2 py-0.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[10px] transition">
+                  Download .js
+                </button>
+              </div>
+            </div>
+
+            <pre class="bg-black/90 border border-slate-800 rounded-lg p-3 text-[10px] font-mono text-cyan-300 max-h-52 overflow-y-auto overflow-x-hidden leading-relaxed select-all"><code id="wp-code-box">// Initializing WorldPainter API Script...</code></pre>
+          </div>
+
+          <!-- Headless Automation Launchers -->
+          <div class="space-y-2 pt-2 border-t border-borderDark">
+            <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Turnkey Runners & Python SDK</span>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="/downloads/run_worldpainter_api.bat" download class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-200 transition">
+                <i data-lucide="play-circle" class="w-4 h-4 text-emerald-400"></i>
+                <div class="text-left">
+                  <div class="font-bold text-[11px]">Runner (.bat)</div>
+                  <div class="text-[9px] text-slate-500">Auto-detects wpscript</div>
+                </div>
+              </a>
+              <a href="/downloads/worldpainter_api.py" download class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-200 transition">
+                <i data-lucide="terminal" class="w-4 h-4 text-indigo-400"></i>
+                <div class="text-left">
+                  <div class="font-bold text-[11px]">Python API SDK</div>
+                  <div class="text-[9px] text-slate-500">CLI & Code Bridge</div>
+                </div>
+              </a>
+            </div>
+
+            <button onclick="runHeadlessScript()" id="btn-run-headless" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold py-2 rounded-lg shadow-md transition mt-2">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+              <span>Test Headless Execution (wpscript)</span>
+            </button>
+            <div id="wp-run-status" class="hidden text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight"></div>
+          </div>
+        </div>
+
+        <!-- LANDMARKS NAVIGATION CARD -->
+        <div class="border-t border-borderDark pt-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white uppercase tracking-wider">Jump to Landmark</span>
+            <span class="text-[10px] text-slate-500">Click to Center</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-1.5 text-xs">
+            <button onclick="panTo(0, 2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span class="font-medium text-slate-200">The Forgotten Coast (Spawn)</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, 2500)</span>
+            </button>
+
+            <button onclick="panTo(0, -2500)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                <span class="font-medium text-slate-200">The Solitary Glacial Spine</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, -2500)</span>
+            </button>
+
+            <button onclick="panTo(-2100, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="font-medium text-slate-200">The Cogwork March</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(-2100, 0)</span>
+            </button>
+
+            <button onclick="panTo(0, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                <span class="font-medium text-slate-200">The Ashen Caldera</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(0, 0)</span>
+            </button>
+
+            <button onclick="panTo(2300, 0)" class="flex items-center justify-between p-2 rounded-lg bg-panelHover hover:bg-slate-800 border border-slate-800 transition text-left">
+              <span class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="font-medium text-slate-200">The Gilded Dunes</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-400">(2300, 0)</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- INTERACTIVE APPLICATION LOGIC & 3D WEBGL ENGINE -->
+  <script>
+    const THREE = window.THREE;
+    const OrbitControls = window.OrbitControls;
+
+    lucide.createIcons();
+
+    // ---------------------------------------------------------------------------
+    // 2D Map Transform State
+    // ---------------------------------------------------------------------------
+    let zoom = 1;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    const img = document.getElementById('map-image');
+    const wrapper = document.getElementById('canvas-wrapper');
+
+    function updateTransform() {
+      if (img) img.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+    }
+
+    window.zoomIn = function() {
+      zoom = Math.min(zoom * 1.3, 8.0);
+      updateTransform();
+    };
+
+    window.zoomOut = function() {
+      zoom = Math.max(zoom / 1.3, 0.4);
+      updateTransform();
+    };
+
+    window.resetZoom = function() {
+      zoom = 1;
+      panX = 0;
+      panY = 0;
+      updateTransform();
+    };
+
+    window.panTo = function(mcX, mcZ) {
+      if (currentViewMode === '3d') {
+        flyTo3DCoordinates(mcX, mcZ);
+        return;
+      }
+      const imgSize = img.naturalWidth || 2048;
+      const px = ((mcX + 4000) / 8000 - 0.5) * imgSize;
+      const pz = ((mcZ + 4000) / 8000 - 0.5) * imgSize;
+      zoom = 2.0;
+      panX = -px * zoom;
+      panY = -pz * zoom;
+      updateTransform();
+      updateHUD(mcX, mcZ);
+    };
+
+    if (wrapper) {
+      wrapper.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          panX = e.clientX - startX;
+          panY = e.clientY - startY;
+          updateTransform();
+        }
+
+        const rect = wrapper.getBoundingClientRect();
+        const mouseX = e.clientX - (rect.left + rect.width / 2) - panX;
+        const mouseY = e.clientY - (rect.top + rect.height / 2) - panY;
+        
+        const imgSize = (img.naturalWidth || 2048) * zoom;
+        const normX = mouseX / imgSize + 0.5;
+        const normZ = mouseY / imgSize + 0.5;
+
+        if (normX >= 0 && normX <= 1 && normZ >= 0 && normZ <= 1) {
+          const mcX = Math.round((normX - 0.5) * 8000);
+          const mcZ = Math.round((normZ - 0.5) * 8000);
+          updateHUD(mcX, mcZ);
+        }
+      });
+
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      wrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.15 : 0.85;
+        zoom = Math.max(0.4, Math.min(8.0, zoom * factor));
+        updateTransform();
+      }, { passive: false });
+    }
+
+    // 2D Layer Switcher
+    window.setLayer = function(layer) {
+      document.querySelectorAll('.layer-btn').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'bg-cyan-600', 'text-white', 'shadow-md', 'shadow-emerald-900/40', 'shadow-sm');
+        b.classList.add('text-slate-400');
+      });
+      const activeBtn = document.getElementById(`btn-${layer}`);
+      if (activeBtn) {
+        if (layer === 'still_life_populate') {
+          activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-md', 'shadow-emerald-900/40');
+        } else {
+          activeBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-sm');
+        }
+        activeBtn.classList.remove('text-slate-400');
+      }
+
+      const mapPaths = {
+        still_life_populate: '/assets/still_life_populate.png',
+        topographic: '/assets/topographic.png',
+        heightmap: '/assets/heightmap_preview.png',
+        populate: '/assets/populate_mask.png',
+        biomes: '/assets/biome_mask.png'
+      };
+
+      if (img) img.src = mapPaths[layer] || '/assets/still_life_populate.png';
+    };
+
+    // ---------------------------------------------------------------------------
+    // 3D WebGL Continent Viewport (Three.js & OrbitControls)
+    // ---------------------------------------------------------------------------
+    let scene3D, camera3D, renderer3D, controls3D, terrainMesh3D, waterMesh3D;
+    let texTopo, texStillLife, texColorToTerrain, texDisplacement;
+    let current3DTextureMode = 'still_life';
+    let is3DInitialized = false;
+    let autoRotate3D = false;
+    let currentExaggeration = 1.8;
+    let currentViewMode = '2d';
+
+    const LANDMARKS_3D = {
+      spawn:   { name: "The Forgotten Coast (Spawn)", x: 0,   z: 50,  elev: 72 },
+      spine:   { name: "The Solitary Glacial Spine",  x: 0,   z: -50, elev: 279 },
+      cogwork: { name: "The Cogwork March",          x: -42, z: 0,   elev: 95 },
+      caldera: { name: "The Ashen Caldera",          x: 0,   z: 0,   elev: 146 },
+      dunes:   { name: "The Gilded Dunes",           x: 46,  z: 0,   elev: 94 },
+      fen:     { name: "The Whispering Fen",         x: 40,  z: 40,  elev: 63 },
+      reach:   { name: "The Sunken Reach",           x: -48, z: 32,  elev: 54 }
+    };
+
+    window.setViewMode = function(mode) {
+      currentViewMode = mode;
+      const btn2d = document.getElementById('view-mode-2d');
+      const btn3d = document.getElementById('view-mode-3d');
+      const canvas2d = document.getElementById('canvas-wrapper');
+      const container3d = document.getElementById('webgl-container');
+      const toolbar2d = document.getElementById('toolbar-2d');
+      const controls2d = document.getElementById('controls-2d');
+
+      if (mode === '3d') {
+        if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+        if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-md transition';
+        if (canvas2d) canvas2d.classList.add('hidden');
+        if (toolbar2d) toolbar2d.classList.add('hidden');
+        if (controls2d) controls2d.classList.add('hidden');
+        if (container3d) container3d.classList.remove('hidden');
+
+        if (!is3DInitialized) {
+          init3DScene();
+        } else {
+          onWindowResize();
+        }
+      } else {
+        if (btn3d) btn3d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+        if (btn2d) btn2d.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 text-white shadow-sm transition';
+        if (container3d) container3d.classList.add('hidden');
+        if (canvas2d) canvas2d.classList.remove('hidden');
+        if (toolbar2d) toolbar2d.classList.remove('hidden');
+        if (controls2d) controls2d.classList.remove('hidden');
+      }
+    };
+
+    function init3DScene() {
+      const mount = document.getElementById('webgl-canvas-mount');
+      if (!mount) return;
+
+      const width = mount.clientWidth || 800;
+      const height = mount.clientHeight || 600;
+
+      scene3D = new THREE.Scene();
+      scene3D.background = new THREE.Color(0x0a0c13);
+      scene3D.fog = new THREE.FogExp2(0x0a0c13, 0.0032);
+
+      camera3D = new THREE.PerspectiveCamera(45, width / height, 0.5, 3000);
+      camera3D.position.set(0, 90, 145);
+
+      renderer3D = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+      renderer3D.setSize(width, height);
+      renderer3D.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer3D.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer3D.toneMappingExposure = 1.15;
+      mount.innerHTML = '';
+      mount.appendChild(renderer3D.domElement);
+
+      controls3D = new OrbitControls(camera3D, renderer3D.domElement);
+      controls3D.enableDamping = true;
+      controls3D.dampingFactor = 0.06;
+      controls3D.maxPolarAngle = Math.PI / 2 - 0.02;
+      controls3D.minDistance = 15;
+      controls3D.maxDistance = 600;
+      controls3D.target.set(0, 0, 0);
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+      scene3D.add(ambientLight);
+
+      const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.4);
+      sunLight.position.set(-130, 180, 100);
+      scene3D.add(sunLight);
+
+      const skyFillLight = new THREE.DirectionalLight(0x60a5fa, 0.45);
+      skyFillLight.position.set(120, 140, -100);
+      scene3D.add(skyFillLight);
+
+      const loader = new THREE.TextureLoader();
+      texTopo = loader.load('/assets/topographic.png');
+      texStillLife = loader.load('/assets/still_life_populate.png');
+      texColorToTerrain = loader.load('/assets/color_to_terrain.png');
+      texDisplacement = loader.load('/assets/heightmap_preview.png');
+
+      [texTopo, texStillLife, texColorToTerrain, texDisplacement].forEach(t => {
+        t.generateMipmaps = true;
+        t.minFilter = THREE.LinearMipmapLinearFilter;
+      });
+
+      const terrainGeo = new THREE.PlaneGeometry(160, 160, 256, 256);
+      const terrainMat = new THREE.MeshStandardMaterial({
+        map: texStillLife,
+        displacementMap: texDisplacement,
+        displacementScale: currentExaggeration * 18.0,
+        displacementBias: -5.2,
+        roughness: 0.82,
+        metalness: 0.05
+      });
+
+      terrainMesh3D = new THREE.Mesh(terrainGeo, terrainMat);
+      terrainMesh3D.rotation.x = -Math.PI / 2;
+      scene3D.add(terrainMesh3D);
+
+      const waterGeo = new THREE.PlaneGeometry(240, 240);
+      const waterMat = new THREE.MeshStandardMaterial({
+        color: 0x1d608d,
+        transparent: true,
+        opacity: 0.74,
+        roughness: 0.12,
+        metalness: 0.75
+      });
+      waterMesh3D = new THREE.Mesh(waterGeo, waterMat);
+      waterMesh3D.rotation.x = -Math.PI / 2;
+      waterMesh3D.position.y = 0.0;
+      scene3D.add(waterMesh3D);
+
+      // 3D Beacons for Landmarks
+      Object.keys(LANDMARKS_3D).forEach(k => {
+        const lm = LANDMARKS_3D[k];
+        const beaconGeo = new THREE.CylinderGeometry(0.4, 0.08, 14, 8);
+        const beaconMat = new THREE.MeshBasicMaterial({
+          color: k === 'caldera' ? 0xff4422 : (k === 'spine' ? 0x38bdf8 : (k === 'spawn' ? 0xf43f5e : 0xfbbf24)),
+          transparent: true,
+          opacity: 0.85
+        });
+        const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+        beacon.position.set(lm.x, 7.0, lm.z);
+        scene3D.add(beacon);
+      });
+
+      // Raycaster for cursor hover telemetry
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
+      mount.addEventListener('mousemove', (e) => {
+        const rect = mount.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera3D);
+        const intersects = raycaster.intersectObject(terrainMesh3D);
+        if (intersects.length > 0) {
+          const pt = intersects[0].point;
+          const mcX = Math.round(pt.x / 0.02);
+          const mcZ = Math.round(pt.z / 0.02);
+          updateHUD(mcX, mcZ);
+        }
+      });
+
+      window.addEventListener('resize', onWindowResize);
+      is3DInitialized = true;
+      animate3D();
+    }
+
+    function onWindowResize() {
+      const mount = document.getElementById('webgl-canvas-mount');
+      if (!mount || !renderer3D || !camera3D) return;
+      const width = mount.clientWidth;
+      const height = mount.clientHeight;
+      if (width === 0 || height === 0) return;
+      camera3D.aspect = width / height;
+      camera3D.updateProjectionMatrix();
+      renderer3D.setSize(width, height);
+    }
+
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      if (controls3D) controls3D.update();
+      if (autoRotate3D && terrainMesh3D) {
+        terrainMesh3D.rotation.z += 0.002;
+      }
+      if (waterMesh3D) {
+        waterMesh3D.position.y = Math.sin(performance.now() * 0.0018) * 0.15;
+      }
+      if (renderer3D && scene3D && camera3D) {
+        renderer3D.render(scene3D, camera3D);
+      }
+    }
+
+    window.set3DTexture = function(mode) {
+      current3DTextureMode = mode;
+      document.querySelectorAll('.btn-3d-tex').forEach(b => {
+        b.classList.remove('bg-purple-600', 'bg-emerald-600', 'text-white', 'shadow-md');
+        b.classList.add('text-slate-300');
+      });
+
+      const activeBtn = document.getElementById(`btn-3d-${mode}`);
+      if (activeBtn) {
+        if (mode === 'still_life') {
+          activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-md');
+        } else {
+          activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-md');
+        }
+        activeBtn.classList.remove('text-slate-300');
+      }
+
+      if (terrainMesh3D) {
+        terrainMesh3D.material.wireframe = false;
+        if (mode === 'topographic') {
+          terrainMesh3D.material.map = texTopo;
+        } else if (mode === 'still_life') {
+          terrainMesh3D.material.map = texStillLife;
+        } else if (mode === 'colortoterrain') {
+          terrainMesh3D.material.map = texColorToTerrain;
+        }
+        terrainMesh3D.material.needsUpdate = true;
+      }
+    };
+
+    window.toggle3DWireframe = function() {
+      if (terrainMesh3D) {
+        terrainMesh3D.material.wireframe = !terrainMesh3D.material.wireframe;
+        terrainMesh3D.material.needsUpdate = true;
+      }
+    };
+
+    window.update3DExaggeration = function(val) {
+      currentExaggeration = parseFloat(val);
+      const label = document.getElementById('label-3d-exaggeration');
+      if (label) label.textContent = `${currentExaggeration.toFixed(1)}x`;
+      if (terrainMesh3D) {
+        terrainMesh3D.material.displacementScale = currentExaggeration * 18.0;
+        terrainMesh3D.material.needsUpdate = true;
+      }
+    };
+
+    window.toggle3DAutoRotate = function() {
+      autoRotate3D = !autoRotate3D;
+      const btn = document.getElementById('btn-3d-autorotate');
+      const label = document.getElementById('label-3d-rotate');
+      if (btn && label) {
+        if (autoRotate3D) {
+          btn.classList.add('bg-cyan-600', 'text-white');
+          label.textContent = "Rotating";
+        } else {
+          btn.classList.remove('bg-cyan-600', 'text-white');
+          label.textContent = "Auto-Rotate";
+        }
+      }
+    };
+
+    window.reset3DCamera = function() {
+      if (controls3D && camera3D) {
+        controls3D.target.set(0, 0, 0);
+        camera3D.position.set(0, 90, 145);
+        controls3D.update();
+      }
+    };
+
+    function flyTo3DCoordinates(mcX, mcZ) {
+      if (!is3DInitialized) setViewMode('3d');
+      const x3d = mcX * 0.02;
+      const z3d = mcZ * 0.02;
+
+      const startTarget = controls3D.target.clone();
+      const endTarget = new THREE.Vector3(x3d, 0, z3d);
+
+      const startPos = camera3D.position.clone();
+      const endPos = new THREE.Vector3(x3d, 35, z3d + 45);
+
+      let startTime = performance.now();
+      const duration = 1000;
+
+      function stepFly(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1.0);
+        const t = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        controls3D.target.lerpVectors(startTarget, endTarget, t);
+        camera3D.position.lerpVectors(startPos, endPos, t);
+        controls3D.update();
+
+        if (progress < 1.0) {
+          requestAnimationFrame(stepFly);
+        }
+      }
+      requestAnimationFrame(stepFly);
+      updateHUD(mcX, mcZ);
+    }
+    window.flyTo3DCoordinates = flyTo3DCoordinates;
+
+    window.flyTo3DLandmark = function(id) {
+      const lm = LANDMARKS_3D[id];
+      if (lm) {
+        flyTo3DCoordinates(Math.round(lm.x / 0.02), Math.round(lm.z / 0.02));
+      }
+    };
+
+    // ---------------------------------------------------------------------------
+    // Python Ashfall Continent & Still Life Generator Trigger
+    // ---------------------------------------------------------------------------
+    window.triggerPythonRegen = async function() {
+      const btn = document.getElementById('btn-regen-ashfall');
+      const box = document.getElementById('regen-status-box');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Generating Continent (Python)...</span>';
+        lucide.createIcons();
+      }
+      if (box) {
+        box.classList.remove('hidden', 'bg-red-950/40', 'border-red-800', 'text-red-300');
+        box.classList.add('bg-purple-950/40', 'border-purple-800', 'text-purple-300');
+        box.textContent = "⏳ Running Hermite Splines, Still Life Foliage & ColorToTerrain...";
+      }
+
+      try {
+        const res = await fetch('/api/ashfall/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ resolution: 2048 })
+        });
+        const data = await res.json();
+        if (data.success) {
+          if (box) {
+            box.className = 'text-[10px] p-2 rounded-lg font-mono border bg-emerald-950/40 border-emerald-800 text-emerald-300';
+            box.textContent = `[✓] Generated ${data.resolution}x${data.resolution} continent in ${data.time_seconds}s!`;
+          }
+          const cacheBust = '?t=' + Date.now();
+          if (img) img.src = '/assets/still_life_populate.png' + cacheBust;
+
+          if (is3DInitialized) {
+            const loader = new THREE.TextureLoader();
+            loader.load('/assets/still_life_populate.png' + cacheBust, (t) => {
+              texStillLife = t;
+              if (current3DTextureMode === 'still_life' && terrainMesh3D) {
+                terrainMesh3D.material.map = t;
+                terrainMesh3D.material.needsUpdate = true;
+              }
+            });
+            loader.load('/assets/topographic.png' + cacheBust, (t) => {
+              texTopo = t;
+              if (current3DTextureMode === 'topographic' && terrainMesh3D) {
+                terrainMesh3D.material.map = t;
+                terrainMesh3D.material.needsUpdate = true;
+              }
+            });
+            loader.load('/assets/color_to_terrain.png' + cacheBust, (t) => {
+              texColorToTerrain = t;
+              if (current3DTextureMode === 'colortoterrain' && terrainMesh3D) {
+                terrainMesh3D.material.map = t;
+                terrainMesh3D.material.needsUpdate = true;
+              }
+            });
+            loader.load('/assets/heightmap_preview.png' + cacheBust, (t) => {
+              texDisplacement = t;
+              if (terrainMesh3D) {
+                terrainMesh3D.material.displacementMap = t;
+                terrainMesh3D.material.needsUpdate = true;
+              }
+            });
+          }
+        } else {
+          if (box) {
+            box.className = 'text-[10px] p-2 rounded-lg font-mono border bg-red-950/40 border-red-800 text-red-300';
+            box.textContent = "[!] Error: " + (data.error || "Generation failed");
+          }
+        }
+      } catch (err) {
+        if (box) {
+          box.className = 'text-[10px] p-2 rounded-lg font-mono border bg-red-950/40 border-red-800 text-red-300';
+          box.textContent = "[!] Connection error: " + err.message;
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<i data-lucide="zap" class="w-4 h-4"></i><span>⚡ Generate Ashfall Continent (Python)</span>';
+          lucide.createIcons();
+        }
+      }
+    };
+
+    // ---------------------------------------------------------------------------
+    // Tabs Switcher
+    // ---------------------------------------------------------------------------
+    window.switchTab = function(tabId) {
+      ['ashfall', 'continents', 'lithosphere', 'still_life', 'worldpainter', 'wpapi'].forEach(t => {
+        const el = document.getElementById(`content-${t}`);
+        if (el) el.classList.add('hidden');
+        const tabBtn = document.getElementById(`tab-${t}`);
+        if (tabBtn) {
+          tabBtn.classList.remove('bg-panel', 'text-amber-400', 'text-cyan-400', 'text-indigo-400', 'text-purple-400', 'font-semibold', 'shadow-sm');
+          tabBtn.classList.add('text-slate-400');
+        }
+      });
+
+      const activeEl = document.getElementById(`content-${tabId}`);
+      if (activeEl) activeEl.classList.remove('hidden');
+      const activeTab = document.getElementById(`tab-${tabId}`);
+      if (activeTab) {
+        let colorClass = 'text-cyan-400';
+        if (tabId === 'still_life') colorClass = 'text-amber-400';
+        else if (tabId === 'wpapi') colorClass = 'text-indigo-400';
+        else if (tabId === 'ashfall') colorClass = 'text-purple-400';
+        activeTab.classList.add('bg-panel', colorClass, 'font-semibold', 'shadow-sm');
+        activeTab.classList.remove('text-slate-400');
+      }
+
+      if (tabId === 'wpapi') {
+        refreshWPScript();
+      }
+    };
+
+    // ---------------------------------------------------------------------------
+    // WorldPainter API Live Script Generator
+    // ---------------------------------------------------------------------------
+    let currentGeneratedScript = "";
+
+    window.refreshWPScript = async function() {
+      const codeBox = document.getElementById('wp-code-box');
+      if (!codeBox) return;
+
+      const worldNameEl = document.getElementById('wp-world-name');
+      const minYEl = document.getElementById('wp-min-y');
+      const maxYEl = document.getElementById('wp-max-y');
+      const seaLevelEl = document.getElementById('wp-sea-level');
+      const popEl = document.getElementById('wp-opt-pop');
+      const stratEl = document.getElementById('wp-opt-strat');
+      const frostEl = document.getElementById('wp-opt-frost');
+      const frostAltEl = document.getElementById('wp-frost-alt');
+      const exportModeEl = document.getElementById('wp-export-mode');
+
+      const payload = {
+        world_name: worldNameEl ? worldNameEl.value : "Ashfall_Continent",
+        min_y: minYEl ? parseInt(minYEl.value) : -64,
+        max_y: maxYEl ? parseInt(maxYEl.value) : 320,
+        sea_level: seaLevelEl ? parseInt(seaLevelEl.value) : 62,
+        enable_populate: popEl ? popEl.checked : true,
+        enable_stratification: stratEl ? stratEl.checked : true,
+        enable_frost: frostEl ? frostEl.checked : true,
+        frost_altitude: frostAltEl ? parseInt(frostAltEl.value) : 210,
+        export_mode: exportModeEl ? exportModeEl.value : "world"
+      };
+
+      try {
+        const resp = await fetch('/api/worldpainter/generate-script', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (data.success) {
+          currentGeneratedScript = data.script;
+          codeBox.textContent = data.script;
+        }
+      } catch (err) {
+        console.warn("WorldPainter API refresh notice:", err);
+      }
+    };
+
+    window.copyWPScript = function() {
+      if (!currentGeneratedScript) {
+        const codeBox = document.getElementById('wp-code-box');
+        currentGeneratedScript = codeBox ? codeBox.textContent : "";
+      }
+      navigator.clipboard.writeText(currentGeneratedScript).then(() => {
+        const btn = document.getElementById('btn-copy-wpscript');
+        if (btn) {
+          const orig = btn.textContent;
+          btn.textContent = "Copied!";
+          btn.classList.add('bg-emerald-600', 'text-white');
+          setTimeout(() => {
+            btn.textContent = orig;
+            btn.classList.remove('bg-emerald-600', 'text-white');
+          }, 2000);
+        }
+      });
+    };
+
+    window.downloadCustomScript = function() {
+      if (!currentGeneratedScript) {
+        const codeBox = document.getElementById('wp-code-box');
+        currentGeneratedScript = codeBox ? codeBox.textContent : "";
+      }
+      const blob = new Blob([currentGeneratedScript], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ashenfall_worldpainter_setup.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    window.runHeadlessScript = async function() {
+      const statusDiv = document.getElementById('wp-run-status');
+      if (!statusDiv) return;
+
+      statusDiv.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-800', 'text-emerald-300', 'bg-amber-950/40', 'border-amber-800', 'text-amber-300');
+      statusDiv.classList.add('bg-indigo-950/40', 'border-indigo-800', 'text-indigo-300');
+      statusDiv.textContent = "⚙ Invoking WorldPainter headless engine (wpscript)...";
+
+      try {
+        const resp = await fetch('/api/worldpainter/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ script_path: "worldpainter/ashenfall_worldpainter_setup.js" })
+        });
+        const res = await resp.json();
+
+        if (res.success) {
+          statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-emerald-950/40 border-emerald-800 text-emerald-300';
+          statusDiv.textContent = `[✓] Execution Succeeded (Exit Code: ${res.exit_code})\nEngine: ${res.wpscript}\n\n${res.stdout || "World synthesis finished."}`;
+        } else {
+          statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-amber-950/40 border-amber-800 text-amber-300';
+          let msg = `[!] Local Sandbox Notice:\n${res.error || 'wpscript not found on server'}\n\n`;
+          msg += `To run on your computer:\n1. Run: scripts\\run_worldpainter_api.bat (Windows)\n2. Or WorldPainter GUI: Tools -> Run script...`;
+          statusDiv.textContent = msg;
+        }
+      } catch (err) {
+        statusDiv.className = 'text-[10px] p-2.5 rounded-lg border font-mono whitespace-pre-wrap leading-tight bg-red-950/40 border-red-800 text-red-300';
+        statusDiv.textContent = "[!] Connection error executing script: " + err.message;
+      }
+    };
+
+    async function checkWPStatus() {
+      try {
+        const resp = await fetch('/api/worldpainter/status');
+        const data = await resp.json();
+        const badge = document.getElementById('wp-engine-status');
+        if (badge && data.installed) {
+          badge.textContent = 'wpscript Online';
+          badge.classList.remove('bg-indigo-900/60', 'text-indigo-300');
+          badge.classList.add('bg-emerald-900/60', 'text-emerald-300');
+        }
+      } catch (e) {
+        // quiet ignore
+      }
+    }
+    checkWPStatus();
+
+    // ---------------------------------------------------------------------------
+    // HUD Telemetry Estimator
+    // ---------------------------------------------------------------------------
+    window.updateHUD = function(x, z) {
+      document.getElementById('hud-coord').textContent = `X: ${x >= 0 ? '+' : ''}${x} | Z: ${z >= 0 ? '+' : ''}${z}`;
+      
+      const dist = Math.sqrt(x*x + z*z);
+      let elev = 66;
+      let biome = "Plains / Rolling Lowlands";
+      let pop = "Active (100% Still Life Foliage)";
+
+      if (dist > 3550) {
+        elev = Math.max(21, 62 - (dist - 3550) * 0.08);
+        biome = "The Veil of Salt (Deep Ocean)";
+        pop = "Excluded (Submarine)";
+      } else if (dist < 650) {
+        if (dist < 120) {
+          elev = 92;
+          biome = "The Obsidian Throne (Resurgent Spire)";
+          pop = "Excluded (Barren Basalt)";
+        } else if (dist < 480) {
+          elev = 40;
+          biome = "The Ashen Caldera (Sunken Crater Basin)";
+          pop = "Excluded (Barren Lava Floor)";
+        } else {
+          elev = 150;
+          biome = "Caldera Volcanic Rim (Crags & Spines)";
+          pop = "Excluded (Barren Basalt Fluting)";
+        }
+      } else if (z < -1600 && Math.abs(x) < 2600) {
+        elev = 220;
+        biome = "The Solitary Glacial Spine (Frozen Peaks)";
+        pop = "Summits Excluded / Foothills Populated";
+      } else if (x < -1200 && Math.abs(z) < 1400) {
+        elev = 88;
+        biome = "The Cogwork March (Terraced Badlands & Gorges)";
+        pop = "Active (Quarry Terraces)";
+      } else if (x > 1200 && Math.abs(z) < 1400) {
+        elev = 85;
+        biome = "The Gilded Dunes (Desert & Mesas)";
+        pop = "Active (Desert Scrub & Oases)";
+      } else if (x > 1200 && z > 1200) {
+        elev = 63;
+        biome = "The Whispering Fen (Murky Bayou & Swamp)";
+        pop = "Active (Mangrove & Peat)";
+      } else if (z > 2000 && Math.abs(x) < 800) {
+        elev = 72;
+        biome = "The Forgotten Coast (Player Spawn - Plains)";
+        pop = "Active (Wildflowers & Medieval Ports)";
+      }
+
+      document.getElementById('hud-elev').textContent = `Y: ${elev.toFixed(1)} blocks`;
+      document.getElementById('hud-biome').textContent = biome;
+      document.getElementById('hud-pop').textContent = pop;
+    };
+
+    window.copyInstallCommand = function() {
+      const cmd = `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Exo2v/The-modpack/arena/01a0e180-the-modpack/setup.ps1', "$env:TEMP\\setup.ps1"); powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\\setup.ps1"`;
+      navigator.clipboard.writeText(cmd).then(() => {
+        const btn = document.getElementById('btnCopyText');
+        if (btn) {
+          btn.textContent = "Copied to Clipboard!";
+          setTimeout(() => { btn.textContent = "Copy Windows 1-Click Setup"; }, 2500);
+        }
+      });
+    };
+
+    // Auto-launch 3D WebGL Continent Viewport by default
+    window.addEventListener('DOMContentLoaded', () => {
+      setViewMode('3d');
+    });
+    setTimeout(() => {
+      setViewMode('3d');
+    }, 200);
+  </script>
+</body>
+</html>

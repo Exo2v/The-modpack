@@ -1,0 +1,13 @@
+name = "L_Ender's Cataclysm"
+filename = "cataclysm-mc1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/cataclysm/versions/cataclysm-mc1.21.1.jar"
+hash-format = "sha512"
+hash = "e1a325d9bd20db3c94eb4cea6f3815927e5fb5f7f157cc1c9e204af782c5bd98b3a4aaa4c1e1ed131a69b99527531d3ac427d2bdedf693cd536676d9986953ae"
+
+[update]
+[update.modrinth]
+mod-id = "cataclysm"
+version = "latest"
