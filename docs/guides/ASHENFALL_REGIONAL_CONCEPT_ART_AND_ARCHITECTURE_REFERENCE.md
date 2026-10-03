@@ -1,214 +1,348 @@
-# 🏰 Ashenfall: Master Architectural Canon & Visual Atlas
+# 🎨 Ashenfall: Regional Concept Art & Architectural Master Reference
 
-This document is the master visual canon and architectural specification guide for the continent of **Vantyra** in Ashenfall. It spans three distinct architectural scales:
-1. **Tier I — Macro National Panoramas (7 Nations):** Full wide-scale landscape vistas across 10km continental horizons.
-2. **Tier II — Full Establishing Vistas (Entire Castles & Complete Towns):** Uncropped wide architectural portraits showing the **whole castle** (outer curtain walls, baileys, courtyards, keep towers, and moats from bedrock to spires) and **complete towns** (defensive wall perimeters, harbors, market plazas, canal networks).
-3. **Tier III — Close-Up Architectural & Material Blueprints:** Detailed structural breakdowns for gatehouses, parapet walls, forge avenues, oasis bazaars, stilt cottages, and sunken temples with Minecraft 1.21.1 block palettes.
+This master document serves as the canonical aesthetic and architectural blueprint for the **Nine Realms of Vantyra**. It establishes the visual identity, geological environment, material palettes, and architectural silhouettes depicted in the high-fidelity regional concept paintings, providing builders and WorldPainter modellers with exact specifications to translate these artworks into genuine Minecraft 1.21.1 voxel architecture.
 
 ---
 
-## 🗺️ Architectural Scale Hierarchy
+## 🗺️ Master Visual Atlas: The Eight Canonical Realms
+
+```
+                                  [ THE NORTH ]
+                          The Solitary Glacial Spine
+                     (Blue Ice Cathedral & Silent Hermitage)
+                                        │
+                                        │
+             [ THE WEST ]               │                [ THE EAST ]
+         The Cogwork March              │              The Gilded Dunes
+     (Copper Geothermal Foundry)  ──────┼──────  (Sunken Sandstone Bazaar)
+                                        │
+                               [ CONTINENTAL CORE ]
+                                The Ashen Caldera
+                           (Crying Obsidian Dais & Magma)
+                                        │
+                                        │
+             [ SOUTHWEST ]              │                [ SOUTHEAST ]
+           The Sunken Reach             │             The Whispering Fen
+        (Drowned Cathedral Spire)       │          (Mangrove Stilt Dwelling)
+                                        │
+                                  [ THE SOUTH ]
+                            The Grey Frontier & Coast
+                        (Storm Watchtower & Fishing Wharf)
+```
+
+---
+
+## 1. The Grey Frontier Watchtower (`01_grey_frontier_watchtower.png`)
+
+![The Grey Frontier Watchtower](/art/01_grey_frontier_watchtower.png)
+
+* **Realm:** The Grey Frontier & The Forgotten Coast
+* **Ruling Faction:** House Douglas Border Guard
+* **Canonical Coordinates:** `X: 120, Y: 72, Z: 2380`
+* **Geological Setting:** Storm-lashed ocean bluffs, black basalt sea stacks, crashing foam, brooding grey overcast sky.
+* **Architectural Style:** High Medieval Fortress & Sentry Bastion.
+
+### Visual & Atmospheric Motifs
+* **Tower Silhouette:** Monolithic square granite bastion with projecting machicolations, arrow firing embrasures, reinforced crenellated battlements, and a crowning iron signal brazier.
+* **Bridge & Approaches:** Arched stone causeway spanning sea chasms; narrow fortified approach to funnel invaders.
+* **Lighting & Atmosphere:** Eternal orange netherrack flame cutting through coastal fog, rain-streaked dark masonry, iron lanterns hung from bracket beams.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Foundation & Lower Plinth** | `minecraft:cobblestone`, `minecraft:mossy_cobblestone` | Slabs, stairs, and mossy stone walls at water line |
+| **Main Tower Shaft** | `minecraft:stone_bricks`, `minecraft:cracked_stone_bricks` | Iron bars for arrow slits, stone brick stairs for corbeling |
+| **Machicolations & Parapet** | `minecraft:polished_andesite`, `minecraft:deepslate` | Overhanging 1-block cantilever supported by inverted stairs |
+| **Beacon Beacon** | `minecraft:netherrack`, `minecraft:fire`, `minecraft:iron_bars` | Enclosed in iron bars / chain cage at peak ($Y \ge 88$) |
+| **Defensive Gate** | `minecraft:dark_oak_fence`, `minecraft:iron_door` | Recessed entry with murder holes in the arch ceiling |
+
+---
+
+## 2. The Cogwork Steam Foundry (`02_cogwork_steam_foundry.png`)
+
+![Cogwork Steam Foundry](/art/02_cogwork_steam_foundry.png)
+
+* **Realm:** The Cogwork March
+* **Ruling Faction:** House Vance Mechanists
+* **Canonical Coordinates:** `X: -2100, Y: 95, Z: 40`
+* **Geological Setting:** 9-meter terraced red rock canyon quarries, sulfurous geothermal vents, heavy mineral scree.
+* **Architectural Style:** Industrial Steampunk Gothic.
+
+### Visual & Atmospheric Motifs
+* **Silhouettes:** Giant copper domes, colossal clockwork cog wheels mounted on facades, soaring vertical smokestacks venting geothermal steam.
+* **Smelting Core:** Twin towering blast portals pouring glowing streams of molten copper into receiving crucibles.
+* **Catwalks & Girders:** Elevated iron trestles, riveted bridges spanning canyon benches, crane pulleys, chain hoists.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Blast Furnaces & Core** | `minecraft:deepslate_tiles`, `minecraft:polished_deepslate` | `minecraft:blast_furnace`, `minecraft:magma_block` |
+| **Clockwork Domes** | `minecraft:cut_copper`, `minecraft:copper_block` | Oxidized copper gradients (`weathered_cut_copper`) |
+| **Smokestacks & Steam** | `minecraft:basalt`, `minecraft:smooth_basalt` | Hidden `minecraft:campfire` emitting infinite white smoke |
+| **Gratings & Catwalks** | `minecraft:copper_grate`, `minecraft:iron_bars` | `minecraft:chain` suspensions and lightning rod railings |
+| **Machinery & Stations** | `minecraft:anvil`, `minecraft:smithing_table` | `minecraft:heavy_core` and grindstones simulating clockwork |
+
+---
+
+## 3. The Obsidian Imperial Dais (`03_obsidian_imperial_dais.png`)
+
+![Obsidian Imperial Dais](/art/03_obsidian_imperial_dais.png)
+
+* **Realm:** The Ashen Caldera (The Crucible of Ash)
+* **Ruling Faction:** The Cinder Conclave & Emperor Valerius IX
+* **Canonical Coordinates:** `X: 0, Y: 146, Z: 0`
+* **Geological Setting:** Vast collapsed volcanic caldera, obsidian rift fissure, rivers of incandescent molten magma, ash skies.
+* **Architectural Style:** Monumental Brutalist Dark Fantasy.
+
+### Visual & Atmospheric Motifs
+* **Throne Structure:** Stepped blackstone pyramid with monumental central staircase leading to a high horned throne of melted blades.
+* **Monolithic Pillars:** Four towering pillars of crying obsidian radiating luminous violet soul light.
+* **Lava Hydrology:** Molten lava cascading through carved sluiceways directly into the abyssal crater basin.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Throne Dais & Steps** | `minecraft:blackstone`, `minecraft:polished_blackstone` | `minecraft:polished_blackstone_brick_stairs` |
+| **Mystic Monoliths** | `minecraft:crying_obsidian`, `minecraft:obsidian` | `minecraft:amethyst_block` accents emitting chime resonance |
+| **Sacrificial Braziers** | `minecraft:soul_fire`, `minecraft:soul_lantern` | Cyan soul fire contrasting against glowing orange lava |
+| **Imperial Pediments** | `minecraft:gilded_blackstone`, `minecraft:netherite_block` | Gold filigree trims and chiseled blackstone runes |
+
+---
+
+## 4. The Glacial Hermit Cloister (`04_glacial_hermit_cloister.png`)
+
+![Glacial Hermit Cloister](/art/04_glacial_hermit_cloister.png)
+
+* **Realm:** The Solitary Glacial Spine
+* **Ruling Faction:** House Vane & The Silent Order
+* **Canonical Coordinates:** `X: 15, Y: 265, Z: -2480`
+* **Geological Setting:** Jagged razor alpine peaks ($Y \ge 260$), glacial cirques, polar auroras, sub-zero blizzard winds.
+* **Architectural Style:** High Gothic Alpine Sanctuary.
+
+### Visual & Atmospheric Motifs
+* **Perched Silhouette:** Precarious gothic cathedral cloister perched on an isolated pinnacle peak, accessible only by a swaying rope suspension bridge.
+* **Translucent Spreading:** Needle-sharp spires sculpted from translucent blue ice and frosted calcite.
+* **Aurora Reflection:** Glowing stained-glass windows illuminated from within, reflecting emerald and turquoise auroral ribbons.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Ice Vaults & Spired Roof** | `minecraft:packed_ice`, `minecraft:blue_ice` | Non-melting ice blocks creating blue crystal reflections |
+| **Masonry Buttresses** | `minecraft:calcite`, `minecraft:diorite`, `minecraft:polished_diorite` | Inverted stairs creating flying buttress arches |
+| **Suspension Bridge** | `minecraft:spruce_fence`, `minecraft:spruce_slab` | `minecraft:chain` suspension cables across abyss |
+| **Hermit Cell Sanctuary** | `minecraft:lectern`, `minecraft:soul_lantern` | Unlit candles, blue flame illumination, prayer alcoves |
+
+---
+
+## 5. The Al-Qadira Sunken Bazaar (`05_al_qadira_sunken_bazaar.png`)
+
+![Al-Qadira Sunken Bazaar](/art/05_al_qadira_sunken_bazaar.png)
+
+* **Realm:** The Gilded Dunes
+* **Ruling Faction:** House Seljuk & Desert Caravans
+* **Canonical Coordinates:** `X: 2310, Y: 84, Z: -20`
+* **Geological Setting:** Crimson sandstone box canyon, natural arched cavern opening to golden dunes, heat shimmer.
+* **Architectural Style:** Subterranean Moorish & Ottoman Fantasy Arcade.
+
+### Visual & Atmospheric Motifs
+* **Sunken Arcade:** Colonnaded multi-tiered galleries excavated 12 meters beneath the desert plateau, keeping the interior cool.
+* **Canopy Shading:** Colorful saffron, crimson, and turquoise silk awnings stretching between horseshoe arches.
+* **Oasis Fountain:** Central turquoise marble pool fed by subterranean aqueducts, ringed by palm planters and incense stalls.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Arches & Domes** | `minecraft:cut_red_sandstone`, `minecraft:smooth_sandstone` | Sandstone stairs, terracotta trim, chiseled sandstone |
+| **Market Awnings** | `minecraft:red_wool`, `minecraft:yellow_wool`, `minecraft:orange_terracotta` | Slabs, banners, and carpet canopy overhangs |
+| **Oasis Fountain** | `minecraft:smooth_quartz`, `minecraft:water` | Sea lanterns hidden beneath water lilies for gentle pool glow |
+| **Treasury & Vault** | `minecraft:gold_block`, `minecraft:iron_bars` | Vault chests, barrels of spice, gold pressure plates |
+
+---
+
+## 6. The Fen Witch Stilt Dwelling (`06_fen_witch_stilt_dwelling.png`)
+
+![Fen Witch Stilt Dwelling](/art/06_fen_witch_stilt_dwelling.png)
+
+* **Realm:** The Whispering Fen
+* **Ruling Faction:** The Mycelial Covenant & House Belen
+* **Canonical Coordinates:** `X: 1980, Y: 63, Z: 2020`
+* **Geological Setting:** Ancient mangrove bayou, tea-colored stagnant water, hanging moss, bioluminescent twilight.
+* **Architectural Style:** Organic Folkloric Stilt Architecture (Baba Yaga aesthetic).
+
+### Visual & Atmospheric Motifs
+* **Gnarled Stilt Roots:** Raised 6 blocks above murky swampwater on twisting petrified mangrove roots.
+* **Mushroom Canopy Roof:** Giant fly-agaric red mushroom cap roof speckled with white warts and bioluminescent fungal shelf brackets.
+* **Outdoor Alchemy Balcony:** Wooden cantilever deck with smoking cauldrons, potion vials, hanging dried herbs, and rickety ladder.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Root Pilings** | `minecraft:mangrove_roots`, `minecraft:stripped_mangrove_wood` | Organic sweeping root curves plunging into water |
+| **Living Mushroom Roof** | `minecraft:red_mushroom_block`, `minecraft:mushroom_stem` | `minecraft:brown_mushroom_block` for eaves |
+| **Alchemical Balcony** | `minecraft:cauldron`, `minecraft:brewing_stand` | `minecraft:campfire` under cauldron for bubbling steam |
+| **Bioluminescence** | `minecraft:shroomlight`, `minecraft:spore_blossom` | Hanging weeping vines, green particles, glowing moss |
+
+---
+
+## 7. The Drowned Cathedral Spire (`07_drowned_cathedral_spire.png`)
+
+![Drowned Cathedral Spire](/art/07_drowned_cathedral_spire.png)
+
+* **Realm:** The Sunken Reach (Port Ostraka Ruins)
+* **Ruling Faction:** Cataclysm Ruins & Oceanic Archivists
+* **Canonical Coordinates:** `X: -2380, Y: 38, Z: 1590`
+* **Geological Setting:** Shallow warm ocean atoll, turquoise coral reef, submerged volcanic trench.
+* **Architectural Style:** Submerged Venetian-Gothic Campanile.
+
+### Visual & Atmospheric Motifs
+* **Split Sea Profile:** Top half projects from breaking ocean swell into golden sunset; bottom half reveals sunken cloisters beneath clear water.
+* **Cataclysm Bell:** Giant consecrated bronze holy bell suspended in the open-air belfry, encrusted with barnacles.
+* **Underwater Illumination:** Vibrant turquoise sea lanterns lighting up sunken arcades, swimming schools of fish, and colorful coral heads.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Submerged Belfry** | `minecraft:prismarine_bricks`, `minecraft:dark_prismarine` | Prismarine stairs, waterlogged quartz walls |
+| **The Consecrated Bell** | `minecraft:bell`, `minecraft:gold_block`, `minecraft:chain` | Suspended inside the central open belfry arch |
+| **Underwater Lighting** | `minecraft:sea_lantern` | Embedded in underwater floor mosaics and column capitals |
+| **Coral Reef Accents** | `minecraft:brain_coral`, `minecraft:tube_coral`, `minecraft:sea_pickle` | Coral fans and sea pickles generating underwater ambiance |
+
+---
+
+## 8. The Coastal Fishing Wharf (`08_coastal_fishing_wharf.png`)
+
+![Coastal Fishing Wharf](/art/08_coastal_fishing_wharf.png)
+
+* **Realm:** The Forgotten Coast (Player Awakening Shore)
+* **Ruling Faction:** Pebble Bluffs Fisherfolk
+* **Canonical Coordinates:** `X: -350, Y: 62, Z: 2600`
+* **Geological Setting:** Sheltered rocky sea cove, tidal pebble beach, rolling ocean swell, soft salt dawn sky.
+* **Architectural Style:** Vernacular Medieval Maritime Wharf & Smokehouse.
+
+### Visual & Atmospheric Motifs
+* **Boardwalk Stilt Docks:** Interconnected spruce timber boardwalks raised on barnacle-encrusted pilings over tidal waves.
+* **Seaside Cottage:** Low stone cottage with timber gables, leaded glass windows glowing with lantern warmth, and smoking cobblestone fireplace.
+* **Fisherfolk Equipment:** Wooden fish drying frames with salted herring, stacked wooden barrels, coiled hemp ropes, moored skiffs.
+
+### Minecraft 1.21.1 Building Translation
+| Component | Primary Blocks | Detailing & Depth |
+|-----------|----------------|-------------------|
+| **Wharf Pilings & Docks** | `minecraft:spruce_logs`, `minecraft:spruce_planks` | `minecraft:spruce_fence` posts and chains for mooring |
+| **Stone Smokehouse** | `minecraft:cobblestone`, `minecraft:stone_bricks` | `minecraft:campfire` inside chimney for authentic roof smoke |
+| **Fish Racks & Storage** | `minecraft:barrel`, `minecraft:chest` | Wooden trapdoors and item frames representing drying racks |
+| **Moored Rowboats** | `minecraft:oak_boat`, `minecraft:lead` | Tied to fence posts in the harbor berths |
+
+---
+
+## 🚀 How to Access in Ashenfall WorldStudio
+
+1. **Launch WorldStudio:** The server runs at `http://0.0.0.0:3000`.
+2. **Open the "Reference Art" Tab:** Click the **Reference Art** tab (`#tab-art`) in the right sidebar to browse all 8 high-resolution paintings side by side.
+3. **Inspect 3D Schematics:** From any art card, click **"Inspect 3D Schematic"** to instantly jump to that building's 3D voxel model in the viewer.
+4. **Compare 2D Art with 3D Voxels:** When in the Schematics viewer, the exact concept painting is displayed right above the structure dossier so you can compare the original visual intent with the voxel geometry!
+
+---
+
+# 🧊 TIER IV: Authentic Minecraft Voxel References ("Blocky & Minecrafty")
+
+*Rendered directly in authentic cubic voxel geometry with genuine Minecraft 1.21.1 block textures, blocky clouds, water shaders, and accurate block scale (1-meter cubes). Builders and datapack structure designers can cross-reference these voxel models directly to place blocks in-game.*
 
 ```
   ┌─────────────────────────────────────────────────────────────────────────────┐
-  │                           THREE ARCHITECTURAL TIERS                         │
-  ├─────────────────────────────────────────────────────────────────────────────┤
-  │ TIER I: MACRO NATION PANORAMAS (7 Realms across 10km horizons)              │
-  │ • Grey Frontier Kingdom • Cogwork March Dominion • Obsidian Caldera Empire  │
-  │ • Glacial Spine Realm   • Gilded Dunes Sultanate • Whispering Fen Bayou     │
-  │ • Sunken Reach Atlantis                                                     │
-  ├─────────────────────────────────────────────────────────────────────────────┤
-  │ TIER II: FULL ESTABLISHING VISTAS (Entire Castles & Complete Towns)         │
-  │ • Complete Coastal Fortress of House Douglas (Full bailey, keep, sea bridge)│
-  │ • Complete Alpine Ice Citadel of House Vane  (Full peak castle, spires)     │
-  │ • Complete Obsidian Imperial Fortress        (3 concentric tiers, lava moat)│
-  │ • Complete Walled Coastal Harbor Town        (Full perimeter wall & port)   │
-  │ • Complete Circular Desert Oasis City        (Sandstone wall, canal palace) │
-  │ • Complete Steampunk Canyon Industrial Town  (Viaducts, locomotives, gears) │
-  │ • Complete Bayou Stilt Settlement            (World-tree boardwalk web)     │
-  │ • Complete Sunken Classical Metropolis       (Submerged forum & colonnades) │
-  ├─────────────────────────────────────────────────────────────────────────────┤
-  │ TIER III: CLOSE-UP ARCHITECTURAL STUDIES & DETAIL BLUEPRINTS                │
-  │ • Gatehouses & Portcullises                  • Defensive Wall Cross-Sections│
-  │ • Street-level Forge Arcades                 • Desert Fountain Pavilions    │
-  │ • Fungi-illuminated Stilt Huts               • Coralline Submerged Ruins    │
-  └─────────────────────────────────────────────────────────────────────────────┘
+  │                    AUTHENTIC MINECRAFT VOXEL VISUAL SUITE                   │
+  ├──────────────────────────────────────┬──────────────────────────────────────┤
+  │       VOXEL CASTLE CITADELS          │        VOXEL TOWNS & METROPOLIS      │
+  ├──────────────────────────────────────┼──────────────────────────────────────┤
+  │ 1. Grey Frontier Castle (Voxel)      │ 4. Walled Harbor Port Town (Voxel)   │
+  │    (Stone bricks, deepslate, bailey) │    (Half-timbered, square, docks)    │
+  │ 2. Glacial Alpine Citadel (Voxel)    │ 5. Al-Qadira Oasis City (Voxel)      │
+  │    (Calcite, blue ice, soulfire)     │    (Sandstone ring, gold palace)     │
+  │ 3. Obsidian Imperial Fortress (Voxel)│ 6. Cogwork Canyon Foundry (Voxel)    │
+  │    (Blackstone, lava moat, crying)   │    (Rail viaduct, minecart, copper)  │
+  │                                      │ 7. Whispering Fen Stilt Village (Vx) │
+  │                                      │    (Mangrove roots, shroomlights)    │
+  │                                      │ 8. Sunken Atlantis Acropolis (Voxel) │
+  │                                      │    (Quartz colonnade, coral, mosaic) │
+  └──────────────────────────────────────┴──────────────────────────────────────┘
 ```
 
 ---
 
-# 🏰 TIER II: Full Establishing Vistas — Entire Castles & Complete Towns
-
-*Per explicit architectural directive: These are wide establishing shots showing the **entire subject in full frame without cropping**—the whole castle from bedrock to highest turret, and the whole town from outer defensive wall to harbor basin.*
-
----
-
-### 1. Complete Coastal Castle of House Douglas
-* **Reference Art:** `docs/art/wide_castle_grey_frontier_complete.png`
-* **Realm:** The Grey Frontier (Coastal Promontory)
-* **Scale:** Entire $180 \times 140$ block fortress complex.
-* **Full Architectural Anatomy:**
-  * **Promontory Foundation:** Sits entirely atop a natural basalt/granite sea stack surrounded by crashing ocean surf.
-  * **Outer Curtain Wall:** Complete ring of 10 cylindrical towers connected by crenellated curtain walls with stone parapet walks.
-  * **Causeway Sea Bridge:** High three-arch stone bridge spanning a seawater chasm leading into the outer gatehouse barbican.
-  * **Inner Bailey Courtyard:** Complete open courtyard flanked by gabled barracks, stables, forge, and chapel roofs.
-  * **Central Norman Keep:** Massive square multi-story high keep tower crowned with four corner bartizans and royal Douglas flags.
-* **Minecraft 1.21.1 Palette:** `stone_bricks`, `cobblestone`, `deepslate_tiles`, `spruce_planks`, `iron_bars`, `lantern`, `andesite`.
+### 1. Grey Frontier Coastal Fortress in Minecraft
+* **File:** `docs/art/minecraft_castle_grey_frontier.png`
+* **Voxel Architecture & Block Palette:**
+  * **Walls:** Layered gradient from `minecraft:deepslate` at the foundation up to `minecraft:stone_bricks`, `minecraft:cracked_stone_bricks`, and `minecraft:mossy_stone_bricks`.
+  * **Ramparts:** Alternating `stone_brick_stairs` and `stone_brick_slab` forming classic 1-block merlons and embrasures.
+  * **Courtyard Buildings:** `minecraft:spruce_planks` with `minecraft:oak_log` structural framing and `minecraft:spruce_stairs` gabled roofs.
+  * **Portcullis & Entrance:** Functional `minecraft:iron_bars` raised gate, wooden drawbridge with `minecraft:chain` suspenders.
+  * **Keep:** Monumental square multi-story keep with corner bartizans and central observation roof.
 
 ---
 
-### 2. Complete High Alpine Citadel of House Vane
-* **Reference Art:** `docs/art/wide_castle_glacial_citadel_complete.png`
-* **Realm:** The Glacial Spine (Northern Glacier Peak)
-* **Scale:** Entire $210 \times 160$ block high-altitude Gothic fortress.
-* **Full Architectural Anatomy:**
-  * **Summit Ridge Integration:** Engineered directly into the razor-edge summit ridge of an alpine needle mountain.
-  * **Abyssal Viaducts:** Twin soaring stone viaduct bridges connecting the castle entrance and secondary bastion across 80-meter vertical chasms.
-  * **Lower Rampart Ring:** Hexagonal curtain wall with corner bastions and glowing blue lancet windows enclosing lower courtyards.
-  * **Gothic Palace Cathedral:** Grand central cathedral-keep with soaring ribbed roofs, flying buttresses, and an array of needle-sharp blue-ice spires reaching into the aurora sky.
-* **Minecraft 1.21.1 Palette:** `calcite`, `diorite`, `blue_ice`, `packed_ice`, `deepslate_tile_stairs`, `light_blue_stained_glass`, `soul_lantern`.
+### 2. High Alpine Gothic Ice Citadel in Minecraft
+* **File:** `docs/art/minecraft_castle_glacial_spine.png`
+* **Voxel Architecture & Block Palette:**
+  * **Spire Foundations:** `minecraft:calcite` and `minecraft:diorite` transitioning into `minecraft:packed_ice` and `minecraft:blue_ice` at upper elevations.
+  * **Fenestration:** Tall 2-wide lancet window openings filled with `minecraft:cyan_stained_glass` and `minecraft:light_blue_stained_glass`.
+  * **Lighting & Soul Fire:** `minecraft:soul_lantern` hanging from iron chains, `minecraft:soul_campfire` braziers along battlements.
+  * **Chasm Viaduct:** Multi-arch high bridge of `minecraft:smooth_quartz` and `minecraft:deepslate` spanning the snowy gorge.
 
 ---
 
-### 3. Complete Obsidian Imperial Fortress of Valerius IX
-* **Reference Art:** `docs/art/wide_castle_ashen_imperium_complete.png`
-* **Realm:** The Ashen Caldera (Volcanic Basin Center)
-* **Scale:** Entire $240 \times 240$ block concentric volcanic citadel.
-* **Full Architectural Anatomy:**
-  * **Continuous Lava Moat:** Completely encircled by a 30-meter-wide ring of boiling molten magma.
-  * **Tier 1 (Outer Ring):** Colossal angled basalt bastions and curtain wall with iron-spiked battlements, dragon gargoyles, and fortified water-gate style iron drawbridge.
-  * **Tier 2 (Middle Bailey):** Elevated second tier of battlements with garrison quarters, armories, and fire-sconced towers.
-  * **Tier 3 (Imperial Apex):** Monumental gothic ziggurat palace rising at the center, crowned with massive crying obsidian monolith spires radiating intense violet rift luminescence.
-* **Minecraft 1.21.1 Palette:** `blackstone`, `polished_blackstone_bricks`, `crying_obsidian`, `magma_block`, `lava`, `soul_lantern`, `nether_bricks`.
+### 3. Obsidian Imperial Fortress in Minecraft
+* **File:** `docs/art/minecraft_castle_ashen_caldera.png`
+* **Voxel Architecture & Block Palette:**
+  * **Lava Moat:** Continuous 6-block wide ring of `minecraft:lava` source blocks with `minecraft:magma_block` shoreline banks.
+  * **Curtain Walls:** `minecraft:polished_blackstone_bricks`, `minecraft:chiseled_polished_blackstone`, and `minecraft:polished_blackstone_wall`.
+  * **Central Ziggurat:** Tiered pyramid steps of `minecraft:blackstone` leading to an apex imperial sanctum.
+  * **Crying Obsidian Crown:** Massive octagonal crown of `minecraft:crying_obsidian` emitting purple Nether portal particles.
 
 ---
 
-### 4. Complete Walled Coastal Harbor Town
-* **Reference Art:** `docs/art/wide_town_grey_frontier_harbor.png`
-* **Realm:** The Grey Frontier (Coastal Haven)
-* **Scale:** Entire $250 \times 220$ block medieval port settlement.
-* **Full Settlement Layout:**
-  * **Continuous Perimeter Wall:** Complete stone curtain wall enclosing the town from sea cliff to inland hillside, with regular round watchtowers and inland gatehouses.
-  * **Fortified Harbor Basin:** Protected semi-circular harbor sheltered by two stone breakwater arms ending in lighthouse beacon towers; inner wharves and docks accommodating 15+ sailing vessels.
-  * **Urban Grid:** Dense network of cobblestone streets lined with 2-story half-timbered houses with slate gabled roofs.
-  * **Civic Center:** Central open market plaza with timber stalls and a prominent parish stone church with a high bell tower.
-  * **Overlooking Keep:** Secondary clifftop manor keep on the hill monitoring both land approaches and sea lanes.
-* **Minecraft 1.21.1 Palette:** `stone_bricks`, `cobblestone`, `oak_log`, `stripped_oak_log`, `deepslate_tiles`, `spruce_planks`, `white_terracotta`, `hay_block`.
+### 4. Walled Coastal Harbor Town in Minecraft
+* **File:** `docs/art/minecraft_town_grey_frontier_harbor.png`
+* **Voxel Architecture & Block Palette:**
+  * **Perimeter Enclosure:** Full ring of `stone_bricks` wall with round defensive towers enclosing the entire settlement.
+  * **Housing Blocks:** Varied 2-story buildings with `stripped_spruce_log` corners, `white_terracotta` / `smooth_diorite` infill, and `dark_oak_stairs` roofs.
+  * **Town Square:** `cobblestone` and `gravel` market plaza with wool-canopied stalls (`red_wool`, `yellow_wool`, `green_wool`).
+  * **Harbor Quayside:** `spruce_planks` wharves with `stripped_oak_log` pilings, `oak_fence` railings, and docked `oak_boat` / custom ship models.
 
 ---
 
-### 5. Complete Circular Desert Oasis City of Al-Qadira
-* **Reference Art:** `docs/art/wide_city_al_qadira_oasis.png`
-* **Realm:** The Gilded Dunes (House Seljuk)
-* **Scale:** Entire $320 \times 320$ block circular oasis metropolis.
-* **Full Settlement Layout:**
-  * **Circular Defense Ring:** Complete perimeter sandstone fortification wall with crenellations, bastions, and monumental arched gatehouses facing desert caravan trails.
-  * **Lush Oasis Canal Heart:** Natural palm tree oasis with turquoise water channels winding through the city center, dividing urban quarters.
-  * **Grand Bazaar Promenade:** Sprawling open-air marketplace in the central crescent with multi-colored silk canopies and merchant stalls.
-  * **Sultan Palatial Complex:** Colossal central palace crowned with gleaming gold domes, flanked by four soaring sandstone minarets.
-  * **Quarter Mosques:** Secondary neighborhood mosques with turquoise and lapis-lazuli glazed tile domes.
-* **Minecraft 1.21.1 Palette:** `cut_sandstone`, `smooth_sandstone`, `gold_block`, `prismarine_bricks`, `cyan_terracotta`, `yellow_terracotta`, `red_wool`, `yellow_wool`.
+### 5. Circular Desert Oasis City in Minecraft
+* **File:** `docs/art/minecraft_city_al_qadira_oasis.png`
+* **Voxel Architecture & Block Palette:**
+  * **Circular Defense Ring:** Perfect circular perimeter wall of `smooth_sandstone`, `cut_sandstone`, and `sandstone_stairs`.
+  * **Sultan Palace:** `gold_block` onion domes, `smooth_sandstone` walls, and soaring 4-corner minarets.
+  * **Canal & Palm Oasis:** `water` channels lined with `prismarine_bricks`, `lily_pad`, `jungle_log` trunks, and `jungle_leaves` canopies.
+  * **Quarter Mosques:** Secondary domes built of `cyan_glazed_terracotta` and `prismarine_bricks`.
 
 ---
 
-### 6. Complete Industrial Canyon Foundry Town
-* **Reference Art:** `docs/art/wide_town_cogwork_industrial.png`
-* **Realm:** The Cogwork March (House Vance)
-* **Scale:** Entire $300 \times 180$ block terraced industrial canyon settlement.
-* **Full Settlement Layout:**
-  * **Canyon-Spanning Viaducts:** Monumental multi-tiered arched stone and iron railway bridges spanning the canyon chasm, carrying steam locomotives with coal carts.
-  * **Terraced Red-Rock Architecture:** Multi-story brick and weathered copper workshops cut directly into stepped canyon cliff ledges.
-  * **Heavy Mechanical Infrastructure:** Massive turning brass spur gears, waterwheels at river level, copper boilers, and brick smokestacks venting smoke.
-  * **Lower River Basin:** Dredged industrial canal locks with loading docks, cargo barges, and suspended footbridges connecting north and south canyon rims.
-* **Minecraft 1.21.1 Palette:** `mud_bricks`, `bricks`, `weathered_cut_copper`, `copper_grate`, `deepslate_tiles`, `smooth_basalt`, `rail`, `minecart`, `iron_bars`.
+### 6. Steampunk Canyon Industrial Town in Minecraft
+* **File:** `docs/art/minecraft_town_cogwork_industrial.png`
+* **Voxel Architecture & Block Palette:**
+  * **Canyon Cliffs:** Naturally stepped `red_terracotta`, `orange_terracotta`, and `red_sandstone` strata.
+  * **Railway Viaduct:** High `stone_bricks` and `deepslate_tile` arch bridge with `rail`, `minecart`, and `powered_rail`.
+  * **Factory Architecture:** `mud_bricks`, `bricks`, and `weathered_cut_copper_stairs` roofs with `copper_bulb` lights.
+  * **Machinery:** Large gear silhouettes using `yellow_terracotta` and `gold_block`, `campfire` chimney smoke stacks.
 
 ---
 
-### 7. Complete Bayou Stilt Settlement of the Fen
-* **Reference Art:** `docs/art/wide_town_whispering_fen_stilt.png`
-* **Realm:** The Whispering Fen (House Belen)
-* **Scale:** Entire $280 \times 240$ block elevated aquatic village.
-* **Full Settlement Layout:**
-  * **World-Tree Arboreal Anchors:** Built entirely around the flared buttress root systems of three colossal ancient cypress trees.
-  * **Radial Boardwalk Web:** Continuous network of timber boardwalks and suspended rope bridges connecting all residential sectors above dark swamp water.
-  * **Central Clan Longhouse:** Dominant circular communal hall on an expansive reinforced timber deck at the settlement heart.
-  * **Watergate Docks:** Radial piers with slips accommodating dozens of flat-bottomed wooden skiffs and dugouts.
-  * **Bioluminescent Lighting:** Massive glowing cyan mushroom clusters and hanging lantern cages illuminating every walkway and roof eaves.
-* **Minecraft 1.21.1 Palette:** `mangrove_planks`, `mangrove_roots`, `stripped_mangrove_log`, `mud_brick_slab`, `hay_block`, `glow_lichen`, `shroomlight`, `oak_boat`.
+### 7. Bayou Stilt Settlement in Minecraft
+* **File:** `docs/art/minecraft_town_whispering_fen_stilt.png`
+* **Voxel Architecture & Block Palette:**
+  * **World-Trees:** Massive custom tree trunks of `dark_oak_wood` with sprawling `mangrove_roots` bases and hanging `moss_block` vines.
+  * **Boardwalks:** `spruce_slab` walkways on `fence` pilings with `lantern` posts and `lead` rope suspension bridges.
+  * **Thatched Huts:** `mangrove_planks` walls, `hay_block` roofs with `spruce_trapdoor` trimming.
+  * **Bioluminescent Shrines:** `shroomlight`, `sea_pickle`, and `glow_lichen` clusters illuminating dark swamp water.
 
 ---
 
-### 8. Complete Sunken Classical Metropolis of Port Ostraka
-* **Reference Art:** `docs/art/wide_ruins_sunken_atlantis_complete.png`
-* **Realm:** The Sunken Reach (Pre-Cataclysm Ruins)
-* **Scale:** Entire $350 \times 280$ block submerged city ruins.
-* **Full Settlement Layout:**
-  * **Submerged Classical Plan:** Full Greco-Roman urban grid resting in 2 to 6 meters of crystal-clear turquoise ocean water.
-  * **Flooded Colonnades & Temples:** Intact colonnaded avenues, circular tholos shrines, and triumphal arch gates rising above the surface.
-  * **Mosaic Forum Plazas:** Expansive mosaic tile courtyards clearly visible beneath the transparent water surface.
-  * **Soaring Belfries:** Slender gothic campaniles and watchtowers rising 25 meters above the sea swells.
-  * **Living Raft Towns:** Interconnected floating wooden raft platforms, bridges, and houseboats moored to the ancient marble pillars.
-* **Minecraft 1.21.1 Palette:** `quartz_pillar`, `smooth_quartz`, `quartz_stairs`, `prismarine_bricks`, `sea_lantern`, `oak_planks`, `tube_coral_block`, `bubble_coral_block`.
-
----
-
-# 🌍 TIER I: Macro National Panoramas (7 Continental Realms)
-
-1. **The Coastal Kingdom of the Grey Frontier** (`nation_01_grey_frontier_kingdom.png`): House Douglas border realm with miles of coastal curtain walls, harbor city, fleets of galleys, and sheer clifftop keep.
-2. **The Brass Dominion of the Cogwork March** (`nation_02_cogwork_march_dominion.png`): House Vance steampunk civilization spanning canyons with multi-arched railway viaducts, copper foundries, and gear mechanisms.
-3. **The Obsidian Imperium of the Ashen Caldera** (`nation_03_ashen_caldera_imperium.png`): Emperor Valerius IX volcanic caldera, blackstone stepped ziggurats, central crown of crying obsidian spires glowing violet, lava rivers.
-4. **The Glacial Dominion of House Vane** (`nation_04_glacial_spine_realm.png`): High alpine mountain empire on knife-edge ridges, gothic ice cathedrals, chasm suspension bridges, aurora borealis.
-5. **The Seljuk Sultanate of the Gilded Dunes** (`nation_05_gilded_dunes_sultanate.png`): Desert canyon oasis megalopolis, golden & turquoise domed palaces, minarets, aqueducts, silk bazaars, caravan dunes.
-6. **The Mycelial Wetlands of the Whispering Fen** (`nation_06_whispering_fen_wetlands.png`): House Belen mangrove bayou stilt-nation, ancient world-trees, illuminated rope-bridge network, glowing cyan fungi.
-7. **The Drowned Realm of Port Ostraka** (`nation_07_sunken_reach_atlantis.png`): Sunken classical metropolis in turquoise atoll lagoon, flooded colonnades, submerged forum, and floating raft towns.
-
----
-
-# 🔍 TIER III: Close-Up Architectural & Material Blueprints
-
-*For micro detailing, wall cross-sections, gates, and interior fittings:*
-
-1. **Gatehouse Keep:** `closeup_castle_grey_frontier_keep.png` (Stone corbels, raised portcullis, red/slate banners).
-2. **Alpine Gate:** `closeup_castle_glacial_spine_citadel.png` (Gothic pointed arches, soulfire braziers, ice buttresses).
-3. **Coastal Rampart:** `closeup_wall_frontier_coastal_ramparts.png` (5m parapet walk, ballistas, smoking pitch cauldrons, sea gate).
-4. **Obsidian Bastion:** `closeup_wall_ashen_obsidian_bulwark.png` (Polished blackstone, weeping obsidian seams, lava moat).
-5. **Foundry Street:** `closeup_city_cogwork_foundry_avenue.png` (Brick arcades, steam conduits, overhead ore carts).
-6. **Oasis Bazaar Street:** `closeup_town_gilded_dunes_bazaar.png` (Moorish arches, turquoise mosaic drinking fountain, silk awnings).
-7. **Bayou Boardwalk:** `closeup_town_fen_stilt_hamlet.png` (Mangrove stilt cottages, wicker fungus cages, dugout skiffs).
-8. **Submerged Forum:** `closeup_ruins_sunken_atlantis_colonnade.png` (Half-submerged quartz columns, corals, sea lanterns).
-9. **Volcanic Sanctum:** `closeup_ruins_ancient_caldera_temple.png` (Collapsed ribbed vaults, tilted basalt pillars, runic throne).
-
----
-
-## 📊 Complete Concept Art Master Matrix (24 Reference Works)
-
-| Scale / Tier | Subject | Realm | File Name |
-|---|---|---|---|
-| **Tier II (Complete Castle)** | Entire Coastal Fortress of House Douglas | Grey Frontier | `wide_castle_grey_frontier_complete.png` |
-| **Tier II (Complete Castle)** | Entire Alpine Ice Citadel of House Vane | Glacial Spine | `wide_castle_glacial_citadel_complete.png` |
-| **Tier II (Complete Castle)** | Entire Obsidian Imperial Caldera Fortress | Ashen Caldera | `wide_castle_ashen_imperium_complete.png` |
-| **Tier II (Complete Town)** | Entire Walled Coastal Harbor Town | Grey Frontier | `wide_town_grey_frontier_harbor.png` |
-| **Tier II (Complete City)** | Entire Circular Desert Oasis City | Gilded Dunes | `wide_city_al_qadira_oasis.png` |
-| **Tier II (Complete Town)** | Entire Canyon Steampunk Foundry Town | Cogwork March | `wide_town_cogwork_industrial.png` |
-| **Tier II (Complete Town)** | Entire Bayou Stilt Village Settlement | Whispering Fen | `wide_town_whispering_fen_stilt.png` |
-| **Tier II (Complete Ruins)** | Entire Sunken Classical Atlantis Metropolis | Sunken Reach | `wide_ruins_sunken_atlantis_complete.png` |
-| **Tier I (Nation Vista)** | Coastal Kingdom Horizon | Grey Frontier | `nation_01_grey_frontier_kingdom.png` |
-| **Tier I (Nation Vista)** | Steampunk Dominion Horizon | Cogwork March | `nation_02_cogwork_march_dominion.png` |
-| **Tier I (Nation Vista)** | Obsidian Imperium Horizon | Ashen Caldera | `nation_03_ashen_caldera_imperium.png` |
-| **Tier I (Nation Vista)** | Glacial Dominion Horizon | Glacial Spine | `nation_04_glacial_spine_realm.png` |
-| **Tier I (Nation Vista)** | Desert Sultanate Horizon | Gilded Dunes | `nation_05_gilded_dunes_sultanate.png` |
-| **Tier I (Nation Vista)** | Wetland Nation Horizon | Whispering Fen | `nation_06_whispering_fen_wetlands.png` |
-| **Tier I (Nation Vista)** | Drowned Atlantis Horizon | Sunken Reach | `nation_07_sunken_reach_atlantis.png` |
-| **Tier III (Close-Up)** | Gatehouse Keep Courtyard | Grey Frontier | `closeup_castle_grey_frontier_keep.png` |
-| **Tier III (Close-Up)** | Alpine Ice Gate | Glacial Spine | `closeup_castle_glacial_spine_citadel.png` |
-| **Tier III (Close-Up)** | Coastal Defense Ramparts | Grey Frontier | `closeup_wall_frontier_coastal_ramparts.png` |
-| **Tier III (Close-Up)** | Obsidian Bastion Wall | Ashen Caldera | `closeup_wall_ashen_obsidian_bulwark.png` |
-| **Tier III (Close-Up)** | Industrial Workshop Street | Cogwork March | `closeup_city_cogwork_foundry_avenue.png` |
-| **Tier III (Close-Up)** | Oasis Market Promenade | Gilded Dunes | `closeup_town_gilded_dunes_bazaar.png` |
-| **Tier III (Close-Up)** | Bayou Boardwalk Village | Whispering Fen | `closeup_town_fen_stilt_hamlet.png` |
-| **Tier III (Close-Up)** | Half-Submerged Colonnade | Sunken Reach | `closeup_ruins_sunken_atlantis_colonnade.png` |
-| **Tier III (Close-Up)** | Shattered Volcanic Temple | Ashen Caldera | `closeup_ruins_ancient_caldera_temple.png` |
-
----
-
-*All 24 artworks are hosted in full ultra-resolution inside the WorldStudio web application on port 3000.*
+### 8. Drowned Classical Atlantis Ruins in Minecraft
+* **File:** `docs/art/minecraft_ruins_sunken_atlantis.png`
+* **Voxel Architecture & Block Palette:**
+  * **Colonnaded Avenues:** Rows of `quartz_pillar` and `smooth_quartz_stairs` rising through transparent water.
+  * **Underwater Mosaics:** Sunken forum floors designed with `cyan_glazed_terracotta`, `light_blue_concrete`, and `sea_lantern` grid arrays.
+  * **Tholos Shrines:** Circular temples with `smooth_quartz` columns and `prismarine_bricks` hemispherical domes.
+  * **Maritime Rafts:** Floating platforms of `oak_planks` and `barrel` pontoons tied between ancient pillars.

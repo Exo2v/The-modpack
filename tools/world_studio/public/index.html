@@ -523,333 +523,429 @@
 
         <!-- TAB: REGIONAL CONCEPT REFERENCE ART GALLERY -->
         <div id="content-art" class="hidden space-y-5">
-          <div class="bg-gradient-to-br from-pink-950/40 via-panel to-slate-900 border border-pink-700/30 rounded-xl p-4 shadow-xl">
+          <div class="bg-gradient-to-br from-emerald-950/40 via-panel to-slate-900 border border-emerald-700/30 rounded-xl p-4 shadow-xl">
             <div class="flex items-center justify-between mb-1.5">
-              <div class="flex items-center gap-2 text-pink-400 font-bold text-sm">
-                <i data-lucide="palette" class="w-4 h-4"></i>
-                <span>Continental Architectural Atlas</span>
+              <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                <i data-lucide="cuboid" class="w-4 h-4"></i>
+                <span>Ashenfall Architectural Visual Suite</span>
               </div>
-              <span class="text-[10px] bg-pink-900/60 text-pink-300 px-2 py-0.5 rounded-full font-mono">24 References</span>
+              <span class="text-[10px] bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded-full font-mono">32 References</span>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Complete visual design library for the continent of Vantyra: wide establishing shots showing entire castles and whole towns in full frame, macro continental horizons, and close-up construction studies.
+              Complete reference library: authentic cubic Minecraft voxel builds, full uncropped wide establishing vistas of entire castles and towns, continental horizons, and close-up construction studies.
             </p>
             
             <!-- Art View Mode Switcher -->
-            <div class="grid grid-cols-3 gap-1.5 pt-3 mt-3 border-t border-slate-800/80">
-              <button onclick="switchArtTier('tier2')" id="btn-art-tier2" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg text-xs font-semibold bg-pink-600/90 text-white shadow transition">
-                <i data-lucide="castle" class="w-3.5 h-3.5"></i>
-                <span>Whole Castles & Towns (8)</span>
+            <div class="grid grid-cols-4 gap-1.5 pt-3 mt-3 border-t border-slate-800/80 text-[11px]">
+              <button onclick="switchArtTier('tier4')" id="btn-art-tier4" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold bg-emerald-600/90 text-white shadow transition">
+                <i data-lucide="cuboid" class="w-3 h-3"></i>
+                <span>Voxel (8)</span>
               </button>
-              <button onclick="switchArtTier('tier1')" id="btn-art-tier1" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
-                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
-                <span>Macro Panoramas (7)</span>
+              <button onclick="switchArtTier('tier2')" id="btn-art-tier2" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+                <i data-lucide="castle" class="w-3 h-3"></i>
+                <span>Castles (8)</span>
               </button>
-              <button onclick="switchArtTier('tier3')" id="btn-art-tier3" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
-                <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
-                <span>Close-Ups (9)</span>
+              <button onclick="switchArtTier('tier1')" id="btn-art-tier1" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+                <i data-lucide="globe" class="w-3 h-3"></i>
+                <span>Horizons (7)</span>
+              </button>
+              <button onclick="switchArtTier('tier3')" id="btn-art-tier3" class="flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+                <i data-lucide="zoom-in" class="w-3 h-3"></i>
+                <span>Details (9)</span>
               </button>
             </div>
           </div>
 
-          <!-- TIER II: FULL ESTABLISHING VISTAS (ENTIRE CASTLES & COMPLETE TOWNS) -->
-          <div id="art-tier2" class="space-y-4">
+          <!-- TIER IV: AUTHENTIC MINECRAFT VOXEL BUILDS (8 BUILDS - DEFAULT ACTIVE) -->
+          <div id="art-tier4" class="space-y-4">
             <div class="flex items-center justify-between px-1">
-              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="castle" class="w-3.5 h-3.5"></i>
-                <span>Full Architectural Portraits — Entire Structures & Settlements</span>
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="cuboid" class="w-3.5 h-3.5"></i>
+                <span>In-Engine Minecraft Voxel Builds</span>
               </span>
-              <span class="text-[10px] text-slate-400 font-mono">8 Complete Subjects</span>
+              <span class="text-[10px] text-slate-400 font-mono">1-Meter Cubic Voxels</span>
             </div>
 
-            <!-- 1. Entire Castle: Grey Frontier Coastal Fortress -->
+            <!-- 1. Voxel: Grey Frontier Fortress -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_castle_grey_frontier_complete.png" alt="Entire Coastal Fortress of House Douglas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_castle_grey_frontier.png" alt="Minecraft Grey Frontier Fortress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE CASTLE</span>
-                  <span class="text-[10px] font-medium bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded-full font-mono">House Douglas</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
+                  <span class="text-[10px] font-medium bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Grey Frontier</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Coastal Fortress of House Douglas</h4>
+                  <h4 class="font-bold text-white text-xs">Grey Frontier Coastal Castle (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(0, 2500)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing portrait showing the entire fortress: complete clifftop rock foundation, arched sea-chasm causeway bridge, 10-tower outer curtain wall ring, inner bailey courtyard with gabled barracks, and colossal central Norman keep tower.
+                  Stone bricks, cracked stone bricks, and deepslate base walls, spruce plank courtyard buildings with oak log framing, drawbridge with iron chains, and massive Norman keep.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stone Bricks</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Deepslate Tiles</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Spruce Planks</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Iron Bars</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Stone Bricks</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Deepslate</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Spruce Planks</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Iron Bars</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('grey_frontier_watchtower')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Watchtower</span>
                   </button>
-                  <a href="/art/wide_castle_grey_frontier_complete.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_castle_grey_frontier.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Entire Castle: Glacial Spine Alpine Citadel -->
+            <!-- 2. Voxel: Glacial Spine Alpine Citadel -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_castle_glacial_citadel_complete.png" alt="Entire Alpine Ice Citadel of House Vane" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_castle_glacial_spine.png" alt="Minecraft Glacial Spine Citadel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE CASTLE</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-cyan-950/90 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-full font-mono">Glacial Spine</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete High Alpine Citadel of House Vane</h4>
+                  <h4 class="font-bold text-white text-xs">High Alpine Ice Citadel (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(0, -2500)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing view showing the entire mountain castle: jagged crag foundations, twin soaring chasm viaduct bridges, hexagonal lower rampart walls, and the magnificent central Gothic palace crowned with needle-sharp ice spires under aurora skies.
+                  Calcite and diorite lower buttresses rising into blue ice and packed ice spires, cyan stained glass lancet windows, soul lanterns, and high arched chasm bridge.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Calcite</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Blue Ice</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Soul Lanterns</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stained Glass</span>
+                  <span class="text-[9px] bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded">Calcite</span>
+                  <span class="text-[9px] bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded">Blue Ice</span>
+                  <span class="text-[9px] bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded">Soul Lantern</span>
+                  <span class="text-[9px] bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded">Stained Glass</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('glacial_hermit_cloister')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Cloister</span>
                   </button>
-                  <a href="/art/wide_castle_glacial_citadel_complete.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_castle_glacial_spine.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Entire Castle: Obsidian Imperial Caldera Fortress -->
+            <!-- 3. Voxel: Obsidian Imperial Fortress -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_castle_ashen_imperium_complete.png" alt="Entire Obsidian Imperial Caldera Fortress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_castle_ashen_caldera.png" alt="Minecraft Obsidian Imperial Fortress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE CASTLE</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-red-950/90 text-red-300 border border-red-800 px-2 py-0.5 rounded-full font-mono">Ashen Caldera</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Obsidian Imperial Fortress of Valerius IX</h4>
+                  <h4 class="font-bold text-white text-xs">Obsidian Imperial Caldera Fortress (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(0, 146, 0)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing view showing the entire volcanic fortress: outer 30m lava moat, Tier 1 spiked basalt bastions with drawbridge, Tier 2 elevated garrison ramparts, and central gothic ziggurat palace crowned with glowing violet crying obsidian spires.
+                  Continuous lava block moat with magma shoreline, polished blackstone brick curtain walls, spiked bastions, and central ziggurat crowned with glowing crying obsidian.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Blackstone</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Crying Obsidian</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Lava</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Soul Lanterns</span>
+                  <span class="text-[9px] bg-slate-800 text-red-400 px-1.5 py-0.5 rounded">Blackstone</span>
+                  <span class="text-[9px] bg-slate-800 text-red-400 px-1.5 py-0.5 rounded">Crying Obsidian</span>
+                  <span class="text-[9px] bg-slate-800 text-red-400 px-1.5 py-0.5 rounded">Lava Blocks</span>
+                  <span class="text-[9px] bg-slate-800 text-red-400 px-1.5 py-0.5 rounded">Soul Lanterns</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('obsidian_imperial_dais')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Imperial Dais</span>
                   </button>
-                  <a href="/art/wide_castle_ashen_imperium_complete.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_castle_ashen_caldera.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 4. Entire Town: Walled Coastal Harbor Town -->
+            <!-- 4. Voxel: Walled Coastal Harbor Town -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_town_grey_frontier_harbor.png" alt="Entire Coastal Harbor Town" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_town_grey_frontier_harbor.png" alt="Minecraft Coastal Harbor Town" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-sky-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE TOWN</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Grey Frontier</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Walled Coastal Harbor Town</h4>
+                  <h4 class="font-bold text-white text-xs">Walled Coastal Harbor Town (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(200, 2400)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  High-angle aerial vista of the entire harbor settlement: stone defensive perimeter wall with watchtowers, protected sea harbor with lighthouse breakwaters and sailing galleys, cobblestone streets, town square with church, and hillside keep.
+                  Stone brick defensive walls with round towers, timber and white terracotta houses, wool-topped market stalls in the town square, parish bell tower church, and wooden docks.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Stone Bricks</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Oak Timber</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Deepslate Slate</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Boats & Ships</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Stone Bricks</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Oak Timber</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Spruce Stairs</span>
+                  <span class="text-[9px] bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded">Wool Stalls</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('coastal_fishing_wharf')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Wharf</span>
                   </button>
-                  <a href="/art/wide_town_grey_frontier_harbor.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_town_grey_frontier_harbor.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 5. Entire City: Circular Desert Oasis City of Al-Qadira -->
+            <!-- 5. Voxel: Circular Desert Oasis City -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_city_al_qadira_oasis.png" alt="Entire Desert Oasis City of Al-Qadira" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_city_al_qadira_oasis.png" alt="Minecraft Desert Oasis City" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-yellow-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE CITY</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-yellow-950/90 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full font-mono">House Seljuk</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Circular Desert Oasis City of Al-Qadira</h4>
+                  <h4 class="font-bold text-white text-xs">Circular Desert Oasis City of Al-Qadira (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(2300, 0)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing view of the complete walled oasis city: circular sandstone perimeter walls and arched gates, central grand palace with golden domes and minarets, lush emerald canal waterways, and silk-canopied grand bazaar surrounded by sand dunes.
+                  Smooth sandstone perimeter walls, central grand palace with gold block domes and minarets, lush jungle leaf palm tree canal ring, and colorful wool bazaar.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Cut Sandstone</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Gold Blocks</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Prismarine</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Silk Wool</span>
+                  <span class="text-[9px] bg-slate-800 text-yellow-300 px-1.5 py-0.5 rounded">Smooth Sandstone</span>
+                  <span class="text-[9px] bg-slate-800 text-yellow-300 px-1.5 py-0.5 rounded">Gold Blocks</span>
+                  <span class="text-[9px] bg-slate-800 text-yellow-300 px-1.5 py-0.5 rounded">Prismarine</span>
+                  <span class="text-[9px] bg-slate-800 text-yellow-300 px-1.5 py-0.5 rounded">Palm Canals</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('al_qadira_sunken_bazaar')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Bazaar</span>
                   </button>
-                  <a href="/art/wide_city_al_qadira_oasis.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_city_al_qadira_oasis.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 6. Entire Town: Industrial Canyon Town of Cogwork March -->
+            <!-- 6. Voxel: Steampunk Canyon Industrial Town -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_town_cogwork_industrial.png" alt="Entire Industrial Canyon Town" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_town_cogwork_industrial.png" alt="Minecraft Canyon Industrial Town" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE TOWN</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-amber-950/90 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full font-mono">Cogwork March</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Industrial Canyon Foundry Town</h4>
+                  <h4 class="font-bold text-white text-xs">Canyon Industrial Foundry Town (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(-2100, 95, 40)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing view across the canyon gorge: monumental railway viaduct with working steam locomotive, terraced copper-roofed brick foundry buildings on cliff ledges, massive brass gears, waterwheels, and smokestacks venting steam.
+                  Stepped red terracotta canyon cliffs, monumental stone brick railway viaduct with working minecart train, cut copper roofs, turning gear assemblies, and river waterwheels.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Cut Copper</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Mud Bricks</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Railways</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Copper Bulbs</span>
+                  <span class="text-[9px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">Red Terracotta</span>
+                  <span class="text-[9px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">Cut Copper</span>
+                  <span class="text-[9px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">Rail & Carts</span>
+                  <span class="text-[9px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">Waterwheels</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('cogwork_steam_foundry')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Steam Foundry</span>
                   </button>
-                  <a href="/art/wide_town_cogwork_industrial.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_town_cogwork_industrial.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 7. Entire Town: Bayou Stilt Village of Whispering Fen -->
+            <!-- 7. Voxel: Bayou Stilt Village -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_town_whispering_fen_stilt.png" alt="Entire Bayou Stilt Village" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_town_whispering_fen_stilt.png" alt="Minecraft Bayou Stilt Village" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-purple-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE VILLAGE</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-purple-950/90 text-purple-300 border border-purple-800 px-2 py-0.5 rounded-full font-mono">Whispering Fen</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Bayou Stilt Settlement of the Fen</h4>
+                  <h4 class="font-bold text-white text-xs">Bayou Stilt Village of House Belen (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(2000, 2000)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing view of the complete stilt village: built around the root flairs of giant cypress world-trees, radial wooden boardwalks and rope bridges connecting thatched cottages, central meeting longhouse platform, boat docks, and glowing cyan mushrooms.
+                  Giant custom dark oak & mangrove trees with buttress roots, spruce boardwalk network on fence posts, mangrove wood stilt huts with hay roofs, and shroomlights.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Mangrove Roots</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Thatch Hay</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Glow Lichen</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Dugout Boats</span>
+                  <span class="text-[9px] bg-slate-800 text-purple-300 px-1.5 py-0.5 rounded">Mangrove Roots</span>
+                  <span class="text-[9px] bg-slate-800 text-purple-300 px-1.5 py-0.5 rounded">Hay Roofs</span>
+                  <span class="text-[9px] bg-slate-800 text-purple-300 px-1.5 py-0.5 rounded">Boardwalks</span>
+                  <span class="text-[9px] bg-slate-800 text-purple-300 px-1.5 py-0.5 rounded">Shroomlight</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('fen_witch_stilt_dwelling')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Stilt Dwelling</span>
                   </button>
-                  <a href="/art/wide_town_whispering_fen_stilt.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_town_whispering_fen_stilt.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- 8. Entire Ruins: Sunken Classical Metropolis of Port Ostraka -->
+            <!-- 8. Voxel: Sunken Classical Atlantis Ruins -->
             <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
               <div class="relative h-52 overflow-hidden bg-slate-950">
-                <img src="/art/wide_ruins_sunken_atlantis_complete.png" alt="Entire Sunken Classical Atlantis Ruins" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="/art/minecraft_ruins_sunken_atlantis.png" alt="Minecraft Sunken Atlantis Ruins" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold bg-teal-400 text-slate-950 px-2 py-0.5 rounded-full font-mono">ENTIRE RUINS</span>
+                  <span class="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-mono">VOXEL BUILD</span>
                   <span class="text-[10px] font-medium bg-teal-950/90 text-teal-300 border border-teal-800 px-2 py-0.5 rounded-full font-mono">Sunken Reach</span>
                 </div>
               </div>
               <div class="p-3.5 space-y-2">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-white text-xs">Complete Sunken Classical Metropolis of Port Ostraka</h4>
+                  <h4 class="font-bold text-white text-xs">Sunken Classical Atlantis Ruins (Minecraft Voxel)</h4>
                   <span class="font-mono text-[10px] text-cyan-400">(-2400, 1600)</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                  Full establishing elevated vista showing the entire flooded city plan in turquoise water: marble colonnaded boulevards, circular temples, intact mosaic forum floors beneath the clear sea, soaring campanile belfries, and moored floating raft settlements.
+                  Submerged quartz pillars, circular temples with prismarine domes, glazed terracotta mosaic plaza floors visible under clear water, sea lanterns, and floating wooden rafts.
                 </p>
                 <div class="flex flex-wrap gap-1 pt-1">
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Quartz Pillars</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Prismarine</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Sea Lanterns</span>
-                  <span class="text-[9px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Raft Timber</span>
+                  <span class="text-[9px] bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded">Quartz Pillars</span>
+                  <span class="text-[9px] bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded">Prismarine</span>
+                  <span class="text-[9px] bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded">Sea Lanterns</span>
+                  <span class="text-[9px] bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded">Glazed Terracotta</span>
                 </div>
                 <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
                   <button onclick="openSchematicViewer('drowned_cathedral_spire')" class="flex-1 flex items-center justify-center gap-1.5 bg-amber-600/90 hover:bg-amber-600 text-white text-xs font-semibold py-1.5 rounded-lg transition">
                     <i data-lucide="castle" class="w-3.5 h-3.5"></i>
                     <span>Inspect 3D Cathedral Spire</span>
                   </button>
-                  <a href="/art/wide_ruins_sunken_atlantis_complete.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="View Full Ultra-Res Art">
+                  <a href="/art/minecraft_ruins_sunken_atlantis.png" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Inspect Full Art">
                     <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
                   </a>
                 </div>
               </div>
             </div>
 
+          </div>
+
+          <!-- TIER II: FULL ESTABLISHING VISTAS (8 BUILDS) -->
+          <div id="art-tier2" class="hidden space-y-4">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="castle" class="w-3.5 h-3.5"></i>
+                <span>Full Architectural Portraits — Entire Structures</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">8 Complete Subjects</span>
+            </div>
+
+            <!-- Castles & Towns Wide Cards -->
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_castle_grey_frontier_complete.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-amber-400 font-mono font-bold uppercase">Grey Frontier</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Coastal Fortress Keep</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Complete outer curtain wall, bailey courtyard, sea causeway bridge, Norman keep.</p>
+              </div>
+              <a href="/art/wide_castle_grey_frontier_complete.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_castle_glacial_citadel_complete.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-cyan-400 font-mono font-bold uppercase">Glacial Spine</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Alpine Ice Citadel</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Complete mountain fortress, twin chasm viaducts, blue-ice spires, auroras.</p>
+              </div>
+              <a href="/art/wide_castle_glacial_citadel_complete.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_castle_ashen_imperium_complete.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-red-400 font-mono font-bold uppercase">Ashen Caldera</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Obsidian Imperial Fortress</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">3 concentric basalt tiers, 30m lava moat, drawbridge, crying obsidian spires.</p>
+              </div>
+              <a href="/art/wide_castle_ashen_imperium_complete.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_town_grey_frontier_harbor.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-sky-400 font-mono font-bold uppercase">The Grey Frontier</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Walled Coastal Harbor Town</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Continuous stone perimeter wall, sheltered harbor, timber houses, square church.</p>
+              </div>
+              <a href="/art/wide_town_grey_frontier_harbor.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_city_al_qadira_oasis.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-yellow-400 font-mono font-bold uppercase">Gilded Dunes</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Circular Desert Oasis City</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Sandstone defensive ring, gold palace domes, minarets, lush canal oasis, bazaar.</p>
+              </div>
+              <a href="/art/wide_city_al_qadira_oasis.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_town_cogwork_industrial.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-amber-400 font-mono font-bold uppercase">Cogwork March</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Industrial Canyon Town</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">High train viaduct with locomotive, terraced foundries, brass gears, waterwheels.</p>
+              </div>
+              <a href="/art/wide_town_cogwork_industrial.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_town_whispering_fen_stilt.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-purple-400 font-mono font-bold uppercase">Whispering Fen</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Bayou Stilt Village</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Root flairs of world-trees, radial boardwalk web, stilt huts, glowing cyan fungi.</p>
+              </div>
+              <a href="/art/wide_town_whispering_fen_stilt.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
+
+            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+              <img src="/art/wide_ruins_sunken_atlantis_complete.png" class="w-24 h-20 rounded-lg object-cover shrink-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[9px] text-teal-400 font-mono font-bold uppercase">Sunken Reach</span>
+                <h5 class="text-xs font-bold text-white truncate">Complete Sunken Classical Metropolis</h5>
+                <p class="text-[11px] text-slate-400 line-clamp-2">Submerged colonnades, circular temples, clear water mosaic plazas, raft towns.</p>
+              </div>
+              <a href="/art/wide_ruins_sunken_atlantis_complete.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+            </div>
           </div>
 
           <!-- TIER I: MACRO NATIONAL PANORAMAS (7 HORIZONS) -->
@@ -862,125 +958,77 @@
               <span class="text-[10px] text-slate-400 font-mono">7 Realms</span>
             </div>
 
-            <!-- 1. The Coastal Kingdom of the Grey Frontier -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_01_grey_frontier_kingdom.png" alt="Coastal Kingdom of the Grey Frontier" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Grey Frontier</span>
+            <div class="space-y-3">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_01_grey_frontier_kingdom.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-slate-400 font-mono font-bold uppercase">Coast</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Coastal Kingdom of the Grey Frontier</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">Curtain walls, harbor city, galleys, promontory keep.</p>
+                </div>
+                <a href="/art/nation_01_grey_frontier_kingdom.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
               </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Coastal Kingdom of the Grey Frontier</h4>
-                <p class="text-[11px] text-slate-400">Miles of mountain-spanning curtain walls, fortified harbor city with docked galleys, and high keep on coastal cliffs.</p>
-                <a href="/art/nation_01_grey_frontier_kingdom.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_02_cogwork_march_dominion.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-amber-400 font-mono font-bold uppercase">Canyon</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Brass Dominion of the Cogwork March</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">Steampunk canyon foundries, railway viaducts, copper falls.</p>
+                </div>
+                <a href="/art/nation_02_cogwork_march_dominion.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+              </div>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_03_ashen_caldera_imperium.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-red-400 font-mono font-bold uppercase">Volcano</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Obsidian Imperium of the Ashen Caldera</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">10km volcanic crater city, blackstone ziggurats, obsidian spires.</p>
+                </div>
+                <a href="/art/nation_03_ashen_caldera_imperium.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+              </div>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_04_glacial_spine_realm.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-cyan-400 font-mono font-bold uppercase">Alps</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Glacial Dominion of House Vane</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">High alpine ice cathedrals, chasm bridges, polar auroras.</p>
+                </div>
+                <a href="/art/nation_04_glacial_spine_realm.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+              </div>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_05_gilded_dunes_sultanate.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-yellow-400 font-mono font-bold uppercase">Desert</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Seljuk Sultanate of the Gilded Dunes</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">Gold and turquoise domes, minarets, oasis aqueducts, bazaars.</p>
+                </div>
+                <a href="/art/nation_05_gilded_dunes_sultanate.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+              </div>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_06_whispering_fen_wetlands.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-purple-400 font-mono font-bold uppercase">Swamp</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Mycelial Wetlands of the Whispering Fen</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">Mangrove stilt-city, ancient world-trees, cyan fungi networks.</p>
+                </div>
+                <a href="/art/nation_06_whispering_fen_wetlands.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+              </div>
+
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
+                <img src="/art/nation_07_sunken_reach_atlantis.png" class="w-24 h-16 rounded-lg object-cover shrink-0">
+                <div class="min-w-0 flex-1">
+                  <span class="text-[9px] text-teal-400 font-mono font-bold uppercase">Atoll</span>
+                  <h5 class="text-xs font-bold text-white truncate">The Drowned Realm of Port Ostraka</h5>
+                  <p class="text-[11px] text-slate-400 line-clamp-1">Sunken classical marble metropolis in turquoise atoll lagoon.</p>
+                </div>
+                <a href="/art/nation_07_sunken_reach_atlantis.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
               </div>
             </div>
-
-            <!-- 2. The Cogwork March -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_02_cogwork_march_dominion.png" alt="Cogwork March" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-amber-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Cogwork March</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Brass Dominion of the Cogwork March</h4>
-                <p class="text-[11px] text-slate-400">Canyon-spanning railway viaducts, multi-tiered clockwork foundries, and molten copper cascades.</p>
-                <a href="/art/nation_02_cogwork_march_dominion.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 3. Ashen Caldera -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_03_ashen_caldera_imperium.png" alt="Ashen Caldera" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-red-400 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Ashen Caldera</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Obsidian Imperium of the Ashen Caldera</h4>
-                <p class="text-[11px] text-slate-400">10km volcanic crater city ringed by basalt peaks, lava rivers, and giant crying obsidian spires.</p>
-                <a href="/art/nation_03_ashen_caldera_imperium.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 4. Glacial Spine -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_04_glacial_spine_realm.png" alt="Glacial Spine" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-cyan-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Glacial Spine</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Glacial Dominion of House Vane</h4>
-                <p class="text-[11px] text-slate-400">Alpine empire of gothic blue ice cathedrals and keeps on knife-edge summits under swirling polar auroras.</p>
-                <a href="/art/nation_04_glacial_spine_realm.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 5. Gilded Dunes -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_05_gilded_dunes_sultanate.png" alt="Gilded Dunes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-yellow-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Gilded Dunes</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Seljuk Sultanate of the Gilded Dunes</h4>
-                <p class="text-[11px] text-slate-400">Canyon oasis megalopolis with golden and turquoise domes, multi-tier aqueducts, and sunken silk bazaars.</p>
-                <a href="/art/nation_05_gilded_dunes_sultanate.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 6. Whispering Fen -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_06_whispering_fen_wetlands.png" alt="Whispering Fen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-purple-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Whispering Fen</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Mycelial Wetlands of the Whispering Fen</h4>
-                <p class="text-[11px] text-slate-400">Endless mangrove stilt-city anchored to world-tree roots with glowing bioluminescent fungi and rope bridges.</p>
-                <a href="/art/nation_06_whispering_fen_wetlands.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 7. Sunken Reach -->
-            <div class="bg-panel/90 border border-borderDark rounded-xl overflow-hidden shadow-lg group">
-              <div class="relative h-48 overflow-hidden bg-slate-950">
-                <img src="/art/nation_07_sunken_reach_atlantis.png" alt="Sunken Reach" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <span class="absolute top-2.5 left-2.5 text-[10px] font-bold bg-slate-900/90 text-teal-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono">The Sunken Reach</span>
-              </div>
-              <div class="p-3.5 space-y-1.5">
-                <h4 class="font-bold text-white text-xs">The Drowned Realm of Port Ostraka</h4>
-                <p class="text-[11px] text-slate-400">Submerged classical marble metropolis in turquoise atoll waters, flooded belfries, and living raft towns.</p>
-                <a href="/art/nation_07_sunken_reach_atlantis.png" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-pink-400 hover:text-pink-300 font-semibold pt-1">
-                  <span>Inspect Full-Res Panorama</span>
-                  <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
-              </div>
-            </div>
-
           </div>
 
           <!-- TIER III: CLOSE-UP ARCHITECTURAL STUDIES (9 ARTWORKS) -->
@@ -988,101 +1036,100 @@
             <div class="flex items-center justify-between px-1">
               <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
-                <span>Micro Details — Gates, Walls, Streets & Ruins</span>
+                <span>Micro Details & Wall Cross-Sections</span>
               </span>
               <span class="text-[10px] text-slate-400 font-mono">9 Studies</span>
             </div>
 
-            <div class="grid grid-cols-1 gap-3">
-              <!-- Closeups items -->
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_castle_grey_frontier_keep.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+            <div class="grid grid-cols-1 gap-2.5">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_castle_grey_frontier_keep.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-amber-400 font-mono font-bold uppercase">Gatehouse Keep</div>
-                  <h5 class="text-xs font-bold text-white truncate">House Douglas High Keep Courtyard</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Stone corbels, raised portcullis, red/slate banners, brazier sconces.</p>
+                  <span class="text-[9px] text-amber-400 font-mono font-bold uppercase">Gatehouse</span>
+                  <h6 class="text-xs font-bold text-white truncate">Grey Frontier High Keep Courtyard</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Raised portcullis, stone machicolations, heraldic banners.</p>
                 </div>
-                <a href="/art/closeup_castle_grey_frontier_keep.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_castle_grey_frontier_keep.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_castle_glacial_spine_citadel.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_castle_glacial_spine_citadel.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-cyan-400 font-mono font-bold uppercase">Alpine Gate</div>
-                  <h5 class="text-xs font-bold text-white truncate">Glacial Spine Ice Citadel Chasm Gate</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Gothic pointed arches, soulfire braziers, ice flying buttresses, gargoyles.</p>
+                  <span class="text-[9px] text-cyan-400 font-mono font-bold uppercase">Alpine Gate</span>
+                  <h6 class="text-xs font-bold text-white truncate">Glacial Spine Ice Citadel Chasm Gate</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Gothic lancet arches, soulfire braziers, ice flying buttresses.</p>
                 </div>
-                <a href="/art/closeup_castle_glacial_spine_citadel.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_castle_glacial_spine_citadel.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_wall_frontier_coastal_ramparts.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_wall_frontier_coastal_ramparts.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-sky-400 font-mono font-bold uppercase">Coastal Ramparts</div>
-                  <h5 class="text-xs font-bold text-white truncate">Grey Frontier Parapet & Sea Gate</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">5m battlement walkway, ballistas, smoking pitch cauldrons, sea arches.</p>
+                  <span class="text-[9px] text-sky-400 font-mono font-bold uppercase">Ramparts</span>
+                  <h6 class="text-xs font-bold text-white truncate">Grey Frontier Parapet & Sea Gate</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">5m battlement walkway, ballistas, smoking pitch cauldrons.</p>
                 </div>
-                <a href="/art/closeup_wall_frontier_coastal_ramparts.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_wall_frontier_coastal_ramparts.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_wall_ashen_obsidian_bulwark.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_wall_ashen_obsidian_bulwark.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-red-400 font-mono font-bold uppercase">Obsidian Bastion</div>
-                  <h5 class="text-xs font-bold text-white truncate">Ashen Caldera Bulwark & Lava Moat</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Polished blackstone, weeping obsidian veins glowing purple, molten lava.</p>
+                  <span class="text-[9px] text-red-400 font-mono font-bold uppercase">Bulwark</span>
+                  <h6 class="text-xs font-bold text-white truncate">Ashen Caldera Bulwark & Lava Moat</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Blackstone masonry, weeping obsidian seams glowing purple.</p>
                 </div>
-                <a href="/art/closeup_wall_ashen_obsidian_bulwark.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_wall_ashen_obsidian_bulwark.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_city_cogwork_foundry_avenue.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_city_cogwork_foundry_avenue.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-amber-400 font-mono font-bold uppercase">Industrial Avenue</div>
-                  <h5 class="text-xs font-bold text-white truncate">Cogwork March Foundry Street</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Brick arcades, open forge hearths, steam pipes, overhead ore railways.</p>
+                  <span class="text-[9px] text-amber-400 font-mono font-bold uppercase">Avenue</span>
+                  <h6 class="text-xs font-bold text-white truncate">Cogwork March Industrial Foundry Street</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Open forge hearths, steam pipes, overhead ore railways.</p>
                 </div>
-                <a href="/art/closeup_city_cogwork_foundry_avenue.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_city_cogwork_foundry_avenue.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_town_gilded_dunes_bazaar.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_town_gilded_dunes_bazaar.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-yellow-400 font-mono font-bold uppercase">Oasis Bazaar</div>
-                  <h5 class="text-xs font-bold text-white truncate">Al-Qadira Silk Market Street</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Horseshoe arches, cedar balconies, colorful silk awnings, tile fountain.</p>
+                  <span class="text-[9px] text-yellow-400 font-mono font-bold uppercase">Bazaar</span>
+                  <h6 class="text-xs font-bold text-white truncate">Al-Qadira Silk Market Street</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Horseshoe arches, cedar balconies, colorful silk awnings.</p>
                 </div>
-                <a href="/art/closeup_town_gilded_dunes_bazaar.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_town_gilded_dunes_bazaar.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_town_fen_stilt_hamlet.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_town_fen_stilt_hamlet.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-purple-400 font-mono font-bold uppercase">Bayou Boardwalk</div>
-                  <h5 class="text-xs font-bold text-white truncate">Whispering Fen Stilt Hamlet</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Mangrove timber stilt huts, wicker cages with glowing cyan mushrooms.</p>
+                  <span class="text-[9px] text-purple-400 font-mono font-bold uppercase">Boardwalk</span>
+                  <h6 class="text-xs font-bold text-white truncate">Whispering Fen Stilt Hamlet</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Mangrove stilt huts, wicker cages with glowing cyan fungi.</p>
                 </div>
-                <a href="/art/closeup_town_fen_stilt_hamlet.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_town_fen_stilt_hamlet.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_ruins_sunken_atlantis_colonnade.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_ruins_sunken_atlantis_colonnade.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-teal-400 font-mono font-bold uppercase">Submerged Colonnade</div>
-                  <h5 class="text-xs font-bold text-white truncate">Port Ostraka Drowned Forum</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Half-submerged quartz columns, coral reefs, underwater sea lanterns.</p>
+                  <span class="text-[9px] text-teal-400 font-mono font-bold uppercase">Colonnade</span>
+                  <h6 class="text-xs font-bold text-white truncate">Port Ostraka Drowned Forum</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Submerged quartz columns, coral reefs, sea lanterns.</p>
                 </div>
-                <a href="/art/closeup_ruins_sunken_atlantis_colonnade.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_ruins_sunken_atlantis_colonnade.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
 
-              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-3 flex gap-3 items-center">
-                <img src="/art/closeup_ruins_ancient_caldera_temple.png" class="w-20 h-20 rounded-lg object-cover shrink-0">
+              <div class="bg-panel/80 border border-borderDark rounded-xl overflow-hidden p-2.5 flex gap-3 items-center">
+                <img src="/art/closeup_ruins_ancient_caldera_temple.png" class="w-16 h-16 rounded-lg object-cover shrink-0">
                 <div class="min-w-0 flex-1">
-                  <div class="text-[10px] text-red-400 font-mono font-bold uppercase">Volcanic Sanctum</div>
-                  <h5 class="text-xs font-bold text-white truncate">Shattered Caldera Temple of Old Will</h5>
-                  <p class="text-[11px] text-slate-400 line-clamp-2">Collapsed ribbed vaults, tilted basalt pillars, runic stone throne, lava.</p>
+                  <span class="text-[9px] text-red-400 font-mono font-bold uppercase">Sanctum</span>
+                  <h6 class="text-xs font-bold text-white truncate">Shattered Caldera Temple of Old Will</h6>
+                  <p class="text-[10px] text-slate-400 line-clamp-1">Collapsed ribbed vaults, tilted basalt pillars, runic throne.</p>
                 </div>
-                <a href="/art/closeup_ruins_ancient_caldera_temple.png" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3.5 h-3.5"></i></a>
+                <a href="/art/closeup_ruins_ancient_caldera_temple.png" target="_blank" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition"><i data-lucide="maximize" class="w-3 h-3"></i></a>
               </div>
             </div>
           </div>
@@ -2796,12 +2843,12 @@
     // Art Gallery Tier Switcher
     // ---------------------------------------------------------------------------
     window.switchArtTier = function(tierId) {
-      ['tier1', 'tier2', 'tier3'].forEach(t => {
+      ['tier1', 'tier2', 'tier3', 'tier4'].forEach(t => {
         const el = document.getElementById('art-' + t);
         if (el) el.classList.add('hidden');
         const btn = document.getElementById('btn-art-' + t);
         if (btn) {
-          btn.className = 'flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition';
+          btn.className = 'flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold bg-slate-800 text-slate-300 hover:text-white transition';
         }
       });
 
@@ -2809,7 +2856,10 @@
       if (activeEl) activeEl.classList.remove('hidden');
       const activeBtn = document.getElementById('btn-art-' + tierId);
       if (activeBtn) {
-        activeBtn.className = 'flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg text-xs font-semibold bg-pink-600/90 text-white shadow transition';
+        let colorBg = 'bg-pink-600/90';
+        if (tierId === 'tier4') colorBg = 'bg-emerald-600/90';
+        else if (tierId === 'tier2') colorBg = 'bg-amber-600/90';
+        activeBtn.className = `flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg font-semibold ${colorBg} text-white shadow transition`;
       }
     };
 
